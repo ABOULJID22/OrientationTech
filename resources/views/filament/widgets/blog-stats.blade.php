@@ -8,7 +8,7 @@
                 <div class="flex items-center justify-between w-full">
                     <div class="flex items-center gap-3">
                         <x-filament::icon icon="heroicon-m-users" class="h-8 w-8 text-indigo-600" />
-                        <div class="text-sm font-medium text-gray-600 uppercase tracking-wide">Utilisateurs</div>
+                        <div class="text-sm font-medium text-gray-600 uppercase tracking-wide">{{ __('filament.widgets.blog_stats.users') }}</div>
                     </div>
                     <div class="text-3xl font-extrabold text-gray-900">{{ number_format($usersCount) }}</div>
                 </div>
@@ -21,7 +21,7 @@
                 <div class="flex items-center justify-between w-full">
                     <div class="flex items-center gap-3">
                         <x-filament::icon icon="heroicon-m-rectangle-stack" class="h-8 w-8 text-green-600" />
-                        <div class="text-sm font-medium text-gray-600 uppercase tracking-wide">Articles</div>
+                        <div class="text-sm font-medium text-gray-600 uppercase tracking-wide">{{ __('filament.widgets.blog_stats.posts') }}</div>
                     </div>
                     <div class="text-3xl font-extrabold text-gray-900">{{ number_format($postsCount) }}</div>
                 </div>
@@ -34,7 +34,7 @@
                 <div class="flex items-center justify-between w-full">
                     <div class="flex items-center gap-3">
                         <x-filament::icon icon="heroicon-m-envelope" class="h-8 w-8 text-rose-600" />
-                        <div class="text-sm font-medium text-gray-600 uppercase tracking-wide">Contacts</div>
+                        <div class="text-sm font-medium text-gray-600 uppercase tracking-wide">{{ __('filament.widgets.blog_stats.contacts') }}</div>
                     </div>
                     <div class="text-3xl font-extrabold text-gray-900">{{ number_format($contactsCount) }}</div>
                 </div>

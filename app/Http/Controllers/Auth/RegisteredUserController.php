@@ -35,19 +35,22 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
+        $newUser = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
         // Assign default role
-        try { $user->assignRole('user'); } catch (\Throwable $e) {}
+        try { $newUser->assignRole('user'); } catch (\Throwable $e) {}
 
-        event(new Registered($user));
+        event(new Registered($newUser));
 
-        Auth::login($user);
+        Auth::login($newUser);
 
-        return redirect()->intended('/');
+        // update last login timestamp for the freshly registered user
+        $newUser->update(['last_login_at' => now()]);
+
+        return redirect()->intended(route('home'));
     }
 }

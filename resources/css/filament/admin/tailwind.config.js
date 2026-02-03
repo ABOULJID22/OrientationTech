@@ -11,5 +11,7 @@ export default {
         './vendor/koalafacade/filament-alertbox/**/*.blade.php',
         "./resources/**/*.blade.php",
         './vendor/jaocero/radio-deck/resources/views/**/*.blade.php',
+           './vendor/filament/**/*.blade.php',
+        './app/Filament/**/*.php',
     ],
 }

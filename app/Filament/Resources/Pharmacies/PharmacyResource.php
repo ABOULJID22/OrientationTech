@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
 use UnitEnum;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\Action;
 use Filament\Actions\EditAction;
 use Filament\Actions\DeleteAction;
 class PharmacyResource extends Resource
@@ -26,11 +27,13 @@ class PharmacyResource extends Resource
 
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-building-storefront';
     protected static ?int $navigationSort = 5;
+    protected static ?string $modelLabel = 'Pharmacie';
+    protected static ?string $pluralModelLabel = 'Pharmacies';
 
     public static function getNavigationLabel(): string
     {
-        $u = auth()->user();
-        return $u && method_exists($u, 'isClient') && $u->isClient() ? 'Ma Pharmacie' : 'Pharmacies';
+        // Always show navigation as 'Pharmacies'
+        return 'Pharmacies';
     }
 
     public static function getNavigationUrl(): string
@@ -45,18 +48,18 @@ class PharmacyResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema
-            ->columns(2)
-            ->schema([
-                Forms\Components\TextInput::make('name')->label('Nom de la pharmacie')->required(),
+            ->columns(2) 
+            ->schema([ 
+                Forms\Components\TextInput::make('pharmacy_name')->label('Nom de la pharmacie')->required(),
                 Forms\Components\TextInput::make('pharmacist_name')->label('Pharmacien responsable'),
                 Forms\Components\TextInput::make('registration_number')->label('Registre / N°')->maxLength(100),
                 Forms\Components\TextInput::make('email')->label('Email')
                     ->email()
                     ->disabled(fn () => auth()->user()?->isClient() ?? false),
-                Forms\Components\TextInput::make('phone')->label('Téléphone'),
+                Forms\Components\TextInput::make('pharmacy_phone')->label('Téléphone'),
                 Forms\Components\TextInput::make('phone_2')->label('Téléphone (2)'),
                 Forms\Components\TextInput::make('website')->label('Site web'),
-                Forms\Components\TextInput::make('address')->label('Adresse')->columnSpanFull(),
+                Forms\Components\TextInput::make('pharmacy_address')->label('Adresse')->columnSpanFull(),
                 Forms\Components\TextInput::make('city')->label('Ville'),
                 Forms\Components\TextInput::make('postal_code')->label('Code postal'),
                 Forms\Components\TextInput::make('country')->label('Pays')->default('Maroc'),
@@ -67,26 +70,55 @@ class PharmacyResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Pharmacie')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('city')->label('Ville')->sortable(),
-                Tables\Columns\TextColumn::make('phone')->label('Téléphone'),
+                Tables\Columns\TextColumn::make('pharmacy_name')->label('Pharmacie')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('pharmacist_name')->label('Responsable')->searchable(),
+                Tables\Columns\TextColumn::make('pharmacy_address')->label('Adresse')->limit(40)->searchable(),
+                Tables\Columns\TextColumn::make('pharmacy_phone')->label('Téléphone'),
                 Tables\Columns\TextColumn::make('email')->label('Email')->toggleable(),
                 Tables\Columns\TextColumn::make('created_at')->label('Créé le')->date()->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([])
             ->actions([
                 EditAction::make()->visible(fn () => auth()->user()?->isSuperAdmin() ?? false),
-                DeleteAction::make()
-                    ->label('Delete')
-                    ->icon('heroicon-m-trash')
-                    ->button()
-                    ->color('danger'),
+                Action::make('toggleActive')
+                    ->label(fn ($record) => $record->hasRole(User::ROLE_CLIENT) ? __('pharmacies.actions.deactivate') : __('pharmacies.actions.activate'))
+                    ->icon(fn ($record) => $record->hasRole(User::ROLE_CLIENT) ? 'heroicon-m-x-mark' : 'heroicon-m-check')
+                    ->modalHeading(__('pharmacies.actions.confirm_title'))
+                    ->modalSubheading(fn ($record) => $record->hasRole(User::ROLE_CLIENT) ? __('pharmacies.actions.confirm_subtitle_deactivate') : __('pharmacies.actions.confirm_subtitle_activate'))
+                    ->requiresConfirmation()
+                    ->color(fn ($record) => $record->hasRole(User::ROLE_CLIENT) ? 'danger' : 'success')
+                    ->action(function ($record) {
+                        // Instead of changing is_active, only adjust roles:
+                        // - If record has client role => remove client and ensure 'user' role
+                        // - If record does NOT have client role => assign client and remove 'user'
+                        if ($record->hasRole(User::ROLE_CLIENT)) {
+                            $record->removeRole(User::ROLE_CLIENT);
+                            if (! $record->hasRole('user')) {
+                                $record->assignRole('user');
+                            }
+                        } else {
+                            if (! $record->hasRole(User::ROLE_CLIENT)) {
+                                $record->assignRole(User::ROLE_CLIENT);
+                            }
+                            if ($record->hasRole('user')) {
+                                $record->removeRole('user');
+                            }
+                        }
+                        // keep is_active unchanged per request
+                    })
+                    ->after(fn () => \Filament\Notifications\Notification::make()
+                        ->title(__('pharmacies.actions.notification'))
+                        ->success()
+                        ->send()
+                    )
+                    ->visible(fn () => auth()->user()?->isSuperAdmin() ?? false),
+               
             ])
-            ->bulkActions([
+            /* ->bulkActions([
                 BulkActionGroup::make([
                   DeleteBulkAction::make()->visible(fn () => auth()->user()?->isSuperAdmin() ?? false),
                 ]),
-            ]);
+            ]) */;
     }
 
     public static function getRelations(): array
@@ -99,7 +131,7 @@ class PharmacyResource extends Resource
 
     public static function getGloballySearchableAttributes(): array
     {
-        return ['name', 'email', 'city', 'phone'];
+        return ['pharmacy_name', 'email', 'city', 'pharmacy_phone'];
     }
 
     public static function getPages(): array

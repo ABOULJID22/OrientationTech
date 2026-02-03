@@ -1,0 +1,2239 @@
+
+<!DOCTYPE html>
+<html
+    lang="fr"
+    dir="ltr"
+    class="fi"
+>
+
+    <body
+        class="fi-body fi-panel-admin fi-body-has-navigation fi-body-has-sidebar-collapsible-on-desktop fi-body-has-topbar"
+    >
+
+
+        <div
+            wire:snapshot="{&quot;data&quot;:{&quot;mountedActions&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;defaultAction&quot;:null,&quot;defaultActionArguments&quot;:null,&quot;defaultActionContext&quot;:null,&quot;defaultTableAction&quot;:null,&quot;defaultTableActionRecord&quot;:null,&quot;defaultTableActionArguments&quot;:null,&quot;componentFileAttachments&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;areSchemaStateUpdateHooksDisabledForTesting&quot;:false,&quot;discoveredSchemaNames&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;SkAr8IIXd7khbtklI7cj&quot;,&quot;name&quot;:&quot;filament.livewire.topbar&quot;,&quot;path&quot;:&quot;admin&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:{&quot;lw-3729971350-1&quot;:[&quot;div&quot;,&quot;DmYe5r97ayJh1VwT8F2K&quot;]},&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;fr&quot;},&quot;checksum&quot;:&quot;76c66c78f9a7ef6e0e7e1fc956181c958a06a21e84e042153c59993e6552cf77&quot;}"
+            wire:effects="{&quot;partials&quot;:[],&quot;url&quot;:{&quot;defaultAction&quot;:{&quot;as&quot;:&quot;action&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionArguments&quot;:{&quot;as&quot;:&quot;actionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionContext&quot;:{&quot;as&quot;:&quot;actionContext&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableAction&quot;:{&quot;as&quot;:&quot;tableAction&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionRecord&quot;:{&quot;as&quot;:&quot;tableActionRecord&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionArguments&quot;:{&quot;as&quot;:&quot;tableActionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null}},&quot;listeners&quot;:[&quot;refresh-topbar&quot;]}"
+            wire:id="SkAr8IIXd7khbtklI7cj" class="fi-topbar-ctn">
+
+            <nav class="fi-topbar">
+
+
+                <!--[if
+                BLOCK]><![endif]-->
+                <button
+                    class="fi-icon-btn fi-size-md fi-topbar-open-sidebar-btn"
+                    title="Agrandir la barre latérale" aria-label="Agrandir la barre latérale"
+                    type="button" wire:loading.attr="disabled" x-cloak="x-cloak" x-data="{}"
+                    x-on:click="$store.sidebar.open()" x-show="! $store.sidebar.isOpen"
+                >
+                    <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                        aria-hidden="true" data-slot="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+
+                    <!--[if
+                    BLOCK]><![endif]--><!--[if
+                    ENDBLOCK]><![endif]-->
+
+                    <!--[if
+                    BLOCK]><![endif]--><!--[if
+                    ENDBLOCK]><![endif]-->
+                </button>
+
+                <button
+                    class="fi-icon-btn fi-size-md fi-topbar-close-sidebar-btn"
+                    title="Réduire la barre latérale" aria-label="Réduire la barre latérale"
+                    type="button" wire:loading.attr="disabled" x-cloak="x-cloak" x-data="{}"
+                    x-on:click="$store.sidebar.close()" x-show="$store.sidebar.isOpen"
+                >
+                    <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                        aria-hidden="true" data-slot="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+
+                    <!--[if
+                    BLOCK]><![endif]--><!--[if
+                    ENDBLOCK]><![endif]-->
+
+                    <!--[if
+                    BLOCK]><![endif]--><!--[if
+                    ENDBLOCK]><![endif]-->
+                </button>
+                <!--[if
+                ENDBLOCK]><![endif]-->
+
+                <div class="fi-topbar-start">
+                    <!--[if
+                    BLOCK]><![endif]-->
+                    <button
+                        class="fi-icon-btn fi-size-md fi-topbar-open-collapse-sidebar-btn"
+                        title="Agrandir la barre latérale" aria-label="Agrandir la barre latérale"
+                        type="button" wire:loading.attr="disabled" x-cloak="x-cloak" x-data="{}"
+                        x-on:click="$store.sidebar.open()" x-show="! $store.sidebar.isOpen"
+                    >
+                        <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            aria-hidden="true" data-slot="icon">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+
+                        <!--[if
+                        BLOCK]><![endif]--><!--[if
+                        ENDBLOCK]><![endif]-->
+
+                        <!--[if
+                        BLOCK]><![endif]--><!--[if
+                        ENDBLOCK]><![endif]-->
+                    </button>
+                    <!--[if
+                    ENDBLOCK]><![endif]-->
+
+                    <!--[if
+                    BLOCK]><![endif]-->
+                    <button
+                        class="fi-icon-btn fi-size-md fi-topbar-close-collapse-sidebar-btn"
+                        title="Réduire la barre latérale" aria-label="Réduire la barre latérale"
+                        type="button" wire:loading.attr="disabled" x-cloak="x-cloak" x-data="{}"
+                        x-on:click="$store.sidebar.close()" x-show="$store.sidebar.isOpen"
+                    >
+                        <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            aria-hidden="true" data-slot="icon">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+
+                        <!--[if
+                        BLOCK]><![endif]--><!--[if
+                        ENDBLOCK]><![endif]-->
+
+                        <!--[if
+                        BLOCK]><![endif]--><!--[if
+                        ENDBLOCK]><![endif]-->
+                    </button>
+                    <!--[if
+                    ENDBLOCK]><![endif]-->
+
+
+                    <!--[if
+                    BLOCK]><![endif]-->
+                    <a href="/">
+                        <!--[if
+                        BLOCK]><![endif]-->
+                        <div
+                            style="height: 1.5rem;" class="fi-logo"
+                        >
+                            <style>
+                                .fi-simple-header .fi-logo {
+                                height: unset !important;
+                                }
+
+                                .fi-simple-header .fi-logo .logo-box,
+                                .fi-topbar .fi-logo .logo-box {
+                                height: 137px;
+                                width: 249px;
+                                }
+
+                                .fi-simple-header .fi-logo img,
+                                .fi-topbar .fi-logo img {
+                                height: 100%;
+                                width: 100%;
+                                }
+
+                                .fi-sidebar-header img,
+                                .fi-topbar .logo-box img {
+                                height: unset !important;
+                                width: 158px !important;
+                                margin-top: -10px !important;
+                                }
+
+                                .fi-sidebar-header .logo-box {
+                                margin-top: -27px;
+                                }
+                            </style>
+
+                            <div class="logo-box">
+                                <img src="/images/logo.png" alt="Offitrade Logo" class="h-12 mb-4">
+                            </div>
+
+                        </div>
+                        <!--[if
+                        ENDBLOCK]><![endif]-->
+
+
+                        <!--[if
+                        BLOCK]><![endif]--><!--[if
+                        ENDBLOCK]><![endif]-->
+                    </a>
+                    <!--[if
+                    ENDBLOCK]><![endif]-->
+
+
+                </div>
+
+                <!--[if
+                BLOCK]><![endif]--><!--[if
+                ENDBLOCK]><![endif]-->
+
+                <div
+                    x-persist="topbar.end.panel-admin"
+                    class="fi-topbar-end"
+                >
+
+
+                    <!--[if
+                    BLOCK]><![endif]--><!--[if
+                    ENDBLOCK]><![endif]-->
+
+                    <!--[if
+                    BLOCK]><![endif]-->
+                    <div class="fi-topbar-lang flex items-center gap-1">
+                        <!--[if
+                        BLOCK]><![endif]--><!--[if
+                        ENDBLOCK]><![endif]-->
+
+                        <a
+                            href="/locale/fr"
+                            class="fi-color fi-color-primary fi-bg-color-400 hover:fi-bg-color-300 dark:fi-bg-color-600 dark:hover:fi-bg-color-700 fi-text-color-950 hover:fi-text-color-800 dark:fi-text-color-0 dark:hover:fi-text-color-0 fi-btn fi-size-xs"
+                        >
+                            <!--[if
+                            BLOCK]><![endif]-->        <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+                            <!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]-->        <!--[if
+                            BLOCK]><![endif]-->
+                            FR                     <!--[if
+                            ENDBLOCK]><![endif]-->
+                            <!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+                        </a>
+
+                        <!--[if
+                        BLOCK]><![endif]--><!--[if
+                        ENDBLOCK]><![endif]-->
+
+                        <a
+                            href="/locale/en"
+                            class="fi-btn fi-size-xs"
+                        >
+                            <!--[if
+                            BLOCK]><![endif]-->        <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+                            <!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]-->        <!--[if
+                            BLOCK]><![endif]--> EN                     <!--[if
+                            ENDBLOCK]><![endif]-->
+                            <!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+                        </a>
+                    </div>
+                    <!--[if
+                    ENDBLOCK]><![endif]-->
+
+
+                    <div
+                        wire:snapshot="{&quot;data&quot;:{&quot;mountedActions&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;defaultAction&quot;:null,&quot;defaultActionArguments&quot;:null,&quot;defaultActionContext&quot;:null,&quot;defaultTableAction&quot;:null,&quot;defaultTableActionRecord&quot;:null,&quot;defaultTableActionArguments&quot;:null,&quot;componentFileAttachments&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;areSchemaStateUpdateHooksDisabledForTesting&quot;:false,&quot;discoveredSchemaNames&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;paginators&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;DmYe5r97ayJh1VwT8F2K&quot;,&quot;name&quot;:&quot;filament.livewire.database-notifications&quot;,&quot;path&quot;:&quot;admin&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;lazyLoaded&quot;:false,&quot;lazyIsolated&quot;:true,&quot;errors&quot;:[],&quot;locale&quot;:&quot;fr&quot;},&quot;checksum&quot;:&quot;ae6e8178045938e23a3f2902317ce018124d30125c7c60190fdb3b9f3a25471d&quot;}"
+                        wire:effects="{&quot;partials&quot;:[],&quot;url&quot;:{&quot;defaultAction&quot;:{&quot;as&quot;:&quot;action&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionArguments&quot;:{&quot;as&quot;:&quot;actionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionContext&quot;:{&quot;as&quot;:&quot;actionContext&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableAction&quot;:{&quot;as&quot;:&quot;tableAction&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionRecord&quot;:{&quot;as&quot;:&quot;tableActionRecord&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionArguments&quot;:{&quot;as&quot;:&quot;tableActionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null}},&quot;listeners&quot;:[&quot;databaseNotificationsSent&quot;,&quot;notificationClosed&quot;,&quot;markedNotificationAsRead&quot;,&quot;markedNotificationAsUnread&quot;]}"
+                        wire:id="DmYe5r97ayJh1VwT8F2K"
+                        x-intersect="$wire.__lazyLoad(&#039;eyJkYXRhIjp7ImZvck1vdW50IjpbW10seyJzIjoiYXJyIn1dfSwibWVtbyI6eyJpZCI6IlhWWUVsTTFDb2tMQVQzY1BobU9IIiwibmFtZSI6Il9fbW91bnRQYXJhbXNDb250YWluZXIifSwiY2hlY2tzdW0iOiIyZmRmYzVmMDg4NzZhNDE3OGFmMmQ0YzI1MmVlZDc0MmUyN2I2N2UxODA5NGIxNmZjOTRjZTU1ZGZjOTM2NzhiIn0=&#039;)">
+                        <button
+                            class="fi-icon-btn fi-size-md fi-topbar-database-notifications-btn"
+                            title="Ouvrir les notifications" aria-label="Ouvrir les notifications"
+                            type="button" wire:loading.attr="disabled"
+                        >
+                            <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" aria-hidden="true" data-slot="icon">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                            </svg>
+
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+                        </button>
+                    </div>                <!--[if
+                    ENDBLOCK]><![endif]-->
+
+                    <div
+                        x-data="filamentDropdown"
+                        class="fi-dropdown fi-user-menu"
+                    >
+                        <div
+                            x-on:mousedown="if ($event.button === 0) toggle($event)"
+                            class="fi-dropdown-trigger"
+                        >
+                            <button
+                                aria-label="Menu utilisateur"
+                                type="button"
+                                class="fi-user-menu-trigger"
+                            >
+                                <img
+                                    class="fi-avatar fi-circular fi-size-md fi-user-avatar"
+                                    src="http://127.0.0.1:8000/images/avater.png"
+                                    alt="Avatar de Super Admin" loading="lazy"
+                                />
+                            </button>
+                        </div>
+
+                        <!--[if
+                        BLOCK]><![endif]-->
+                        <div
+                            x-cloak
+                            x-float.placement.bottom-end.flip.teleport.offset="{ offset: 8,  }"
+                            x-ref="panel"
+                            x-transition:enter-start="fi-opacity-0"
+                            x-transition:leave-end="fi-opacity-0"
+                            class="fi-dropdown-panel "
+                            style=""
+                        >
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]-->
+                            <div class="fi-dropdown-list">
+                                <!--[if
+                                BLOCK]><![endif]-->                <!--[if
+                                BLOCK]><![endif]-->
+
+                                <a href="/locale/fr"
+                                    class="fi-dropdown-list-item fi-ac-grouped-action">
+                                    <svg class="fi-icon fi-size-md"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                        fill="currentColor" aria-hidden="true" data-slot="icon">
+                                        <path
+                                            d="M7.75 2.75a.75.75 0 0 0-1.5 0v1.258a32.987 32.987 0 0 0-3.599.278.75.75 0 1 0 .198 1.487A31.545 31.545 0 0 1 8.7 5.545 19.381 19.381 0 0 1 7 9.56a19.418 19.418 0 0 1-1.002-2.05.75.75 0 0 0-1.384.577 20.935 20.935 0 0 0 1.492 2.91 19.613 19.613 0 0 1-3.828 4.154.75.75 0 1 0 .945 1.164A21.116 21.116 0 0 0 7 12.331c.095.132.192.262.29.391a.75.75 0 0 0 1.194-.91c-.204-.266-.4-.538-.59-.815a20.888 20.888 0 0 0 2.333-5.332c.31.031.618.068.924.108a.75.75 0 0 0 .198-1.487 32.832 32.832 0 0 0-3.599-.278V2.75Z" />
+                                        <path fill-rule="evenodd"
+                                            d="M13 8a.75.75 0 0 1 .671.415l4.25 8.5a.75.75 0 1 1-1.342.67L15.787 16h-5.573l-.793 1.585a.75.75 0 1 1-1.342-.67l4.25-8.5A.75.75 0 0 1 13 8Zm2.037 6.5L13 10.427 10.964 14.5h4.073Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <span class="fi-dropdown-list-item-label">
+                                        Français </span>
+
+                                </a>
+
+
+                                <!--[if
+                                ENDBLOCK]><![endif]-->
+                                <!--[if
+                                BLOCK]><![endif]-->
+
+                                <a href="/locale/en"
+                                    class="fi-dropdown-list-item fi-ac-grouped-action">
+                                    <svg class="fi-icon fi-size-md"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                        fill="currentColor" aria-hidden="true" data-slot="icon">
+                                        <path
+                                            d="M7.75 2.75a.75.75 0 0 0-1.5 0v1.258a32.987 32.987 0 0 0-3.599.278.75.75 0 1 0 .198 1.487A31.545 31.545 0 0 1 8.7 5.545 19.381 19.381 0 0 1 7 9.56a19.418 19.418 0 0 1-1.002-2.05.75.75 0 0 0-1.384.577 20.935 20.935 0 0 0 1.492 2.91 19.613 19.613 0 0 1-3.828 4.154.75.75 0 1 0 .945 1.164A21.116 21.116 0 0 0 7 12.331c.095.132.192.262.29.391a.75.75 0 0 0 1.194-.91c-.204-.266-.4-.538-.59-.815a20.888 20.888 0 0 0 2.333-5.332c.31.031.618.068.924.108a.75.75 0 0 0 .198-1.487 32.832 32.832 0 0 0-3.599-.278V2.75Z" />
+                                        <path fill-rule="evenodd"
+                                            d="M13 8a.75.75 0 0 1 .671.415l4.25 8.5a.75.75 0 1 1-1.342.67L15.787 16h-5.573l-.793 1.585a.75.75 0 1 1-1.342-.67l4.25-8.5A.75.75 0 0 1 13 8Zm2.037 6.5L13 10.427 10.964 14.5h4.073Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <span class="fi-dropdown-list-item-label">
+                                        English </span>
+
+                                </a>
+
+
+                                <!--[if
+                                ENDBLOCK]><![endif]-->
+                                <!--[if
+                                ENDBLOCK]><![endif]-->
+                            </div>
+                            <!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]-->
+                            <div class="fi-dropdown-list">
+                                <div
+                                    x-data="{ theme: null }"
+                                    x-init="
+        $watch('theme', () => {
+            $dispatch('theme-changed', theme)
+        })
+
+        theme = localStorage.getItem('theme') || 'system'    "
+                                    class="fi-theme-switcher"
+                                >
+                                    <button
+                                        aria-label="Désactiver le mode sombre"
+                                        type="button"
+                                        x-on:click="(theme = 'light') && close()"
+                                        x-tooltip="{
+        content: 'D\u00e9sactiver le mode sombre',
+        theme: $store.theme,
+    }"
+                                        x-bind:class="{ 'fi-active': theme === 'light' }"
+                                        class="fi-theme-switcher-btn"
+                                    >
+                                        <svg class="fi-icon fi-size-md"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            fill="currentColor" aria-hidden="true" data-slot="icon">
+                                            <path
+                                                d="M10 2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 2ZM10 15a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 15ZM10 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM15.657 5.404a.75.75 0 1 0-1.06-1.06l-1.061 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM6.464 14.596a.75.75 0 1 0-1.06-1.06l-1.06 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM18 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 18 10ZM5 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 5 10ZM14.596 15.657a.75.75 0 0 0 1.06-1.06l-1.06-1.061a.75.75 0 1 0-1.06 1.06l1.06 1.06ZM5.404 6.464a.75.75 0 0 0 1.06-1.06l-1.06-1.06a.75.75 0 1 0-1.061 1.06l1.06 1.06Z" />
+                                        </svg>
+                                    </button>
+
+                                    <button
+                                        aria-label="Activer le mode sombre"
+                                        type="button"
+                                        x-on:click="(theme = 'dark') && close()"
+                                        x-tooltip="{
+        content: 'Activer le mode sombre',
+        theme: $store.theme,
+    }"
+                                        x-bind:class="{ 'fi-active': theme === 'dark' }"
+                                        class="fi-theme-switcher-btn"
+                                    >
+                                        <svg class="fi-icon fi-size-md"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            fill="currentColor" aria-hidden="true" data-slot="icon">
+                                            <path fill-rule="evenodd"
+                                                d="M7.455 2.004a.75.75 0 0 1 .26.77 7 7 0 0 0 9.958 7.967.75.75 0 0 1 1.067.853A8.5 8.5 0 1 1 6.647 1.921a.75.75 0 0 1 .808.083Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+
+                                    <button
+                                        aria-label="Activer le thème système"
+                                        type="button"
+                                        x-on:click="(theme = 'system') && close()"
+                                        x-tooltip="{
+        content: 'Activer le th\u00e8me syst\u00e8me',
+        theme: $store.theme,
+    }"
+                                        x-bind:class="{ 'fi-active': theme === 'system' }"
+                                        class="fi-theme-switcher-btn"
+                                    >
+                                        <svg class="fi-icon fi-size-md"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            fill="currentColor" aria-hidden="true" data-slot="icon">
+                                            <path fill-rule="evenodd"
+                                                d="M2 4.25A2.25 2.25 0 0 1 4.25 2h11.5A2.25 2.25 0 0 1 18 4.25v8.5A2.25 2.25 0 0 1 15.75 15h-3.105a3.501 3.501 0 0 0 1.1 1.677A.75.75 0 0 1 13.26 18H6.74a.75.75 0 0 1-.484-1.323A3.501 3.501 0 0 0 7.355 15H4.25A2.25 2.25 0 0 1 2 12.75v-8.5Zm1.5 0a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75H4.25a.75.75 0 0 1-.75-.75v-7.5Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]-->
+                            <div class="fi-dropdown-list">
+                                <!--[if
+                                BLOCK]><![endif]-->                <!--[if
+                                BLOCK]><![endif]-->
+
+
+                                <a href="/profile"
+                                    class="fi-dropdown-list-item fi-ac-grouped-action">
+                                    <svg class="fi-icon fi-size-md"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                        fill="currentColor" aria-hidden="true" data-slot="icon">
+                                        <path
+                                            d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z" />
+                                    </svg>
+                                    <span class="fi-dropdown-list-item-label">
+                                        Profil </span>
+
+                                </a>
+
+
+                                <!--[if
+                                ENDBLOCK]><![endif]-->
+                                <!--[if
+                                BLOCK]><![endif]-->
+                                <form action="http://127.0.0.1:8000/admin/logout" method="post">
+                                    <input type="hidden" name="_token"
+                                        value="KntBlhOhTnGTru8roJbqlpSLtHr8NXT8EjJx873C"
+                                        autocomplete="off">
+                                    <button class="fi-dropdown-list-item" type="submit">
+                                        <svg class="fi-icon fi-size-md"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            fill="currentColor" aria-hidden="true" data-slot="icon">
+                                            <path fill-rule="evenodd"
+                                                d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z"
+                                                clip-rule="evenodd" />
+                                            <path fill-rule="evenodd"
+                                                d="M19 10a.75.75 0 0 0-.75-.75H8.704l1.048-.943a.75.75 0 1 0-1.004-1.114l-2.5 2.25a.75.75 0 0 0 0 1.114l2.5 2.25a.75.75 0 1 0 1.004-1.114l-1.048-.943h9.546A.75.75 0 0 0 19 10Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="fi-dropdown-list-item-label">
+                                            Déconnexion </span>
+
+                                    </button>
+
+                                </form>
+
+                                <!--[if
+                                ENDBLOCK]><![endif]-->
+                                <!--[if
+                                ENDBLOCK]><![endif]-->
+                            </div>
+                            <!--[if
+                            ENDBLOCK]><![endif]-->
+                        </div>
+                        <!--[if
+                        ENDBLOCK]><![endif]-->
+                    </div>
+
+
+                    <!--[if
+                    ENDBLOCK]><![endif]-->
+                    <!--[if
+                    ENDBLOCK]><![endif]-->
+                </div>
+
+
+            </nav>
+
+            <!--[if
+            BLOCK]><![endif]-->
+            <div
+                wire:partial="action-modals"
+                x-data="filamentActionModals({
+                    livewireId: 'SkAr8IIXd7khbtklI7cj',
+                })"
+                style="height: 0"
+            >
+                <!--[if
+                BLOCK]><![endif]--><!--[if
+                ENDBLOCK]><![endif]-->
+            </div>
+
+            <!--[if
+            ENDBLOCK]><![endif]-->
+        </div>
+
+
+        <div class="fi-layout">
+
+
+            <div
+                x-cloak
+                x-data="{}"
+                x-on:click="$store.sidebar.close()"
+                x-show="$store.sidebar.isOpen"
+                x-transition.opacity.300ms
+                class="fi-sidebar-close-overlay"
+            ></div>
+
+            <div
+                wire:snapshot="{&quot;data&quot;:{&quot;mountedActions&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;defaultAction&quot;:null,&quot;defaultActionArguments&quot;:null,&quot;defaultActionContext&quot;:null,&quot;defaultTableAction&quot;:null,&quot;defaultTableActionRecord&quot;:null,&quot;defaultTableActionArguments&quot;:null,&quot;componentFileAttachments&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;areSchemaStateUpdateHooksDisabledForTesting&quot;:false,&quot;discoveredSchemaNames&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;nH40ANtDTdefKX0jclBU&quot;,&quot;name&quot;:&quot;filament.livewire.sidebar&quot;,&quot;path&quot;:&quot;admin&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;fr&quot;},&quot;checksum&quot;:&quot;d9b4e8a3ce82990c148087c99bdac6ee2e9931ab3bffa1396cba2287520f9a99&quot;}"
+                wire:effects="{&quot;partials&quot;:[],&quot;url&quot;:{&quot;defaultAction&quot;:{&quot;as&quot;:&quot;action&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionArguments&quot;:{&quot;as&quot;:&quot;actionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionContext&quot;:{&quot;as&quot;:&quot;actionContext&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableAction&quot;:{&quot;as&quot;:&quot;tableAction&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionRecord&quot;:{&quot;as&quot;:&quot;tableActionRecord&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionArguments&quot;:{&quot;as&quot;:&quot;tableActionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null}},&quot;listeners&quot;:[&quot;refresh-sidebar&quot;]}"
+                wire:id="nH40ANtDTdefKX0jclBU">
+
+                <aside
+                    x-data="{}"
+                    x-cloak
+                    x-bind:class="{ 'fi-sidebar-open': $store.sidebar.isOpen }"
+                    class="fi-sidebar fi-main-sidebar"
+                >
+                    <div class="fi-sidebar-header-ctn">
+                        <header
+                            class="fi-sidebar-header"
+                        >
+
+
+                            <!--[if
+                            BLOCK]><![endif]-->
+                            <a href="/">
+                                <!--[if
+                                BLOCK]><![endif]-->
+                                <div
+                                    style="height: 1.5rem;" class="fi-logo"
+                                >
+                                    <style>
+                                        .fi-simple-header .fi-logo {
+                                        height: unset !important;
+                                        }
+
+                                        .fi-simple-header .fi-logo .logo-box,
+                                        .fi-topbar .fi-logo .logo-box {
+                                        height: 137px;
+                                        width: 249px;
+                                        }
+
+                                        .fi-simple-header .fi-logo img,
+                                        .fi-topbar .fi-logo img {
+                                        height: 100%;
+                                        width: 100%;
+                                        }
+
+                                        .fi-sidebar-header img,
+                                        .fi-topbar .logo-box img {
+                                        height: unset !important;
+                                        width: 158px !important;
+                                        margin-top: -10px !important;
+                                        }
+
+                                        .fi-sidebar-header .logo-box {
+                                        margin-top: -27px;
+                                        }
+                                    </style>
+
+                                    <div class="logo-box">
+                                        <img src="/images/logo.png" alt="Offitrade Logo"
+                                            class="h-12 mb-4">
+                                    </div>
+
+                                </div>
+                                <!--[if
+                                ENDBLOCK]><![endif]-->
+
+
+                                <!--[if
+                                BLOCK]><![endif]--><!--[if
+                                ENDBLOCK]><![endif]-->
+                            </a>
+                            <!--[if
+                            ENDBLOCK]><![endif]-->
+
+
+                        </header>
+                    </div>
+
+                    <nav class="fi-sidebar-nav">
+
+
+                        <!--[if
+                        BLOCK]><![endif]--><!--[if
+                        ENDBLOCK]><![endif]-->
+
+                        <ul class="fi-sidebar-nav-groups">
+                            <!--[if
+                            BLOCK]><![endif]-->
+                            <li
+                                x-data="{ label: null }"
+                                data-group-label=""
+                                x-bind:class="{ 'fi-collapsed': $store.sidebar.groupIsCollapsed(label) }"
+                                class="fi-sidebar-group fi-active fi-collapsible"
+                            >
+                                <!--[if
+                                BLOCK]><![endif]--><!--[if
+                                ENDBLOCK]><![endif]-->
+
+                                <!--[if
+                                BLOCK]><![endif]--><!--[if
+                                ENDBLOCK]><![endif]-->
+
+                                <ul
+                                    x-transition:enter="fi-transition-enter"
+                                    x-transition:enter-start="fi-transition-enter-start"
+                                    x-transition:enter-end="fi-transition-enter-end"
+                                    class="fi-sidebar-group-items"
+                                >
+                                    <!--[if
+                                    BLOCK]><![endif]-->
+                                    <li
+                                        class="fi-sidebar-item fi-active fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Tableau de bord\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Tableau de bord                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/purchases"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Achats\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Achats                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/calendar"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Calendrier\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Calendrier                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/trades/trade-operations"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Op\u00e9rations Trade\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 1 1 0-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 0 1-1.44-4.282m3.102.069a18.03 18.03 0 0 1-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 0 1 8.835 2.535M10.34 6.66a23.847 23.847 0 0 0 8.835-2.535m0 0A23.74 23.74 0 0 0 18.795 3m.38 1.125a23.91 23.91 0 0 1 1.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 0 0 1.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 0 1 0 3.46" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Opérations Trade                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/contacts"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Contacts\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Contacts                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/support/support-messages"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Support - Clients\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M16.712 4.33a9.027 9.027 0 0 1 1.652 1.306c.51.51.944 1.064 1.306 1.652M16.712 4.33l-3.448 4.138m3.448-4.138a9.014 9.014 0 0 0-9.424 0M19.67 7.288l-4.138 3.448m4.138-3.448a9.014 9.014 0 0 1 0 9.424m-4.138-5.976a3.736 3.736 0 0 0-.88-1.388 3.737 3.737 0 0 0-1.388-.88m2.268 2.268a3.765 3.765 0 0 1 0 2.528m-2.268-4.796a3.765 3.765 0 0 0-2.528 0m4.796 4.796c-.181.506-.475.982-.88 1.388a3.736 3.736 0 0 1-1.388.88m2.268-2.268 4.138 3.448m0 0a9.027 9.027 0 0 1-1.306 1.652c-.51.51-1.064.944-1.652 1.306m0 0-3.448-4.138m3.448 4.138a9.014 9.014 0 0 1-9.424 0m5.976-4.138a3.765 3.765 0 0 1-2.528 0m0 0a3.736 3.736 0 0 1-1.388-.88 3.737 3.737 0 0 1-.88-1.388m2.268 2.268L7.288 19.67m0 0a9.024 9.024 0 0 1-1.652-1.306 9.027 9.027 0 0 1-1.306-1.652m0 0 4.138-3.448M4.33 16.712a9.014 9.014 0 0 1 0-9.424m4.138 5.976a3.765 3.765 0 0 1 0-2.528m0 0c.181-.506.475-.982.88-1.388a3.736 3.736 0 0 1 1.388-.88m-2.268 2.268L4.33 7.288m6.406 1.18L7.288 4.33m0 0a9.024 9.024 0 0 0-1.652 1.306A9.025 9.025 0 0 0 4.33 7.288" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Support - Clients                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/pharmacies"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Pharmacies\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Pharmacies                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/pharmacist-requests"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Demandes Pharmacien\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Demandes Pharmacien                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+                                    <!--[if
+                                    ENDBLOCK]><![endif]-->
+                                </ul>
+                            </li>
+
+                            <li
+                                x-data="{ label: 'Blog' }"
+                                data-group-label="Blog"
+                                x-bind:class="{ 'fi-collapsed': $store.sidebar.groupIsCollapsed(label) }"
+                                class="fi-sidebar-group fi-collapsible"
+                            >
+                                <!--[if
+                                BLOCK]><![endif]-->
+                                <div
+                                    x-on:click="$store.sidebar.toggleCollapsedGroup(label)"
+                                    role="button"
+                                    x-show="$store.sidebar.isOpen"
+                                    x-transition:enter="fi-transition-enter"
+                                    x-transition:enter-start="fi-transition-enter-start"
+                                    x-transition:enter-end="fi-transition-enter-end"
+                                    class="fi-sidebar-group-btn"
+                                >
+                                    <!--[if
+                                    BLOCK]><![endif]--><!--[if
+                                    ENDBLOCK]><![endif]-->
+
+                                    <span class="fi-sidebar-group-label">
+                                        Blog
+                                    </span>
+
+                                    <!--[if
+                                    BLOCK]><![endif]-->
+                                    <button
+                                        class="fi-icon-btn fi-size-md fi-sidebar-group-collapse-btn"
+                                        title="Blog" aria-label="Blog" type="button"
+                                        wire:loading.attr="disabled"
+                                        x-bind:aria-expanded="! $store.sidebar.groupIsCollapsed(label)"
+                                        x-on:click.stop="$store.sidebar.toggleCollapsedGroup(label)"
+                                    >
+                                        <svg class="fi-icon fi-size-md"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            fill="currentColor" aria-hidden="true" data-slot="icon">
+                                            <path fill-rule="evenodd"
+                                                d="M9.47 6.47a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 1 1-1.06 1.06L10 8.06l-3.72 3.72a.75.75 0 0 1-1.06-1.06l4.25-4.25Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </button>
+                                    <!--[if
+                                    ENDBLOCK]><![endif]-->
+                                </div>
+                                <!--[if
+                                ENDBLOCK]><![endif]-->
+
+                                <!--[if
+                                BLOCK]><![endif]--><!--[if
+                                ENDBLOCK]><![endif]-->
+
+                                <ul
+                                    x-show="$store.sidebar.isOpen ? ! $store.sidebar.groupIsCollapsed(label) : ! false"
+                                    x-collapse.duration.200ms
+                                    x-transition:enter="fi-transition-enter"
+                                    x-transition:enter-start="fi-transition-enter-start"
+                                    x-transition:enter-end="fi-transition-enter-end"
+                                    class="fi-sidebar-group-items"
+                                >
+                                    <!--[if
+                                    BLOCK]><![endif]-->
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/categories"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Categories\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Categories                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/posts"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Posts\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Posts                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+                                    <!--[if
+                                    ENDBLOCK]><![endif]-->
+                                </ul>
+                            </li>
+
+                            <li
+                                x-data="{ label: 'Param\u00e8tres' }"
+                                data-group-label="Paramètres"
+                                x-bind:class="{ 'fi-collapsed': $store.sidebar.groupIsCollapsed(label) }"
+                                class="fi-sidebar-group fi-collapsible"
+                            >
+                                <!--[if
+                                BLOCK]><![endif]-->
+                                <div
+                                    x-on:click="$store.sidebar.toggleCollapsedGroup(label)"
+                                    role="button"
+                                    x-show="$store.sidebar.isOpen"
+                                    x-transition:enter="fi-transition-enter"
+                                    x-transition:enter-start="fi-transition-enter-start"
+                                    x-transition:enter-end="fi-transition-enter-end"
+                                    class="fi-sidebar-group-btn"
+                                >
+                                    <!--[if
+                                    BLOCK]><![endif]--><!--[if
+                                    ENDBLOCK]><![endif]-->
+
+                                    <span class="fi-sidebar-group-label">
+                                        Paramètres
+                                    </span>
+
+                                    <!--[if
+                                    BLOCK]><![endif]-->
+                                    <button
+                                        class="fi-icon-btn fi-size-md fi-sidebar-group-collapse-btn"
+                                        title="Paramètres" aria-label="Paramètres" type="button"
+                                        wire:loading.attr="disabled"
+                                        x-bind:aria-expanded="! $store.sidebar.groupIsCollapsed(label)"
+                                        x-on:click.stop="$store.sidebar.toggleCollapsedGroup(label)"
+                                    >
+                                        <svg class="fi-icon fi-size-md"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            fill="currentColor" aria-hidden="true" data-slot="icon">
+                                            <path fill-rule="evenodd"
+                                                d="M9.47 6.47a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 1 1-1.06 1.06L10 8.06l-3.72 3.72a.75.75 0 0 1-1.06-1.06l4.25-4.25Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </button>
+                                    <!--[if
+                                    ENDBLOCK]><![endif]-->
+                                </div>
+                                <!--[if
+                                ENDBLOCK]><![endif]-->
+
+                                <!--[if
+                                BLOCK]><![endif]--><!--[if
+                                ENDBLOCK]><![endif]-->
+
+                                <ul
+                                    x-show="$store.sidebar.isOpen ? ! $store.sidebar.groupIsCollapsed(label) : ! false"
+                                    x-collapse.duration.200ms
+                                    x-transition:enter="fi-transition-enter"
+                                    x-transition:enter-start="fi-transition-enter-start"
+                                    x-transition:enter-end="fi-transition-enter-end"
+                                    class="fi-sidebar-group-items"
+                                >
+                                    <!--[if
+                                    BLOCK]><![endif]-->
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/calendar/events"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Events\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Events                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/commercials"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Commercials\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Commercials                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/labs"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Labs\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Labs                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/products"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Products\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Products                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/site-settings"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Site Settings\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Site Settings                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/users"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'Users\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Users                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+
+                                    <li
+                                        class="fi-sidebar-item fi-sidebar-item-has-url"
+                                    >
+                                        <a
+                                            href="http://127.0.0.1:8000/admin/shield/roles"
+                                            x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                                            x-data="{ tooltip: false }"
+                                            x-effect="
+                tooltip = $store.sidebar.isOpen
+                    ? false
+                    : {
+                          content: 'R\u00f4les\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E\n\n                \u003C!--[if BLOCK]\u003E\u003C![endif]--\u003E\u003C!--[if ENDBLOCK]\u003E\u003C![endif]--\u003E',
+                          placement: document.dir === 'rtl' ? 'left' : 'right',
+                          theme: $store.theme,
+                      }
+            "
+                                            x-tooltip.html="tooltip"
+                                            class="fi-sidebar-item-btn"
+                                        >
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <svg class="fi-icon fi-size-lg fi-sidebar-item-icon"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" aria-hidden="true"
+                                                data-slot="icon">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                                            </svg>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <!--[if
+                                            BLOCK]><![endif]--><!--[if
+                                            ENDBLOCK]><![endif]-->
+
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-label"
+                                            > Rôles                                 <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+
+                                                <!--[if
+                                                BLOCK]><![endif]--><!--[if
+                                                ENDBLOCK]><![endif]-->
+                                            </span>
+
+                                            <!--[if
+                                            BLOCK]><![endif]-->
+                                            <span
+                                                x-show="$store.sidebar.isOpen"
+                                                x-transition:enter="fi-transition-enter"
+                                                x-transition:enter-start="fi-transition-enter-start"
+                                                x-transition:enter-end="fi-transition-enter-end"
+                                                class="fi-sidebar-item-badge-ctn"
+                                            >
+                                                <span
+                                                    class="fi-color fi-color-primary fi-text-color-700 dark:fi-text-color-300 fi-badge fi-size-md"
+                                                >
+                                                    <!--[if
+                                                    BLOCK]><![endif]-->        <!--[if
+                                                    BLOCK]><![endif]--><!--[if
+                                                    ENDBLOCK]><![endif]-->
+
+                                                    <!--[if
+                                                    BLOCK]><![endif]--><!--[if
+                                                    ENDBLOCK]><![endif]-->
+                                                    <!--[if
+                                                    ENDBLOCK]><![endif]-->
+
+                                                    <span class="fi-badge-label-ctn">
+                                                        <span class="fi-badge-label">
+                                                            4
+                                                        </span>
+                                                    </span>
+
+                                                    <!--[if
+                                                    BLOCK]><![endif]--><!--[if
+                                                    ENDBLOCK]><![endif]-->
+                                                </span>
+                                            </span>
+                                            <!--[if
+                                            ENDBLOCK]><![endif]-->
+                                        </a>
+
+                                        <!--[if
+                                        BLOCK]><![endif]--><!--[if
+                                        ENDBLOCK]><![endif]-->
+                                    </li>
+                                    <!--[if
+                                    ENDBLOCK]><![endif]-->
+                                </ul>
+                            </li>
+                            <!--[if
+                            ENDBLOCK]><![endif]-->
+                        </ul>
+
+                        <script>
+                            var collapsedGroups = JSON.parse(
+                            localStorage.getItem('collapsedGroups'),
+                            )
+
+                            if (collapsedGroups === null || collapsedGroups === 'null') {
+                            localStorage.setItem(
+                            'collapsedGroups',
+                            JSON.stringify([]),
+                            )
+                            }
+
+                            collapsedGroups = JSON.parse(
+                            localStorage.getItem('collapsedGroups'),
+                            )
+
+                            document
+                            .querySelectorAll('.fi-sidebar-group')
+                            .forEach((group) => {
+                            if (
+                            !collapsedGroups.includes(group.dataset.groupLabel)
+                            ) {
+                            return
+                            }
+
+                            // Alpine.js loads too slow, so attempt to hide a
+                            // collapsed sidebar group earlier.
+                            group.querySelector(
+                            '.fi-sidebar-group-items',
+                            ).style.display = 'none'
+                            group.classList.add('fi-collapsed')
+                            })
+                        </script>
+
+
+                    </nav>
+
+
+                </aside>
+
+
+                <!--[if
+                BLOCK]><![endif]-->
+                <div
+                    wire:partial="action-modals"
+                    x-data="filamentActionModals({
+                    livewireId: 'nH40ANtDTdefKX0jclBU',
+                })"
+                    style="height: 0"
+                >
+                    <!--[if
+                    BLOCK]><![endif]--><!--[if
+                    ENDBLOCK]><![endif]-->
+                </div>
+
+                <!--[if
+                ENDBLOCK]><![endif]-->
+            </div>
+
+            <div
+                x-data="{}"
+                x-bind:class="{
+                    'fi-main-ctn-sidebar-open': $store.sidebar.isOpen,
+                }"
+                x-bind:style="'display: flex; opacity:1;'"
+                class="fi-main-ctn"
+            >
+
+
+                <main
+                    class="fi-main fi-width-7xl"
+                >
+
+
+                    <div
+                        wire:snapshot="{&quot;data&quot;:{&quot;mountedActions&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;defaultAction&quot;:null,&quot;defaultActionArguments&quot;:null,&quot;defaultActionContext&quot;:null,&quot;defaultTableAction&quot;:null,&quot;defaultTableActionRecord&quot;:null,&quot;defaultTableActionArguments&quot;:null,&quot;componentFileAttachments&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;areSchemaStateUpdateHooksDisabledForTesting&quot;:false,&quot;discoveredSchemaNames&quot;:[[&quot;content&quot;,&quot;headerWidgets&quot;,&quot;footerWidgets&quot;],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;hA0VGge5haeYj7gvdkP3&quot;,&quot;name&quot;:&quot;filament.pages.dashboard&quot;,&quot;path&quot;:&quot;admin&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:{&quot;hA0VGge5haeYj7gvdkP3.content.App\\Filament\\Widgets\\BlogStats-0&quot;:[&quot;div&quot;,&quot;NXW75XASZoHM3KahhgDZ&quot;],&quot;hA0VGge5haeYj7gvdkP3.content.App\\Filament\\Widgets\\ClientKpis-1&quot;:[&quot;div&quot;,&quot;qMqeLAFEqIWCixkrq8em&quot;]},&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;fr&quot;},&quot;checksum&quot;:&quot;47be8cb81e5e7d3c3c99b4d2c9111d19fc53f82eec7dbd0afc21d6e99c6fe129&quot;}"
+                        wire:effects="{&quot;partials&quot;:[],&quot;url&quot;:{&quot;defaultAction&quot;:{&quot;as&quot;:&quot;action&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionArguments&quot;:{&quot;as&quot;:&quot;actionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionContext&quot;:{&quot;as&quot;:&quot;actionContext&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableAction&quot;:{&quot;as&quot;:&quot;tableAction&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionRecord&quot;:{&quot;as&quot;:&quot;tableActionRecord&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionArguments&quot;:{&quot;as&quot;:&quot;tableActionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null}},&quot;listeners&quot;:[&quot;refresh-page&quot;]}"
+                        wire:id="hA0VGge5haeYj7gvdkP3"
+                        class="fi-page"
+                    >
+
+
+                        <div class="fi-page-header-main-ctn">
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <!--[if
+                            BLOCK]><![endif]-->
+                            <header
+                                class="fi-header"
+                            >
+                                <div>
+                                    <!--[if
+                                    BLOCK]><![endif]--><!--[if
+                                    ENDBLOCK]><![endif]-->
+
+                                    <h1 class="fi-header-heading">
+                                        Tableau de bord
+                                    </h1>
+
+                                    <!--[if
+                                    BLOCK]><![endif]--><!--[if
+                                    ENDBLOCK]><![endif]-->
+                                </div>
+
+
+                                <!--[if
+                                BLOCK]><![endif]--><!--[if
+                                ENDBLOCK]><![endif]-->
+                            </header>
+                            <!--[if
+                            ENDBLOCK]><![endif]-->
+
+                            <div class="fi-page-main">
+                                <!--[if
+                                BLOCK]><![endif]--><!--[if
+                                ENDBLOCK]><![endif]-->
+
+                                <div class="fi-page-content">
+
+
+                                    <div class="fi-sc  fi-sc-has-gap fi-grid"
+                                        style="--cols-default: repeat(1, minmax(0, 1fr));"
+                                        x-data="filamentSchema({ livewireId: 'hA0VGge5haeYj7gvdkP3' })"
+                                        x-on:form-validation-error.window="handleFormValidationError">
+                                        <div
+                                            x-data="filamentSchemaComponent({
+                                path: '',
+                                containerPath: '',
+                                isLive: false,
+                                $wire,
+                            })"
+                                            class="fi-grid-col"
+                                            style="--col-span-default: span 1 / span 1;">
+                                            <div
+                                                class="fi-sc-component"
+                                            >
+                                                <div>
+
+                                                    <div
+                                                        class="fi-sc  fi-sc-has-gap fi-grid lg:fi-grid-cols"
+                                                        style="--cols-lg: repeat(2, minmax(0, 1fr)); --cols-default: repeat(1, minmax(0, 1fr));">
+                                                        <!--[if
+                                                        BLOCK]><![endif]--><!--[if
+                                                        ENDBLOCK]><![endif]-->
+
+                                                        <!--[if
+                                                        BLOCK]><![endif]-->
+                                                        <div
+                                                            wire:snapshot="{&quot;data&quot;:{&quot;componentFileAttachments&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;areSchemaStateUpdateHooksDisabledForTesting&quot;:false,&quot;discoveredSchemaNames&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;NXW75XASZoHM3KahhgDZ&quot;,&quot;name&quot;:&quot;app.filament.widgets.blog-stats&quot;,&quot;path&quot;:&quot;admin&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;lazyLoaded&quot;:false,&quot;lazyIsolated&quot;:true,&quot;errors&quot;:[],&quot;locale&quot;:&quot;fr&quot;},&quot;checksum&quot;:&quot;c636d18b88960ab3c027794e5c410078ca27e86f185d8658c1125b1afc145d91&quot;}"
+                                                            wire:effects="{&quot;partials&quot;:[]}"
+                                                            wire:id="NXW75XASZoHM3KahhgDZ"
+                                                            x-intersect="$wire.__lazyLoad(&#039;eyJkYXRhIjp7ImZvck1vdW50IjpbeyJyZWNvcmQiOm51bGx9LHsicyI6ImFyciJ9XX0sIm1lbW8iOnsiaWQiOiJIY1pxMnF3dktpMDVoaEZsQjNqUyIsIm5hbWUiOiJfX21vdW50UGFyYW1zQ29udGFpbmVyIn0sImNoZWNrc3VtIjoiMjAzOThmOWU3OTFhNmE2YTljYTZhZGI3MjczNzY0MGNiZTdjMTk0NzAxZDY5YjNkNGRlZTFkZDBmNTRlODUxMyJ9&#039;)"
+                                                            style="height: 8rem; --col-span-lg: 1 / -1;"
+                                                            class="fi-section fi-loading-section fi-grid-col lg:fi-grid-col-span"
+                                                        ></div>
+                                                        <!--[if
+                                                        ENDBLOCK]><![endif]-->
+                                                        <!--[if
+                                                        BLOCK]><![endif]--><!--[if
+                                                        ENDBLOCK]><![endif]-->
+                                                        <!--[if
+                                                        BLOCK]><![endif]--><!--[if
+                                                        ENDBLOCK]><![endif]-->
+
+                                                        <!--[if
+                                                        BLOCK]><![endif]-->
+                                                        <div
+                                                            wire:snapshot="{&quot;data&quot;:{&quot;componentFileAttachments&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;areSchemaStateUpdateHooksDisabledForTesting&quot;:false,&quot;discoveredSchemaNames&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;qMqeLAFEqIWCixkrq8em&quot;,&quot;name&quot;:&quot;app.filament.widgets.client-kpis&quot;,&quot;path&quot;:&quot;admin&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;lazyLoaded&quot;:false,&quot;lazyIsolated&quot;:true,&quot;errors&quot;:[],&quot;locale&quot;:&quot;fr&quot;},&quot;checksum&quot;:&quot;46f36945cae872945e5253a3cd90567b7a6c3e40ad74d54fbb7eed3b12d92351&quot;}"
+                                                            wire:effects="{&quot;partials&quot;:[]}"
+                                                            wire:id="qMqeLAFEqIWCixkrq8em"
+                                                            x-intersect="$wire.__lazyLoad(&#039;eyJkYXRhIjp7ImZvck1vdW50IjpbeyJyZWNvcmQiOm51bGx9LHsicyI6ImFyciJ9XX0sIm1lbW8iOnsiaWQiOiJwOFVyNkdvSktrcGIxcmJQZElyTSIsIm5hbWUiOiJfX21vdW50UGFyYW1zQ29udGFpbmVyIn0sImNoZWNrc3VtIjoiYjExNzBiN2U5YTRkNzc1ODM1M2QyNjg4MGEyYzYzNTg3YzVlODMwNzk3ODVjMDQ1Nzc1YjIwZTFlMDg3YWYxYiJ9&#039;)"
+                                                            style="height: 8rem; --col-span-lg: 1 / -1;"
+                                                            class="fi-section fi-loading-section fi-grid-col lg:fi-grid-col-span"
+                                                        ></div>
+                                                        <!--[if
+                                                        ENDBLOCK]><![endif]-->
+                                                        <!--[if
+                                                        BLOCK]><![endif]--><!--[if
+                                                        ENDBLOCK]><![endif]-->
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <!--[if
+                                BLOCK]><![endif]--><!--[if
+                                ENDBLOCK]><![endif]-->
+                            </div>
+
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+                        </div>
+
+                        <!--[if
+                        BLOCK]><![endif]-->        <!--[if
+                        BLOCK]><![endif]-->
+                        <div
+                            wire:partial="action-modals"
+                            x-data="filamentActionModals({
+                    livewireId: 'hA0VGge5haeYj7gvdkP3',
+                })"
+                            style="height: 0"
+                        >
+                            <!--[if
+                            BLOCK]><![endif]--><!--[if
+                            ENDBLOCK]><![endif]-->
+                        </div>
+
+                        <!--[if
+                        ENDBLOCK]><![endif]-->
+                        <!--[if
+                        ENDBLOCK]><![endif]-->
+
+                        <!--[if
+                        BLOCK]><![endif]--><!--[if
+                        ENDBLOCK]><![endif]-->
+
+
+                        <!--[if
+                        BLOCK]><![endif]--><!--[if
+                        ENDBLOCK]><![endif]-->
+
+                        <!--[if
+                        BLOCK]><![endif]--><!--[if
+                        ENDBLOCK]><![endif]-->
+
+                        <!--[if
+                        BLOCK]><![endif]--><!--[if
+                        ENDBLOCK]><![endif]-->
+                    </div>
+
+
+                </main>
+
+
+            </div>
+
+
+        </div>
+
+        <div
+            wire:snapshot="{&quot;data&quot;:{&quot;isFilamentNotificationsComponent&quot;:true,&quot;notifications&quot;:[[],{&quot;class&quot;:&quot;Filament\\Notifications\\Collection&quot;,&quot;s&quot;:&quot;wrbl&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;Of1OYnCyHdYmUrpNeHSB&quot;,&quot;name&quot;:&quot;filament.livewire.notifications&quot;,&quot;path&quot;:&quot;admin&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[&quot;411372904-0&quot;],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;fr&quot;},&quot;checksum&quot;:&quot;f119d589461410e94945f69ddab770b6d8cbee4b06ffd833a02b06ee0bc77ffd&quot;}"
+            wire:effects="{&quot;partials&quot;:[],&quot;scripts&quot;:{&quot;411372904-0&quot;:&quot;            &lt;script&gt;\n                window.addEventListener(&#039;EchoLoaded&#039;, () =&gt; {\n                    window.Echo.private(&#039;App.Models.User.1&#039;).notification(\n                        (notification) =&gt; {\n                            setTimeout(\n                                () =&gt;\n                                    $wire.handleBroadcastNotification(\n                                        notification,\n                                    ),\n                                500,\n                            )\n                        },\n                    )\n                })\n\n                if (window.Echo) {\n                    window.dispatchEvent(new CustomEvent(&#039;EchoLoaded&#039;))\n                }\n            &lt;\/script&gt;\n            &quot;},&quot;listeners&quot;:[&quot;notificationsSent&quot;,&quot;notificationSent&quot;,&quot;notificationClosed&quot;]}"
+            wire:id="Of1OYnCyHdYmUrpNeHSB">
+            <div
+                class="fi-no fi-align-right fi-vertical-align-start"
+                role="status"
+            >
+                <!--[if
+                BLOCK]><![endif]--><!--[if
+                ENDBLOCK]><![endif]-->
+            </div>
+
+            <!--[if
+            BLOCK]><![endif]-->                <!--[if
+            ENDBLOCK]><![endif]-->
+        </div>
+
+
+        <script>
+            window.filamentData = [] </script>
+
+
+        <script
+            src="http://127.0.0.1:8000/js/filament/actions/actions.js?v=4.0.12.0"
+        ></script>
+
+
+        <script
+            src="http://127.0.0.1:8000/js/filament/notifications/notifications.js?v=4.0.12.0"
+        ></script>
+
+
+        <script
+            src="http://127.0.0.1:8000/js/filament/schemas/schemas.js?v=4.0.12.0"
+        ></script>
+
+
+        <script
+            src="http://127.0.0.1:8000/js/filament/support/support.js?v=4.0.12.0"
+        ></script>
+
+
+        <script
+            src="http://127.0.0.1:8000/js/filament/tables/tables.js?v=4.0.12.0"
+        ></script>
+
+
+        <script
+            src="http://127.0.0.1:8000/js/filament/filament/echo.js?v=4.0.12.0"
+        ></script>
+
+
+        <script
+            src="http://127.0.0.1:8000/js/filament/filament/app.js?v=4.0.12.0"
+        ></script>
+
+
+        <style>
+            :root {
+            }
+
+        </style>
+
+
+        <script>
+            loadDarkMode()
+        </script>
+
+
+        <!-- Livewire Scripts -->
+        <script src="/livewire/livewire.js?id=df3a17f2"
+            data-csrf="KntBlhOhTnGTru8roJbqlpSLtHr8NXT8EjJx873C" data-update-uri="/livewire/update"
+            data-navigate-once="true"></script>
+    </body>
+</html>

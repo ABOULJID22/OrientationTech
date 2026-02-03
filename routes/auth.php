@@ -57,4 +57,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
+
+    // Filament route `filament.admin.auth.logout` for its logout URL.
+    Route::post('admin/logout', [AuthenticatedSessionController::class, 'destroy'])
+        ->name('filament.admin.auth.logout');
 });

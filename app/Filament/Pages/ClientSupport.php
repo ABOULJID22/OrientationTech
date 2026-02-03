@@ -14,14 +14,16 @@ use UnitEnum;
 class ClientSupport extends Page
 {
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-lifebuoy';
-    protected static ?string $navigationLabel = 'Demande de Support';
+    // Provide a default label; getNavigationLabel() will still translate if needed
+    protected static ?string $navigationLabel = 'Support client';
     protected static ?string $title = 'Support';
     protected string $view = 'filament.pages.client-support';
-    protected static ?int $navigationSort = 5;
-    protected static UnitEnum|string|null $navigationGroup = null;
-    public static function getNavigationGroup(): ?string
+    // Place client support after the calendar in navigation
+    protected static ?int $navigationSort = 4;
+
+    public static function getNavigationLabel(): string
     {
-        return __('filament.nav.groups.support');
+        return __('filament.nav.resources.demande_support_clients');
     }
 
     public static function canView(): bool
@@ -31,7 +33,7 @@ class ClientSupport extends Page
     }
     public static function canAccess(): bool
     {
-       $user = auth()->user();
+        $user = auth()->user();
         return $user && ($user->isClient());
     }
 }

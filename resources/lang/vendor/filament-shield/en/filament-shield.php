@@ -13,7 +13,7 @@ return [
     'field.select_all.name' => 'Select All',
     'field.select_all.message' => 'Enable all permissions for this role',
 
-    'nav.group' => 'Paramètres',
+    'nav.group' => 'Settings',
     'nav.role.label' => 'Roles',
     'nav.role.icon' => 'heroicon-o-shield-check',
     'resource.label.role' => 'Role',

@@ -20,26 +20,19 @@ class ProfileUpdateRequest extends FormRequest
             'email' => [
                 'required',
                 'string',
-                'lowercase',
                 'email',
                 'max:255',
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
-            'website' => ['nullable', 'string', 'max:255'],
-            'avatar' => [
-                'nullable',
-                'image',
-                'mimes:jpg,jpeg,png,webp',
-                'max:2048', // 2 MB
-            ],
+            // allow only common image types and max size 2MB
+            'avatar' => ['nullable', 'image', 'mimes:jpeg,jpg,png,webp', 'max:2048'],
             'phone' => ['nullable', 'string', 'max:50'],
             'phone_2' => ['nullable', 'string', 'max:50'],
             'address' => ['nullable', 'string', 'max:255'],
             'city' => ['nullable', 'string', 'max:120'],
             'postal_code' => ['nullable', 'string', 'max:20'],
             'country' => ['nullable', 'string', 'max:120'],
-            'pharmacist_name' => ['nullable', 'string', 'max:191'],
-            'registration_number' => ['nullable', 'string', 'max:120'],
+            'website' => ['nullable', 'string', 'max:255'],
         ];
     }
 }

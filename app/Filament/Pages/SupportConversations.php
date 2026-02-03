@@ -4,19 +4,25 @@ namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
 use BackedEnum;
-use UnitEnum;
+use UnitEnum; 
 
 class SupportConversations extends Page
 {
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-chat-bubble-oval-left-ellipsis';
-    protected static ?string $navigationLabel = 'Conversations support';
+    // Hide from navigation; we'll link to this page from the Support Messages list instead
+    protected static ?string $navigationLabel = null;
    // protected static UnitEnum|string|null $navigationGroup = 'Support';
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 6;
       protected static UnitEnum|string|null $navigationGroup = null;
+
+
+      
 public static function getNavigationGroup(): ?string
     {
         return __('filament.nav.groups.support');
     }
+
+    
 /* 
 
    
@@ -44,5 +50,10 @@ public static function getNavigationGroup(): ?string
     {
         $user = auth()->user();
         return $user && ($user->isSuperAdmin() || $user->isAssistant() || $user->isClient());
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
     }
 }

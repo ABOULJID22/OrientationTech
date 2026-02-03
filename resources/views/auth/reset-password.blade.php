@@ -26,6 +26,15 @@
                             <x-input-label for="password" :value="__('Password')" />
                             <x-text-input id="password" class="mt-2" type="password" name="password" required autocomplete="new-password"  />
                             <x-input-error :messages="$errors->get('password')" class="mt-2 text-red-600 text-sm" />
+                            <div id="password-rules" class="mt-3 p-3 bg-gray-50 border border-gray-200 rounded text-sm text-gray-700">
+                                <div class="font-semibold mb-1">{{ __('auth.password.rules.title') }}</div>
+                                <ul class="list-disc ml-5">
+                                    <li id="rule-length">{{ __('auth.password.rules.length') }}</li>
+                                    <li id="rule-letters">{{ __('auth.password.rules.letters') }}</li>
+                                    <li id="rule-numbers">{{ __('auth.password.rules.numbers') }}</li>
+                                    <li id="rule-special">{{ __('auth.password.rules.special') }}</li>
+                                </ul>
+                            </div>
                         </div>
 
                         <!-- Confirm Password -->
@@ -46,5 +55,35 @@
             </div>
         </div>
     </div>
+    <script>
+        (function(){
+            const pwd = document.getElementById('password');
+            if (!pwd) return;
+
+            const ruleLength = document.getElementById('rule-length');
+            const ruleLetters = document.getElementById('rule-letters');
+            const ruleNumbers = document.getElementById('rule-numbers');
+            const ruleSpecial = document.getElementById('rule-special');
+
+            function validate(value){
+                const hasLength = value.length >= 8;
+                const hasLetters = /[A-Za-z]/.test(value);
+                const hasNumbers = /[0-9]/.test(value);
+                const hasSpecial = /[^A-Za-z0-9]/.test(value);
+
+                ruleLength.style.textDecoration = hasLength ? 'none' : 'line-through';
+                ruleLetters.style.textDecoration = hasLetters ? 'none' : 'line-through';
+                ruleNumbers.style.textDecoration = hasNumbers ? 'none' : 'line-through';
+                ruleSpecial.style.textDecoration = hasSpecial ? 'none' : 'line-through';
+            }
+
+            pwd.addEventListener('input', function(e){
+                validate(e.target.value);
+            });
+
+            // initial
+            validate(pwd.value || '');
+        })();
+    </script>
 </x-guest-layout>
 

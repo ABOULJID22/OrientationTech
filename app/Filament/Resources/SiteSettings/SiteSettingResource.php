@@ -23,7 +23,7 @@ class SiteSettingResource extends Resource
     
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static UnitEnum|string|null $navigationGroup = 'Paramètres';
+    protected static UnitEnum|string|null $navigationGroup = null;
 
     protected static ?string $recordTitleAttribute = 'y';
 protected static ?int $navigationSort = 90;
@@ -51,5 +51,10 @@ protected static ?int $navigationSort = 90;
             'create' => CreateSiteSetting::route('/create'),
             'edit' => EditSiteSetting::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament.nav.groups.settings');
     }
 }

@@ -1,0 +1,80 @@
+contact@adonis-groupe.com  :https://developpement-nearshore.com
+contact@webtech.fr          https://webtech.fr/
+info@underside.be           https://www.underside.be
+--------------------------- https://www.netdevices.fr/contact/
+contact@innosolutions.io    https://www.innosolutions.io
+contact@sooyoos.com         https://www.sooyoos.com/
+contact@galadrim.fr         https://galadrim.fr/jobs/stage-developpeur-full-stack/
+hello@yieldstudio.fr        https://www.yieldstudio.fr/
+contact@feelandclic.com     https://www.feelandclic.com/
+contact@web-studios.fr      https://www.web-studios.fr/contact/
+business@techcronus.com     https://www.techcronus.com/ English
+contact@monagenceduweb.com  https://monagenceduweb.com/
+
+rh.omnicity@gmail.com       OmniCity
+
+
+
+
+
+Questions 1
+Avez-vous des connaissances en PHP et POO (Programmation Orientée Objet) ?
+
+Questions 2
+Avez-vous des connaissances en modèle relationnel ?
+(Relations de type 1,1 ; 1,n ... Savoir ce qu'est une clef étrangère) ?
+
+Non
+Oui
+
+Avez-vous des connaissances en SQL (savoir faire une requête simple, une jointure) ?
+
+Non
+Oui
+
+Questions 4
+Avez-vous des connaissances en HTML/CSS ?
+
+Non
+Oui
+
+Questions 5
+Avez-vous des connaissances en CSS responsive (savoir ce qu'est une "media query", un "breakpoint" ...) ?
+
+Non
+Oui
+
+Questions 6
+Avez-vous des connaissances en Javascript (manipulation de DOM, gestion des événements) ?
+
+
+Questions 8
+Avez-vous déjà utilisé un framework PHP (Laravel, Symfony ...) ?
+
+Non
+Oui
+
+Questions 9
+Connaissez-vous GIT ?
+
+Non
+Oui
+
+Questions 10
+Avez-vous déjà utilisé NPM (Node Paquet Manager) ?
+
+Non
+Oui
+
+Questions 11
+Connaissez-vous Composer / Packagist ?
+
+Non
+Oui
+
+
+
+
+
+
+

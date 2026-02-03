@@ -11,6 +11,7 @@ class Lab extends Model
 
     protected $fillable = [
         'name',
+        'type',
     ];
 
     public function products()

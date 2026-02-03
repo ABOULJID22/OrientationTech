@@ -35,17 +35,18 @@ class Category extends Model
 
     public function getNameAttribute($value): ?string
     {
-        return $this->translation()?->name ?? $value;
+        // Ensure a string is always returned (Filament Select expects non-null labels)
+        return $this->translation()?->name ?? $value ?? '';
     }
 
     public function getSlugAttribute($value): ?string
     {
-        return $this->translation()?->slug ?? $value;
+        return $this->translation()?->slug ?? $value ?? '';
     }
 
     public function getDescriptionAttribute($value): ?string
     {
-        return $this->translation()?->description ?? $value;
+        return $this->translation()?->description ?? $value ?? '';
     }
 }
 

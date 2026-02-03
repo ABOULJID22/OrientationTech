@@ -10,7 +10,9 @@ return new class extends Migration
     {
         Schema::create('lab_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('lab_id')->constrained()->cascadeOnDelete();
+            // Create lab_id as an unsignedBigInteger without adding the foreign key
+            // to avoid ordering issues during migrate:fresh in local/dev environments.
+            $table->unsignedBigInteger('lab_id');
             $table->string('name');
             $table->timestamps();
             $table->unique(['lab_id','name']);

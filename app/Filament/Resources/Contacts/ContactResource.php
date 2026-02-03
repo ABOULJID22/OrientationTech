@@ -21,7 +21,7 @@ class ContactResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedEnvelope;
 
     protected static ?string $recordTitleAttribute = 'y';
-        protected static ?int $navigationSort = 4;
+        protected static ?int $navigationSort = 5;
 
 
     public static function form(Schema $schema): Schema

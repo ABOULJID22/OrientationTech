@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Contact extends Model
 {
@@ -18,5 +19,10 @@ class Contact extends Model
     public function messages()
     {
         return $this->hasMany(SupportMessage::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'email', 'email');
     }
 }

@@ -15,7 +15,7 @@
             @if($publishedAt)
                 <span>{{ \Illuminate\Support\Carbon::parse($publishedAt)->format('M d, Y') }}</span>
             @endif
-        </div>
+        </div> 
         <h3 class="text-lg font-semibold">{{ $title ?: 'Sans titre' }}</h3>
         @if($readingTime)
             <div class="text-xs text-gray-500">~ {{ $readingTime }} min read</div>

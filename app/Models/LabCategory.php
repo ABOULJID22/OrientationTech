@@ -9,7 +9,7 @@ class LabCategory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['lab_id','name'];
+    protected $fillable = ['lab_id','name','category_type'];
 
     public function lab()
     {

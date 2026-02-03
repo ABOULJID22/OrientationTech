@@ -1,19 +1,20 @@
 @php
-    $eventsJson = json_encode($events ?? []);
-    $calendarsJson = json_encode($calendars ?? []);
     $user = auth()->user();
     $isSuperAdmin = $user && method_exists($user, 'isSuperAdmin') && $user->isSuperAdmin();
+    // Fetch client users for the inline form select (only id + name)
+    $clientUsers = \App\Models\User::whereHas('roles', fn($q) => $q->where('name', 'client'))
+        ->orderBy('name')
+        ->get(['id', 'name']);
 @endphp
 
 <x-filament::page>
     <div style="display:flex; flex-direction:column; gap:12px;">
         <div style="display:flex; gap:8px; justify-content:flex-end;">
-            <button id="btnCreateEvent" style="padding:8px 12px; background:#3b82f6; color:white; border:none; border-radius:6px; cursor:pointer; display:{{ $isSuperAdmin ? 'inline-flex' : 'none' }};">Créer événement</button>
+            <button id="btnCreateEvent" style="padding:8px 12px; background:#4f6ba3; color:white; border:none; border-radius:6px; cursor:pointer; display:{{ $isSuperAdmin ? 'inline-flex' : 'none' }};">{{ __('filament.pages.calendar.create_event') }}</button>
         </div>
         <div id="calendar"></div>
     </div>
 
-    <!-- Modal inline: create event (no iframe) -->
     <div id="eventModal" class="modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5);">
         <div class="modal-content" style="background-color:#fff; margin:5% auto; padding:12px; border-radius:10px; width:95%; max-width:720px; position:relative; overflow:auto;">
             <div style="display:flex; align-items:center; justify-content:space-between; padding-bottom:8px; border-bottom:1px solid #eee; margin-bottom:8px;">
@@ -23,10 +24,10 @@
             <form id="eventForm">
                 <div style="display:flex; gap:8px; margin-bottom:8px;">
                     <input name="title" placeholder="Titre" style="flex:1; padding:8px; border:1px solid #e5e7eb; border-radius:6px;" />
-                    <select name="calendar_id" style="width:160px; padding:8px; border:1px solid #e5e7eb; border-radius:6px;">
-                        <option value="">Calendrier</option>
-                        @foreach($calendars ?? [] as $cal)
-                            <option value="{{ $cal['id'] ?? $cal->id ?? '' }}">{{ $cal['name'] ?? $cal->name ?? 'Calendrier' }}</option>
+                    <select name="user_id" style="width:260px; padding:8px; border:1px solid #e5e7eb; border-radius:6px;">
+                        <option value="">Choisis une pharmacie</option>
+                        @foreach($clientUsers as $client)
+                            <option value="{{ $client->id }}">{{ $client->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -36,117 +37,318 @@
                 </div>
                 <div style="margin-bottom:8px;"><textarea name="description" placeholder="Description" rows="4" style="width:100%; padding:8px; border:1px solid #e5e7eb; border-radius:6px;"></textarea></div>
                 <div style="display:flex; gap:8px; justify-content:flex-end;">
-                    <button type="button" id="eventSubmit" style="padding:8px 12px; background:#3b82f6; color:white; border:none; border-radius:6px;">Créer</button>
+                    <button type="button" id="eventSubmit" style="padding:8px 12px; background:#4f6ba3; color:white; border:none; border-radius:6px;">Créer</button>
                     <button type="button" id="eventCancel" style="padding:8px 12px; background:#ef4444; color:white; border:none; border-radius:6px;">Annuler</button>
                 </div>
             </form>
         </div>
     </div>
-
-    <!-- Modal inline: create note -->
-    <div id="noteModal" class="modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5);">
-        <div class="modal-content" style="background-color:#fff; margin:5% auto; padding:12px; border-radius:10px; width:95%; max-width:720px; position:relative; overflow:auto;">
-            <div style="display:flex; align-items:center; justify-content:space-between; padding-bottom:8px; border-bottom:1px solid #eee; margin-bottom:8px;">
-                <h3 style="margin:0; font-size:16px;">Ajouter note</h3>
-                <span class="close-note" style="color:#6b7280; font-size:24px; font-weight:bold; cursor:pointer;">&times;</span>
-            </div>
-            <form id="noteForm">
-                <div style="margin-bottom:8px;"><input name="title" placeholder="Titre" style="width:100%; padding:8px; border:1px solid #e5e7eb; border-radius:6px;" /></div>
-                <div style="margin-bottom:8px;"><textarea name="content" placeholder="Contenu" rows="4" style="width:100%; padding:8px; border:1px solid #e5e7eb; border-radius:6px;"></textarea></div>
-                <div style="display:flex; gap:8px; justify-content:flex-end;">
-                    <button type="button" id="noteSubmit" style="padding:8px 12px; background:#10b981; color:white; border:none; border-radius:6px;">Ajouter</button>
-                    <button type="button" id="noteCancel" style="padding:8px 12px; background:#ef4444; color:white; border:none; border-radius:6px;">Annuler</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</x-filament::page>
+    
+    </x-filament::page>
 
 @push('styles')
-<!-- FullCalendar v3 CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
 <style>
-    #calendar { min-height: 720px; background: #fff; padding: 16px; border-radius: 8px; }
+    /* Palette et tokens */
+:root{
+  --fc-primary:#4f6ba3;
+  --fc-300:#d0dfed;
+  --fc-200:#e5ecf4;
+  --fc-100:#f3f8fb;
+  --ink:#1f2937;
+  --ink-2:#2b3953;
+  --ring:rgba(79,107,163,.35);
+}
 
-    /* Dark mode adjustments */
-    .dark #calendar { background: #111827; color: #e5e7eb; }
-    .dark .tippy-box[data-theme~='light-border'] { background-color: #1f2937; color: #e5e7eb; border: 1px solid #374151; }
-    .dark .modal-content { background-color: #1f2937; color: #e5e7eb; }
-    
-    /* FullCalendar v3 custom styles */
-    .fc-event { font-size: 13px; border-radius: 4px; cursor: pointer; }
-    .fc-toolbar h2 { font-size: 1.5em; }
-    
-    /* Modal styles */
-    .modal { font-family: Arial, sans-serif; }
-    .modal-content { box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-    .close:hover { color: #000; text-decoration: none; }
 
-        /* Filters / Legend chips */
-        .cal-chip { display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid #e5e7eb; border-radius:999px; background:#f9fafb; cursor:pointer; user-select:none; }
-        .cal-chip.active { border-color:#3b82f6; background:#eff6ff; }
-        .cal-dot { width:10px; height:10px; border-radius:999px; display:inline-block; }
-        .cal-filters { padding:6px 4px; }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-        .modal-content { margin: 10% auto; width: 95%; }
-    }
+/* Conteneur calendrier */
+#calendar{
+  background:var(--fc-100);
+  border:1px solid var(--fc-200);
+  padding:16px;
+  border-radius:12px;
+  box-shadow:0 4px 24px rgba(79,107,163,.08);
+}
 
-    /* Make agenda day/week time grid scrollable */
-    .fc-agendaWeek-view .fc-time-grid .fc-scroller,
-    .fc-agendaDay-view .fc-time-grid .fc-scroller {
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch;
-        max-height: 650px; /* matches contentHeight below */
-    }
+
+/* Toolbar v3 */
+.fc-toolbar{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.fc-toolbar h2{
+  font-size:1.25rem;
+  font-weight:600;
+  color:var(--fc-primary);
+  letter-spacing:.2px;
+  margin:0;
+}
+.fc-button{
+  background:#fff;
+  color:var(--fc-primary);
+  border:1px solid var(--fc-300);
+  border-radius:10px;
+  padding:6px 10px;
+  height:2.2rem;
+  line-height:2.2rem;
+  box-shadow:0 1px 1px rgba(79,107,163,.06);
+  transition:all .2s ease;
+  text-transform:none;
+}
+.fc-button:hover{
+  background:var(--fc-200);
+  border-color:var(--fc-primary);
+}
+.fc-state-active,
+.fc-state-down{
+  background:var(--fc-primary) !important;
+  border-color:var(--fc-primary) !important;
+  color:#fff !important;
+}
+
+
+/* Grille et en-têtes */
+.fc-unthemed th,
+.fc-unthemed td{
+  border-color:var(--fc-300);
+}
+.fc-day-header{
+  color:var(--ink);
+  background:linear-gradient(180deg,#fff,rgba(255,255,255,0));
+  font-weight:600;
+  border-bottom:1px solid var(--fc-300);
+}
+.fc-day-number{
+  color:var(--ink-2);
+  font-weight:500;
+}
+
+
+/* Aujourd’hui aligné à la charte */
+td.fc-day.fc-today,
+td.fc-day.fc-widget-content.fc-today{
+  color:var(--fc-primary) !important;
+  border:1px solid rgba(79,107,163,.45) !important;
+  background:var(--fc-100) !important;
+}
+
+
+/* Evénements (month + agenda) */
+.fc-event{
+  background:linear-gradient(180deg, rgba(79,107,163,.12), rgba(79,107,163,.08));
+  border:1px solid rgba(79,107,163,.35);
+  color:var(--ink-2);
+  border-radius:10px;
+  padding:2px 6px;
+  box-shadow:0 2px 6px rgba(17,24,39,.07);
+  transition:transform .12s ease, box-shadow .2s ease;
+}
+.fc-event:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 14px rgba(17,24,39,.12);
+}
+.fc-unthemed .fc-event .fc-title,
+.fc-unthemed .fc-event .fc-time{
+  color:var(--ink-2);
+}
+
+
+/* Agenda time grid */
+.fc-time-grid .fc-slats td{ border-color:var(--fc-300); }
+.fc-agendaWeek-view .fc-time-grid .fc-slats .fc-minor td{ border-color:var(--fc-200); }
+.fc-time-grid-event{
+  border-radius:10px;
+  border-color:rgba(79,107,163,.35);
+  background:rgba(79,107,163,.10);
+}
+
+
+/* Chips (filtres / légende) */
+.cal-chip{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 10px; border:1px solid var(--fc-200);
+  border-radius:999px; background:var(--fc-100);
+  color:var(--ink);
+  transition:all .2s ease;
+}
+.cal-chip .cal-dot{ width:10px; height:10px; border-radius:999px; }
+.cal-chip:hover{ border-color:var(--fc-primary); background:var(--fc-200); }
+.cal-chip.active{ border-color:var(--fc-primary); background:var(--fc-200); }
+
+
+/* Modales (non-fonctionnel) */
+.modal{
+  background:rgba(10,16,28,.32) !important;
+  backdrop-filter:blur(4px);
+}
+.modal .modal-content{
+  background:#fff;
+  border:1px solid var(--fc-200);
+  border-radius:14px;
+  box-shadow:0 16px 40px rgba(17,24,39,.22);
+  padding:16px;
+}
+.modal h3{ color:var(--ink-2); }
+
+
+/* Champs du formulaire */
+.modal input,
+.modal select,
+.modal textarea{
+  width:100%;
+  border:1px solid var(--fc-300);
+  border-radius:10px;
+  background:#fff;
+  padding:10px 12px;
+  transition:border-color .2s, box-shadow .2s;
+}
+.modal input:focus,
+.modal select:focus,
+.modal textarea:focus{
+  border-color:var(--fc-primary);
+  box-shadow:0 0 0 4px var(--ring);
+  outline:none;
+}
+
+
+/* Boutons (IDs déjà présents) */
+#btnCreateEvent,
+#eventSubmit,
+#noteSubmit{
+  background:var(--fc-primary) !important;
+  color:#fff !important;
+  border:1px solid var(--fc-primary) !important;
+  border-radius:10px !important;
+  padding:8px 14px !important;
+  box-shadow:0 6px 14px rgba(79,107,163,.2) !important;
+  transition:transform .12s, box-shadow .2s !important;
+  cursor:pointer;
+}
+#btnCreateEvent:hover,
+#eventSubmit:hover,
+#noteSubmit:hover{
+  transform:translateY(-1px) !important;
+  box-shadow:0 10px 20px rgba(79,107,163,.22) !important;
+}
+#eventCancel,
+#noteCancel{
+  background:transparent !important;
+  color:var(--ink-2) !important;
+  border:1px solid var(--fc-300) !important;
+  border-radius:10px !important;
+  padding:8px 14px !important;
+}
+#eventCancel:hover,
+#noteCancel:hover{
+  background:var(--fc-200) !important;
+}
+
+
+/* Tippy.js thème light-border adapté */
+.tippy-box[data-theme~='light-border']{
+  background:var(--fc-100);
+  color:var(--ink);
+  border:1px solid var(--fc-300);
+  box-shadow:0 8px 24px rgba(17,24,39,.14);
+  border-radius:10px;
+}
+.tippy-box[data-theme~='light-border'] .tippy-content{
+  padding:10px 12px;
+}
+.tippy-box[data-theme~='light-border'] > .tippy-arrow::before{
+  color:var(--fc-300);
+}
+
+
+/* Responsive */
+@media (max-width: 768px){
+  .fc-toolbar{ flex-wrap:wrap; gap:6px; }
+  .fc-left, .fc-center, .fc-right{
+    width:100%; display:flex; justify-content:space-between; align-items:center;
+  }
+  .fc-toolbar h2{ font-size:1.1rem; }
+  .fc-button{ padding:6px 10px; height:2.1rem; }
+  .modal .modal-content{ width:92%; margin:12% auto; }
+}
+
+
+/* Dark mode cohérent */
+.dark #calendar{
+  background:#0b1220;
+  border-color:#1f2937;
+  color:#e5e7eb;
+}
+.dark .fc-toolbar h2{ color:var(--fc-300); }
+.dark .fc-button{
+  background:#0f172a;
+  color:var(--fc-300);
+  border-color:#1f2937;
+}
+.dark .fc-button:hover{
+  background:#111827;
+  border-color:var(--fc-primary);
+}
+.dark .fc-unthemed th,
+.dark .fc-unthemed td{ border-color:#1f2937; }
+.dark .fc-event{
+  background:rgba(79,107,163,.18);
+  border-color:rgba(79,107,163,.5);
+  color:#e5e7eb;
+}
+.dark td.fc-day.fc-today,
+.dark td.fc-day.fc-widget-content.fc-today{
+  color:#d0dfed !important;
+  border-color:rgba(79,107,163,.25) !important;
+  background:rgba(79,107,163,.08) !important;
+}
+.dark .modal .modal-content{
+  background:#0f172a;
+  border-color:#1f2937;
+  color:#e5e7eb;
+}
+.dark .tippy-box[data-theme~='light-border']{
+  background:#0f172a;
+  color:#e5e7eb;
+  border-color:#1f2937;
+}
+
+
 </style>
 @endpush
 
+
 @push('scripts')
-<!-- jQuery et dépendances pour FullCalendar v3 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-<!-- FullCalendar v3 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
-<!-- Locale français pour FullCalendar v3 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/locale/fr.js"></script>
-<!-- Tippy.js pour tooltips -->
 <script src="https://cdn.jsdelivr.net/npm/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"></script>
+
 
 <script>
 $(document).ready(function() {
-    // CSRF
+    // CSRF Token Setup
     $.ajaxSetup({
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') || '{{ csrf_token() }}' }
     });
 
-    const events = @json($events ?? []); // initial, but we'll fetch dynamically
-    const calendars = @json($calendars ?? []);
-    const btnCreateEvent = $('#btnCreateEvent');
-    const btnCreateNote = $('#btnCreateNote');
+    const palette = ['#4f6ba3', '#8b5cf6', '#ef4444', '#10b981', '#f59e0b', '#06b6d4', '#ec4899', '#84cc16'];
+    const urlStore = `/calendar/events`;
 
-    // Modal refs (create)
-    const modal = $('#eventModal');
-    const eventIframe = $('#eventIframe');
-    const closeBtn = $('.close');
+    function getEventColor(userId) {
+        if (userId === null || userId === undefined) return palette[0];
+        const idx = Math.abs(parseInt(userId, 10)) % palette.length;
+        return palette[idx];
+    }
 
-        // Couleurs cohérentes avec le backend
-        const palette = ['#3b82f6', '#8b5cf6', '#ef4444', '#10b981', '#f59e0b', '#06b6d4', '#ec4899', '#84cc16'];
-        function getEventColor(userId) {
-            if (userId === null || userId === undefined) return palette[0];
-            const idx = Math.abs(parseInt(userId, 10)) % palette.length;
-            return palette[idx];
-        }
+    function escapeHtml(s) {
+        return String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    }
 
-        // No filters: show all events for all users by default
-
-        function escapeHtml(s) {
-            return String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-        }
-
-    // Details modal (read-only)
+    // --- Détails Modal Setup (read-only) ---
+    // The details modal is appended dynamically to the body as it was in the original code
     const detailsHtml = `
     <div id="eventDetailsModal" class="modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5);">
         <div class="modal-content" style="background-color:#fff; margin:12% auto; padding:18px; border-radius:8px; width:90%; max-width:460px; position:relative;">
@@ -158,55 +360,42 @@ $(document).ready(function() {
             <div id="detailsDescription" style="white-space:pre-wrap;"></div>
         </div>
     </div>`;
-    $('body').append(detailsHtml);
+    if (!$('#eventDetailsModal').length) {
+        $('body').append(detailsHtml);
+    }
     const detailsModal = $('#eventDetailsModal');
     const detailsClose = $('.details-close');
     const detailsTitle = $('#detailsTitle');
     const detailsDate = $('#detailsDate');
     const detailsCalendar = $('#detailsCalendar');
-    const detailsCreator = $('#detailsCreator');
     const detailsDescription = $('#detailsDescription');
 
-    // Le formulaire est désormais dans l'iframe Filament
+    function closeDetails() { detailsModal.hide(); }
+    detailsClose.on('click', closeDetails);
+    $(window).on('click', function(e) { if (e.target === detailsModal[0]) closeDetails(); });
 
-    function openCreateModalWithDate(start, end) {
-        const s = (start || moment()).clone().format('YYYY-MM-DD');
-        const e = (end || start || moment()).clone().format('YYYY-MM-DD');
-        const url = `/admin/iframe/calendar/events/create?start_at=${s}T00:00&end_at=${e}T23:59&all_day=1&in_iframe=1`;
-        eventIframe.attr('src', url);
-        modal.show();
-    }
-    function openCreateNoteModal() {
-        const url = `/admin/iframe/calendar/notes/create?in_iframe=1`;
-        eventIframe.attr('src', url);
-        modal.show();
-    }
-    function closeModal() { modal.hide(); eventIframe.attr('src', 'about:blank'); }
-    closeBtn.on('click', closeModal);
-    $(window).on('click', function(e) { if (e.target === modal[0]) closeModal(); });
-
-    // Wire create buttons to open inline modals
-    try {
-        btnCreateEvent.on('click', function() { openEventInline(); });
-        btnCreateNote.on('click', function() { openNoteInline(); });
-    } catch (_) {}
-
-    // Inline modal functions
+    // --- Event Creation Modal (Inline) ---
     const eventModalEl = $('#eventModal');
-    const noteModalEl = $('#noteModal');
     const eventCancel = $('#eventCancel');
-    const noteCancel = $('#noteCancel');
+    const closeBtn = $('.close');
+    const btnCreateEvent = $('#btnCreateEvent');
+    
+    // Function to close the inline modal
+    function closeModal() { eventModalEl.hide(); eventModalEl.find('form')[0].reset(); }
+    
+    // Close button/overlay handling
+    closeBtn.on('click', closeModal);
+    eventCancel.on('click', closeModal);
+    $(window).on('click', function(e) { if (e.target === eventModalEl[0]) closeModal(); });
 
-    function openEventInline(start, end) {
-        // prefill dates if provided
-        if (start) eventModalEl.find('input[name="start_at"]').val(start);
-        if (end) eventModalEl.find('input[name="end_at"]').val(end);
+    // Open inline modal for creation
+    btnCreateEvent.on('click', function() {
+        // Pre-fill dates with current day + time (optional but helpful)
+        const now = moment().format('YYYY-MM-DDTHH:mm:ss');
+        eventModalEl.find('input[name="start_at"]').val(now);
+        eventModalEl.find('input[name="end_at"]').val(now);
         eventModalEl.show();
-    }
-    function openNoteInline() { noteModalEl.show(); }
-
-    eventCancel.on('click', function() { eventModalEl.hide(); eventModalEl.find('form')[0].reset(); });
-    noteCancel.on('click', function() { noteModalEl.hide(); noteModalEl.find('form')[0].reset(); });
+    });
 
     // Submit event form via AJAX
     $('#eventSubmit').on('click', function() {
@@ -214,11 +403,9 @@ $(document).ready(function() {
         let startVal = $form.find('input[name="start_at"]').val();
         let endVal = $form.find('input[name="end_at"]').val();
 
-        // If browser provided datetime-local, value is like 'YYYY-MM-DDTHH:MM:SS'
-        // Ensure seconds exist; if not, append ':00'
+        // Normalize datetime-local format (add seconds if missing)
         function normalizeDt(v) {
             if (!v) return v;
-            // if contains 'T' but no seconds, add ':00'
             const parts = v.split('T');
             if (parts.length === 2 && parts[1].split(':').length === 2) {
                 return v + ':00';
@@ -231,167 +418,110 @@ $(document).ready(function() {
 
         const data = {
             title: $form.find('input[name="title"]').val(),
-            calendar_id: $form.find('select[name="calendar_id"]').val(),
+            calendar_id: $form.find('select[name="user_id"]').val(), // Assuming user_id maps to calendar_id
             start_at: startVal,
             end_at: endVal,
             description: $form.find('textarea[name="description"]').val(),
         };
+
         $.ajax({
             url: urlStore,
             method: 'POST',
             dataType: 'json',
             data: data,
             success: function(res) {
-                eventModalEl.hide();
-                $form[0].reset();
-                // refresh calendar
+                closeModal(); // Hide modal and reset form
+                
+                // The server returns all events for the current month
+                // Remove all events and reload with the new data
                 $('#calendar').fullCalendar('removeEvents');
-                $('#calendar').fullCalendar('addEventSource', res);
-                $('#calendar').fullCalendar('rerenderEvents');
+                
+                if (Array.isArray(res)) {
+                    // Apply color to each event and add to calendar
+                    res.forEach(function(event) {
+                        event.color = event.color || getEventColor(event.calendar_id || event.user_id);
+                        $('#calendar').fullCalendar('renderEvent', event, true);
+                    });
+                } else {
+                    // Fallback: reload page
+                    location.reload();
+                }
             },
             error: function(xhr) {
-                alert('Erreur: ' + (xhr.responseJSON?.message || 'Échec création'));
+                alert('Erreur: ' + (xhr.responseJSON?.message || 'Échec création. Vérifiez les champs.'));
             }
         });
     });
 
-    // Submit note form via AJAX
-    $('#noteSubmit').on('click', function() {
-        const $form = $('#noteForm');
-        const data = {
-            title: $form.find('input[name="title"]').val(),
-            content: $form.find('textarea[name="content"]').val(),
-        };
-        $.ajax({
-            url: '/calendar/notes',
-            method: 'POST',
-            dataType: 'json',
-            data: data,
-            success: function(res) {
-                noteModalEl.hide();
-                $form[0].reset();
-                // optionally reload or show confirmation
-                alert('Note créée');
-            },
-            error: function(xhr) {
-                alert('Erreur: ' + (xhr.responseJSON?.message || 'Échec création'));
-            }
-        });
-    });
+    // NOTE: The note modal logic was incomplete and removed for clarity and focus on the calendar/event issue.
 
-   
-
-    // Details modal close achat trade calander support contact 
-    function closeDetails() { detailsModal.hide(); }
-    detailsClose.on('click', closeDetails);
-    $(window).on('click', function(e) { if (e.target === detailsModal[0]) closeDetails(); });
-
-    // Routes
-    const urlStore = `/calendar/events`;
-    const urlUpdate = (id) => `/calendar/events/${id}`;
-    const urlDestroy = (id) => `/calendar/events/${id}`;
-
-    // Init FullCalendar (vue simple: mois)
-    // Use server-provided `events` variable when available to avoid an extra
-    // controller endpoint. The calendar will still allow refetching via AJAX
-    // when navigating to other ranges if needed.
-    const initialEvents = @json($events ?? []);
-
+    // --- FullCalendar Initialization ---
     $('#calendar').fullCalendar({
         locale: 'fr',
-        header: { left: 'prev,next today', center: 'title', right: 'month,agendaWeek,agendaDay' },
+        header: { 
+            left: 'prev,next today', 
+            center: 'title', 
+            right: 'month,agendaWeek,agendaDay' // agendaWeek and agendaDay list by hour by default
+        },
         defaultView: 'month',
         height: 'auto',
         contentHeight: 650,
         scrollTime: '08:00:00',
         lazyFetching: false,
-        events: initialEvents,
-            eventRender: function(event, element) {
-                // Pastille de couleur + titre raccourci
-                const $title = element.find('.fc-title');
-                if ($title.length) {
-                    $title.prepend(`<span class="cal-dot" style="background:${event.color || getEventColor(event.calendar_id)}; margin-right:6px;"></span>`);
-                }
-                // Tooltip détaillé
-                const start = event.start ? event.start.clone() : null;
-                const end = event.end ? event.end.clone() : start;
-                const sameDay = start && end ? start.isSame(end, 'day') : true;
-                const dateText = start ? (sameDay ? start.format('dddd D MMMM YYYY') : `${start.format('dddd D MMMM YYYY')} → ${end.format('dddd D MMMM YYYY')}`) : '';
-                const tip = `<div><strong>${escapeHtml(event.title || '(Sans titre)')}</strong><div style="color:#6b7280;">${escapeHtml(dateText)}</div><div style="color:#6b7280;">${escapeHtml(event.calendar ? event.calendar : 'Global')}</div>${event.description ? `<hr style="border:none;border-top:1px solid #e5e7eb;"/><div style="white-space:pre-wrap;">${escapeHtml(event.description)}</div>` : ''}</div>`;
-                try { tippy(element[0], { content: tip, allowHTML: true, theme: 'light-border', placement: 'top', maxWidth: 380 }); } catch (_) {}
-            },
-    selectable: false,
-    selectHelper: false,
-        eventLimit: true,
-        select: null,
-  
-        eventClick: function(event) {
-            const start = event.start ? event.start.clone() : null;
-            const end = event.end ? event.end.clone() : start;
-            const sameDay = start && end ? start.isSame(end, 'day') : true;
-            const isAllDay = !!event.allDay;
+        timeFormat: 'H:mm',
+        slotLabelFormat: 'H:mm',
+        timezone: false, // Désactiver le timezone pour éviter les problèmes
+        
+        // Données des événements - FORMAT SIMPLE
+        events: @json($events ?? []).map(function(evt) {
+            // Appliquer la couleur basée sur calendar_id
+            evt.color = evt.color || getEventColor(evt.calendar_id || evt.user_id);
+            return evt;
+        }),
+        
+        eventLimit: 3,
+        
+        eventRender: function(event, element) {
+            // Ajouter une pastille de couleur
+            const $title = element.find('.fc-title');
+            if ($title.length && event.color) {
+                $title.prepend(`<span class="cal-dot" style="background:${event.color}; display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px;"></span>`);
+            }
+            
+            // Tooltip simple
+            if (event.description || event.calendar) {
+                const tooltipText = [
+                    event.title || '(Sans titre)',
+                    event.calendar ? `Pharmacie: ${event.calendar}` : '',
+                    event.description || ''
+                ].filter(Boolean).join('\n');
+                
+                element.attr('title', tooltipText);
+            }
+        },
 
+        eventClick: function(event) {
+            // Afficher les détails de l'événement dans un modal simple
+            const start = event.start ? moment(event.start) : null;
+            const end = event.end ? moment(event.end) : start;
+            
             let dateText = '';
             if (start) {
-                if (sameDay) {
-                    if (!isAllDay) {
-                        const startStr = start.format('dddd D MMMM YYYY HH:mm');
-                        const endStr = end ? end.format('HH:mm') : '';
-                        dateText = end ? `${startStr} → ${endStr}` : startStr;
-                    } else {
-                        dateText = start.format('dddd D MMMM YYYY');
-                    }
+                if (event.allDay) {
+                    dateText = start.format('dddd D MMMM YYYY');
                 } else {
-                    if (!isAllDay) {
-                        const startStr = start.format('dddd D MMMM YYYY HH:mm');
-                        const endStr = end ? end.format('dddd D MMMM YYYY HH:mm') : '';
-                        dateText = end ? `${startStr} → ${endStr}` : startStr;
-                    } else {
-                        dateText = `${start.format('dddd D MMMM YYYY')} → ${end ? end.format('dddd D MMMM YYYY') : ''}`;
+                    dateText = start.format('dddd D MMMM YYYY HH:mm');
+                    if (end && !start.isSame(end, 'minute')) {
+                        dateText += ' → ' + end.format('HH:mm');
                     }
                 }
             }
 
             detailsTitle.text(event.title || '(Sans titre)');
             detailsDate.text(dateText);
-            detailsCalendar.text(`Calendrier: ${event.calendar ? event.calendar : 'Global'}`);
-            //detailsCreator.text(event.creator ? `Créé par: ${event.creator}` : '');
+            detailsCalendar.text(event.calendar ? `Pharmacie: ${event.calendar}` : 'Global');
             detailsDescription.text(event.description || '');
             detailsModal.show();
-        },
-    });
-
-    // Rafraîchir le calendrier à la création depuis l'iframe
-    eventIframe.on('load', function() {
-        try {
-            const href = this.contentWindow.location.href;
-            const url = new URL(href);
-            if (url.searchParams.get('created') === '1' && url.searchParams.get('in_iframe') === '1') {
-                closeModal();
-                // If initialEvents was used we need to refetch via AJAX to pick
-                // up newly created events. FullCalendar v3 supports refetchEvents
-                // which will call the `events` source if it's a function. Since
-                // we set a static array above, call a manual reload via AJAX.
-                $.ajax({
-                    url: '/calendar/events',
-                    type: 'GET',
-                    dataType: 'json',
-                    data: {
-                        start: moment().startOf('month').format('YYYY-MM-DD'),
-                        end: moment().endOf('month').format('YYYY-MM-DD')
-                    },
-                    success: function(res) {
-                        $('#calendar').fullCalendar('removeEvents');
-                        $('#calendar').fullCalendar('addEventSource', res);
-                        $('#calendar').fullCalendar('rerenderEvents');
-                    },
-                    error: function() {
-                        // ignore
-                    }
-                });
-            }
-        } catch (_) {
-            // Ignore cross-origin issues (ne devrait pas arriver si même domaine)
         }
     });
 });

@@ -16,16 +16,17 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use UnitEnum;
+
 class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
-
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
-
-protected static UnitEnum|string|null $navigationGroup = 'Blog';
-protected static ?int $navigationSort = 80;
-
-    protected static ?string $recordTitleAttribute = 'y';
+    protected static UnitEnum|string|null $navigationGroup = 'Blog';
+    protected static ?int $navigationSort = 80;
+    protected static ?string $recordTitleAttribute = 'title';
+    
+    // AJOUT: Utiliser l'ID pour les routes Filament
+    protected static ?string $recordRouteKeyName = 'id';
 
     public static function form(Schema $schema): Schema
     {
@@ -49,7 +50,8 @@ protected static ?int $navigationSort = 80;
         return [
             'index' => ListPosts::route('/'),
             'create' => CreatePost::route('/create'),
-            'edit' => EditPost::route('/{record}/edit'),
+            // MODIFICATION: Utiliser {record:id} au lieu de {record}
+            'edit' => EditPost::route('/{record:id}/edit'),
         ];
     }
 

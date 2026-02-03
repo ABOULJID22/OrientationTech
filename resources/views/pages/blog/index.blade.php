@@ -1,93 +1,136 @@
 {{-- resources/views/pages/blog/index.blade.php --}}
+
 <!DOCTYPE html>
-<html lang="{{ str_replace('_','-',app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Offitrade - {{ __('site.nav.blog') }}</title>
-  @vite(['resources/css/app.css','resources/js/app.js'])
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-              <!-- Favicon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="{{ $siteSettings?->favicon_path ? Storage::url($siteSettings->favicon_path) : asset('favicon.png') }}" />
-
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-  @include('layouts.navbar')
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
 
-  <main class="py-16 sm:py-24">
-    <!-- Barre de filtre -->
+  @include('layouts.navbar')
+<!--  <main class="flex-grow py-16 sm:py-24 bg-gradient-to-b from-primary-50/60 via-white to-white dark:from-slate-950/40 dark:via-slate-900 dark:to-slate-900"> -->
+  <main class="flex-grow py-16 sm:py-24 bg-gray-50 dark:bg-gray-900">
     @php
       $activeCat = request('category');
       $activeSort = request('sort', 'recent');
       $search = request('search', '');
+      $blogTitle = __('site.blog.title') === 'site.blog.title' ? 'Nos publications' : __('site.blog.title');
+      $blogSubtitle = __('site.blog.subtitle') === 'site.blog.subtitle' ? 'Inspiration, conseils & actualités Offitrade.' : __('site.blog.subtitle');
     @endphp
 
-  <section class="sticky top-0 z-20 border-b border-gray-200/70 dark:border-gray-800/70 bg-white/80 dark:bg-gray-900/70 md:backdrop-blur">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-        <!-- Catégories dynamiques -->
-        <div class="flex flex-wrap items-center gap-2">
-          <a href="{{ route('pages.blog.index') }}"
-             class="px-4 py-2 text-sm font-semibold rounded-full {{ $activeCat ? 'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200 hover:bg-[#4f6ba3] hover:text-white dark:hover:bg-indigo-500' : 'bg-[#4f6ba3] text-white shadow hover:bg-indigo-500' }}">
-            {{ __('site.blog.all') }}
-          </a>
-          @foreach ($categories as $cat)
-            <a href="{{ route('pages.blog.index', array_filter(['category' => $cat->slug, 'sort' => $activeSort, 'search' => $search])) }}"
-               class="px-4 py-2 text-sm font-semibold rounded-full {{ $activeCat === $cat->slug ? 'bg-[#4f6ba3] text-white shadow' : 'bg-gray-100 text-gray-900 hover:bg-[#4f6ba3] hover:text-white dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-indigo-500' }}">
-              {{ $cat->name }}
-            </a>
-          @endforeach
-        </div>
+    <!-- Filtre & Titre -->
+    <section class="border-b border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-gray-900/50 backdrop-blur-xl rounded-3xl mb-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        <div class="flex flex-col gap-6">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p class="text-xs uppercase tracking-widest text-[#4f6ba3] dark:text-blue-400 font-bold mb-2">{{ __('site.nav.blog') }}</p>
+              <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">{{ $blogTitle }}</h1>
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-400 max-w-lg">{{ $blogSubtitle }}</p>
+            </div>
 
-        <!-- Tri + Recherche -->
-        <form method="GET" action="{{ route('pages.blog.index') }}" class="w-full md:w-auto flex items-center gap-3">
-          <input type="hidden" name="category" value="{{ $activeCat }}">
-          <input type="text" name="search" value="{{ $search }}"
-                 placeholder="{{ __('site.blog.search_placeholder') }}"
-                 class="flex-1 md:flex-none px-4 py-2 text-sm rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-      
-          <button type="submit"
-                  class="px-4 py-2 text-sm font-semibold rounded-xl bg-[#4f6ba3] text-white hover:bg-indigo-500">
-            {{ __('site.blog.apply') }}
-          </button>
-        </form>
+          <form method="GET" action="{{ route('pages.blog.index') }}" class="search-bar flex flex-col sm:flex-row gap-3 w-full sm:w-auto max-w-md   rounded-3xl shadow-md dark:shadow-lg p-4 sm:p-3 transition-colors duration-300">
+              <input type="hidden" name="category" value="{{ $activeCat }}" />
+
+              <input 
+                type="search" 
+                name="search" 
+                value="{{ $search }}" 
+                placeholder="{{ __('site.blog.search_placeholder') }}" 
+                aria-label="Recherche blog"
+                class="search-input flex-grow rounded-2xl border border-gray-300 bg-gray-50 px-5 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-900 dark:text-gray-100 dark:placeholder-gray-500 dark:border-gray-700 transition duration-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              />
+
+              <button type="submit" class="bg-gradient-to-r from-[#4f6ba3] to-[#5b7db5] rounded-2xl px-6 py-3 font-semibold text-white shadow-md hover:from-primary-700 hover:to-primary-600 active:scale-[0.98] transition-transform duration-150 whitespace-nowrap">
+                {{ __('site.blog.apply') }}
+              </button>
+            </form>
+          
+
+          </div>
+
+          <!-- Catégories -->
+          <div class="overflow-x-auto pb-2">
+             <div class="flex items-center gap-3 min-w-max overflow-x-auto scrollbar-thin scrollbar-thumb-primary-300 scrollbar-thumb-rounded">
+              <a href="{{ route('pages.blog.index') }}" class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 {{ !$activeCat ? 'bg-[#4f6ba3] text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700' }}">
+                {{ __('site.blog.all') }}
+              </a>
+              @foreach ($categories as $cat)
+                <a href="{{ route('pages.blog.index', array_filter(['category' => $cat->slug, 'sort' => $activeSort, 'search' => $search])) }}" class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 {{ $activeCat === $cat->slug ? 'bg-[#4f6ba3] text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700' }}">
+                  {{ $cat->name }}
+                </a>
+              @endforeach
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Grille d’articles -->
+    <!-- Articles -->
     <section class="py-12">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        @forelse ($posts as $post)
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 grid gap-10 sm:grid-cols-2 xl:grid-cols-3">
+         @forelse ($posts as $post)
           @php
             $img = $post->cover_image ? Storage::url($post->cover_image) : asset('images/img1.jpg');
           @endphp
-          <article class="group overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-md ring-1 ring-gray-200/60 dark:ring-gray-700/50 transition-all duration-300 hover:shadow-xl">
-            <div class="relative">
-              <img src="{{ $img }}" alt="{{ $post->title }}" loading="lazy" decoding="async" class="w-full aspect-[16/9] object-cover transition-transform duration-300 group-hover:scale-[1.03]">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/0 pointer-events-none"></div>
+          <article class="group flex flex-col h-full overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-xl  dark:border-gray-700 transition-all duration-300 hover:-translate-y-1 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#4f6ba3] transition-transform duration-300 hover:-translate-y-1 hover:shadow-strong">
+            {{-- Image Container --}}
+            <div class="relative overflow-hidden aspect-[16/9] w-full">
+              <img src="{{ $img }}" 
+                   alt="{{ $post->translation()?->title ?? $post->title }}" 
+                   loading="lazy" 
+                   decoding="async" 
+                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
               @if($post->category)
-                <span class="absolute top-4 left-4 inline-flex items-center rounded-full bg-[#4f6ba3] text-white text-xs font-semibold px-3 py-1 ring-1 ring-white/10 md:backdrop-blur">
+                <!-- <span class="absolute top-4 left-4 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/90 dark:bg-gray-900/90 text-gray-800 dark:text-gray-100 backdrop-blur-sm shadow-sm">
+                  {{ $post->category->name }}
+                </span> -->
+                <span class="absolute top-5 left-5 badge-pill badge-light">
                   {{ $post->category->name }}
                 </span>
               @endif
             </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold tracking-tight mb-2 text-gray-900 dark:text-white transition-colors group-hover:text-[#4f6ba3] dark:group-hover:text-indigo-400">
-                <a href="{{ route('pages.blog.show', $post) }}">{{ $post->title }}</a>
-              </h3>
-              @if($post->excerpt)
-                <p class="text-gray-600 dark:text-gray-300 line-clamp-3 mb-4">
-                  {{ $post->excerpt }}
-                </p>
-              @endif
-              <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-gray-700 pt-4">
-                <span>{{ __('site.blog.Publishedon') }} {{ optional($post->published_at)->format('F j, Y') }}</span>
+
+            {{-- Content --}}
+            <div class="flex flex-1 flex-col p-5 gap-3">
+              <div class="space-y-2 mb-1">
+                <h3 class="text-lg font-bold tracking-tight text-[#4f6ba3] dark:text-white transition-colors group-hover:text-primary-500 line-clamp-2 dark:group-hover:text-primary-300">
+                  <a class="hover:underline text-[#4f6ba3]" href="{{ route('pages.blog.show', $post) }}">{{ $post->translation()?->title ?? $post->title }}</a>
+                </h3>
+                @php
+                  $contentPreviewSource = $post->translation()?->content ?? $post->content ?? $post->excerpt ?? '';
+                  $preview = $contentPreviewSource ? \Illuminate\Support\Str::limit(strip_tags($contentPreviewSource), 100) : null;
+                @endphp
+                @if($preview)
+                  <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-3 leading-relaxed">{{ $preview }}</p>
+                @endif
               </div>
-              <a href="{{ route('pages.blog.show', $post) }}" class="mt-4 inline-flex items-center font-semibold text-[#4f6ba3] dark:text-indigo-400 group-hover:underline">
-                {{ __('site.blog.read_more') }}
-                <svg class="ml-1 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12l-3.75 3.75M21 12H3"/>
-                </svg>
-              </a>
+
+              {{-- Footer Meta --}}
+              <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50 flex items-center justify-between text-xs text-gray-400 dark:text-gray-500">
+                <div class="flex items-center gap-2">
+                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                   <span>{{ optional($post->published_at)->format('d M, Y') }}</span>
+                </div>
+                
+                <!-- <a href="{{ route('pages.blog.show', $post) }}" class="flex items-center gap-1 font-medium text-[#4f6ba3] hover:text-[#3d5280] transition-colors">
+                  {{ __('site.blog.read_more') }}
+                  <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </a> -->
+                <a href="{{ route('pages.blog.show', $post) }}" class="inline-flex items-center gap-2 font-semibold text-[#4f6ba3] dark:text-primary-300">
+                  {{ __('site.blog.read_more') }}
+                  <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5h13" /><path d="M8 12h13" /><path d="M8 19h13" /><path d="M5 5l0 0" /><path d="M5 12l0 0" /><path d="M5 19l0 0" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </article>
         @empty
@@ -97,33 +140,14 @@
         @endforelse
       </div>
 
+      <!-- Pagination -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-10">
         {{ $posts->onEachSide(1)->links() }}
       </div>
     </section>
-
-  <!-- CTA Newsletter -->
-        <!-- <section class="py-6">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6">
-            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-500 dark:to-blue-500 p-8 sm:p-12 text-white shadow-xl">
-            <div class="pointer-events-none absolute -inset-1 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.15),transparent_60%)]"></div>
-            <div class="relative">
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-3 tracking-tight">{{ __('site.blog.newsletter.title') }}</h2>
-                <p class="text-lg opacity-90 max-w-2xl">{{ __('site.blog.newsletter.desc') }}</p>
-                <form class="mt-8 max-w-xl mx-auto flex flex-col sm:flex-row gap-3">
-                <input type="email" placeholder="{{ __('site.blog.newsletter.email_placeholder') }}" required
-                        class="flex-1 h-12 rounded-xl px-4 text-gray-900 placeholder-gray-500 bg-white/95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-600">
-                <button type="submit"
-                        class="h-12 px-6 rounded-xl font-semibold bg-white text-indigo-700 hover:bg-gray-100 active:scale-[0.99] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-indigo-600">
-                    {{ __('site.blog.newsletter.subscribe') }}
-                </button>
-                </form>
-            </div>
-            </div>
-        </div>
-        </section> -->
   </main>
 
-   @include('layouts.footer') 
+  @include('layouts.footer')
+
 </body>
 </html>

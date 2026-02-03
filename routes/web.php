@@ -8,7 +8,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\SecurityReportController;
 use App\Http\Controllers\PharmacistRequestController;
+use App\Http\Controllers\AttachmentController;
+use App\Http\Controllers\TradeAttachmentController;
 use App\Models\Post;
+use App\Http\Controllers\PurchasePdfController;
+
+
+
+
+/* Route::get('/purchases/{purchase}/pdf', [PurchasePdfController::class, 'download'])
+    ->name('purchases.pdf.download')
+    ->middleware(['auth']); // ajustez les middlewares selon besoins (ex : filament auth / policies)
+
+ */
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
@@ -19,6 +32,9 @@ Route::view('/mentions-legales', 'pages.legal')->name('legal');
 Route::view('/politique-de-confidentialite', 'pages.privacy')->name('privacy');
 // Page Pourquoi Offitrade
 Route::view('/pourquoi-offitrade', 'pages.pourquoi')->name('pourquoi');
+
+// Page Nos Services
+Route::view('/noservices', 'pages.noservices')->name('noservices');
 
 Route::fallback(function () {
     return response()->view('pages.404', [], 404);
@@ -197,5 +213,23 @@ Route::post('/client/support', function (\Illuminate\Http\Request $request) {
 
 
 
+Route::get('/files/public/view/{path}', [AttachmentController::class, 'viewPublic'])
+    ->where('path', '.*')
+    ->name('attachments.public.view');
 
 
+// Delete an attachment from a purchase (used by Filament modals/forms)
+Route::middleware(['auth', 'web'])->post('/purchases/attachments/delete', [\App\Http\Controllers\PurchaseAttachmentController::class, 'destroy'])
+    ->name('purchases.attachments.delete');
+
+// Fallback signed GET delete (useful for modal issues or JS-disabled clients)
+Route::middleware(['auth', 'web', 'signed'])->get('/purchases/attachments/delete-signed', [\App\Http\Controllers\PurchaseAttachmentController::class, 'destroySigned'])
+    ->name('purchases.attachments.delete.signed');
+
+// Delete an attachment from a trade operation (used by Filament modals/forms)
+Route::middleware(['auth', 'web'])->post('/trades/attachments/delete', [\App\Http\Controllers\TradeAttachmentController::class, 'destroy'])
+    ->name('trades.attachments.delete');
+
+// Fallback signed GET delete for trades (useful for modal issues or JS-disabled clients)
+Route::middleware(['auth', 'web', 'signed'])->get('/trades/attachments/delete-signed', [\App\Http\Controllers\TradeAttachmentController::class, 'destroySigned'])
+    ->name('trades.attachments.delete.signed');

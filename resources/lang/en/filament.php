@@ -37,8 +37,38 @@ return [
         'open' => 'Open',
         'documents' => 'Documents',
         'send_photos' => 'Upload photos',
+        'add_documents' => 'Add documents',
+        'view_documents' => 'View documents',
+        'attached_documents' => 'Attached documents',
+        'download_template' => 'Download template',
+    ],
+    'pages' => [
+        'calendar' => [
+            'create_event' => 'Create event',
+        ],
+        'client_support' => [
+            'help_text' => 'Need help? Send us a message and we’ll get back quickly in Support Conversations.',
+            'heading' => 'Send a message to support',
+            'name' => 'Name',
+            'email' => 'Email',
+            'phone' => 'Phone',
+            'message' => 'Message',
+            'placeholder' => 'Describe your request with as many details as possible',
+            'send' => 'Send',
+            'sending' => 'Sending…',
+            'reset' => 'Reset',
+        ],
+    ],
+    'widgets' => [
+        'blog_stats' => [
+            'users' => 'Users',
+            'posts' => 'Posts',
+            'contacts' => 'Contacts',
+        ],
     ],
     'trade' => [
+        'model' => 'Trade operation',
+        'models' => 'Trade operations',
         'fields' => [
             'pharmacy' => 'Pharmacy',
             'lab' => 'LAB',
@@ -57,6 +87,22 @@ return [
         'filters' => [
             'received' => 'Received',
         ],
+        'placeholders' => [
+            'start' => 'Start date of the challenge',
+            'end' => 'End date of the challenge',
+        ],
+        'enums' => [
+            'compensation_type' => [
+                'amount' => 'Amount',
+                'percent' => 'Percent',
+            ],
+        ],
+        'actions' => [
+            'upload_photos' => 'Upload photos',
+            'add_documents' => 'Add documents',
+            'view_documents' => 'View documents',
+            'close' => 'Close',
+        ],
         'import' => [
             'client' => 'Pharmacy (client)',
             'file' => 'Excel file',
@@ -64,6 +110,8 @@ return [
         ],
     ],
     'purchases' => [
+        'model' => 'Purchase',
+        'models' => 'Purchases',
         'fields' => [
             'pharmacy' => 'Pharmacy',
             'lab' => 'LAB',
@@ -77,6 +125,21 @@ return [
             'annual_target' => 'ANNUAL TARGET',
             'attachments' => 'Documents (invoices, proofs)',
             'status' => 'Status',
+        ],
+        'placeholders' => [
+            'lab' => 'Choose a lab',
+            'category' => 'Choose a category',
+            'choose_existing_category' => 'Choose an existing category',
+        ],
+        'filters' => [
+            'received' => 'Received',
+            'all' => 'All',
+            'pharmacist' => 'Pharmacist',
+        ],
+        'statuses' => [
+            'en_attente' => 'Pending',
+            'livree' => 'Delivered',
+            'annulee' => 'Cancelled',
         ],
         'table' => [
             'recent_orders' => 'Recent orders',

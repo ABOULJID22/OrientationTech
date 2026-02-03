@@ -24,14 +24,22 @@ class EditPost extends EditRecord
     protected function afterSave(): void
     {
         $record = $this->record;
-        $locale = app()->getLocale();
-        $t = $record->translation($locale) ?: $record->translation(config('app.fallback_locale'));
-        if ($t) {
-            $record->forceFill([
-                'title' => $t->title,
-                'slug' => $t->slug,
-                'content' => $t->content,
-            ])->saveQuietly();
+
+       
+        $primaryLocale = config('app.fallback_locale') ?: 'fr';
+
+       
+        $editedLocale = app()->getLocale();
+
+        if ($editedLocale === $primaryLocale) {
+            $t = $record->translation($primaryLocale) ?: $record->translations()->first();
+            if ($t) {
+                $record->forceFill([
+                    'title' => $t->title,
+                    'slug' => $t->slug,
+                    'content' => $t->content,
+                ])->saveQuietly();
+            }
         }
     }
 }

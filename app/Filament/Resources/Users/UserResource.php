@@ -22,11 +22,24 @@ class UserResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUser;
 
-    protected static ?string $recordTitleAttribute = 'user';
-    protected static UnitEnum|string|null $navigationGroup = 'Paramètres';
+    protected static UnitEnum|string|null $navigationGroup = null;
     protected static ?int $navigationSort = 90;
 
+ public static function getNavigationLabel(): string
+    {
+        return __('filament.nav.resources.users');
+    }
 
+    public static function getLabel(): string
+    {
+        // singular resource label (fallback to the plural key)
+        return __('filament.nav.resources.users') ?: 'Users';
+    }
+
+    public static function getPluralLabel(): string
+    {
+        return __('filament.nav.resources.users') ?: 'Users';
+    }
     public static function form(Schema $schema): Schema
     {
         return UserForm::configure($schema);
@@ -40,6 +53,11 @@ class UserResource extends Resource
     public static function table(Table $table): Table
     {
         return UsersTable::configure($table);
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament.nav.groups.settings');
     }
 
     public static function getRelations(): array

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Non Trouvée</title>
+  <title>{{ __('pages.404.title') }}</title>
     <!-- Intégration de Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -32,20 +32,20 @@
                 404
             </div>
 
-            <!-- Titre principal de la page d'erreur -->
-            <div class="mt-6 text-3xl font-bold text-gray-800 lg:text-4xl">
-                Page Introuvable
-            </div>
+      <!-- Titre principal de la page d'erreur -->
+      <div class="mt-6 text-3xl font-bold text-gray-800 lg:text-4xl">
+        {{ __('pages.404.heading') }}
+      </div>
 
-            <!-- Message descriptif pour guider l'utilisateur -->
-            <div class="mt-4 text-lg font-medium text-gray-500">
-                Désolé, la page que vous cherchez n'existe pas ou a été déplacée.
-            </div>
+      <!-- Message descriptif pour guider l'utilisateur -->
+      <div class="mt-4 text-lg font-medium text-gray-500">
+        {{ __('pages.404.message') }}
+      </div>
 
-            <!-- Bouton d'action avec effets de survol dynamiques -->
-            <a href="{{ url('/') }}" class="mt-8 inline-block rounded-lg bg-customBlue px-8 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:scale-105 hover:bg-opacity-90">
-                Retour à l'accueil
-            </a>
+      <!-- Bouton d'action avec effets de survol dynamiques -->
+      <a href="{{ url('/') }}" class="mt-8 inline-block rounded-lg bg-customBlue px-8 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:scale-105 hover:bg-opacity-90">
+        {{ __('pages.404.home_button') }}
+      </a>
         </div>
     </div>
 </body>

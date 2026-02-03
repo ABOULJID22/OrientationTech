@@ -26,7 +26,7 @@ class TradeOperationsExport implements FromQuery, WithHeadings, WithMapping, Sho
     public function query()
     {
         /** @var Builder $query */
-    $query = TradeOperation::query()->with(['lab', 'product', 'products']);
+    $query = TradeOperation::query()->with(['lab', 'product', 'products', 'user']);
 
         if ($this->forUserId) {
             return $query->where('user_id', $this->forUserId);
@@ -78,14 +78,15 @@ class TradeOperationsExport implements FromQuery, WithHeadings, WithMapping, Sho
     public function headings(): array
     {
         return [
-            'LABO',
-            'PRODUIT',
-            'DATE CHALLENGE',
-            'COMPENSATION',
-            'ENVOYÉ LE',
-            'REÇU',
-            'VIA',
-            'NB PHOTOS',
+            'Pharmacie',
+            'Labo',
+            'Produit(s)',
+            'Date challenge',
+            'Compensation',
+            'Envoyé le',
+            'Via',
+            'Reçu',
+            'Nb photos',
         ];
     }
 
@@ -93,15 +94,25 @@ class TradeOperationsExport implements FromQuery, WithHeadings, WithMapping, Sho
     {
         /** @var TradeOperation $record */
         return [
-            optional($record->lab)->name,
-            $record->products && $record->products->count() ? $record->products->pluck('name')->implode(', ') : optional($record->product)->name,
+            // Pharmacy
+            optional($record->user)->pharmacy_name ?: optional($record->user)->name ?: '',
+            // Lab
+            optional($record->lab)->name ?: '',
+            // Products (joined)
+            (($record->products && $record->products->count()) ? $record->products->pluck('name')->implode(', ') : (optional($record->product)->name ?: '')),
+            // Challenge dates
             '(' . (optional($record->challenge_start)?->format('d-m-Y') ?? '—') . ' au ' . (optional($record->challenge_end)?->format('d-m-Y') ?? '—') . ')',
-            $record->compensation_type === 'percent'
+            // Compensation formatted
+            ($record->compensation_type === 'percent')
                 ? ($record->compensation . ' %')
                 : number_format((float) $record->compensation, 2, ',', ' ') . ' €',
-            optional($record->sent_at)?->format('d/m/Y'),
+            // Sent at
+            optional($record->sent_at)?->format('d/m/Y') ?: '',
+            // Via
+            $record->via ?: '',
+            // Received
             $record->received ? 'Oui' : 'Non',
-            $record->via,
+            // Number of photos
             is_array($record->photos) ? count($record->photos) : 0,
         ];
     }

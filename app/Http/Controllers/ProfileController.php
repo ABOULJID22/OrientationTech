@@ -7,8 +7,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -29,43 +27,50 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
-        $validated = $request->validated();
 
-        // Handle avatar upload if provided
+    $data = $request->validated();
+
+    // capture current avatar so we can delete it after storing new one
+    $oldAvatar = $user->avatar_url ?? null;
+
+        // Handle avatar upload if present
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
 
-            // Delete previous avatar if stored locally on public disk
-            $old = $user->avatar_url;
-            if ($old) {
-                if (Str::startsWith($old, ['http://', 'https://'])) {
-                    // External URL, nothing to delete
-                } else {
-                    $path = $old;
-                    if (Str::startsWith($path, ['/storage/', 'storage/'])) {
-                        $path = Str::after($path, 'storage/');
-                    }
-                    if (!Str::startsWith($path, ['avatar/', 'avatars/'])) {
-                        $path = 'avatar/' . basename($path);
-                    }
-                    if (Storage::disk('public')->exists($path)) {
-                        Storage::disk('public')->delete($path);
-                    }
-                }
+            // Double-check mime type server-side
+            $allowed = ['image/jpeg', 'image/png', 'image/webp'];
+            if (! in_array($file->getMimeType(), $allowed, true)) {
+                // invalid mime, ignore the upload and add an error
+                return Redirect::back()->withErrors(['avatar' => __('profile.avatar.error_invalid_type')]);
             }
 
-            // Store new avatar to public disk under avatar/
-            $storedPath = $file->store('avatar', 'public');
-            $validated['avatar_url'] = $storedPath; // save storage path; accessor will resolve URL
+            try {
+                // store the file on the public disk, in avatar/ directory; store() generates a safe unique name
+                $path = $file->store('avatar', 'public');
+                // set the new path so it will be saved on the user (public disk relative path)
+                $data['avatar_url'] = $path;
+            } catch (\Throwable $e) {
+                // If storage fails, log and continue without blocking the profile update
+                report($e);
+            }
         }
 
-        $user->fill($validated);
+        $user->fill($data);
 
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
 
         $user->save();
+
+        // If we stored a new avatar successfully, delete the old file now (non-blocking)
+        if (isset($path) && !empty($path) && $oldAvatar) {
+            try {
+                $user->removeAvatarFile($oldAvatar);
+            } catch (\Throwable $e) {
+                report($e);
+            }
+        }
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

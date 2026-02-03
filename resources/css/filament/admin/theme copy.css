@@ -1,0 +1,757 @@
+﻿@source '../../../../app/Filament';
+@source '../../../../resources/views/filament';
+
+/* 🎨 Couleurs et variables principales (ajustées pour un look plus moderne) */
+html {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --ft-accent: #3A7BD5; /* Bleu plus vif */
+  --ft-accent-dark: #007bff; /* Bleu primaire */
+  --ft-accent-dark-rgb: 0, 123, 255;
+  --ft-accent-light: #e0f2ff; /* Couleur de survol très légère */
+  --ft-bg-active: color-mix(in srgb, var(--ft-accent) 15%, transparent); /* Légèrement plus intense */
+  --ft-ring: color-mix(in srgb, var(--ft-accent) 70%, transparent); /* Anneau plus visible */
+  --ft-notif-bg: #ffffff;
+  --ft-notif-shadow: rgba(0, 0, 0, 0.1); /* Ombre plus douce */
+  --ft-border-color: rgba(0, 0, 0, 0.05); /* Bordure générale légère */
+  --ft-border-color-strong: rgba(0, 0, 0, 0.12);
+  --ft-text-color: #333; /* Couleur de texte principale */
+  --ft-text-secondary: #666; /* Couleur de texte secondaire */
+  --ft-radius-md: 0.85rem;
+  --ft-radius-lg: 1.35rem;
+  --ft-spacing-sm: 0.75rem;
+  --ft-spacing-md: 1rem;
+  --ft-spacing-lg: 1.5rem;
+  --ft-transition: 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --ft-glass-bg: rgba(255, 255, 255, 0.75);
+}
+
+body {
+  background: radial-gradient(circle at top, rgba(58, 123, 213, 0.06), transparent 55%), #f8fafc;
+  color: var(--ft-text-color);
+  font-feature-settings: "cv02" on, "cv03" on;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.dark body {
+  background: radial-gradient(circle at top, rgba(30, 64, 175, 0.12), transparent 60%), #0f172a;
+  color: var(--ft-text-color);
+}
+
+.fi-layout > .fi-main {
+  padding: calc(var(--ft-spacing-lg) + 0.5rem);
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.04) 0%, transparent 26%);
+}
+
+.fi-layout > .fi-main > .fi-main-content {
+  max-width: min(1240px, 100%);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.fi-main-content .fi-card,
+.fi-main-content .fi-section,
+.fi-main-content .fi-widget {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1280px) {
+  .fi-layout > .fi-main {
+    padding: var(--ft-spacing-lg);
+  }
+
+  .fi-layout > .fi-main > .fi-main-content {
+    max-width: 94%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .fi-layout > .fi-main {
+    padding: calc(var(--ft-spacing-md) * 1.25);
+  }
+}
+
+@media (max-width: 768px) {
+  .fi-layout > .fi-main {
+    padding: var(--ft-spacing-md);
+  }
+
+  .fi-layout > .fi-main > .fi-main-content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .fi-layout > .fi-main {
+    padding: var(--ft-spacing-sm);
+  }
+}
+
+@media (min-width: 1536px) {
+  .fi-layout > .fi-main > .fi-main-content {
+    max-width: 1380px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .fi-layout > .fi-main {
+    padding: calc(var(--ft-spacing-lg) + 1.5rem);
+  }
+
+  .fi-layout > .fi-main > .fi-main-content {
+    max-width: 1600px;
+  }
+}
+
+/* 🌙 Mode sombre (mis à jour) */
+.dark {
+  --ft-notif-shadow: rgba(0, 0, 0, 0.4);
+  --ft-border-color: rgba(255, 255, 255, 0.1);
+  --ft-text-color: #e2e8f0;
+  --ft-text-secondary: #94a3b8;
+  --ft-bg-active: color-mix(in srgb, var(--ft-accent) 20%, transparent); /* Plus intense en dark mode */
+}
+
+/* ✨ Sidebar et Topbar modernisées */
+.fi-sidebar, .fi-topbar {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transition plus fluide */
+  /* Optionnel: Effet de verre givré (à ajuster selon la compatibilité navigateur et les performances) */
+  /* backdrop-filter: blur(8px); */
+  /* background-color: rgba(255, 255, 255, 0.8); */
+}
+
+/* Sidebar navigation items */
+.fi-sidebar-nav a,
+.fi-sidebar-nav button {
+  color: var(--ft-text-secondary) !important; /* Couleur de texte plus neutre par défaut */
+  border-radius: .65rem; /* Rayon de bordure légèrement plus grand */
+  padding: .75rem 1rem; /* Espacement amélioré */
+  margin: .25rem .5rem; /* Marge pour un look "flottant" */
+  transition: all 0.25s ease-in-out;
+  font-weight: 500;
+  display: flex; /* Pour un meilleur alignement icône/texte */
+  align-items: center;
+  gap: 0.75rem; /* Espace entre icône et texte */
+}
+
+@media (max-width: 768px) {
+  .fi-sidebar-nav a,
+  .fi-sidebar-nav button {
+    padding: 0.65rem 0.85rem;
+    margin: 0.2rem 0.35rem;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+  }
+
+  .fi-sidebar-nav a .fi-sidebar-item-label,
+  .fi-sidebar-nav button .fi-sidebar-item-label {
+    flex: 1;
+    line-height: 1.3;
+  }
+}
+
+.fi-sidebar-nav a:hover,
+.fi-sidebar-nav button:hover {
+  background: var(--ft-bg-active);
+  color: var(--ft-accent-dark) !important;
+  transform: translateY(-2px); /* Effet de "lévitation" subtil */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Ombre douce au survol */
+}
+
+.fi-sidebar-item.fi-active .fi-sidebar-item-btn {
+  color: var(--ft-accent-dark) !important;
+  background: var(--ft-bg-active);
+  box-shadow: 0 0 0 2px var(--ft-ring) inset, 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombre plus prononcée pour l'actif */
+  font-weight: 600;
+  transform: translateY(-1px); /* Légère élévation pour l'actif */
+}
+
+/* Barre d’accent visuelle sur item actif (légèrement modifiée) */
+.fi-sidebar-item.fi-active .fi-sidebar-item-btn::before {
+  content: '';
+  position: absolute;
+  left: 0rem; /* Déplacé à l'extrême gauche */
+  top: 0;
+  bottom: 0;
+  width: 0.35rem; /* Plus épais */
+  border-radius: 0 .25rem .25rem 0; /* Arrondi seulement sur le côté droit */
+  background: var(--ft-accent-dark);
+  box-shadow: 2px 0 8px rgba(0,0,0,0.2); /* Petite ombre pour la barre */
+}
+
+/* Topbar fond et effet (dégradé moderne ou fond uni + ombre) */
+/* Topbar fond et effet */
+nav.fi-topbar {
+position: relative;
+color: #fff;
+display: flex;
+align-items: center;
+padding: clamp(0.65rem, 3vw, 1rem) clamp(0.85rem, 4vw, 1.5rem);
+box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+z-index: 10;
+transition: all 0.3s ease-in-out;
+height: auto;
+width: 100%;
+overflow: hidden;
+}
+nav.fi-topbar::before {
+content: '';
+position: absolute;
+inset: 0;
+background-image: url('./images/bgSide3.png');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+ /* Mirror background horizontally */
+z-index: -1;
+height: auto;
+
+}
+nav.fi-topbar::after {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(90deg, rgba(8,47,119,0.55) 0%, rgba(22,101,216,0.2) 60%, rgba(59,130,246,0.15) 100%);
+mix-blend-mode: soft-light;
+pointer-events: none;
+z-index: -1;
+opacity: 0.85;
+}
+nav.fi-topbar > * {
+position: relative;
+z-index: 1;
+}
+.dark nav.fi-topbar {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  color: var(--ft-text-color);
+}
+.dark nav.fi-topbar::after {
+  opacity: 0.45;
+  background: linear-gradient(90deg, rgba(14,23,42,0.85) 0%, rgba(8,47,119,0.55) 55%, rgba(15,118,110,0.22) 100%);
+}
+
+.fi-topbar-start,
+.fi-topbar-end {
+  display: flex;
+  align-items: center;
+  gap: var(--ft-spacing-md);
+}
+
+.fi-topbar-start {
+  flex: 1;
+  min-width: 0;
+}
+
+.fi-topbar-end {
+  justify-content: flex-end;
+}
+
+.fi-topbar .fi-input,
+.fi-topbar input[type="search"],
+.fi-topbar input[type="text"] {
+  min-height: 2.75rem;
+  padding: 0 var(--ft-spacing-md);
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(15,23,42,0.16);
+  color: inherit;
+  transition: var(--ft-transition);
+  backdrop-filter: blur(10px);
+}
+
+.fi-topbar .fi-input:focus,
+.fi-topbar input[type="search"]:focus,
+.fi-topbar input[type="text"]:focus {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.45);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--ft-accent-dark-rgb), 0.35);
+}
+
+.fi-topbar .fi-icon-btn,
+.fi-topbar .fi-topbar-user-menu > button {
+  border-radius: 999px;
+  transition: var(--ft-transition);
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.1);
+}
+
+.fi-topbar .fi-icon-btn:hover,
+.fi-topbar .fi-topbar-user-menu > button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.15);
+}
+
+.dark .fi-topbar .fi-icon-btn,
+.dark .fi-topbar .fi-topbar-user-menu > button {
+  border-color: rgba(148,163,184,0.35);
+  background: rgba(15,23,42,0.45);
+}
+
+.fi-topbar .fi-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-right: var(--ft-spacing-md);
+  font-weight: 500;
+}
+
+.fi-topbar .fi-breadcrumbs a {
+  color: rgba(255,255,255,0.85);
+  transition: var(--ft-transition);
+}
+
+.fi-topbar .fi-breadcrumbs a:hover {
+  color: #fff;
+}
+
+/* 💬 Menu des notifications */
+.fi-dropdown-panel.notifications-list {
+  background: var(--ft-notif-bg);
+  border-radius: 0.75rem; /* Rayon élégant mais discret */
+  box-shadow: 0 8px 24px rgba(16,24,40,0.08); /* Ombre douce, professionnelle */
+  overflow: hidden;
+  min-width: 320px;
+  max-width: 420px;
+  border: 1px solid var(--ft-border-color);
+  animation: fadeIn 0.22s cubic-bezier(.2,.8,.2,1);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fi-dropdown-panel.notifications-list .fi-dropdown-header {
+  padding: 1rem 1.25rem; /* Espacement amélioré */
+  font-weight: 700; /* Plus gras */
+  border-bottom: 1px solid var(--ft-border-color);
+  color: var(--ft-accent-dark);
+  background: rgba(var(--ft-accent-dark-rgb), 0.05); /* Utilise la couleur accent avec opacité */
+}
+
+.fi-dropdown-panel.notifications-list .fi-dropdown-list {
+  max-height: 50vh; /* Un peu plus de hauteur */
+  overflow-y: auto;
+  padding: .5rem .75rem;
+  scrollbar-width: thin; /* Pour des scrollbars plus fines */
+  scrollbar-color: var(--ft-accent) transparent;
+}
+
+.fi-dropdown-panel.notifications-list .fi-dropdown-list::-webkit-scrollbar {
+  width: 8px;
+}
+.fi-dropdown-panel.notifications-list .fi-dropdown-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.fi-dropdown-panel.notifications-list .fi-dropdown-list::-webkit-scrollbar-thumb {
+  background-color: var(--ft-accent);
+  border-radius: 20px;
+  border: 2px solid transparent;
+}
+
+/* Style d’une notification */
+.fi-dropdown-panel.notifications-list .fi-dropdown-list-item {
+  display: flex;
+  align-items: center; /* Centrer verticalement */
+  gap: 1rem; /* Plus d'espace */
+  padding: 1rem; /* Plus de padding */
+  border-radius: .75rem; /* Rayon de bordure plus grand */
+  transition: all .25s ease-out;
+  border: 1px solid transparent; /* Bordure transparente pour le survol */
+}
+
+.fi-dropdown-panel.notifications-list .fi-dropdown-list-item:hover {
+  background: var(--ft-bg-active);
+  transform: translateY(-2px); /* Légère élévation au survol */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Ombre subtile au survol */
+  border-color: var(--ft-accent-light);
+}
+
+.fi-dropdown-panel.notifications-list .fi-dropdown-list-item .fi-avatar {
+  width: 42px; /* Avatar plus grand */
+  height: 42px;
+  border-radius: 999px;
+  overflow: hidden;
+  flex-shrink: 0; /* Empêche l'avatar de rétrécir */
+  box-shadow: 0 0 0 2px var(--ft-accent-light); /* Petite bordure autour de l'avatar */
+}
+
+.fi-dropdown-panel.notifications-list .fi-dropdown-list-item .fi-dropdown-list-item-label {
+  color: var(--ft-text-color);
+  font-size: 0.95rem; /* Texte légèrement plus grand */
+  line-height: 1.4;
+}
+
+.fi-dropdown-panel.notifications-list .fi-dropdown-list-item .fi-time {
+  font-size: 0.78rem;
+  color: var(--ft-text-secondary);
+  margin-top: 4px; /* Plus d'espace */
+  font-weight: 400;
+}
+body > div.fi-topbar-ctn > nav > button.fi-icon-btn.fi-size-md.fi-topbar-open-sidebar-btn {
+  background: #ffff;
+  border: 1px solid var(--ft-border-color);
+}
+body > div.fi-topbar-ctn > nav > div.fi-topbar-start > button.fi-icon-btn.fi-size-md.fi-topbar-close-collapse-sidebar-btn {
+  color: #ffffff;
+  }
+body > div.fi-topbar-ctn > nav > div.fi-topbar-start > button.fi-icon-btn.fi-size-md.fi-topbar-open-collapse-sidebar-btn{
+  color: #ffff;
+}
+body > div.fi-topbar-ctn > nav > div.fi-topbar-end > div.fi-no-database > div > div.fi-modal-trigger > button > div{
+  background: none;
+}
+body > div.fi-topbar-ctn > nav > div.fi-topbar-end > div.fi-no-database > div > div.fi-modal-trigger > button > svg{
+  color: #ffffff;
+}
+
+/* 📱 Responsive (légèrement ajusté) */
+@media (max-width: 767px) {
+  .fi-dropdown-panel.notifications-list {
+    position: fixed !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto !important; /* Hauteur adaptative */
+    max-height: 70vh !important; /* Max 70% de la hauteur de l'écran */
+    max-width: 100% !important;
+    border-radius: 1.25rem 1.25rem 0 0 !important; /* Bords supérieurs plus arrondis */
+    box-shadow: 0 -6px 45px rgba(0,0,0,0.25); /* Ombre plus forte vers le haut */
+    border-bottom: none; /* Pas de bordure en bas */
+  }
+  .fi-dropdown-panel.notifications-list .fi-dropdown-header {
+      border-radius: 1.25rem 1.25rem 0 0; /* Assure que le header garde ses coins arrondis */
+  }
+}
+
+/* Quand la sidebar passe en overlay (petits écrans) et est ouverte,
+   masquer seulement le header (logo/fond) pour éviter la barre blanche. */
+@media (max-width: 767px) {
+  .fi-sidebar.fi-main-sidebar.fi-sidebar-open > .fi-sidebar-header-ctn,
+  .fi-sidebar.fi-main-sidebar.fi-sidebar-open .fi-sidebar-header,
+  .fi-sidebar-close-overlay + .fi-sidebar .fi-sidebar-header,
+  .fi-sidebar-close-overlay + .fi-sidebar > div > header {
+    display: none !important;
+  }
+
+  /* Alternative moins intrusive : si vous préférez garder les boutons,
+     masquer uniquement la boîte du logo */
+  .fi-sidebar .logo-box {
+    display: none !important;
+  }
+}
+
+/* Layout dynamique pour les tableaux de bord */
+.fi-widgets-grid,
+.fi-main-content .grid {
+  display: grid;
+  gap: var(--ft-spacing-lg);
+}
+
+@media (min-width: 640px) {
+  .fi-widgets-grid,
+  .fi-main-content .grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .fi-main-content .grid-xl {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: calc(var(--ft-spacing-lg) + 0.5rem);
+  }
+
+  .fi-main-content .grid-xl > * {
+    grid-column: span 4;
+  }
+
+  .fi-main-content .grid-xl > .grid-xl-wide {
+    grid-column: span 8;
+  }
+}
+
+@media (max-width: 639px) {
+  .fi-widgets-grid,
+  .fi-main-content .grid {
+    grid-template-columns: 1fr;
+    gap: var(--ft-spacing-md);
+  }
+}
+
+/* Stat cards shared styling for overview widgets */
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.65rem;
+  padding: 1.35rem;
+  border-radius: 1.25rem;
+  border: 1px solid var(--ft-border-color);
+  background: linear-gradient(135deg, #ffffff 0%, #f9fbff 100%);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.5), transparent 60%);
+  transition: opacity 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+}
+
+.stat-card:hover::after {
+  opacity: 1;
+}
+
+.stat-card .fi-stat-value {
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-weight: 700;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+  color: var(--ft-text-color);
+}
+
+.stat-card .fi-stat-description {
+  font-size: 0.9rem;
+  color: var(--ft-text-secondary);
+}
+
+.stat-card .fi-stat-chart {
+  margin-top: 0.75rem;
+  opacity: 0.75;
+}
+
+.stat-card-info {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.03));
+  border-color: rgba(59, 130, 246, 0.18);
+}
+
+.stat-card-success {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.12), rgba(34, 197, 94, 0.04));
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.stat-card-warning {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.12), rgba(250, 204, 21, 0.05));
+  border-color: rgba(234, 179, 8, 0.22);
+}
+
+.stat-card-primary {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.14), rgba(30, 64, 175, 0.05));
+  border-color: rgba(37, 99, 235, 0.24);
+}
+
+.stat-card-neutral {
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.12), rgba(148, 163, 184, 0.05));
+  border-color: rgba(148, 163, 184, 0.22);
+}
+
+.dark .stat-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(30, 41, 59, 0.92));
+  border-color: rgba(148, 163, 184, 0.08);
+  box-shadow: 0 15px 38px rgba(15, 23, 42, 0.65);
+}
+
+.dark .stat-card .fi-stat-value {
+  color: #f8fafc;
+}
+
+.dark .stat-card .fi-stat-description {
+  color: rgba(226, 232, 240, 0.72);
+}
+
+.dark .stat-card-info {
+  border-color: rgba(96, 165, 250, 0.35);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.28), rgba(30, 64, 175, 0.12));
+}
+
+.dark .stat-card-success {
+  border-color: rgba(74, 222, 128, 0.32);
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.28), rgba(22, 163, 74, 0.12));
+}
+
+.dark .stat-card-warning {
+  border-color: rgba(250, 204, 21, 0.32);
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.28), rgba(202, 138, 4, 0.12));
+}
+
+.dark .stat-card-primary {
+  border-color: rgba(96, 165, 250, 0.32);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.34), rgba(29, 78, 216, 0.14));
+}
+
+.dark .stat-card-neutral {
+  border-color: rgba(148, 163, 184, 0.28);
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.32), rgba(100, 116, 139, 0.18));
+}
+
+@media (max-width: 640px) {
+  .stat-card {
+    padding: 1.1rem;
+    border-radius: 1rem;
+  }
+
+  .stat-card .fi-stat-value {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-card {
+    padding: 1rem;
+    gap: 0.55rem;
+  }
+
+  .stat-card .fi-stat-value {
+    font-size: 1.35rem;
+  }
+
+  .stat-card .fi-stat-description {
+    font-size: 0.88rem;
+  }
+}
+
+/* Animations et micro-interactions */
+.fi-sidebar-nav a,
+.fi-sidebar-nav button,
+.stat-card {
+  will-change: transform, box-shadow;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Responsive alignment pour la topbar */
+@media (max-width: 1024px) {
+  nav.fi-topbar {
+    flex-wrap: wrap;
+    gap: var(--ft-spacing-md);
+    padding: var(--ft-spacing-md);
+  }
+
+  .fi-topbar-start,
+  .fi-topbar-end {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .fi-topbar-start {
+    order: 1;
+  }
+
+  nav.fi-topbar .fi-breadcrumbs {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  nav.fi-topbar {
+    align-items: flex-start;
+  }
+
+  .fi-topbar-start,
+  .fi-topbar-end {
+    gap: var(--ft-spacing-sm);
+  }
+
+  nav.fi-topbar .fi-breadcrumbs {
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+  }
+
+  .fi-topbar .fi-icon-btn,
+  .fi-topbar .fi-topbar-user-menu > button {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .fi-topbar-start {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .fi-topbar-end {
+    justify-content: flex-start;
+  }
+
+  nav.fi-topbar .fi-breadcrumbs {
+    width: 100%;
+  }
+
+  .fi-topbar .fi-input,
+  .fi-topbar input[type="search"],
+  .fi-topbar input[type="text"] {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .fi-topbar .fi-input,
+  .fi-topbar input[type="search"],
+  .fi-topbar input[type="text"] {
+    width: 100%;
+  }
+
+  .fi-topbar-end {
+    flex-wrap: wrap;
+    gap: var(--ft-spacing-sm);
+  }
+
+  .fi-topbar-end > * {
+    flex: 1 1 calc(50% - var(--ft-spacing-sm));
+    min-width: 7rem;
+  }
+
+  .fi-topbar .fi-icon-btn,
+  .fi-topbar .fi-topbar-user-menu > button {
+    min-width: 2.35rem;
+    min-height: 2.35rem;
+  }
+}
+
+@media (max-width: 375px) {
+  nav.fi-topbar {
+    padding: var(--ft-spacing-sm);
+  }
+
+  .fi-topbar-end > * {
+    flex: 1 1 100%;
+  }
+
+  .fi-topbar .fi-breadcrumbs {
+    font-size: 0.85rem;
+  }
+
+  .fi-topbar .fi-icon-btn,
+  .fi-topbar .fi-topbar-user-menu > button {
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+  }
+}

@@ -18,38 +18,14 @@
   @include('layouts.navbar')
 
   <main class="max-w-5xl mx-auto px-4 py-16 sm:py-24">
-    <h1 class="text-3xl md:text-4xl font-bold mb-6 dark:text-white">Mentions légales</h1>
+    <h1 class="text-3xl md:text-4xl font-bold mb-6 dark:text-white">{{ __('pages.legal.title') }}</h1>
 
     <div class="prose prose-blue max-w-none dark:prose-invert space-y-6">
-
-      <p>Ce site est édité par <strong>Offitrade</strong>, société responsable de la publication et du contenu.</p>
-
-      <h2>Éditeur du site</h2>
-      <ul>
-        <li><strong>Dénomination :</strong> Offitrade</li>
-        <li><strong>{{ __('site.footer.address') }}:</strong> </span> {{ $siteSettings?->address ?? '14 rue Beffory, 92200 Neuilly-sur-Seine, France' }}</li>
-        <li><strong>Email :</strong> <a href="mailto:{{ $siteSettings?->email ?? 'contact@offitrade.fr' }}">{{ $siteSettings?->email ?? 'contact@offitrade.fr' }}</a></li>
-      </ul>
+      {{-- Keep dynamic address/email while using the translated HTML for the rest --}}
+      {!! __('pages.legal.content_html') !!}
 
 
-
-      <h2>Propriété intellectuelle</h2>
-      <p>Tous les contenus présents sur ce site, y compris textes, images, logos, vidéos et icônes, sont la propriété exclusive d’<strong>Offitrade</strong> ou de ses partenaires. Toute reproduction, modification ou redistribution sans autorisation écrite est strictement interdite.</p>
-
-      <h2>Collecte de données personnelles</h2>
-      <p>Les informations recueillies via les formulaires de contact ou d’inscription sont utilisées uniquement pour le traitement des demandes. Conformément au RGPD, vous pouvez exercer vos droits d’accès, de rectification ou de suppression en contactant <a href="mailto:contact@offitrade.fr">contact@offitrade.fr</a>.</p>
-
-      <h2>Cookies</h2>
-      <p>Ce site utilise des cookies pour améliorer l’expérience utilisateur et analyser le trafic. Vous pouvez gérer vos préférences via les paramètres de votre navigateur.</p>
-
-      <h2>Responsabilité</h2>
-      <p>Offitrade s’efforce de fournir des informations fiables et à jour. Toutefois, nous ne pouvons garantir l’exactitude complète des contenus et déclinons toute responsabilité pour toute erreur ou omission.</p>
-
-      <h2>Contact</h2>
-      <p>Pour toute question concernant les mentions légales, vous pouvez nous contacter à l’adresse suivante : <a href="mailto:contact@offitrade.fr">contact@offitrade.fr</a></p>
-
-      <p class="text-sm text-gray-500 dark:text-gray-400 mt-6">Dernière mise à jour : 18 septembre 2025</p>
-
+      <p class="text-sm text-gray-500 dark:text-gray-400 mt-6">{{ __('pages.legal.last_updated') }}</p>
     </div>
   </main>
 

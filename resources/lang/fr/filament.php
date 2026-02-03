@@ -37,8 +37,38 @@ return [
         'open' => 'Ouvrir',
         'documents' => 'Documents',
         'send_photos' => 'Envoyer photos',
+        'add_documents' => 'Ajouter des documents',
+        'view_documents' => 'Voir les documents',
+        'attached_documents' => 'Documents joints',
+        'download_template' => 'Télécharger le modèle',
+    ],
+    'pages' => [
+        'calendar' => [
+            'create_event' => 'Créer événement',
+        ],
+        'client_support' => [
+            'help_text' => 'Besoin d’aide ? Envoyez-nous un message, nous vous répondrons rapidement dans Conversations support.',
+            'heading' => 'Envoyer un message au support',
+            'name' => 'Nom',
+            'email' => 'Email',
+            'phone' => 'Téléphone',
+            'message' => 'Message',
+            'placeholder' => 'Décrivez votre demande avec le plus de détails possibles',
+            'send' => 'Envoyer',
+            'sending' => 'Envoi…',
+            'reset' => 'Réinitialiser',
+        ],
+    ],
+    'widgets' => [
+        'blog_stats' => [
+            'users' => 'Utilisateurs',
+            'posts' => 'Articles',
+            'contacts' => 'Contacts',
+        ],
     ],
     'trade' => [
+        'model' => 'Opération Trade',
+        'models' => 'Opérations Trade',
         'fields' => [
             'pharmacy' => 'Pharmacie',
             'lab' => 'LABO',
@@ -57,6 +87,22 @@ return [
         'filters' => [
             'received' => 'Reçu',
         ],
+        'placeholders' => [
+            'start' => 'date début du challenge',
+            'end' => 'date fin du challenge',
+        ],
+        'enums' => [
+            'compensation_type' => [
+                'amount' => 'Montant',
+                'percent' => 'Pourcentage',
+            ],
+        ],
+        'actions' => [
+            'upload_photos' => 'Envoyer photos',
+            'add_documents' => 'Ajouter des documents',
+            'view_documents' => 'Voir les documents',
+            'close' => 'Fermer',
+        ],
         'import' => [
             'client' => 'Pharmacie (client)',
             'file' => 'Fichier Excel',
@@ -64,9 +110,11 @@ return [
         ],
     ],
     'purchases' => [
+        'model' => 'Achat',
+        'models' => 'Achats',
         'fields' => [
             'pharmacy' => 'Pharmacie',
-            'lab' => 'LABO',
+            'lab' => 'NomLABO',
             'category' => 'Catégorie',
             'type' => 'Type',
             'commercial_name' => 'NOM COMMERCIALE',
@@ -77,6 +125,21 @@ return [
             'annual_target' => 'OBJECTIF ANNUEL',
             'attachments' => 'Documents (factures, justificatifs)',
             'status' => 'Statut',
+        ],
+        'placeholders' => [
+            'lab' => 'Choisir un labo',
+            'category' => 'Choisir une catégorie',
+            'choose_existing_category' => 'Choisir une catégorie existante',
+        ],
+        'filters' => [
+            'received' => 'Reçu',
+            'all' => 'Tous',
+            'pharmacist' => 'Pharmacien',
+        ],
+        'statuses' => [
+            'en_attente' => 'En attente',
+            'livree' => 'Livrée',
+            'annulee' => 'Annulée',
         ],
         'table' => [
             'recent_orders' => 'Commandes récentes',

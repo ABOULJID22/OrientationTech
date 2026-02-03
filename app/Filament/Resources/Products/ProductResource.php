@@ -27,7 +27,13 @@ class ProductResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCube;
 protected static ?int $navigationSort = 90;
 
-    protected static UnitEnum|string|null $navigationGroup = 'Paramètres';
+    protected static UnitEnum|string|null $navigationGroup = null;
+
+        public static function getNavigationGroup(): ?string
+    {
+        return __('filament.nav.groups.settings');
+    }
+
 
     public static function form(Schema $schema): Schema
     {

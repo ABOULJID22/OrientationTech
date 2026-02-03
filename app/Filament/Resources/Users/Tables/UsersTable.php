@@ -10,17 +10,17 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
+use Filament\Actions\DeleteAction;
 use Filament\Tables\Table;
 
 class UsersTable
 {
     public static function configure(Table $table): Table
     {
-        return $table
+        return $table 
             ->columns([
                 ImageColumn::make('avatar_url')
-                    ->label('Avatar')
+                    ->label(__('users.table.avatar'))
                     ->circular()
                     ->height(40)
                     ->width(40)
@@ -59,17 +59,33 @@ class UsersTable
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('email')
-                    ->label('Email address')
+                    ->label(__('users.table.email'))
+                    ->searchable(),
+                TextColumn::make('role_label')
+                    ->label(__('users.table.role'))
+                    ->getStateUsing(function ($record) {
+                        // If the user model has helper methods, prefer them
+                        if (method_exists($record, 'isClient') && $record->isClient()) {
+                            return __('users.role.pharmacies');
+                        }
+
+                        if (method_exists($record, 'isPharmacist') && $record->isPharmacist()) {
+                            return __('users.role.pharmacien');
+                        }
+
+                        // Fallback to roles relation
+                        if (optional($record->roles)->pluck('name')->contains('pharmacist')) {
+                            return __('users.role.pharmacien');
+                        }
+
+                        return __('users.role.not_pharmacien');
+                    })
+                    ->toggleable()
                     ->searchable(),
                 TextColumn::make('phone')
-                    ->label('Téléphone')
+                    ->label(__('users.table.phone'))
                     ->toggleable(),
-                TextColumn::make('city')
-                    ->label('Ville')
-                    ->toggleable(),
-                TextColumn::make('job_title')
-                    ->label('Poste')
-                    ->toggleable(),
+                
         
                 TextColumn::make('last_login_at')
                     ->dateTime()
@@ -83,6 +99,8 @@ class UsersTable
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
+                DeleteAction::make()->visible(fn () => auth()->user()?->isSuperAdmin() ?? false),
+
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

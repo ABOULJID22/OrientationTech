@@ -40,7 +40,7 @@ class ListCommercials extends ListRecords
                         ->send();
                 }),
             Actions\Action::make('download_commercial_template')
-                ->label('Télécharger le modèle')
+                ->label(__('filament.actions.download_template'))
                 ->icon('heroicon-m-arrow-down-tray')
                 ->action(fn() => Excel::download(new CommercialTemplate(), 'modele_commerciaux.xlsx'))
                 ->visible(fn () => auth()->user()?->isSuperAdmin() ?? false),

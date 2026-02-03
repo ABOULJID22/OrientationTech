@@ -23,22 +23,22 @@ class ListTradeOperations extends ListRecords
                 ->label(__('filament.actions.export_excel'))
                 ->icon('heroicon-m-arrow-down-tray')
                 ->form([
-                    \Filament\Forms\Components\Toggle::make('export_all')->label('Exporter tout')->default(true),
+                    \Filament\Forms\Components\Toggle::make('export_all')->label(__('filament.actions.export_excel') . ' - ' . __('filament.tables.filters.select'))->default(true),
                     \Filament\Forms\Components\Select::make('user_id')
                         ->label(__('filament.trade.import.client'))
                         ->options(User::role('client')->pluck('name', 'id'))
                         ->searchable()->preload()->visible(fn($get) => !$get('export_all')),
                     \Filament\Forms\Components\Select::make('lab_id')
-                        ->label('Labo')
+                        ->label(__('filament.trade.fields.lab'))
                         ->relationship('lab', 'name')
                         ->preload()->searchable()->visible(fn($get) => !$get('export_all')),
                     \Filament\Forms\Components\Select::make('product_id')
-                        ->label('Produit')
+                        ->label(__('filament.trade.fields.product'))
                         ->relationship('product', 'name')
                         ->preload()->searchable()->visible(fn($get) => !$get('export_all')),
-                    \Filament\Forms\Components\DatePicker::make('start_from')->label('Début (de)')->native(false)->visible(fn($get) => !$get('export_all')),
-                    \Filament\Forms\Components\DatePicker::make('end_to')->label('Fin (à)')->native(false)->visible(fn($get) => !$get('export_all')),
-                    \Filament\Forms\Components\Toggle::make('received')->label('Reçu')->visible(fn($get) => !$get('export_all')),
+                    \Filament\Forms\Components\DatePicker::make('start_from')->label(__('filament.trade.placeholders.start'))->native(false)->visible(fn($get) => !$get('export_all')),
+                    \Filament\Forms\Components\DatePicker::make('end_to')->label(__('filament.trade.placeholders.end'))->native(false)->visible(fn($get) => !$get('export_all')),
+                    \Filament\Forms\Components\Toggle::make('received')->label(__('filament.trade.filters.received'))->visible(fn($get) => !$get('export_all')),
                 ])
                 ->action(function (array $data) {
                     $user = auth()->user();

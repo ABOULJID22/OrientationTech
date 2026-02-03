@@ -62,8 +62,9 @@ class SiteSettingForm
                     ->visibility('public')
                     ->disk('public')
                     ->directory('videos')
-                    ->acceptedFileTypes(['video/mp4', 'video/webm', 'video/ogg']),                TextInput::make('video_id')
-                    ->default(null),
+                    ->acceptedFileTypes(['video/mp4', 'video/webm', 'video/ogg']),                
+                /* TextInput::make('video_id')
+                    ->default(null), */
             ]);
     }
 }

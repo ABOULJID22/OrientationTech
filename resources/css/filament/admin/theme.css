@@ -1,0 +1,468 @@
+﻿@import '../../../../vendor/filament/filament/resources/css/theme.css';
+@source '../../../../app/Filament';
+@source '../../../../resources/views/filament';
+
+/* 🎨 Couleurs et variables principales (ajustées pour un look plus moderne) */
+html {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --ft-accent: #3A7BD5; /* Bleu plus vif */
+  --ft-accent-dark: #007bff; /* Bleu primaire */
+  --ft-accent-dark-rgb: 0, 123, 255;
+  --ft-accent-light: #e0f2ff; /* Couleur de survol très légère */
+  --ft-bg-active: color-mix(in srgb, var(--ft-accent) 15%, transparent); /* Légèrement plus intense */
+  --ft-ring: color-mix(in srgb, var(--ft-accent) 70%, transparent); /* Anneau plus visible */
+  --ft-notif-bg: #ffffff;
+  --ft-notif-shadow: rgba(0, 0, 0, 0.1); /* Ombre plus douce */
+  --ft-border-color: rgba(0, 0, 0, 0.05); /* Bordure générale légère */
+  --ft-border-color-strong: rgba(0, 0, 0, 0.12);
+  --ft-text-color: #333; /* Couleur de texte principale */
+  --ft-text-secondary: #666; /* Couleur de texte secondaire */
+  --ft-radius-md: 0.85rem;
+  --ft-radius-lg: 1.35rem;
+  --ft-spacing-sm: 0.75rem;
+  --ft-spacing-md: 1rem;
+  --ft-spacing-lg: 1.5rem;
+  --ft-transition: 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --ft-glass-bg: rgba(255, 255, 255, 0.75);
+}
+
+body {
+  background: radial-gradient(circle at top, rgba(58, 123, 213, 0.06), transparent 55%), #f8fafc;
+  color: var(--ft-text-color);
+  font-feature-settings: "cv02" on, "cv03" on;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.dark body {
+  background: radial-gradient(circle at top, rgba(30, 64, 175, 0.12), transparent 60%), #0f172a;
+  color: var(--ft-text-color);
+}
+
+
+
+
+/* 🌙 Mode sombre (mis à jour) */
+.dark {
+  --ft-notif-shadow: rgba(0, 0, 0, 0.4);
+  --ft-border-color: rgba(255, 255, 255, 0.1);
+  --ft-text-color: #e2e8f0;
+  --ft-text-secondary: #94a3b8;
+  --ft-bg-active: color-mix(in srgb, var(--ft-accent) 20%, transparent); /* Plus intense en dark mode */
+}
+
+/* ✨ Sidebar et Topbar modernisées */
+.fi-sidebar, .fi-topbar {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transition plus fluide */
+  /* Optionnel: Effet de verre givré (à ajuster selon la compatibilité navigateur et les performances) */
+  /* backdrop-filter: blur(8px); */
+  /* background-color: rgba(255, 255, 255, 0.8); */
+}
+
+
+
+
+
+
+
+/* Sidebar navigation items */
+.fi-sidebar-nav a,
+.fi-sidebar-nav button {
+  color: var(--ft-text-secondary) !important; /* Couleur de texte plus neutre par défaut */
+  border-radius: .65rem; /* Rayon de bordure légèrement plus grand */
+  padding: .75rem 1rem; /* Espacement amélioré */
+  margin: .25rem .5rem; /* Marge pour un look "flottant" */
+  transition: all 0.25s ease-in-out;
+  font-weight: 500;
+  display: flex; /* Pour un meilleur alignement icône/texte */
+  align-items: center;
+  gap: 0.75rem; /* Espace entre icône et texte */
+}
+
+.fi-sidebar-nav a:hover,
+.fi-sidebar-nav button:hover {
+  background: var(--ft-bg-active);
+  color: var(--ft-accent-dark) !important;
+  transform: translateY(-2px); /* Effet de "lévitation" subtil */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Ombre douce au survol */
+}
+
+.fi-sidebar-item.fi-active .fi-sidebar-item-btn {
+  color: var(--ft-accent-dark) !important;
+  background: var(--ft-bg-active);
+  box-shadow: 0 0 0 2px var(--ft-ring) inset, 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombre plus prononcée pour l'actif */
+  font-weight: 600;
+  transform: translateY(-1px); /* Légère élévation pour l'actif */
+}
+
+/* Barre d’accent visuelle sur item actif (légèrement modifiée) */
+.fi-sidebar-item.fi-active .fi-sidebar-item-btn::before {
+  content: '';
+  position: absolute;
+  left: 0rem; /* Déplacé à l'extrême gauche */
+  top: 0;
+  bottom: 0;
+  width: 0.35rem; /* Plus épais */
+  border-radius: 0 .25rem .25rem 0; /* Arrondi seulement sur le côté droit */
+  background: var(--ft-accent-dark);
+  box-shadow: 2px 0 8px rgba(0,0,0,0.2); /* Petite ombre pour la barre */
+}
+
+/* Topbar fond et effet (dégradé moderne ou fond uni + ombre) */
+/* Topbar fond et effet */
+nav.fi-topbar {
+position: relative;
+background-image: url('./images/bgSide3.png');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+color: #fff;
+height: 64px;
+display: flex;
+align-items: center;
+padding: 0 1rem;
+box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+z-index: 10;
+transition: all 0.3s ease-in-out;
+}
+.dark nav.fi-topbar {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  color: var(--ft-text-color);
+}
+
+/* Clear background on user menu trigger to let the header artwork show through */
+.fi-topbar .fi-modal-trigger button > div {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.fi-topbar .fi-modal-trigger button > svg {
+  color: #ffffff !important;
+}
+
+/* Force white icons for the sidebar toggle controls so they stay legible */
+.fi-topbar-start .fi-topbar-open-collapse-sidebar-btn svg,
+.fi-topbar-start .fi-topbar-close-collapse-sidebar-btn svg,
+.fi-topbar-open-sidebar-btn svg {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+.fi-topbar .fi-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-right: var(--ft-spacing-md);
+  font-weight: 500;
+}
+
+.fi-topbar .fi-breadcrumbs a {
+  color: rgba(255,255,255,0.85);
+  transition: var(--ft-transition);
+}
+
+.fi-topbar .fi-breadcrumbs a:hover {
+  color: #fff;
+}
+
+
+
+.fi-topbar .fi-icon-btn,
+.fi-topbar .fi-topbar-user-menu > button {
+  border-radius: 999px;
+  transition: var(--ft-transition);
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.1);
+}
+.fi-topbar .fi-icon-btn:hover,
+.fi-topbar .fi-topbar-user-menu > button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.15);
+}
+.dark .fi-topbar .fi-icon-btn,
+.dark .fi-topbar .fi-topbar-user-menu > button {
+  border-color: rgba(148,163,184,0.35);
+  background: rgba(15,23,42,0.45);
+}
+.fi-topbar .fi-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-right: var(--ft-spacing-md);
+  font-weight: 500;
+}
+
+.fi-topbar .fi-breadcrumbs a {
+  color: rgba(255,255,255,0.85);
+  transition: var(--ft-transition);
+}
+
+.fi-topbar .fi-breadcrumbs a:hover {
+  color: #fff;
+}
+
+
+/* 💬 Menu des notifications */
+.fi-dropdown-panel.notifications-list {
+  background: var(--ft-notif-bg);
+  border-radius: 0.75rem; /* Rayon élégant mais discret */
+  box-shadow: 0 8px 24px rgba(16,24,40,0.08); /* Ombre douce, professionnelle */
+  overflow: hidden;
+  min-width: 320px;
+  max-width: 420px;
+  border: 1px solid var(--ft-border-color);
+  animation: fadeIn 0.22s cubic-bezier(.2,.8,.2,1);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fi-dropdown-panel.notifications-list .fi-dropdown-header {
+  padding: 1rem 1.25rem; /* Espacement amélioré */
+  font-weight: 700; /* Plus gras */
+  border-bottom: 1px solid var(--ft-border-color);
+  color: var(--ft-accent-dark);
+  background: rgba(var(--ft-accent-dark-rgb), 0.05); /* Utilise la couleur accent avec opacité */
+}
+
+.fi-dropdown-panel.notifications-list .fi-dropdown-list {
+  max-height: 50vh; /* Un peu plus de hauteur */
+  overflow-y: auto;
+  padding: .5rem .75rem;
+  scrollbar-width: thin; /* Pour des scrollbars plus fines */
+  scrollbar-color: var(--ft-accent) transparent;
+}
+
+.fi-dropdown-panel.notifications-list .fi-dropdown-list::-webkit-scrollbar {
+  width: 8px;
+}
+.fi-dropdown-panel.notifications-list .fi-dropdown-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.fi-dropdown-panel.notifications-list .fi-dropdown-list::-webkit-scrollbar-thumb {
+  background-color: var(--ft-accent);
+  border-radius: 20px;
+  border: 2px solid transparent;
+}
+/* Style d’une notification */
+.fi-dropdown-panel.notifications-list .fi-dropdown-list-item {
+  display: flex;
+  align-items: center; /* Centrer verticalement */
+  gap: 1rem; /* Plus d'espace */
+  padding: 1rem; /* Plus de padding */
+  border-radius: .75rem; /* Rayon de bordure plus grand */
+  transition: all .25s ease-out;
+  border: 1px solid transparent; /* Bordure transparente pour le survol */
+}
+
+.fi-dropdown-panel.notifications-list .fi-dropdown-list-item:hover {
+  background: var(--ft-bg-active);
+  transform: translateY(-2px); /* Légère élévation au survol */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Ombre subtile au survol */
+  border-color: var(--ft-accent-light);
+}
+
+.fi-dropdown-panel.notifications-list .fi-dropdown-list-item .fi-avatar {
+  width: 42px; /* Avatar plus grand */
+  height: 42px;
+  border-radius: 999px;
+  overflow: hidden;
+  flex-shrink: 0; /* Empêche l'avatar de rétrécir */
+  box-shadow: 0 0 0 2px var(--ft-accent-light); /* Petite bordure autour de l'avatar */
+}
+
+.fi-dropdown-panel.notifications-list .fi-dropdown-list-item .fi-dropdown-list-item-label {
+  color: var(--ft-text-color);
+  font-size: 0.95rem; /* Texte légèrement plus grand */
+  line-height: 1.4;
+}
+
+.fi-dropdown-panel.notifications-list .fi-dropdown-list-item .fi-time {
+  font-size: 0.78rem;
+  color: var(--ft-text-secondary);
+  margin-top: 4px; /* Plus d'espace */
+  font-weight: 400;
+}
+
+
+/* Stat cards shared styling for overview widgets */
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.65rem;
+  padding: 1.35rem;
+  border-radius: 1.25rem;
+  border: 1px solid var(--ft-border-color);
+  background: linear-gradient(135deg, #ffffff 0%, #f9fbff 100%);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.5), transparent 60%);
+  transition: opacity 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+}
+
+.stat-card:hover::after {
+  opacity: 1;
+}
+
+.stat-card .fi-stat-value {
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-weight: 700;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+  color: var(--ft-text-color);
+}
+
+.stat-card .fi-stat-description {
+  font-size: 0.9rem;
+  color: var(--ft-text-secondary);
+}
+
+.stat-card .fi-stat-chart {
+  margin-top: 0.75rem;
+  opacity: 0.75;
+}
+
+.stat-card-info {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.03));
+  border-color: rgba(59, 130, 246, 0.18);
+}
+
+.stat-card-success {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.12), rgba(34, 197, 94, 0.04));
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.stat-card-warning {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.12), rgba(250, 204, 21, 0.05));
+  border-color: rgba(234, 179, 8, 0.22);
+}
+
+.stat-card-primary {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.14), rgba(30, 64, 175, 0.05));
+  border-color: rgba(37, 99, 235, 0.24);
+}
+
+.stat-card-neutral {
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.12), rgba(148, 163, 184, 0.05));
+  border-color: rgba(148, 163, 184, 0.22);
+}
+
+.dark .stat-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(30, 41, 59, 0.92));
+  border-color: rgba(148, 163, 184, 0.08);
+  box-shadow: 0 15px 38px rgba(15, 23, 42, 0.65);
+}
+
+.dark .stat-card .fi-stat-value {
+  color: #f8fafc;
+}
+
+.dark .stat-card .fi-stat-description {
+  color: rgba(226, 232, 240, 0.72);
+}
+
+.dark .stat-card-info {
+  border-color: rgba(96, 165, 250, 0.35);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.28), rgba(30, 64, 175, 0.12));
+}
+
+.dark .stat-card-success {
+  border-color: rgba(74, 222, 128, 0.32);
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.28), rgba(22, 163, 74, 0.12));
+}
+
+.dark .stat-card-warning {
+  border-color: rgba(250, 204, 21, 0.32);
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.28), rgba(202, 138, 4, 0.12));
+}
+
+.dark .stat-card-primary {
+  border-color: rgba(96, 165, 250, 0.32);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.34), rgba(29, 78, 216, 0.14));
+}
+
+.dark .stat-card-neutral {
+  border-color: rgba(148, 163, 184, 0.28);
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.32), rgba(100, 116, 139, 0.18));
+}
+
+/* ===============================
+   Masquer des éléments spécifiques 
+   du menu utilisateur Filament
+   =============================== */
+
+/* Masquer les sections par défaut du menu utilisateur */
+.fi-user-menu .fi-dropdown-panel > div:first-of-type,
+.fi-user-menu .fi-dropdown-panel > div:nth-of-type(2) {
+  display: none !important;
+}
+
+/* Masquer les boutons de sélecteur de thème dans le menu utilisateur */
+.fi-user-menu .fi-dropdown-panel .fi-theme-switcher-btn {
+  display: none !important;
+}
+/* 📱 Responsive (légèrement ajusté) */
+@media (max-width: 767px) {
+  .fi-dropdown-panel.notifications-list {
+    position: fixed !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto !important; /* Hauteur adaptative */
+    max-height: 70vh !important; /* Max 70% de la hauteur de l'écran */
+    max-width: 100% !important;
+    border-radius: 1.25rem 1.25rem 0 0 !important; /* Bords supérieurs plus arrondis */
+    box-shadow: 0 -6px 45px rgba(0,0,0,0.25); /* Ombre plus forte vers le haut */
+    border-bottom: none; /* Pas de bordure en bas */
+  }
+  .fi-dropdown-panel.notifications-list .fi-dropdown-header {
+      border-radius: 1.25rem 1.25rem 0 0; /* Assure que le header garde ses coins arrondis */
+  }
+}
+
+/* Quand la sidebar passe en overlay (petits écrans) et est ouverte,
+   masquer seulement le header (logo/fond) pour éviter la barre blanche. */
+@media (max-width: 767px) {
+  .fi-sidebar.fi-main-sidebar.fi-sidebar-open > .fi-sidebar-header-ctn,
+  .fi-sidebar.fi-main-sidebar.fi-sidebar-open .fi-sidebar-header,
+  .fi-sidebar-close-overlay + .fi-sidebar .fi-sidebar-header,
+  .fi-sidebar-close-overlay + .fi-sidebar > div > header {
+    display: none !important;
+  }
+
+  /* Alternative moins intrusive : si vous préférez garder les boutons,
+     masquer uniquement la boîte du logo */
+  .fi-sidebar .logo-box {
+    display: none !important;
+  }
+}
+
+/* Utilitaires pour les couleurs accent (pour le header de notification par exemple) */
+/* Nécessite de définir les variables RGB si vous voulez utiliser color-mix avec des opacités */
+:root {
+  --ft-accent-dark-rgb: 0, 123, 255; /* RGB de #007bff */
+}

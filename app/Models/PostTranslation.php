@@ -10,7 +10,7 @@ class PostTranslation extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'post_id',
+        'post_id', 
         'locale',
         'title',
         'slug',

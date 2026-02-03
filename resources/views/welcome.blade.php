@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'offitrade') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -24,16 +24,18 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
             </style>
         @endif
     </head>
-  <body class="bg-white  text-gray-900 dark:text-gray-100 font-sans dark:bg-gray-900">
+  <body class="bg-white text-gray-900 dark:text-gray-100 font-sans dark:bg-gray-900 flex flex-col min-h-screen">
     
 
     <!-- Navbar -->
     @include('layouts.navbar')
 
-        <!-- Section Hero -->
+    <!-- Main Content -->
+    <main class="flex-grow">
+            <!-- Section Hero -->
             <section id="accueil" class="relative min-h-screen flex items-center justify-center overflow-hidden text-white">
               <!-- Video Background -->
-              <video autoplay muted loop playsinline 
+              <video autoplay  loop playsinline 
                 class="absolute inset-0 w-full h-full object-cover -z-10 brightness-75 saturate-125">
                 <source src="{{ $bgVideoSrc }}" type="video/mp4" />
                 {{ __('site.hero.video_not_supported') }}
@@ -41,44 +43,43 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
               </video>
 
               <!-- Overlay foncé -->
-              <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80 -z-10 md:-z-10 sm:-z-10 lg:-z-10"></div>
+              <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80 z-10"></div>
 
               <!-- Contenu Hero -->
-              <div class="relative z-10 text-center px-4 max-w-4xl animate-fadein">
-                <h1 class="text-2xl md:text-4xl font-extrabold mb-10 leading-tight drop-shadow-lg">{!! __('site.hero.title') !!}</h1>
-                <div class="flex flex-col sm:flex-row justify-center gap-6">
+              <div class="relative z-10 text-center px-4 sm:px-6 md:px-8 max-w-4xl animate-fadein">
+                <h2 class="text-2xl md:text-4xl font-extrabold mb-10 leading-tight drop-shadow-lg">{!! __('site.hero.title') !!}</h2>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
                   <a href="#contact"
                     class="inline-block bg-white text-[#1b2336] font-bold py-4 px-10 md:mb-8 rounded-full shadow-lg 
                             hover:bg-gray-200 hover:scale-105 transition-all duration-300">
                     {{ __('site.hero.cta_appointment') }}
                   </a>
-                  <a href="#contact" 
+                  <a href="/noservices" 
                     class="inline-block bg-[#4f6ba3] text-white font-bold py-4 px-10 md:mb-8 rounded-full shadow-lg 
-                            hover:bg-[#324d78] hover:scale-105 transition-all duration-300">
-                    {{ __('site.hero.cta_contact') }}
+                            hover:bg-[#324d78] hover:scale-105 transition-all duration-300 ">
+                   {{ __('site.services.cta_discover') }}
                   </a>
                 </div>
               </div>
             </section>
 
 
-
-
-            <!-- Section About flottante améliorée -->
-            <section id="about" class="relative z-20 md:z-20 sm:z-20 lg:z-20 -mt-32 dark:bg-gray-900">
-              <div class="bg-white/90 md:backdrop-blur-md rounded-3xl shadow-xl w-full md:w-12/12 lg:max-w-full mx-auto px-6 md:px-12 py-16
+            <!-- Section About flottante --> 
+            <section id="about" class="relative z-20 md:z-20 sm:z-20 lg:z-20 -mt-32 dark:bg-gray-900 ">
+              <div class="bg-white rounded-t-3xl shadow-xl w-full md:w-12/12 lg:max-w-full mx-auto px-6 md:px-12 py-16
                           transform transition-all duration-700 hover:scale-[1.01] hover:shadow-2xl
-                          dark:bg-gray-900">
+                          dark:bg-gray-900 ">
                 
                 <!-- Header -->
-                <div class="text-center mb-16">
-                  <h2 class="text-4xl md:text-5xl font-extrabold text-[#4f6ba3] dark:text-blue-400 relative inline-block">
+                <div class="text-center mb-12">
+                  <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold text-[#4f6ba3] dark:text-blue-400 relative inline-block">
                     {{ __('site.about.title') }}
-                    <span class="block h-1 w-24 bg-[#4f6ba3] dark:bg-blue-400 mx-auto mt-4 rounded-full"></span>
-                  </h2>
+                    <span class="block w-40 h-1.5 bg-gradient-to-r from-[#4f6ba3] to-transparent dark:bg-gradient-to-r dark:from-blue-400 dark:to-transparent mx-auto mt-3 rounded-full"></span>
+                  </h1>
+
                 </div>
 
-                <div class="flex flex-col lg:flex-row items-center justify-between gap-16">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
                   
                   <!-- Texte -->
                   <div class="lg:w-6/12 lg:pl-12 animate-fadeinright">
@@ -90,8 +91,20 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                       {!! __('site.about.p1') !!}
                     </p>
                     
-                    <blockquote class="border-l-4 border-[#4f6ba3] pl-4 italic text-gray-600 dark:text-gray-300 text-lg bg-gray-50 dark:bg-gray-800 py-4 px-6 rounded-md shadow-sm mb-8">
-                      {{ __('site.about.quote') }}
+                    
+                    @php
+                      $aboutQuote = trim(__('site.about.quote'));
+                      // Replace normal spaces around French guillemets with non-breaking spaces
+                      $aboutQuote = str_replace(['« ', ' »'], ['«&nbsp;', '&nbsp;»'], $aboutQuote);
+                      // Collapse multiple whitespace and remove hard line breaks that break layout
+                      $aboutQuote = preg_replace('/[\r\n\t]+/', ' ', $aboutQuote);
+                      $aboutQuote = preg_replace('/\s{2,}/', ' ', $aboutQuote);
+                    @endphp
+
+                    <blockquote class="border-l-4 border-[#4f6ba3] pl-4 italic text-gray-600 dark:text-gray-300 text-base sm:text-lg bg-gray-50 dark:bg-gray-800 py-2 px-5 rounded-md shadow-sm ">
+                      <p class="whitespace-normal break-words leading-relaxed max-w-prose">
+                        {!! $aboutQuote !!}
+                      </p>
                     </blockquote>
 
                     <!-- Stats supprimées temporairement -->
@@ -114,285 +127,345 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
             </section>
 
 
-                      <!-- Services Section -->
-                      <!-- Services Section -->
-            <!-- Services Section -->
-      <section id="services" class="mt-max dark:bg-gray-900/90 bg-gradient-to-br from-[#4f6ba3] to-[#5a7bbf] text-white py-20 overflow-hidden relative">
-        <!-- Décoration de fond (formes subtiles) -->
-        <div class="hidden md:block absolute -top-16 -left-16 w-72 h-72 bg-white/10 rounded-full blur-2xl opacity-30"></div>
-        <div class="hidden md:block absolute -bottom-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl opacity-20"></div>
 
-                <div class="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full mix-blend-overlay animate-blob-1"></div>
-                <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-white/10 rounded-full mix-blend-overlay animate-blob-2 animation-delay-2000"></div>
-                <div class="absolute top-1/2 left-1/2 w-80 h-80 bg-white/10 rounded-full mix-blend-overlay animate-blob-3 animation-delay-4000"></div>
+     
+            <!--  Services Section -->
+            <section id="services" class="relative py-12 lg:py-16 overflow-hidden bg-gradient-to-br from-[#4f6ba3] to-[#283043] dark:from-gray-900 dark:to-gray-800">
+                  
+                  <!-- Abstract Animated Background -->
+                  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                      <!-- Effets de fond -->
+                      <div class="hidden md:block absolute -top-16 -left-16 w-72 h-72 bg-white/10 rounded-full blur-2xl opacity-30"></div>
+                      <div class="hidden md:block absolute -bottom-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl opacity-20"></div>
 
- <div class="max-w-7xl mx-auto px-6 relative z-10">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                        <!-- Vidéo à gauche -->
-            <div class="flex justify-center items-center relative p-4 lg:p-0 animate-fade-in-right order-2">
-  <div class="relative w-full max-w-[300px] sm:max-w-[340px] lg:max-w-[380px] aspect-[9/16] rounded-3xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform duration-500 ring-2 ring-white/20">
-    <!-- Vidéo locale -->
-    <video id="servicesVideo" class="absolute inset-0 w-full h-full object-cover"
-      src="{{ $presentationVideoSrc }}" preload="metadata"
-      autoplay muted loop playsinline>
-    </video>
+                      <!-- Blobs animés -->
+                      <div class="absolute top-0 -left-8 w-64 h-64 bg-white/10 rounded-full mix-blend-overlay animate-blob"></div>
+                      <div class="absolute right-16 -bottom-2 w-48 h-48 bg-white/10 rounded-full mix-blend-overlay animate-blob animation-delay-2000"></div>
+                      <div class="absolute  right-16 -bottom-16 w-80 h-80 bg-white/10 rounded-full mix-blend-overlay animate-blob animation-delay-4000"></div>
+                  </div>
 
-    <!-- Overlay -->
-    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"></div>
+                  <div class="w-full max-w-[95%] mx-auto px-4 md:px-8 relative z-10">
+                    
+                    <!-- Full Width Title Section -->
+                    <div class="w-full mb-10">
+                         <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-4 drop-shadow-md">
+                            {{ __('site.services.title') }}
+                         </h1>
+                         <div class="w-40 h-1.5 bg-gradient-to-r from-blue-300 to-transparent rounded-full dark:bg-gradient-to-r dark:from-blue-400 dark:to-transparent"></div>
+                    </div>
 
-    <!-- Contrôles personnalisés -->
-    <div class="absolute top-2 left-2 flex flex-col items-start gap-1.5 bg-black/40 text-white rounded-xl px-1.5 py-1.5 md:backdrop-blur-sm shadow-md">
-      <!-- Play / Pause -->
-      <button id="videoPlayPause" type="button" aria-label="Lire / Pause"
-              class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">
-        <svg id="iconPlay" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
-        <svg id="iconPause" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-      </button>
+                    <div class="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] gap-2 md:gap-8 lg:gap-12 items-start">
+                              
+                              <!-- Content Text (Left) -->
+                              <div class="order-1 lg:order-1 animate-fade-in-left">
+                                <div class="lg:mb-0">
+                                  
+                                  <div class="text-base md:text-lg text-blue-50/90 ">
+                                      {!! __('site.services.desc') !!}
+                                  </div>
 
-      <!-- Mute / Unmute -->
-      <button id="videoMute" type="button" aria-label="Activer / Couper le son"
-              class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition">
-        <svg id="iconVolume" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M5 9v6h4l5 4V5L9 9H5z"/>
-          <path d="M16.5 8.5a5 5 0 010 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <svg id="iconMuted" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M5 9v6h4l5 4V5L9 9H5z"/>
-          <path d="M19 9l-6 6M13 9l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
+                                  <!-- Benefits Grid -->
+                                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 mt-6">
+                                      <!-- Card 1 -->
+                                      <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#4f6ba3] hover:bg-white/10 hover:border-white/30 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+                                        <div class="flex items-start gap-4">
+                                          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-inner group-hover:scale-110 transition-transform">
+                                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                                          </div>
+                                          <div>
+                                            <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.adv1_title') }}</h3>
+                                            <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.adv1_desc') }}</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      
+                                      <!-- Card 2 -->
+                                      <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#4f6ba3]  hover:bg-white/10 hover:border-white/30 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+                                        <div class="flex items-start gap-4">
+                                          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-inner group-hover:scale-110 transition-transform">
+                                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605" /></svg>
+                                          </div>
+                                          <div>
+                                            <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.adv2_title') }}</h3>
+                                            <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.adv2_desc') }}</p>
+                                          </div>
+                                        </div>
+                                      </div>
 
-      <!-- Volume (vertical) -->
-      <div class="flex items-center justify-center">
-        <input id="videoVolume" type="range" min="0" max="100" step="5" value="0"
-               class="h-20 w-4 accent-white cursor-pointer"
-               style="-webkit-appearance: slider-vertical; writing-mode: bt-lr;"
-               aria-label="Volume" />
-      </div>
-    </div>
-  </div>
-            </div>
+                                      <!-- Card 3 -->
+                                      <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#4f6ba3]  hover:bg-white/10 hover:border-white/30 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+                                        <div class="flex items-start gap-4">
+                                          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-inner group-hover:scale-110 transition-transform">
+                                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+                                          </div>
+                                          <div>
+                                            <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.adv3_title') }}</h3>
+                                            <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.adv3_desc') }}</p>
+                                          </div>
+                                        </div>
+                                      </div>
 
-                        <!-- Contenu Texte & Avantages à droite avec titre -->
-            <div class="leading-relaxed text-base md:text-lg animate-fade-in-left order-1">
-              <div class="mb-8">
-                <h2 class="text-4xl md:text-5xl font-extrabold pb-2">{{ __('site.services.title') }}</h2>
-                <div class="h-1.5 w-24 bg-white rounded-full"></div>
-              </div>
-              <p class="mb-6 text-white/90">{!! __('site.services.desc') !!}</p>
+                                      <!-- Card 4 -->
+                                      <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#4f6ba3]  hover:bg-white/10 hover:border-white/30 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+                                        <div class="flex items-start gap-4">
+                                          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-inner group-hover:scale-110 transition-transform">
+                                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.563.563 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.563.563 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
+                                          </div>
+                                          <div>
+                                            <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.adv4_title') }}</h3>
+                                            <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.adv4_desc') }}</p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </div>
 
-              <!-- Avantages en cartes "glass" -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <!-- Card 1 -->
-                <div class="bg-white/10 md:backdrop-blur rounded-xl p-4 border border-white/20 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all">
-                  <div class="flex items-center gap-3">
-                    <span class="w-10 h-10 rounded-lg  flex items-center justify-center">
-                      <svg class="w-15 h-15 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                      </svg>
-                    </span>
-                    <div>
-                      <h3 class="text-lg font-semibold">{{ __('site.services.adv1_title') }}</h3>
-                      <p class="text-sm text-white/80">{{ __('site.services.adv1_desc') }}</p>
+                                  <!-- CTA Button (Desktop) -->
+                                  <div class="hidden lg:block">
+                                    <a href="/noservices" class="group inline-flex items-center gap-3  bg-[#4f6ba3] text-white px-8 py-4 rounded-full font-bold shadow-xl hover:shadow-2xl  hover:bg-[#324d78] hover:scale-105  transition-all duration-300 transform hover:-translate-y-1">
+                                      {{ __('site.services.cta_discover') }}
+                                      <span class="w-8 h-8 rounded-full bg-white text-[#4f6ba3]  flex items-center justify-center group-hover:bg-[#283043] transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                      </span>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <!-- Video Container (Right on Desktop) -->
+                              <div class="order-2 lg:order-2 flex justify-center lg:justify-start lg:pl-12 items-start relative perspective-1000">
+                                  
+                                  <!-- Decorative Glow -->
+                                  <div class="absolute inset-0 bg-blue-500/20 blur-[60px] rounded-full animate-pulse-slow pointer-events-none"></div>
+                                  
+                                  <div class="relative w-full max-w-[240px] sm:max-w-[270px] md:max-w-[300px] lg:max-w-[340px] aspect-[9/16] rounded-[2rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] overflow-hidden border-4 border-white/10 backdrop-blur-sm transform transition-all duration-500 hover:scale-[1.02] bg-black/20">
+                                      
+                                      <!-- Video -->
+                                      <video id="servicesVideo" 
+                                            class="absolute inset-0 w-full h-full object-cover z-0"
+                                            src="{{ $presentationVideoSrc }}" 
+                                            preload="metadata"
+                                            autoplay 
+                                            loop 
+                                            playsinline>
+                                      </video>
+                                      
+                                      <!-- Gradient Overlay for controls visibility -->
+                                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none z-10 opacity-80"></div>
+
+                                      <!-- Custom Video Controls -->
+                                      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-3 shadow-lg z-20">
+                                          
+                                          <!-- Play / Pause Button -->
+                                          <button id="videoPlayPause" 
+                                                  type="button" 
+                                                  aria-label="{{ __('site.aria.play_pause') }}"
+                                                  class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors duration-200 shrink-0 text-white">
+                                              <svg id="iconPlay" class="w-5 h-5 ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
+                                              <svg id="iconPause" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+                                          </button>
+
+                                          <!-- Mute / Unmute Button -->
+                                          <button id="videoMute" 
+                                                  type="button" 
+                                                  aria-label="{{ __('site.aria.mute_unmute') }}"
+                                                  class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors duration-200 shrink-0 text-white">
+                                              <svg id="iconVolume" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                                  <path d="M5 9v6h4l5 4V5L9 9H5z"/>
+                                                  <path d="M16.5 8.5a5 5 0 010 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                              </svg>
+                                              <svg id="iconMuted" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                  <path d="M5 9v6h4l5 4V5L9 9H5z"/>
+                                                  <path d="M19 9l-6 6M13 9l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                              </svg>
+                                          </button>
+
+                                          <!-- Volume Slider -->
+                                          <div class="flex items-center justify-center flex-1 min-w-0 px-2">
+                                              <input id="videoVolume" 
+                                                    type="range" 
+                                                    min="0" 
+                                                    max="100" 
+                                                    step="5" 
+                                                    value="50"
+                                                    class="w-full h-1.5 accent-white bg-white/30 rounded-full appearance-none cursor-pointer"
+                                                    aria-label="{{ __('site.aria.volume') }}" />
+                                          </div>
+                                      </div>
+
+                                  </div>
+                              </div>
+                              
+                              <!-- CTA Button (Mobile) -->
+                              <div class="order-3 lg:hidden flex justify-center mt-8 w-full">
+                                    <a href="/noservices" class="group inline-flex items-center gap-3  bg-[#4f6ba3] text-white px-8 py-4 rounded-full font-bold shadow-xl hover:shadow-2xl  hover:bg-[#324d78] hover:scale-105  transition-all duration-300 transform hover:-translate-y-1">
+                                      {{ __('site.services.cta_discover') }}
+                                      <span class="w-8 h-8 rounded-full bg-white text-[#4f6ba3]  flex items-center justify-center group-hover:bg-[#283043] transition-colors">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                      </span>
+                                    </a>
+                              </div>
                     </div>
                   </div>
-                </div>
-                <!-- Card 2 -->
-                <div class="bg-white/10 md:backdrop-blur rounded-xl p-4 border border-white/20 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all">
-                  <div class="flex items-center gap-3">
-                    <span class="w-10 h-10  flex items-center justify-center">
-                      <svg class="w-15 h-15 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                      </svg>
-                    </span>
-                    <div>
-                      <h3 class="text-lg font-semibold">{{ __('site.services.adv2_title') }}</h3>
-                      <p class="text-sm text-white/80">{{ __('site.services.adv2_desc') }}</p>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="bg-white/10 md:backdrop-blur rounded-xl p-4 border border-white/20 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all">
-                  <div class="flex items-center gap-3">
-                    <span class="w-10 h-10  flex items-center justify-center">
-                      <svg class="w-15 h-15 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
-                      </svg>
-                    </span>
-                    <div>
-                      <h3 class="text-lg font-semibold">{{ __('site.services.adv3_title') }}</h3>
-                      <p class="text-sm text-white/80">{{ __('site.services.adv3_desc') }}</p>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card 4 -->
-                <div class="bg-white/10 md:backdrop-blur rounded-xl p-4 border border-white/20 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all">
-                  <div class="flex items-center gap-3">
-                    <span class="w-10 h-10 flex items-center justify-center">
-                    <svg class="w-15 h-15 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0-3-3m3 3 3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
-                    </svg>
-                    </span>
-                    <div>
-                      <h3 class="text-lg font-semibold">{{ __('site.services.adv4_title') }}</h3>
-                      <p class="text-sm text-white/80">{{ __('site.services.adv4_desc') }}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-              <div class="mt-8">
-                <a href="#contact" class="inline-flex items-center gap-2 bg-white text-[#1b2336] font-semibold px-5 py-2.5 rounded-full shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                  {{ __('site.services.cta_discover') }}
-                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 5l7 7-7 7"/></svg>
-                </a>
-              </div>
-            </div>
+                  <!-- Script de contrôle vidéo -->
+                  <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                      const video = document.getElementById('servicesVideo');
+                      const playBtn = document.getElementById('videoPlayPause');
+                      const muteBtn = document.getElementById('videoMute');
+                      const vol = document.getElementById('videoVolume');
+                      const iconPlay = document.getElementById('iconPlay');
+                      const iconPause = document.getElementById('iconPause');
+                      const iconVolume = document.getElementById('iconVolume');
+                      const iconMuted = document.getElementById('iconMuted');
 
-<script>
-  const video = document.getElementById('servicesVideo');
-  const playBtn = document.getElementById('videoPlayPause');
-  const muteBtn = document.getElementById('videoMute');
-  const vol = document.getElementById('videoVolume');
-  const iconPlay = document.getElementById('iconPlay');
-  const iconPause = document.getElementById('iconPause');
-  const iconVolume = document.getElementById('iconVolume');
-  const iconMuted = document.getElementById('iconMuted');
+                      if (!video) return;
 
-  // Lecture auto avec son coupé
-  video.volume = 0;
-  video.muted = true;
+                      // --- 1. Définition des fonctions de mise à jour de l'UI ---
+                      const updPlay = (playing) => {
+                        if(iconPlay) iconPlay.classList.toggle('hidden', playing);
+                        if(iconPause) iconPause.classList.toggle('hidden', !playing);
+                      };
 
-  function updPlay(isPlaying) {
-    if (isPlaying) {
-      iconPlay.classList.add('hidden');
-      iconPause.classList.remove('hidden');
-    } else {
-      iconPause.classList.add('hidden');
-      iconPlay.classList.remove('hidden');
-    }
-  }
+                      const updMute = (muted) => {
+                        if(iconVolume) iconVolume.classList.toggle('hidden', muted);
+                        if(iconMuted) iconMuted.classList.toggle('hidden', !muted);
+                      };
 
-  function updMute(isMuted) {
-    if (isMuted) {
-      iconVolume.classList.add('hidden');
-      iconMuted.classList.remove('hidden');
-    } else {
-      iconMuted.classList.add('hidden');
-      iconVolume.classList.remove('hidden');
-    }
-  }
+                      // --- 2. Logique "Simple" d'Autoplay avec Son ---
+                      // On tente d'abord de jouer avec le son (muted = false).
+                      // Si le navigateur bloque (erreur), on passe en muet et on relance.
+                      
+                      const initialVol = vol ? parseInt(vol.value, 10) / 100 : 0.5;
+                      video.volume = Number.isFinite(initialVol) ? initialVol : 0.5;
+                      video.muted = false; // Intention : Son activé
 
-  // Play / Pause
-  playBtn.addEventListener('click', () => {
-    if (video.paused) {
-      video.play();
-      updPlay(true);
-    } else {
-      video.pause();
-      updPlay(false);
-    }
-  });
+                      var playPromise = video.play();
 
-  // Mute / Unmute
-  muteBtn.addEventListener('click', () => {
-    video.muted = !video.muted;
-    updMute(video.muted);
-    if (!video.muted && video.volume === 0) {
-      video.volume = 0.5;
-      vol.value = 50;
-    }
-  });
+                      if (playPromise !== undefined) {
+                          playPromise.then(() => {
+                              // Succès : La vidéo joue AVEC le son
+                              console.log('Autoplay started with sound.');
+                              updPlay(true);
+                              updMute(false);
+                          }).catch(error => {
+                              // Echec : Le navigateur a bloqué le son
+                              console.warn('Autoplay with sound blocked. Fallback to muted.');
+                              video.muted = true; // On coupe le son pour permettre la lecture
+                              video.play().then(() => {
+                                  updPlay(true);
+                                  updMute(true);
+                              });
+                          });
+                      }
 
-  // Volume
-  vol.addEventListener('input', e => {
-    const v = parseInt(e.target.value, 10) / 100;
-    video.volume = v;
-    video.muted = v === 0;
-    updMute(video.muted);
-  });
+                      // --- 3. Gestionnaires d'événements (Boutons) ---
 
-  // Init
-  updPlay(!video.paused);
-  updMute(video.muted);
-</script>
+                      playBtn?.addEventListener('click', () => {
+                        if (video.paused) {
+                          video.play().then(() => updPlay(true)).catch(() => updPlay(false));
+                        } else {
+                          video.pause();
+                          updPlay(false);
+                        }
+                      });
 
-                  </div>
-              </div>
-    </section>
+                      muteBtn?.addEventListener('click', () => {
+                        video.muted = !video.muted;
+                        updMute(video.muted);
+                        // Si on réactive le son alors que le volume est à 0, on le met à 50%
+                        if (!video.muted && video.volume === 0) {
+                          video.volume = 0.5;
+                          if(vol) vol.value = 50;
+                        }
+                      });
+
+                      vol?.addEventListener('input', (e) => {
+                        const v = Math.max(0, Math.min(100, parseInt(e.target.value, 10) || 0)) / 100;
+                        video.volume = v;
+                        video.muted = (v === 0);
+                        updMute(video.muted);
+                      });
+                    });
+                  </script>
+            </section>
+
+        <!-- End Services Section -->
 
 
 
 
-        <section id="pourquoi" class="relative py-16 md:py-24 bg-white dark:bg-gray-900 overflow-hidden isolate">
+        <section id="pourquoi" class="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-white dark:bg-gray-900 overflow-hidden isolate">
           <!-- Background decorative elements -->
-          <div class="pointer-events-none absolute -top-40 -right-40 w-96 h-96 bg-blue-500/10 dark:bg-blue-400/5 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-10 animate-blob"></div>
-          <div class="pointer-events-none absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 dark:bg-purple-400/5 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-10 animate-blob animation-delay-2000"></div>
-          <div class="pointer-events-none absolute top-1/4 left-1/2 w-72 h-72 bg-emerald-500/10 dark:bg-emerald-400/5 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-10 animate-blob animation-delay-4000"></div>
+          <div class="pointer-events-none absolute -top-40 -right-40 w-72 sm:w-80 md:w-96 h-72 sm:h-80 md:h-96 bg-blue-500/10 dark:bg-blue-400/5 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-10 animate-blob"></div>
+          <div class="pointer-events-none absolute -bottom-40 -left-40 w-64 sm:w-72 md:w-80 h-64 sm:h-72 md:h-80 bg-purple-500/10 dark:bg-purple-400/5 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-10 animate-blob animation-delay-2000"></div>
+          <div class="pointer-events-none absolute top-1/4 left-1/2 w-56 sm:w-64 md:w-72 h-56 sm:h-64 md:h-72 bg-emerald-500/10 dark:bg-emerald-400/5 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-10 animate-blob animation-delay-4000"></div>
 
           <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
             <!-- Title -->
-            <div class="text-center mb-12 md:mb-20">
-               <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight whitespace-normal sm:whitespace-nowrap">
+            <div class="text-center mb-10 sm:mb-12 md:mb-16 lg:mb-20">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight px-4">
                   {!! __('site.why.title') !!}
-                </h2>              
-              <p class="mt-6 text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
+                 <span class="block  w-50 h-1.5 bg-gradient-to-r from-[#4f6ba3] to-transparent dark:bg-gradient-to-r dark:from-blue-400 dark:to-transparent mx-auto mt-3  rounded-full"></span>
+
+                </h1>              
+              <p class="mt-4 sm:mt-5 md:mt-6 text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto px-4">
                 {{ __('site.why.subtitle') }}
               </p>
             </div>
 
             <!-- Cards -->
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-12">
+            <div class="grid gap-5 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-8 sm:mt-10 md:mt-12">
              
             <!-- Card 1 -->
-              <div class="group flex flex-col items-center text-center p-8 border border-gray-200 dark:border-gray-800 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white shadow-xl mb-6 relative z-10">
-                 <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <div class="group flex flex-col items-center text-center p-6 sm:p-7 md:p-8 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-[#4f6ba3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#4f6ba3] to-blue-400 flex items-center justify-center text-white shadow-xl mb-5 sm:mb-6 relative z-10">
+                 <svg class="w-7 h-7 sm:w-8 sm:h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                 </svg>
 
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 relative z-10">{{ __('site.why.c1_title') }}</h3>
-                <p class="text-gray-600 dark:text-gray-400 text-base relative z-10">{{ __('site.why.c1_desc') }}</p>
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 relative z-10">{{ __('site.why.c1_title') }}</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base relative z-10">{{ __('site.why.c1_desc') }}</p>
               </div>
 
               <!-- Card 2 -->
-              <div class="group flex flex-col items-center text-center p-8 border border-gray-200 dark:border-gray-800 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white shadow-xl mb-6 relative z-10">
-<svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
-</svg>
+              <div class="group flex flex-col items-center text-center p-6 sm:p-7 md:p-8 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-[#4f6ba3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#4f6ba3] to-blue-400 flex items-center justify-center text-white shadow-xl mb-5 sm:mb-6 relative z-10">
+                    <svg class="w-7 h-7 sm:w-8 sm:h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                    </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 relative z-10">{{ __('site.why.c2_title') }}</h3>
-                <p class="text-gray-600 dark:text-gray-400 text-base relative z-10">{{ __('site.why.c2_desc') }}</p>
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 relative z-10">{{ __('site.why.c2_title') }}</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base relative z-10">{{ __('site.why.c2_desc') }}</p>
               </div>
 
               <!-- Card 3 -->
-              <div class="group flex flex-col items-center text-center p-8 border border-gray-200 dark:border-gray-800 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white shadow-xl mb-6 relative z-10">
-                    <svg  class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <div class="group flex flex-col items-center text-center p-6 sm:p-7 md:p-8 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-[#4f6ba3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#4f6ba3] to-blue-400 flex items-center justify-center text-white shadow-xl mb-5 sm:mb-6 relative z-10">
+                    <svg  class="w-7 h-7 sm:w-8 sm:h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819" />
                     </svg>
 
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 relative z-10">{{ __('site.why.c3_title') }}</h3>
-                <p class="text-gray-600 dark:text-gray-400 text-base relative z-10">{{ __('site.why.c3_desc') }}</p>
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 relative z-10">{{ __('site.why.c3_title') }}</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base relative z-10">{{ __('site.why.c3_desc') }}</p>
               </div>
 
               <!-- Card 4 -->
-              <div class="group flex flex-col items-center text-center p-8 border border-gray-200 dark:border-gray-800 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white shadow-xl mb-6 relative z-10">
-                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <div class="group flex flex-col items-center text-center p-6 sm:p-7 md:p-8 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-[#4f6ba3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#4f6ba3] to-blue-400 flex items-center justify-center text-white shadow-xl mb-5 sm:mb-6 relative z-10">
+                    <svg class="w-7 h-7 sm:w-8 sm:h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75" />
                     </svg>
 
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 relative z-10">{{ __('site.why.c4_title') }}</h3>
-                <p class="text-gray-600 dark:text-gray-400 text-base relative z-10">{{ __('site.why.c4_desc') }}</p>
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 relative z-10">{{ __('site.why.c4_title') }}</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base relative z-10">{{ __('site.why.c4_desc') }}</p>
               </div>
 
             </div>
@@ -472,48 +545,46 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
 
 
             <!-- Blog Section -->
-            <section id="blog" class="py-20 bg-gradient-to-br from-[#4f6ba3] to-[#5a7bbf] text-white py-20 overflow-hidden relative">
+            <section id="blog" class="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-[#4f6ba3] to-[#283043] text-white overflow-hidden relative dark:from-gray-900 dark:to-gray-800">
                     <!-- Décoration de fond (formes subtiles) -->
-                    <!--     <div class="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full mix-blend-overlay animate-blob-1"></div>
-                    -->    
-                <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-white/10 rounded-full mix-blend-overlay animate-blob-2 animation-delay-2000"></div>
-                <div class="absolute top-1/2 left-1/2 w-80 h-80 bg-white/10 rounded-full mix-blend-overlay animate-blob-3 animation-delay-4000"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-36 sm:w-40 md:w-48 h-36 sm:h-40 md:h-48 bg-white/10 rounded-full mix-blend-overlay animate-blob-2 animation-delay-2000"></div>
+                <div class="absolute top-1/2 left-1/2 w-56 sm:w-64 md:w-80 h-56 sm:h-64 md:h-80 bg-white/10 rounded-full mix-blend-overlay animate-blob-3 animation-delay-4000"></div>
 
-              <div class="max-w-7xl mx-auto px-6">
+              <div class="max-w-7xl mx-auto px-4 sm:px-6">
                 <!-- Titre de section amélioré -->
-                <div class="text-center mb-16">
-                  <h2 class="text-4xl md:text-5xl font-extrabold text-white relative inline-block pb-4">
+                <div class="text-center mb-12 sm:mb-14 md:mb-16">
+                  <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold text-white relative inline-block pb-3 sm:pb-4">
                     {{ __('site.blog.title') }}
-                    <span class="absolute left-1/2 bottom-0 transform -translate-x-1/2 w-28 h-1.5 bg-[#5a7bbf] rounded-full"></span>
-                  </h2>
-                  <p class="mt-4 text-xl text-white max-w-2xl mx-auto">
+                    <span class="absolute left-1/2 bottom-0 transform -translate-x-1/2 w-20 sm:w-24 md:w-28 h-1 sm:h-1.5 w-60 h-1.5 bg-gradient-to-r from-white to-transparent dark:bg-gradient-to-r dark:from-blue-400 dark:to-transparent  rounded-full"></span>
+                  </h1>
+                  <p class="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl text-white max-w-2xl mx-auto px-4">
                     {{ __('site.blog.subtitle') }}
                   </p>
                 </div>
 
-                <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+                <div class="grid gap-6 sm:gap-8 md:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                   @forelse($posts as $post)
                     @php
                       $img = $post->cover_image ? Storage::url($post->cover_image) : asset('images/img1.jpg');
                     @endphp
 
-                    <article class="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl group relative border border-gray-100">
-                      <a href="{{ route('pages.blog.show', $post) }}" class="block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4f6ba3]">
+                    <article class="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl group relative border-l-4 border-[#4f6ba3]">                      
+                                <a href="{{ route('pages.blog.show', $post) }}" class="block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4f6ba3]">
                         <div class="relative overflow-hidden">
-                          <img src="{{ $img }}" alt="{{ $post->title }}" loading="lazy" decoding="async" class="w-full h-56 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out">
+                          <img src="{{ $img }}" alt="{{ $post->title }}" loading="lazy" decoding="async" class="w-full h-48 sm:h-52 md:h-56 object-cover transform group-hover:scale-110 transition-transform duration-500 ease-in-out">
                           <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                          <span class="absolute top-4 left-4 bg-[#4f6ba3] text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+                          <span class="absolute top-3 sm:top-4 left-3 sm:left-4 bg-[#4f6ba3] text-white text-xs font-semibold px-2.5 sm:px-3 py-1 rounded-full shadow-md">
                             {{ $post->category->name ?? __('site.blog.category_fallback') }}
                           </span>
                         </div>
-                        <div class="p-6">
-                          <h3 class="text-2xl font-bold text-gray-900 mb-2 leading-tight group-hover:text-[#5a7bbf] transition-colors duration-300">
+                        <div class="p-4 sm:p-5 md:p-6">
+                          <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 leading-tight group-hover:text-[#5a7bbf] transition-colors duration-300 line-clamp-2">
                             {{ $post->title }}
                           </h3>
-                          <p class="text-gray-600 mb-4 line-clamp-3">
-                            {{ \Illuminate\Support\Str::limit(strip_tags($post->content), 150) }}
+                          <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4 line-clamp-3">
+                            {{ $post->content ? \Illuminate\Support\Str::limit(strip_tags($post->content), 150) : __('site.blog.no_content') }}
                           </p>
-                          <span class="inline-flex items-center text-[#4f6ba3] font-semibold hover:underline group-hover:translate-x-1 transition-transform duration-300">
+                          <span class="inline-flex items-center text-[#4f6ba3] text-sm sm:text-base font-semibold hover:underline group-hover:translate-x-1 transition-transform duration-300">
                             {{ __('site.blog.read_more') }}
                             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                           </span>
@@ -521,19 +592,19 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                       </a>
                     </article>
                   @empty
-                    <div class="col-span-3 text-center text-white/90">
+                    <div class="col-span-full text-center text-white/90 py-8">
                       {{ __('site.blog.empty') }}
                     </div>
                   @endforelse
                 </div>
 
                 <!-- Bouton "Voir tous les articles" -->
-                <div class="text-center mt-16">
+                <div class="text-center mt-12 sm:mt-14 md:mt-16">
                   <a href="/blog" 
-                    class="inline-flex items-center bg-[#4f6ba3] text-white font-bold py-3 px-8 rounded-full shadow-lg 
+                    class="inline-flex items-center bg-[#4f6ba3] text-white font-bold py-2.5 sm:py-3 px-6 sm:px-8 rounded-full shadow-lg text-sm sm:text-base
                             hover:bg-[#324d78] hover:scale-105 active:scale-95 transition-all duration-300 transform">
                     {{ __('site.blog.see_all') }}
-                    <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                    <svg class="ml-2 w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
                   </a>
                 </div>
 
@@ -542,234 +613,287 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
 
 
 
-                        <!-- FAQ Section -->
             <!-- FAQ Section -->
-          <section id="faq" class="bg-white dark:bg-gray-900 py-20">
-            <div class="max-w-6xl mx-auto px-4">
-              <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center mb-6">{{ __('site.faq.title') }}</h2>
-              <p class="text-center text-gray-600 dark:text-gray-300 mb-12 mx-auto">{{ __('site.faq.subtitle') }}</p>
-              <div class="space-y-6">
-                            
-                <details class="group border-b dark:border-gray-700 pb-4">
-                  <summary class="flex justify-between items-center cursor-pointer text-gray-900 dark:text-white font-medium text-lg">
-                                    <span>{{ __('site.faq.q1') }}</span>
-                                    <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </summary>
-                  <p class="mt-2 text-gray-600 dark:text-gray-300 text-sm">{{ __('site.faq.a1') }}</p>
-                            </details>
+          <section id="faq" class="bg-white dark:bg-gray-900 py-12 sm:py-16 md:py-20">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-[#4f6ba3] dark:text-blue-400 text-center mb-4 sm:mb-5 md:mb-6">{{ __('site.faq.title') }}
+              <span class="block w-40 h-1.5 bg-gradient-to-r from-[#4f6ba3] to-transparent dark:bg-gradient-to-r dark:from-blue-400 dark:to-transparent mx-auto mt-3 rounded-full"></span>
+              </h1>
 
-                <details class="group border-b dark:border-gray-700 pb-4">
-                  <summary class="flex justify-between items-center cursor-pointer text-gray-900 dark:text-white font-medium text-lg">
-                                    <span>{{ __('site.faq.q2') }}</span>
-                                    <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </summary>
-                  <p class="mt-2 text-gray-600 dark:text-gray-300 text-sm">{{ __('site.faq.a2') }}</p>
-                            </details>
+              @php
+              if (! function_exists('sanitize_faq')) {
+                function sanitize_faq($s) {
+                  $s = (string) $s;
+                  // Collapse line breaks and multiple spaces
+                  $s = preg_replace("/[\r\n]+/u", ' ', $s);
+                  $s = preg_replace('/\s+/u', ' ', $s);
+                  // Protect French guillemets with non-breaking spaces
+                  $s = preg_replace('/«\s*/u', '«&nbsp;', $s);
+                  $s = preg_replace('/\s*»/u', '&nbsp;»', $s);
+                  // Ensure non-breaking space before French punctuation ? ! : ; to avoid lonely punctuation on a new line
+                  $s = preg_replace('/\s+([?!:;])/u', '&nbsp;$1', $s);
+                  return trim($s);
+                }
+              }
+              @endphp
 
-                <details class="group border-b dark:border-gray-700 pb-4">
-                  <summary class="flex justify-between items-center cursor-pointer text-gray-900 dark:text-white font-medium text-lg">
-                                    <span>{{ __('site.faq.q3') }}</span>
-                                    <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </summary>
-                  <p class="mt-2 text-gray-600 dark:text-gray-300 text-sm">{{ __('site.faq.a3') }}</p>
-                            </details>
+              <p class="text-center text-base sm:text-lg md:text-lg text-gray-600 dark:text-gray-300 mb-8 sm:mb-10 md:mb-12 mx-auto max-w-3xl px-4">{!! sanitize_faq(__('site.faq.subtitle')) !!}</p>
 
-                <details class="group border-b dark:border-gray-700 pb-4">
-                  <summary class="flex justify-between items-center cursor-pointer text-gray-900 dark:text-white font-medium text-lg">
-                                    <span>{{ __('site.faq.q4') }}</span>
-                                    <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </summary>
-                  <p class="mt-2 text-gray-600 dark:text-gray-300 text-sm">{{ __('site.faq.a4') }}</p>
-                            </details>
+              <div class="space-y-4 sm:space-y-5 md:space-y-6">
 
-                <details class="group border-b dark:border-gray-700 pb-4">
-                  <summary class="flex justify-between items-center cursor-pointer text-gray-900 dark:text-white font-medium text-lg">
-                                    <span>{{ __('site.faq.q5') }}</span>
-                                    <svg class="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </summary>
-                  <p class="mt-2 text-gray-600 dark:text-gray-300 text-sm">{{ __('site.faq.a5') }}</p>
-                            </details>
+              <details class="group border-b-2 border-[#4f6ba3]/20 dark:border-[#5a7bbf]/30 pb-3 sm:pb-4 hover:border-[#4f6ba3]/40 dark:hover:border-[#5a7bbf]/50 transition-colors">
+                <summary class="flex justify-between items-center cursor-pointer text-gray-900 dark:text-white font-medium text-base sm:text-lg md:text-lg">
+                        <span class="max-w-prose">{!! sanitize_faq(__('site.faq.q1')) !!}</span>
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </summary>
+                <p class="mt-2 text-gray-600 dark:text-gray-300 text-base sm:text-lg max-w-prose">{!! sanitize_faq(__('site.faq.a1')) !!}</p>
+              </details>
 
-                        </div>
-                    </div>
+              <details class="group border-b-2 border-[#4f6ba3]/20 dark:border-[#5a7bbf]/30 pb-3 sm:pb-4 hover:border-[#4f6ba3]/40 dark:hover:border-[#5a7bbf]/50 transition-colors">
+                <summary class="flex justify-between items-center cursor-pointer text-gray-900 dark:text-white font-medium text-base sm:text-lg md:text-lg">
+                        <span class="max-w-prose">{!! sanitize_faq(__('site.faq.q2')) !!}</span>
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </summary>
+                <p class="mt-2 text-gray-600 dark:text-gray-300 text-base sm:text-lg max-w-prose">{!! sanitize_faq(__('site.faq.a2')) !!}</p>
+                    </details>
+
+              <details class="group border-b-2 border-[#4f6ba3]/20 dark:border-[#5a7bbf]/30 pb-3 sm:pb-4 hover:border-[#4f6ba3]/40 dark:hover:border-[#5a7bbf]/50 transition-colors">
+                <summary class="flex justify-between items-center cursor-pointer text-gray-900 dark:text-white font-medium text-base sm:text-lg md:text-lg">
+                        <span class="max-w-prose">{!! sanitize_faq(__('site.faq.q3')) !!}</span>
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </summary>
+                <p class="mt-2 text-gray-600 dark:text-gray-300 text-base sm:text-lg max-w-prose">{!! sanitize_faq(__('site.faq.a3')) !!}</p>
+                    </details>
+
+              <details class="group border-b-2 border-[#4f6ba3]/20 dark:border-[#5a7bbf]/30 pb-3 sm:pb-4 hover:border-[#4f6ba3]/40 dark:hover:border-[#5a7bbf]/50 transition-colors">
+                <summary class="flex justify-between items-center cursor-pointer text-gray-900 dark:text-white font-medium text-base sm:text-lg md:text-lg">
+                        <span class="max-w-prose">{!! sanitize_faq(__('site.faq.q4')) !!}</span>
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </summary>
+                <p class="mt-2 text-gray-600 dark:text-gray-300 text-base sm:text-lg max-w-prose">{!! sanitize_faq(__('site.faq.a4')) !!}</p>
+                    </details>
+
+              <details class="group border-b-2 border-[#4f6ba3]/20 dark:border-[#5a7bbf]/30 pb-3 sm:pb-4 hover:border-[#4f6ba3]/40 dark:hover:border-[#5a7bbf]/50 transition-colors">
+                <summary class="flex justify-between items-center cursor-pointer text-gray-900 dark:text-white font-medium text-base sm:text-lg md:text-lg">
+                        <span class="max-w-prose">{!! sanitize_faq(__('site.faq.q5')) !!}</span>
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </summary>
+                <p class="mt-2 text-gray-600 dark:text-gray-300 text-base sm:text-lg max-w-prose">{!! sanitize_faq(__('site.faq.a5')) !!}</p>
+                    </details>
+
+                  </div>
+                </div>
           </section>
 
             <!-- Contact Section -->
-            <section id="contact" class="bg-white text-gray-800 py-16 dark:bg-gray-900 dark:text-gray-100">
-                <div class="max-w-5xl mx-auto px-4">
-                    <div class="text-center mb-12">
-                      <h2 class="text-4xl font-bold mb-4 dark:text-white">{{ __('site.contact.title') }}</h2>
-                      <p class="text-lg dark:text-gray-300">
-                        {{ __('site.contact.subtitle') }}
-                                  </p>
-                              </div>
-                              <div class="flex flex-col lg:flex-row gap-8">
-                                  <!-- Contact Info -->
-                                  <div class="lg:w-1/2">
-                        <p class="text-base text-gray-600 mb-6 dark:text-gray-300">{!! __('site.contact.desc') !!}</p>
-                                      <div class="mb-6 px-4 py-2">
-                          <div class="flex items-start mb-6 space-x-4">
-                            <span class="w-8 h-8 text-[#4f6ba3]">🏢</span>
-                            <div>
-                              <h4 class="text-lg font-semibold dark:text-white">{{ __('site.contact.address') }}</h4>
-                              <p class="dark:text-gray-300">{{ $siteSettings?->address ?? '14 rue Beffory, 92200 Neuilly-sur-Seine, France' }}</p>
-                            </div>
-                          </div>
-                          <div class="flex items-start mb-6 space-x-4">
-                            <span class="w-8 h-8 text-[#4f6ba3]">📞</span>
-                            <div>
-                              <h4 class="text-lg font-semibold dark:text-white">{{ __('site.contact.phone') }}</h4>
-                              <p class="dark:text-gray-300">{{ $siteSettings?->phone ?? '+33 07 67 70 67 26 ' }}</p>
-                            </div>
-                          </div>
-                          <div class="flex items-start mb-6 space-x-4">
-                            <span class="w-8 h-8 text-[#4f6ba3]">✉️</span>
-                            <div>
-                              <h4 class="text-lg font-semibold dark:text-white">{{ __('site.contact.email') }}</h4>
-                              <p class="dark:text-gray-300">{{ $siteSettings?->email ?? 'contact@offitrade.fr' }}</p>
-                            </div>
-                          </div>
-                                      </div>
+          <section id="contact" class="bg-white text-gray-800 py-12 sm:py-14 md:py-16 dark:bg-gray-900 dark:text-gray-100">
+              <div class="max-w-5xl mx-auto px-4 sm:px-6">
+                  <div class="text-center mb-10 sm:mb-12">
+                      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mb-3 sm:mb-4 text-[#4f6ba3] dark:text-blue-400">{{ __('site.contact.title') }}
+                        <span class="block w-40 h-1.5 bg-gradient-to-r from-[#4f6ba3] to-transparent dark:bg-gradient-to-r dark:from-blue-400 dark:to-transparent mx-auto mt-3 rounded-full"></span>
+
+                      </h1>
+                      <p class="text-base sm:text-lg dark:text-gray-300 px-4">
+                          {{ __('site.contact.subtitle') }}
+                      </p>
+                  </div>
+
+                  <div class="flex flex-col lg:flex-row gap-6 sm:gap-8">
+                      <div class="w-full lg:w-1/2 flex flex-col">
+                          <p class="text-sm sm:text-base text-gray-600 mb-5 sm:mb-6 dark:text-gray-300">{!! __('site.contact.desc') !!}</p>
+                          
+                          <div class="mb-5 sm:mb-6 px-2 sm:px-4 py-2">
+                              <div class="flex items-start mb-5 sm:mb-6 space-x-3 sm:space-x-4">
+                                  <span class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-[#4f6ba3]/10 text-[#4f6ba3]">
+                                      <svg class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.086-6.5-10.5A6.5 6.5 0 0 1 18.5 10.5C18.5 15.914 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.5"/></svg>
+                                  </span>
+                                  <div>
+                                      <h4 class="text-base sm:text-lg font-semibold dark:text-white">{{ __('site.contact.address') }}</h4>
+                                      <p class="text-sm sm:text-base dark:text-gray-300">{{ $siteSettings?->address ?? '14 rue Beffory, 92200 Neuilly-sur-Seine, France' }}</p>
                                   </div>
-                                  <!-- Contact Form -->
-                                  <div class="lg:w-1/2 bg-gray-50 p-6 rounded-lg shadow-lg dark:bg-gray-800">
-                                <form method="POST" action="{{ route('contact.submit') }}" class="space-y-4" id="contact-form-home">
+                              </div>
+                              <div class="flex items-start mb-5 sm:mb-6 space-x-3 sm:space-x-4">
+                                  <span class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-[#4f6ba3]/10 text-[#4f6ba3]">
+                                      <svg class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V21a1 1 0 0 1-1.09 1A19.86 19.86 0 0 1 3 5.09 1 1 0 0 1 4 4h4.09a1 1 0 0 1 1 .75 12.44 12.44 0 0 0 .7 2.22 1 1 0 0 1-.23 1L8.09 9.91a16 16 0 0 0 6 6l1.94-1.49a1 1 0 0 1 1-.12 12.44 12.44 0 0 0 2.22.7 1 1 0 0 1 .75 1z"/></svg>
+                                  </span>
+                                  <div>
+                                      <h4 class="text-base sm:text-lg font-semibold dark:text-white">{{ __('site.contact.phone') }}</h4>
+                                      <p class="text-sm sm:text-base dark:text-gray-300">{{ $siteSettings?->phone ?? '+33 07 67 70 67 26 ' }}</p>
+                                  </div>
+                              </div>
+                              <div class="flex items-start mb-5 sm:mb-6 space-x-3 sm:space-x-4">
+                                  <span class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-[#4f6ba3]/10 text-[#4f6ba3]">
+                                      <svg class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M22 6.92V17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6.92a2 2 0 0 1 .76-1.56L12 12l9.24-6.64A2 2 0 0 1 22 6.92Z"/></svg>
+                                  </span>
+                                  <div>
+                                      <h4 class="text-base sm:text-lg font-semibold dark:text-white">{{ __('site.contact.email') }}</h4>
+                                      <p class="text-sm sm:text-base dark:text-gray-300">{{ $siteSettings?->email ?? 'contact@offitrade.fr' }}</p>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="mt-auto w-full h-54 rounded-lg shadow-lg overflow-hidden flex-grow">
+                              @php
+                                  // Get the address, with a fallback for safety
+                                  $address = $siteSettings?->address ?? '14 rue Beffory, 92200 Neuilly-sur-Seine, France';
+                              @endphp
+                              <iframe
+                                  width="100%"
+                                  height="100%"
+                                  style="border:0;"
+                                  loading="lazy"
+                                  allowfullscreen
+                                  src="https://maps.google.com/maps?q={{ urlencode($address) }}&t=&z=15&ie=UTF8&iwloc=&output=embed">
+                              </iframe>
+                          </div>
+                      </div>
+                      
+                      <div class="w-full lg:w-1/2 bg-gray-50 p-5 sm:p-6 rounded-lg shadow-lg dark:bg-gray-800">
+                          <form method="POST" action="{{ route('contact.submit') }}" class="space-y-3 sm:space-y-4" id="contact-form-home">
                               @csrf
                               <div>
-                  <label class="block text-gray-700 font-medium dark:text-gray-200">{{ __('site.contact.form.name') }}</label>
-                  <input name="name" type="text" value="{{ old('name') }}" required placeholder="{{ __('site.contact.form.name') }}"
-                    pattern="[\p{L}\s'\-]{1,100}"
-                                        class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
-                                  @error('name')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
+                                  <label class="block text-gray-700 font-medium text-sm sm:text-base dark:text-gray-200">{{ __('site.contact.form.name') }}</label>
+                                  <input name="name" type="text" value="{{ old('name') }}" required placeholder="{{ __('site.contact.form.name') }}"
+                                      pattern="[\p{L}\s'\-]{1,100}"
+                                      class="w-full mt-1 px-3 sm:px-4 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
+                                  @error('name')<p class="text-red-500 text-xs sm:text-sm">{{ $message }}</p>@enderror
                               </div>
                               <div>
-                  <label class="block text-gray-700 font-medium dark:text-gray-200">{{ __('site.contact.form.email') }}</label>
-                  <input name="email" type="email" value="{{ old('email') }}" required placeholder="{{ __('site.contact.form.email') }}"
-                                        class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
-                                  @error('email')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
+                                  <label class="block text-gray-700 font-medium text-sm sm:text-base dark:text-gray-200">{{ __('site.contact.form.email') }}</label>
+                                  <input name="email" type="email" value="{{ old('email') }}" required placeholder="{{ __('site.contact.form.email') }}"
+                                      class="w-full mt-1 px-3 sm:px-4 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
+                                  @error('email')<p class="text-red-500 text-xs sm:text-sm">{{ $message }}</p>@enderror
                               </div>
                               <div>
-                  <label class="block text-gray-700 font-medium dark:text-gray-200">{{ __('site.contact.form.phone') }}</label>
-                  <input name="phone" type="tel" value="{{ old('phone') }}" required placeholder="{{ __('site.contact.form.phone') }}"
-                    pattern="[0-9+\-().\s]{6,20}"
-                                        class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
-                                  @error('phone')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
+                                  <label class="block text-gray-700 font-medium text-sm sm:text-base dark:text-gray-200">{{ __('site.contact.form.phone') }}</label>
+                                  <input name="phone" type="tel" value="{{ old('phone') }}" required placeholder="{{ __('site.contact.form.phone') }}"
+                                      pattern="[0-9+\-().\s]{6,20}"
+                                      class="w-full mt-1 px-3 sm:px-4 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
+                                  @error('phone')<p class="text-red-500 text-xs sm:text-sm">{{ $message }}</p>@enderror
                               </div>
                               <div>
-                                  <label class="block text-gray-700 font-medium dark:text-gray-200">{{ __('site.contact.form.you_are') }}</label>
+                                  <label class="block text-gray-700 font-medium text-sm sm:text-base dark:text-gray-200">{{ __('site.contact.form.you_are') }}</label>
                                   <select id="user_type" name="user_type" required
-                                          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
+                                          class="w-full mt-1 px-3 sm:px-4 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
                                       <option value="" disabled {{ old('user_type') ? '' : 'selected' }}>{{ __('site.contact.form.choose_option') }}</option>
                                       <option value="Acheteur" {{ old('user_type')=='Acheteur' ? 'selected' : '' }}>{{ __('site.contact.form.buyer') }}</option>
                                       <option value="Futur pharmacien" {{ old('user_type')=='Futur pharmacien' ? 'selected' : '' }}>{{ __('site.contact.form.future_pharmacist') }}</option>
                                       <option value="Pharmacien titulaire" {{ old('user_type')=='Pharmacien titulaire' ? 'selected' : '' }}>{{ __('site.contact.form.owner_pharmacist') }}</option>
                                       <option value="Autres" {{ old('user_type')=='Autres' ? 'selected' : '' }}>{{ __('site.contact.form.others') }}</option>
                                   </select>
-                                  @error('user_type')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
+                                  @error('user_type')<p class="text-red-500 text-xs sm:text-sm">{{ $message }}</p>@enderror
                               </div>
-                    <div id="other-field-container" class="{{ old('user_type') == 'Autres' ? '' : 'hidden' }}">
-                                  <label class="block text-gray-700 font-medium dark:text-gray-200">{{ __('site.contact.form.specify') }}</label>
-                  <input name="user_other" type="text" value="{{ old('user_other') }}" placeholder="{{ __('site.contact.form.specify_placeholder') }}"
-                    pattern="[\p{L}\s'\-]{0,100}"
-                                        class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
+                              <div id="other-field-container" class="{{ old('user_type') == 'Autres' ? '' : 'hidden' }}">
+                                  <label class="block text-gray-700 font-medium text-sm sm:text-base dark:text-gray-200">{{ __('site.contact.form.specify') }}</label>
+                                  <input name="user_other" type="text" value="{{ old('user_other') }}" placeholder="{{ __('site.contact.form.specify_placeholder') }}"
+                                      pattern="[\p{L}\s'\-]{0,100}"
+                                      class="w-full mt-1 px-3 sm:px-4 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
                               </div>
                               <div>
-                                  <label class="block text-gray-700 font-medium dark:text-gray-200">{{ __('site.contact.form.message') }}</label>
-                  <textarea name="message" required rows="5" placeholder="{{ __('site.contact.form.ph_message') }}" maxlength="1500"
-                    class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100" id="message-input-home">{{ old('message') }}</textarea>
-                  <div class="text-right text-xs text-gray-500"><span id="message-count-home">0</span>/1500</div>
-                                  @error('message')<p class="text-red-500 text-sm">{{ $message }}</p>@enderror
+                                  <label class="block text-gray-700 font-medium text-sm sm:text-base dark:text-gray-200">{{ __('site.contact.form.message') }}</label>
+                                  <textarea name="message" required rows="4" placeholder="{{ __('site.contact.form.ph_message') }}" maxlength="1500"
+                                      class="w-full mt-1 px-3 sm:px-4 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100" id="message-input-home">{{ old('message') }}</textarea>
+                                  <div class="text-right text-xs text-gray-500"><span id="message-count-home">0</span>/1500</div>
+                                  @error('message')<p class="text-red-500 text-xs sm:text-sm">{{ $message }}</p>@enderror
                               </div>
-                    <button type="submit"
-                                      class="w-full bg-[#4f6ba3] text-white py-2 rounded-md hover:bg-[#a1b6d8] transition" id="contact-submit-btn">
-                      {{ __('site.contact.form.submit') }}
+                              <button type="submit"
+                                      class="w-full bg-[#4f6ba3] text-white py-2 text-sm sm:text-base rounded-md hover:bg-[#a1b6d8] transition flex items-center justify-center gap-2" id="contact-submit-btn">
+                                  <svg data-button-spinner class="hidden h-4 w-4 sm:h-5 sm:w-5 animate-spin text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                      <path class="opacity-75" d="M4 12a8 8 0 018-8" stroke="currentColor" stroke-width="4" stroke-linecap="round"></path>
+                                  </svg>
+                                  <span data-button-label>{{ __('site.contact.form.submit') }}</span>
                               </button>
-
+                              
                               {{-- Success message shown at bottom of form --}}
                               @if(session('success'))
-                                  <div id="contact-success-home" class="mt-4 p-4 bg-green-200 text-green-800">{{ session('success') }}</div>
+                                  <div id="contact-success-home" class="mt-3 sm:mt-4 p-3 sm:p-4 bg-green-200 text-green-800 text-sm sm:text-base">{{ session('success') }}</div>
                               @endif
                           </form>
 
                           <script>
-                          // Afficher/cacher champ "Précisez" selon choix "Autres"
-                          document.getElementById('user_type').addEventListener('change', function () {
-                              var otherField = document.getElementById('other-field-container');
-                              if (this.value === 'Autres') {
-                                  otherField.classList.remove('hidden');
-                              } else {
-                                  otherField.classList.add('hidden');
-                              }
-                          });
-                          // Compteur de caractères message (1500)
-                          (function(){
-                            var ta = document.getElementById('message-input-home');
-                            var counter = document.getElementById('message-count-home');
-                            if (ta && counter) {
-                              var update = function(){ counter.textContent = ta.value.length; };
-                              ta.addEventListener('input', update);
-                              update();
-                            }
-                          })();
+                              // ... votre JavaScript reste inchangé ...
+                              document.getElementById('user_type').addEventListener('change', function () {
+                                  var otherField = document.getElementById('other-field-container');
+                                  if (this.value === 'Autres') {
+                                      otherField.classList.remove('hidden');
+                                  } else {
+                                      otherField.classList.add('hidden');
+                                  }
+                              });
+                              (function(){
+                                  var ta = document.getElementById('message-input-home');
+                                  var counter = document.getElementById('message-count-home');
+                                  if (ta && counter) {
+                                      var update = function(){ counter.textContent = ta.value.length; };
+                                      ta.addEventListener('input', update);
+                                      update();
+                                  }
+                              })();
+                              (function(){
+                                  var form = document.getElementById('contact-form-home');
+                                  if (!form) return;
+                                  var submitBtn = document.getElementById('contact-submit-btn');
+                                  if (!submitBtn) return;
+                                  var spinner = submitBtn.querySelector('[data-button-spinner]');
+                                  var label = submitBtn.querySelector('[data-button-label]');
+                                  var originalText = label ? label.textContent : submitBtn.textContent;
+                                  form.addEventListener('submit', function(){
+                                      try {
+                                          submitBtn.disabled = true;
+                                          submitBtn.classList.add('opacity-80','cursor-not-allowed');
+                                          if (spinner) spinner.classList.remove('hidden');
+                                          if (label) label.textContent = 'Envoi...';
+                                      } catch (e) { console && console.warn && console.warn(e); }
+                                  });
+                                  form.addEventListener('turbo:submit-end', function(){
+                                      try {
+                                          submitBtn.disabled = false;
+                                          submitBtn.classList.remove('opacity-80','cursor-not-allowed');
+                                          if (spinner) spinner.classList.add('hidden');
+                                          if (label) label.textContent = originalText;
+                                      } catch (e) { console && console.warn && console.warn(e); }
+                                  });
+                                  var elements = form.querySelectorAll('input,textarea,select');
+                                  elements.forEach(function(el){
+                                      el.addEventListener('invalid', function(){
+                                          try {
+                                              submitBtn.disabled = false;
+                                              submitBtn.classList.remove('opacity-80','cursor-not-allowed');
+                                              if (spinner) spinner.classList.add('hidden');
+                                              if (label) label.textContent = originalText;
+                                          } catch(e) { /* ignore */ }
+                                      }, {once: true});
+                                  });
+                              })();
+                          </script>
+                      </div>
+                  </div>
+              </div>
+          </section>
 
-                          // Désactiver le bouton et afficher un spinner pendant l'envoi
-                          (function(){
-                            var form = document.getElementById('contact-form-home');
-                            if (!form) return;
-                            var submitBtn = document.getElementById('contact-submit-btn');
-                            if (!submitBtn) return;
-                            var originalHtml = submitBtn.innerHTML;
-
-                            form.addEventListener('submit', function(){
-                              try {
-                                // Disable to prevent double submits
-                                submitBtn.disabled = true;
-                                submitBtn.classList.add('opacity-70','cursor-not-allowed');
-                                // Simple indeterminate spinner (SVG)
-                                submitBtn.innerHTML = '\n+                                  <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">\n+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>\n+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>\n+                                  </svg>Envoi...';
-                              } catch (e) { console && console.warn && console.warn(e); }
-                            });
-
-                            // If a client-side validation error occurs, re-enable the button.
-                            var elements = form.querySelectorAll('input,textarea,select');
-                            elements.forEach(function(el){
-                              el.addEventListener('invalid', function(){
-                                try {
-                                  submitBtn.disabled = false;
-                                  submitBtn.classList.remove('opacity-70','cursor-not-allowed');
-                                  submitBtn.innerHTML = originalHtml;
-                                } catch(e) { /* ignore */ }
-                              }, {once: true});
-                            });
-                          })();
-                        </script>
-                                  </div>
-                              </div>
-                          </div>
-            </section>
+    <main>
+    <!-- Fin Main Content -->
 
 
-
-
-
-    <!-- Footer -->
-    @include('layouts.footer') 
-    <!-- Fin Footer -->
 
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
   </body>
+      <!-- Footer -->
+    @include('layouts.footer') 
+    <!-- Fin Footer -->
   @if(session('success'))
   <script>
     // If the server-side redirect with #contact didn't work (some browsers strip fragments),

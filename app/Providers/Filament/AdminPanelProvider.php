@@ -40,6 +40,7 @@ class AdminPanelProvider extends PanelProvider
              ->colors([
                 'primary' => Color::hex('#4f6ba3'),
             ])
+            ->brandLogo(fn() => view('filament.admin.logo'))
             ->favicon(asset('favicon.png'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
@@ -55,6 +56,10 @@ class AdminPanelProvider extends PanelProvider
             ->renderHook(
                 PanelsRenderHook::GLOBAL_SEARCH_AFTER,
                 fn (): string => view('filament.partials.lang-switch')->render(),
+            )
+            ->renderHook(
+                PanelsRenderHook::BODY_END,
+                fn (): string => view('filament.partials.hide-header')->render(),
             )
             ->globalSearch(false)
             ->databaseNotificationsPolling('10s')
@@ -78,9 +83,13 @@ class AdminPanelProvider extends PanelProvider
                 FilamentShieldPlugin::make(),
                
             ])
-            //->viteTheme('resources/css/filament/admin/theme.css')
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->homeUrl('/')
             ->userMenuItems([
+                Action::make('home')
+                    ->label(__('filament.user_menu.home'))
+                    ->icon('heroicon-m-home')
+                    ->url('/'),
                 'profile' => Action::make('profile')
                     ->label('Profil')
                     ->icon('heroicon-m-user')
@@ -113,10 +122,6 @@ class AdminPanelProvider extends PanelProvider
                     ->icon('heroicon-m-rectangle-stack')
                     ->sort(2),
 
-                NavigationItem::make()
-                    ->label(__('filament.nav.groups.settings'))
-                    ->icon('heroicon-m-cog')
-                    ->sort(3),
                 NavigationItem::make()
                     ->label(__('filament.nav.groups.settings'))
                     ->icon('heroicon-m-cog')

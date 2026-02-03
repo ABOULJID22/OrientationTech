@@ -26,17 +26,14 @@ class SupportMessageResource extends Resource
 
     protected static ?string $modelLabel = 'Message de support';
 
-    protected static UnitEnum|string|null $navigationGroup = null;
+    protected static ?int $navigationSort = 4;
 
     public static function getNavigationLabel(): string
     {
         return __('filament.nav.resources.support_clients');
     }
 
-    public static function getNavigationGroup(): ?string
-    {
-        return __('filament.nav.groups.support');
-    }
+
 
     public static function table(Table $table): Table
     {
@@ -67,7 +64,7 @@ class SupportMessageResource extends Resource
                     ->form([
                         Tables\Columns\TextColumn::make('name')->label('Nom'),
                     ])
-                    ->hidden(), // use built-in row preview pattern via custom action below if needed
+                    ->hidden(), //  use built-in row preview pattern via custom action below if needed
 
                 Action::make('details')
                     ->label('Détails')

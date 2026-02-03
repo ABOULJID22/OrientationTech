@@ -91,11 +91,37 @@ class PharmacistRequestResource extends Resource
                         ]);
 
                         $user = $record->user;
-                        if ($user && ! $user->hasRole(User::ROLE_CLIENT)) {
-                            $user->assignRole(User::ROLE_CLIENT);
-                        }
                         if ($user) {
-                            $user->notify(new PharmacistRequestApproved($record));
+                            try {
+                                // Use the submitted pharmacy name as the user's display name
+                                $user->forceFill([
+                                    'name' => $record->pharmacy_name ?? $user->name,
+                                    'email' => $record->applicant_email ?? $user->email,
+                                    'pharmacy_name' => $record->pharmacy_name ?? $user->pharmacy_name,
+                                    'pharmacist_name' => $record->applicant_name ?? $user->pharmacist_name,
+                                    'registration_number' => $record->registration_number ?? $user->registration_number,
+                                    'pharmacy_address' => $record->pharmacy_address ?? $user->pharmacy_address,
+                                    'pharmacy_phone' => $record->phone ?? $user->pharmacy_phone,
+                                    // Activate the user account when approved
+                                    'is_active' => true,
+                                ])->save();
+                            } catch (\Throwable $e) {
+                                \Illuminate\Support\Facades\Log::error('Error updating user on approve: '.$e->getMessage());
+                            }
+
+                            try {
+                                if (! $user->hasRole(User::ROLE_CLIENT)) {
+                                    $user->assignRole(User::ROLE_CLIENT);
+                                }
+                            } catch (\Throwable $e) {
+                                \Illuminate\Support\Facades\Log::error('Error assigning role on approve: '.$e->getMessage());
+                            }
+
+                            try {
+                                $user->notify(new PharmacistRequestApproved($record));
+                            } catch (\Throwable $e) {
+                                \Illuminate\Support\Facades\Log::error('Error notifying user on approve: '.$e->getMessage());
+                            }
                         }
 
                         // Send a personal approval email to the requester
