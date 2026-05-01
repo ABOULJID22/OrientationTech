@@ -43,9 +43,7 @@ return [
         'download_template' => 'Download template',
     ],
     'pages' => [
-        'calendar' => [
-            'create_event' => 'Create event',
-        ],
+    
         'client_support' => [
             'help_text' => 'Need help? Send us a message and we’ll get back quickly in Support Conversations.',
             'heading' => 'Send a message to support',

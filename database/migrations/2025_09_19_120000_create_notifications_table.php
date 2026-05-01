@@ -5,22 +5,20 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    public function up(): void
-    {
+    public function up(): void {
         if (! Schema::hasTable('notifications')) {
             Schema::create('notifications', function (Blueprint $table) {
-                $table->uuid('id')->primary();
-                $table->string('type');
-                $table->morphs('notifiable');
-                $table->text('data');
+                $table->id();
+                $table->string('title');
+                $table->text('message');
+                $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
                 $table->timestamp('read_at')->nullable();
                 $table->timestamps();
             });
         }
     }
 
-    public function down(): void
-    {
+    public function down(): void {
         Schema::dropIfExists('notifications');
     }
 };

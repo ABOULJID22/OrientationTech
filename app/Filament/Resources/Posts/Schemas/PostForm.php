@@ -132,7 +132,7 @@ class PostForm
                             ->directory('cover_image')
                             ->columnSpan(['lg' => 2]),
                     ]),
-
+ 
                 Section::make('Publication')
                     ->icon('heroicon-o-calendar-days')
                     ->description('Paramétrez la diffusion de l’article depuis un même endroit.')
