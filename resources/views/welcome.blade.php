@@ -787,8 +787,6 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                                           class="w-full mt-1 px-3 sm:px-4 py-2 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
                                       <option value="" disabled {{ old('user_type') ? '' : 'selected' }}>{{ __('site.contact.form.choose_option') }}</option>
                                       <option value="Acheteur" {{ old('user_type')=='Acheteur' ? 'selected' : '' }}>{{ __('site.contact.form.buyer') }}</option>
-                                      <option value="Futur pharmacien" {{ old('user_type')=='Futur pharmacien' ? 'selected' : '' }}>{{ __('site.contact.form.future_pharmacist') }}</option>
-                                      <option value="Pharmacien titulaire" {{ old('user_type')=='Pharmacien titulaire' ? 'selected' : '' }}>{{ __('site.contact.form.owner_pharmacist') }}</option>
                                       <option value="Autres" {{ old('user_type')=='Autres' ? 'selected' : '' }}>{{ __('site.contact.form.others') }}</option>
                                   </select>
                                   @error('user_type')<p class="text-red-500 text-xs sm:text-sm">{{ $message }}</p>@enderror

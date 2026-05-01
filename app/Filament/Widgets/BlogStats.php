@@ -5,7 +5,6 @@ namespace App\Filament\Widgets;
 use App\Models\Contact;
 use App\Models\Post;
 use App\Models\User;
-use App\Models\PharmacistRequest; // Import the model
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
@@ -21,7 +20,6 @@ class BlogStats extends BaseWidget
         $totalUsers = User::count();
         $totalPosts = Post::count();
         $totalContacts = Contact::count();
-        $pendingPharmacistRequests = PharmacistRequest::where('status', 'pending')->count();
         $clientUsers = User::whereHas('roles', fn ($q) => $q->where('name', 'client'))->count();
         $supportRequests = Contact::where('user_type', 'client')->count();
 
@@ -43,7 +41,7 @@ class BlogStats extends BaseWidget
                 ->icon('heroicon-o-building-storefront')
                 ->color('success')
                 ->chart([2, 5, 3, 7, 6, 9, 8, 11, 10, 13, 12, 15])
-                ->url(route('filament.admin.resources.pharmacies.index'))
+                ->url(route('filament.admin.resources.users.index'))
                 ->extraAttributes([
                     'class' => 'stat-card stat-card-success',
                 ]),
@@ -58,17 +56,6 @@ class BlogStats extends BaseWidget
                 ->extraAttributes([
                     'class' => 'stat-card stat-card-primary',
                 ]),
-
-                Stat::make(__('widgets.blog.pharmacist_requests_pending'), number_format($pendingPharmacistRequests))
-                ->description(__('widgets.blog.pharmacist_requests_description'))
-                ->descriptionIcon('heroicon-m-exclamation-triangle')
-                ->icon('heroicon-o-exclamation-triangle')
-                ->color('warning')
-                ->chart([3, 4, 5, 2, 6, 4, 8])
-                ->extraAttributes([
-                    'class' => 'stat-card stat-card-warning',
-                ])
-                ->url(route('filament.admin.resources.pharmacist-requests.index')),
 
                 Stat::make(__('widgets.blog.support_requests'), number_format($supportRequests))
                 ->description(__('widgets.blog.support_requests_description'))

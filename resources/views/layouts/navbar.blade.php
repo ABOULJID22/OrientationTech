@@ -151,12 +151,7 @@
                                                 {{ __('site.auth.my_space') }}
                                             </a>
                                         @endif
-                                @if (Auth::user()?->hasRole('user') && !Auth::user()?->hasRole('client'))
-                                    <a href="{{ route('pharmacist.request.create') }}" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-yellow-700 transition hover:bg-yellow-50 dark:text-yellow-400 dark:hover:bg-gray-700" role="menuitem">
-                                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6m3-3h-6"/></svg>
-                                        Demander un profil Pharmacien
-                                    </a>
-                                @endif
+                                {{-- Pharmacist request link removed --}}
                                 
                                 <a href="{{ route('profile.edit') }}" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" role="menuitem">
                                     <svg class="h-4 w-4 text-[#4f6ba3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="9"/></svg>
@@ -261,11 +256,7 @@
                 @endforeach
 
                 @auth
-                    @if (Auth::user()?->hasRole('user') && !Auth::user()?->hasRole('client'))
-                        <a href="{{ route('pharmacist.request.create') }}" class="block rounded-lg px-4 py-2.5 text-base font-medium text-yellow-700 transition hover:bg-yellow-50 dark:text-yellow-400 dark:hover:bg-gray-700">
-                            Demander un profil Pharmacien
-                        </a>
-                    @endif
+                    {{-- Pharmacist request link removed --}}
                 @endauth
 
                 <!-- Mobile Actions -->

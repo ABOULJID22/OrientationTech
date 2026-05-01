@@ -64,21 +64,9 @@ class UsersTable
                 TextColumn::make('role_label')
                     ->label(__('users.table.role'))
                     ->getStateUsing(function ($record) {
-                        // If the user model has helper methods, prefer them
-                        if (method_exists($record, 'isClient') && $record->isClient()) {
-                            return __('users.role.pharmacies');
-                        }
-
-                        if (method_exists($record, 'isPharmacist') && $record->isPharmacist()) {
-                            return __('users.role.pharmacien');
-                        }
-
-                        // Fallback to roles relation
-                        if (optional($record->roles)->pluck('name')->contains('pharmacist')) {
-                            return __('users.role.pharmacien');
-                        }
-
-                        return __('users.role.not_pharmacien');
+                        // Display the user's roles
+                        $roleNames = optional($record->roles)->pluck('name')->join(', ');
+                        return $roleNames ?: __('users.role.no_role');
                     })
                     ->toggleable()
                     ->searchable(),

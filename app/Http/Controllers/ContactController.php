@@ -56,7 +56,7 @@ class ContactController extends Controller
             'name'       => ['required','string','max:100','regex:/^[\p{L}\s\'\-]+$/u'],
             'email'      => ['required','email'],
             'phone'      => ['required','string','max:20','regex:/^[\d\s+\-().]+$/'],
-            'user_type'  => ['required','string','in:Acheteur,Futur pharmacien,Pharmacien titulaire,Autres'],
+            'user_type'  => ['required','string','in:Acheteur,Autres'],
             'user_other' => ['nullable','string','max:100','regex:/^[\p{L}\s\'\-]+$/u'],
             'message'    => ['required','string','max:1500'],
         ], [

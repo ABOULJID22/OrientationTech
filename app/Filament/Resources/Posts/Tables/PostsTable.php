@@ -13,6 +13,9 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\BadgeColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
@@ -35,6 +38,35 @@ class PostsTable
                             ->weight('bold')
                             ->searchable()
                             ->limit(90),
+
+                        TextColumn::make('category.name')
+                            ->label('Category')
+                            ->sortable()
+                            ->toggleable(),
+
+                        TextColumn::make('author.name')
+                            ->label('Author')
+                            ->sortable()
+                            ->toggleable(),
+
+                        TextColumn::make('status')
+                            ->label('Status')
+                            ->sortable()
+                            ->toggleable(),
+
+                        IconColumn::make('is_featured')
+                            ->boolean()
+                            ->label('Featured')
+                            ->sortable(),
+
+                        TextColumn::make('views_count')
+                            ->label('Views')
+                            ->sortable(),
+
+                        TextColumn::make('published_at')
+                            ->dateTime()
+                            ->label('Published')
+                            ->sortable(),
                     ])->space(2),
                 ]),
             ])
@@ -44,6 +76,13 @@ class PostsTable
             ])
             ->filters([
                 TrashedFilter::make(),
+                SelectFilter::make('status')->options([
+                    'draft' => 'Draft',
+                    'scheduled' => 'Scheduled',
+                    'published' => 'Published',
+                    'archived' => 'Archived',
+                ]),
+                SelectFilter::make('category')->relationship('category','name'),
             ])
             ->recordActions([
                 Action::make('view')

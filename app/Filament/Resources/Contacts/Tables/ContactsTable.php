@@ -65,8 +65,6 @@ class ContactsTable
                     ->label('Profession')
                     ->options([
                         'Acheteur' => 'Acheteur',
-                        'Futur pharmacien' => 'Futur pharmacien',
-                        'Pharmacien titulaire' => 'Pharmacien titulaire',
                         'Autres' => 'Autres',
                     ])
                     ->multiple(),
@@ -74,14 +72,8 @@ class ContactsTable
                 TernaryFilter::make('professionnel')
                     ->label('Professionnel')
                     ->queries(
-                        true: fn (Builder $query) => $query->whereIn('user_type', [
-                            'Futur pharmacien',
-                            'Pharmacien titulaire',
-                        ]),
-                        false: fn (Builder $query) => $query->whereNotIn('user_type', [
-                            'Futur pharmacien',
-                            'Pharmacien titulaire',
-                        ]),
+                            true: fn (Builder $query) => $query->where('user_type', 'Acheteur'),
+                            false: fn (Builder $query) => $query->where('user_type', '!=', 'Acheteur'),
                         blank: fn (Builder $query) => $query,
                     ),
 

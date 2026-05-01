@@ -7,11 +7,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\SecurityReportController;
-use App\Http\Controllers\PharmacistRequestController;
 use App\Http\Controllers\AttachmentController;
-use App\Http\Controllers\TradeAttachmentController;
 use App\Models\Post;
-use App\Http\Controllers\PurchasePdfController;
 
 
 
@@ -49,8 +46,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/pharmacist-request', [PharmacistRequestController::class, 'create'])->name('pharmacist.request.create');
-    Route::post('/pharmacist-request', [PharmacistRequestController::class, 'store'])->name('pharmacist.request.store');
 });
 
 // Changer la langue (FR/EN) et revenir sur la page précédente — public
@@ -119,9 +114,3 @@ Route::get('/files/public/view/{path}', [AttachmentController::class, 'viewPubli
     ->name('attachments.public.view');
 
 
-// TODO: Implement PurchaseAttachmentController and TradeAttachmentController
-// Routes commented out until controllers are created:
-// Route::middleware(['auth', 'web'])->post('/purchases/attachments/delete', [\App\Http\Controllers\PurchaseAttachmentController::class, 'destroy'])->name('purchases.attachments.delete');
-// Route::middleware(['auth', 'web', 'signed'])->get('/purchases/attachments/delete-signed', [\App\Http\Controllers\PurchaseAttachmentController::class, 'destroySigned'])->name('purchases.attachments.delete.signed');
-// Route::middleware(['auth', 'web'])->post('/trades/attachments/delete', [\App\Http\Controllers\TradeAttachmentController::class, 'destroy'])->name('trades.attachments.delete');
-// Route::middleware(['auth', 'web', 'signed'])->get('/trades/attachments/delete-signed', [\App\Http\Controllers\TradeAttachmentController::class, 'destroySigned'])->name('trades.attachments.delete.signed');

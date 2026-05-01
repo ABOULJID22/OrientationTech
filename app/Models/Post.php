@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
@@ -13,9 +14,20 @@ class Post extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'title','slug','content','cover_image',
-        'author_id','category_id','status','published_at',
-        'reading_time',
+        'author_id',
+        'category_id',
+        'title',
+        'slug',
+        'excerpt',
+        'content',
+        'cover_image',
+        'featured_image',
+        'status',
+        'is_featured',
+        'views_count',
+        'published_at',
+        'seo_title',
+        'seo_description',
     ];
  
     protected $casts = [
@@ -114,5 +126,13 @@ class Post extends Model
                 $q->where('slug', $value);
             })
             ->first();
+    }
+    
+    /**
+     * Tags pivot relation
+     */
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }

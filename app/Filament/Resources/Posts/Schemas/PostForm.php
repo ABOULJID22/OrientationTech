@@ -77,6 +77,12 @@ class PostForm
                                     })
                                     ->columnSpan(['lg' => 1]),
 
+                                TextInput::make('excerpt')
+                                    ->label(__('postForm.excerpt.label'))
+                                    ->placeholder(__('postForm.excerpt.placeholder'))
+                                    ->helperText(__('postForm.excerpt.helper'))
+                                    ->columnSpan(['lg' => 2]),
+
                                 TextInput::make('slug')
                                     ->label(__('postForm.slug.label'))
                                     ->placeholder(__('postForm.slug.placeholder'))
@@ -104,6 +110,16 @@ class PostForm
                                     ->fileAttachmentsDisk('public')
                                     ->fileAttachmentsDirectory('posts/content')
                                     ->columnSpanFull(),
+                                
+                                TextInput::make('seo_title')
+                                    ->label('SEO: Titre')
+                                    ->placeholder('Titre SEO (optionnel)')
+                                    ->columnSpan(['lg' => 1]),
+
+                                TextInput::make('seo_description')
+                                    ->label('SEO: Description')
+                                    ->placeholder('Description SEO (optionnel)')
+                                    ->columnSpan(['lg' => 1]),
                             ])
                             ->columnSpanFull(),
                     ]),
@@ -161,6 +177,7 @@ class PostForm
                                 'draft' => __('posts.status.draft'),
                                 'scheduled' => __('posts.status.scheduled'),
                                 'published' => __('posts.status.published'),
+                                'archived' => __('posts.status.archived'),
                             ])
                             ->default('published')
                             ->required()
@@ -185,6 +202,36 @@ class PostForm
                             ->placeholder('Calcul automatique si non renseigné')
                             ->helperText('Indiquez une valeur uniquement si vous souhaitez remplacer le calcul automatique.')
                             ->default(null)
+                            ->columnSpan(['lg' => 1]),
+
+                        Select::make('tags')
+                            ->label('Tags')
+                            ->relationship('tags', 'name')
+                            ->multiple()
+                            ->preload()
+                            ->searchable()
+                            ->columnSpan(['lg' => 2]),
+
+                        FileUpload::make('featured_image')
+                            ->label('Image principale')
+                            ->image()
+                            ->disk('public')
+                            ->directory('posts/featured')
+                            ->columnSpan(['lg' => 2]),
+
+                        Select::make('is_featured')
+                            ->label('Mise en avant')
+                            ->options([
+                                0 => 'Non',
+                                1 => 'Oui',
+                            ])
+                            ->default(0)
+                            ->native(false)
+                            ->columnSpan(['lg' => 1]),
+
+                        TextInput::make('views_count')
+                            ->label('Vues')
+                            ->disabled()
                             ->columnSpan(['lg' => 1]),
                     ]),
             ]);

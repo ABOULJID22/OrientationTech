@@ -33,17 +33,13 @@ class User extends Authenticatable implements FilamentHasAvatar
         'last_name',
         'email',
         'password',
-        'website',
         'phone', 
         'phone_2',
         'address',
         'city',
         'postal_code',
         'country',
-        'pharmacy_name',
         'job_title',
-        'pharmacist_name',
-        'registration_number',
         'is_active',
         'avatar_url',
         'last_login_at',
@@ -99,16 +95,6 @@ class User extends Authenticatable implements FilamentHasAvatar
 {
     return $this->hasMany(Post::class, 'author_id');
 }
-
-    public function purchases()
-    {
-        return $this->hasMany(Purchase::class);
-    }
-
-    public function tradeOperations()
-    {
-        return $this->hasMany(TradeOperation::class);
-    }
 
     public function commercials()
     {
