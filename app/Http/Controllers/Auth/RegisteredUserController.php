@@ -41,8 +41,8 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // Assign default role
-        try { $newUser->assignRole('user'); } catch (\Throwable $e) {}
+        // Default account type after signup.
+        try { $newUser->assignRole(User::ROLE_STUDENT); } catch (\Throwable $e) {}
 
         event(new Registered($newUser));
 

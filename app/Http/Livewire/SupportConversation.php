@@ -108,7 +108,7 @@ class SupportConversation extends Component
         $clientUsers = collect();
         if ($u && method_exists($u, 'isSuperAdmin') && $u->isSuperAdmin()) {
             $clientUsers = \App\Models\User::whereHas('roles', function ($q) {
-                $q->where('name', \App\Models\User::ROLE_CLIENT);
+                $q->where('name', \App\Models\User::ROLE_STUDENT);
             })->get(['id', 'name', 'email', 'avatar_url']);
         } elseif ($u && method_exists($u, 'isClient') && $u->isClient()) {
             $clientUsers = \App\Models\User::where('email', $u->email)->get(['id', 'name', 'email', 'avatar_url']);

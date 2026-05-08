@@ -20,8 +20,12 @@ class User extends Authenticatable implements FilamentHasAvatar
 
     // --- Définition des rôles constants ---
     const ROLE_SUPER_ADMIN = 'super_admin';
-    const ROLE_ASSISTANT   = 'assistant'; 
-    const ROLE_CLIENT      = 'client';
+    const ROLE_TEACHER     = 'teacher';
+    const ROLE_USER        = 'user';
+    const ROLE_STUDENT     = 'student';
+
+    // Aliases de compatibilité pendant la migration des rôles.
+    const ROLE_ASSISTANT   = self::ROLE_TEACHER;
     /**
      * The attributes that are mass assignable.
      *
@@ -87,7 +91,22 @@ class User extends Authenticatable implements FilamentHasAvatar
 
     public function isClient(): bool
     {
-        return $this->hasRole(self::ROLE_CLIENT);
+        return $this->hasRole(self::ROLE_STUDENT);
+    }
+
+    public function isTeacher(): bool
+    {
+        return $this->hasRole(self::ROLE_TEACHER);
+    }
+
+    public function isStudent(): bool
+    {
+        return $this->hasRole(self::ROLE_STUDENT);
+    }
+
+    public function isUser(): bool
+    {
+        return $this->hasRole(self::ROLE_USER);
     }
 
 
@@ -189,25 +208,23 @@ class User extends Authenticatable implements FilamentHasAvatar
     }
 
     /**
-     * Keep `name` in sync with `pharmacy_name` for client users when pharmacy_name is changed.
+     * Keep `name` in sync with legacy profile fields for backward compatibility.
      */
     protected static function booted(): void
     {
-        // On create: if roles include client (or model is assigned client later), prefer pharmacy_name if provided
+        // On create: if the user has the student alias role and a legacy name is present, prefer it.
         static::creating(function (self $user) {
-            if (! empty($user->pharmacy_name) && $user->hasRole(self::ROLE_CLIENT)) {
+            if (! empty($user->pharmacy_name) && $user->hasRole(self::ROLE_STUDENT)) {
                 $user->name = $user->pharmacy_name;
             }
         });
 
-        // On update: if pharmacy_name changes and user is client, copy it into name before save
+        // On update: if pharmacy_name changes and the user is a student, copy it into name before save.
         static::updating(function (self $user) {
-            // If the user currently has the client role
-            if (! $user->hasRole(self::ROLE_CLIENT)) {
+            if (! $user->hasRole(self::ROLE_STUDENT)) {
                 return;
             }
 
-            // If pharmacy_name was changed in this update, sync it into name
             if ($user->isDirty('pharmacy_name')) {
                 $user->name = $user->pharmacy_name;
             }
