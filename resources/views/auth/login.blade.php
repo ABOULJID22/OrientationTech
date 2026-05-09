@@ -16,7 +16,7 @@
                         </svg>
 
                         <h1 class="text-3xl font-semibold tracking-tight text-[#2a3d5d] dark:text-slate-100">
-                            {{ __('auth.login.title_prefix') }} <span class="text-[#4f6ba3] dark:text-[#8aaed0]">Offitrade</span>
+                            {{ __('auth.login.title_prefix') }} <span class="text-[#4f6ba3] dark:text-[#8aaed0]">OrientationTech</span>
                         </h1>
                         <p class="mt-3 max-w-sm text-sm leading-relaxed text-[#5c6f8a] dark:text-slate-300">
                             {{ __('auth.login.subtitle') }}

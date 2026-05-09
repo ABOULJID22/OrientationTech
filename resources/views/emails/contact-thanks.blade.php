@@ -45,8 +45,8 @@
                             // fallback kept
                         }
                     @endphp
-                    <img src="{{ $logoUrl }}" alt="Offitrade Logo">
-                    <h1>Offitrade — Merci</h1>
+                    <img src="{{ $logoUrl }}" alt="OrientationTech Logo">
+                    <h1>OrientationTech — Merci</h1>
                 </div>
             </div>
 
@@ -61,8 +61,8 @@
 
             <div class="email-footer">
                 <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-                    <div>Offitrade — Cet email a été envoyé automatiquement.</div>
-                    <div><a href="https://offitrade.fr" class="btn">Voir le site</a></div>
+                    <div>OrientationTech — Cet email a été envoyé automatiquement.</div>
+                    <div><a href="https://Orientationtech.ma" class="btn">Voir le site</a></div>
                 </div>
             </div>
         </div>

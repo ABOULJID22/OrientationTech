@@ -16,7 +16,8 @@ return new class extends Migration {
             $table->text('message');
             $table->text('reply_message')->nullable();
             $table->timestamp('replied_at')->nullable();
-            $table->foreignId('replied_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->uuid('replied_by')->nullable();
+            $table->foreign('replied_by')->references('id')->on('users')->nullOnDelete();
             $table->timestamps();
         });
     }

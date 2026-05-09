@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'offitrade') }}</title>
+        <title>{{ config('app.name', 'OrientationTech') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -24,6 +24,7 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
             </style>
         @endif
     </head>
+
   <body class="bg-white text-gray-900 dark:text-gray-100 font-sans dark:bg-gray-900 flex flex-col min-h-screen">
     
 
@@ -32,39 +33,134 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
 
     <!-- Main Content -->
     <main class="flex-grow">
-            <!-- Section Hero -->
-            <section id="accueil" class="relative min-h-screen flex items-center justify-center overflow-hidden text-white">
-              <!-- Video Background -->
-              <video autoplay  loop playsinline 
-                class="absolute inset-0 w-full h-full object-cover -z-10 brightness-75 saturate-125">
-                <source src="{{ $bgVideoSrc }}" type="video/mp4" />
-                {{ __('site.hero.video_not_supported') }}
 
-              </video>
 
-              <!-- Overlay foncé -->
-              <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80 z-10"></div>
 
-              <!-- Contenu Hero -->
-              <div class="relative z-10 text-center px-4 sm:px-6 md:px-8 max-w-4xl animate-fadein">
-                <h2 class="text-2xl md:text-4xl font-extrabold mb-10 leading-tight drop-shadow-lg">{!! __('site.hero.title') !!}</h2>
-                <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
-                  <a href="#contact"
-                    class="inline-block bg-white text-[#1b2336] font-bold py-4 px-10 md:mb-8 rounded-full shadow-lg 
-                            hover:bg-gray-200 hover:scale-105 transition-all duration-300">
-                    {{ __('site.hero.cta_appointment') }}
-                  </a>
-                  <a href="/noservices" 
-                    class="inline-block bg-[#4f6ba3] text-white font-bold py-4 px-10 md:mb-8 rounded-full shadow-lg 
-                            hover:bg-[#324d78] hover:scale-105 transition-all duration-300 ">
-                   {{ __('site.services.cta_discover') }}
-                  </a>
+ {{-- HERO --}}
+    <section id="hero" class="relative isolate overflow-hidden bg-[radial-gradient(circle_at_top_left,#eef4ff,transparent_36%),linear-gradient(135deg,#ffffff_0%,#f7f9ff_48%,#eef7f3_100%)] px-4 pt-32 pb-20 dark:bg-[radial-gradient(circle_at_top_left,rgba(79,107,163,.32),transparent_32%),linear-gradient(135deg,#020617,#0f172a)] sm:px-6 lg:pt-36 lg:pb-28">
+        <div class="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-[#4f6ba3]/20 blur-3xl"></div>
+        <div class="pointer-events-none absolute bottom-10 left-10 h-72 w-72 rounded-full bg-emerald-300/20 blur-3xl"></div>
+
+        <div class="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.05fr_.95fr]">
+            <div>
+                <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#4f6ba3]/15 bg-white/70 px-4 py-2 text-xs font-extrabold uppercase tracking-[.2em] text-[#4f6ba3] shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-blue-200">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_20px_rgba(52,211,153,.9)]"></span>
+                    Plateforme IA d’orientation IT
                 </div>
-              </div>
-            </section>
+
+                 <h1 class="text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-5">
+                  Orientez votre avenir en<br/>
+                  <span class="bg-gradient-to-r from-[#4f6ba3] to-[#283043] bg-clip-text text-transparent">
+                    informatique
+                  </span><br/>
+                  dès aujourd'hui.
+                </h1>
+                <p class="mt-6 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300 sm:text-lg">
+                    OrientationTech aide les élèves marocains à choisir leur voie en informatique grâce aux tests intelligents,
+                    roadmaps personnalisées, tableaux de bord enseignants et contenus pédagogiques générés par IA.
+                </p>
+
+                 <div class="flex flex-wrap gap-4 mb-10">
+                    <a href="#how"
+                      class="inline-flex items-center gap-2 bg-gradient-to-br from-[#4f6ba3] to-[#283043] text-white px-7 py-3.5 rounded-xl font-bold shadow-lg hover:-translate-y-0.5 hover:shadow-xl transition">
+                      🎯 Commencer le test d'orientation
+                    </a>
+                  
+                </div>
+                <div class="mt-10 grid max-w-xl grid-cols-3 gap-3">
+                    @foreach([
+                        ['42+', 'élèves suivis'],
+                        ['87%', 'progression moyenne'],
+                        ['3 sec', 'fiche IA générée'],
+                    ] as $stat)
+                        <div class="rounded-2xl border border-slate-200 bg-white/75 p-4 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+                            <div class="text-2xl font-black text-slate-950 dark:text-white">{{ $stat[0] }}</div>
+                            <div class="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">{{ $stat[1] }}</div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            {{-- Dashboard Mockup --}}
+            <div class="relative">
+                <div class="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-[#4f6ba3]/25 to-emerald-300/20 blur-3xl"></div>
+
+                <div class="animate-float-soft relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/85 shadow-2xl shadow-slate-900/10 backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/80">
+                    <div class="flex items-center gap-2 border-b border-slate-200/80 bg-slate-50/80 px-5 py-4 dark:border-white/10 dark:bg-white/5">
+                        <span class="h-3 w-3 rounded-full bg-[#FF5F57]"></span>
+                        <span class="h-3 w-3 rounded-full bg-[#FFBD2E]"></span>
+                        <span class="h-3 w-3 rounded-full bg-[#28CA42]"></span>
+                        <span class="ml-3 flex-1 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-semibold text-slate-400 dark:border-white/10 dark:bg-slate-950/60">
+                            OrientationTech.ma/dashboard
+                        </span>
+                    </div>
+
+                    <div class="p-5 sm:p-7">
+                        <div class="mb-6 flex items-center justify-between">
+                          
+                            <span class="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-600 dark:bg-emerald-400/10">
+                                Live
+                            </span>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-3">
+                            @foreach([
+                                ['42', 'Élèves', 'bg-blue-50 text-blue-700'],
+                                ['87%', 'Réussite', 'bg-emerald-50 text-emerald-700'],
+                                ['12', 'Tests', 'bg-violet-50 text-violet-700'],
+                            ] as $card)
+                                <div class="rounded-2xl {{ $card[2] }} p-4">
+                                    <div class="text-2xl font-black">{{ $card[0] }}</div>
+                                    <div class="text-xs font-bold opacity-70">{{ $card[1] }}</div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <div class="mt-6 rounded-2xl bg-slate-50 p-4 dark:bg-white/5">
+                            <div class="mb-4 flex items-center justify-between">
+                                <span class="text-sm font-black">Progression hebdomadaire</span>
+                                <span class="text-xs font-bold text-emerald-500">+18%</span>
+                            </div>
+
+                            <div class="flex h-28 items-end gap-2">
+                                @foreach([38, 54, 72, 48, 88, 64, 96] as $bar)
+                                    <div class="flex-1 rounded-t-xl bg-gradient-to-t from-[#4f6ba3] to-[#9eb1d7]" style="height: {{ $bar }}%"></div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="mt-5 space-y-3">
+                            @foreach([
+                                ['Amine B.', 'Dev Web', '92%', 'bg-[#4f6ba3]'],
+                                ['Sara M.', 'Cybersécurité', '88%', 'bg-emerald-500'],
+                            ] as $row)
+                                <div class="flex items-center justify-between rounded-2xl border border-slate-100 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/50">
+                                    <div>
+                                        <div class="text-sm font-black">{{ $row[0] }}</div>
+                                        <div class="text-xs text-slate-500">{{ $row[1] }}</div>
+                                    </div>
+                                    <span class="{{ $row[3] }} rounded-full px-3 py-1 text-xs font-black text-white">{{ $row[2] }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute -bottom-6 -left-4 rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-xl dark:border-white/10 dark:bg-slate-900">
+                    <div class="flex items-center gap-3">
+                        <span class="text-3xl">🤖</span>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">IA pédagogique</p>
+                            <p class="text-sm font-black">Fiche générée en 3 sec</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-            <!-- Section About flottante --> 
+  {{-- <!-- Section About flottante --> 
             <section id="about" class="relative z-20 md:z-20 sm:z-20 lg:z-20 -mt-32 dark:bg-gray-900 ">
               <div class="bg-white rounded-t-3xl shadow-xl w-full md:w-12/12 lg:max-w-full mx-auto px-6 md:px-12 py-16
                           transform transition-all duration-700 hover:scale-[1.01] hover:shadow-2xl
@@ -124,421 +220,419 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
 
                 </div>
               </div>
-            </section>
-
-
-
-     
-            <!--  Services Section -->
-            <section id="services" class="relative py-12 lg:py-16 overflow-hidden bg-gradient-to-br from-[#4f6ba3] to-[#283043] dark:from-gray-900 dark:to-gray-800">
-                  
-                  <!-- Abstract Animated Background -->
-                  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-                      <!-- Effets de fond -->
-                      <div class="hidden md:block absolute -top-16 -left-16 w-72 h-72 bg-white/10 rounded-full blur-2xl opacity-30"></div>
-                      <div class="hidden md:block absolute -bottom-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl opacity-20"></div>
-
-                      <!-- Blobs animés -->
-                      <div class="absolute top-0 -left-8 w-64 h-64 bg-white/10 rounded-full mix-blend-overlay animate-blob"></div>
-                      <div class="absolute right-16 -bottom-2 w-48 h-48 bg-white/10 rounded-full mix-blend-overlay animate-blob animation-delay-2000"></div>
-                      <div class="absolute  right-16 -bottom-16 w-80 h-80 bg-white/10 rounded-full mix-blend-overlay animate-blob animation-delay-4000"></div>
-                  </div>
-
-                  <div class="w-full max-w-[95%] mx-auto px-4 md:px-8 relative z-10">
-                    
-                    <!-- Full Width Title Section -->
-                    <div class="w-full mb-10">
-                         <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-4 drop-shadow-md">
-                            {{ __('site.services.title') }}
-                         </h1>
-                         <div class="w-40 h-1.5 bg-gradient-to-r from-blue-300 to-transparent rounded-full dark:bg-gradient-to-r dark:from-blue-400 dark:to-transparent"></div>
-                    </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] gap-2 md:gap-8 lg:gap-12 items-start">
-                              
-                              <!-- Content Text (Left) -->
-                              <div class="order-1 lg:order-1 animate-fade-in-left">
-                                <div class="lg:mb-0">
-                                  
-                                  <div class="text-base md:text-lg text-blue-50/90 ">
-                                      {!! __('site.services.desc') !!}
-                                  </div>
-
-                                  <!-- Benefits Grid -->
-                                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 mt-6">
-                                      <!-- Card 1 -->
-                                      <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#4f6ba3] hover:bg-white/10 hover:border-white/30 transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                                        <div class="flex items-start gap-4">
-                                          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-inner group-hover:scale-110 transition-transform">
-                                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-                                          </div>
-                                          <div>
-                                            <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.adv1_title') }}</h3>
-                                            <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.adv1_desc') }}</p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      
-                                      <!-- Card 2 -->
-                                      <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#4f6ba3]  hover:bg-white/10 hover:border-white/30 transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                                        <div class="flex items-start gap-4">
-                                          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-inner group-hover:scale-110 transition-transform">
-                                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605" /></svg>
-                                          </div>
-                                          <div>
-                                            <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.adv2_title') }}</h3>
-                                            <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.adv2_desc') }}</p>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <!-- Card 3 -->
-                                      <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#4f6ba3]  hover:bg-white/10 hover:border-white/30 transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                                        <div class="flex items-start gap-4">
-                                          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-inner group-hover:scale-110 transition-transform">
-                                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
-                                          </div>
-                                          <div>
-                                            <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.adv3_title') }}</h3>
-                                            <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.adv3_desc') }}</p>
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <!-- Card 4 -->
-                                      <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#4f6ba3]  hover:bg-white/10 hover:border-white/30 transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                                        <div class="flex items-start gap-4">
-                                          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-inner group-hover:scale-110 transition-transform">
-                                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.563.563 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.563.563 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
-                                          </div>
-                                          <div>
-                                            <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.adv4_title') }}</h3>
-                                            <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.adv4_desc') }}</p>
-                                          </div>
-                                        </div>
-                                      </div>
-                                  </div>
-
-                                  <!-- CTA Button (Desktop) -->
-                                  <div class="hidden lg:block">
-                                    <a href="/noservices" class="group inline-flex items-center gap-3  bg-[#4f6ba3] text-white px-8 py-4 rounded-full font-bold shadow-xl hover:shadow-2xl  hover:bg-[#324d78] hover:scale-105  transition-all duration-300 transform hover:-translate-y-1">
-                                      {{ __('site.services.cta_discover') }}
-                                      <span class="w-8 h-8 rounded-full bg-white text-[#4f6ba3]  flex items-center justify-center group-hover:bg-[#283043] transition-colors">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                                      </span>
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                              <!-- Video Container (Right on Desktop) -->
-                              <div class="order-2 lg:order-2 flex justify-center lg:justify-start lg:pl-12 items-start relative perspective-1000">
-                                  
-                                  <!-- Decorative Glow -->
-                                  <div class="absolute inset-0 bg-blue-500/20 blur-[60px] rounded-full animate-pulse-slow pointer-events-none"></div>
-                                  
-                                  <div class="relative w-full max-w-[240px] sm:max-w-[270px] md:max-w-[300px] lg:max-w-[340px] aspect-[9/16] rounded-[2rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] overflow-hidden border-4 border-white/10 backdrop-blur-sm transform transition-all duration-500 hover:scale-[1.02] bg-black/20">
-                                      
-                                      <!-- Video -->
-                                      <video id="servicesVideo" 
-                                            class="absolute inset-0 w-full h-full object-cover z-0"
-                                            src="{{ $presentationVideoSrc }}" 
-                                            preload="metadata"
-                                            autoplay 
-                                            loop 
-                                            playsinline>
-                                      </video>
-                                      
-                                      <!-- Gradient Overlay for controls visibility -->
-                                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none z-10 opacity-80"></div>
-
-                                      <!-- Custom Video Controls -->
-                                      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-3 shadow-lg z-20">
-                                          
-                                          <!-- Play / Pause Button -->
-                                          <button id="videoPlayPause" 
-                                                  type="button" 
-                                                  aria-label="{{ __('site.aria.play_pause') }}"
-                                                  class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors duration-200 shrink-0 text-white">
-                                              <svg id="iconPlay" class="w-5 h-5 ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
-                                              <svg id="iconPause" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-                                          </button>
-
-                                          <!-- Mute / Unmute Button -->
-                                          <button id="videoMute" 
-                                                  type="button" 
-                                                  aria-label="{{ __('site.aria.mute_unmute') }}"
-                                                  class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors duration-200 shrink-0 text-white">
-                                              <svg id="iconVolume" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                                                  <path d="M5 9v6h4l5 4V5L9 9H5z"/>
-                                                  <path d="M16.5 8.5a5 5 0 010 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                              </svg>
-                                              <svg id="iconMuted" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="currentColor">
-                                                  <path d="M5 9v6h4l5 4V5L9 9H5z"/>
-                                                  <path d="M19 9l-6 6M13 9l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                              </svg>
-                                          </button>
-
-                                          <!-- Volume Slider -->
-                                          <div class="flex items-center justify-center flex-1 min-w-0 px-2">
-                                              <input id="videoVolume" 
-                                                    type="range" 
-                                                    min="0" 
-                                                    max="100" 
-                                                    step="5" 
-                                                    value="50"
-                                                    class="w-full h-1.5 accent-white bg-white/30 rounded-full appearance-none cursor-pointer"
-                                                    aria-label="{{ __('site.aria.volume') }}" />
-                                          </div>
-                                      </div>
-
-                                  </div>
-                              </div>
-                              
-                              <!-- CTA Button (Mobile) -->
-                              <div class="order-3 lg:hidden flex justify-center mt-8 w-full">
-                                    <a href="/noservices" class="group inline-flex items-center gap-3  bg-[#4f6ba3] text-white px-8 py-4 rounded-full font-bold shadow-xl hover:shadow-2xl  hover:bg-[#324d78] hover:scale-105  transition-all duration-300 transform hover:-translate-y-1">
-                                      {{ __('site.services.cta_discover') }}
-                                      <span class="w-8 h-8 rounded-full bg-white text-[#4f6ba3]  flex items-center justify-center group-hover:bg-[#283043] transition-colors">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                                      </span>
-                                    </a>
-                              </div>
-                    </div>
-                  </div>
-
-                  <!-- Script de contrôle vidéo -->
-                  <script>
-                    document.addEventListener('DOMContentLoaded', () => {
-                      const video = document.getElementById('servicesVideo');
-                      const playBtn = document.getElementById('videoPlayPause');
-                      const muteBtn = document.getElementById('videoMute');
-                      const vol = document.getElementById('videoVolume');
-                      const iconPlay = document.getElementById('iconPlay');
-                      const iconPause = document.getElementById('iconPause');
-                      const iconVolume = document.getElementById('iconVolume');
-                      const iconMuted = document.getElementById('iconMuted');
-
-                      if (!video) return;
-
-                      // --- 1. Définition des fonctions de mise à jour de l'UI ---
-                      const updPlay = (playing) => {
-                        if(iconPlay) iconPlay.classList.toggle('hidden', playing);
-                        if(iconPause) iconPause.classList.toggle('hidden', !playing);
-                      };
-
-                      const updMute = (muted) => {
-                        if(iconVolume) iconVolume.classList.toggle('hidden', muted);
-                        if(iconMuted) iconMuted.classList.toggle('hidden', !muted);
-                      };
-
-                      // --- 2. Logique "Simple" d'Autoplay avec Son ---
-                      // On tente d'abord de jouer avec le son (muted = false).
-                      // Si le navigateur bloque (erreur), on passe en muet et on relance.
-                      
-                      const initialVol = vol ? parseInt(vol.value, 10) / 100 : 0.5;
-                      video.volume = Number.isFinite(initialVol) ? initialVol : 0.5;
-                      video.muted = false; // Intention : Son activé
-
-                      var playPromise = video.play();
-
-                      if (playPromise !== undefined) {
-                          playPromise.then(() => {
-                              // Succès : La vidéo joue AVEC le son
-                              console.log('Autoplay started with sound.');
-                              updPlay(true);
-                              updMute(false);
-                          }).catch(error => {
-                              // Echec : Le navigateur a bloqué le son
-                              console.warn('Autoplay with sound blocked. Fallback to muted.');
-                              video.muted = true; // On coupe le son pour permettre la lecture
-                              video.play().then(() => {
-                                  updPlay(true);
-                                  updMute(true);
-                              });
-                          });
-                      }
-
-                      // --- 3. Gestionnaires d'événements (Boutons) ---
-
-                      playBtn?.addEventListener('click', () => {
-                        if (video.paused) {
-                          video.play().then(() => updPlay(true)).catch(() => updPlay(false));
-                        } else {
-                          video.pause();
-                          updPlay(false);
-                        }
-                      });
-
-                      muteBtn?.addEventListener('click', () => {
-                        video.muted = !video.muted;
-                        updMute(video.muted);
-                        // Si on réactive le son alors que le volume est à 0, on le met à 50%
-                        if (!video.muted && video.volume === 0) {
-                          video.volume = 0.5;
-                          if(vol) vol.value = 50;
-                        }
-                      });
-
-                      vol?.addEventListener('input', (e) => {
-                        const v = Math.max(0, Math.min(100, parseInt(e.target.value, 10) || 0)) / 100;
-                        video.volume = v;
-                        video.muted = (v === 0);
-                        updMute(video.muted);
-                      });
-                    });
-                  </script>
-            </section>
-
-        <!-- End Services Section -->
+  </section> --}}
 
 
 
 
-        <section id="pourquoi" class="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-white dark:bg-gray-900 overflow-hidden isolate">
-          <!-- Background decorative elements -->
-          <div class="pointer-events-none absolute -top-40 -right-40 w-72 sm:w-80 md:w-96 h-72 sm:h-80 md:h-96 bg-blue-500/10 dark:bg-blue-400/5 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-10 animate-blob"></div>
-          <div class="pointer-events-none absolute -bottom-40 -left-40 w-64 sm:w-72 md:w-80 h-64 sm:h-72 md:h-80 bg-purple-500/10 dark:bg-purple-400/5 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-10 animate-blob animation-delay-2000"></div>
-          <div class="pointer-events-none absolute top-1/4 left-1/2 w-56 sm:w-64 md:w-72 h-56 sm:h-64 md:h-72 bg-emerald-500/10 dark:bg-emerald-400/5 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-10 animate-blob animation-delay-4000"></div>
 
-          <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-            <!-- Title -->
-            <div class="text-center mb-10 sm:mb-12 md:mb-16 lg:mb-20">
-              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight px-4">
-                  {!! __('site.why.title') !!}
-                 <span class="block  w-50 h-1.5 bg-gradient-to-r from-[#4f6ba3] to-transparent dark:bg-gradient-to-r dark:from-blue-400 dark:to-transparent mx-auto mt-3  rounded-full"></span>
+{{-- ════════════════════════ PROBLEM / SERVICES ════════════════════════ --}}
+<section id="services" class="relative py-12 lg:py-16 overflow-hidden bg-gradient-to-br from-[#4f6ba3] to-[#283043] dark:from-gray-900 dark:to-gray-800">
 
-                </h1>              
-              <p class="mt-4 sm:mt-5 md:mt-6 text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto px-4">
-                {{ __('site.why.subtitle') }}
-              </p>
+  {{-- Abstract Animated Background --}}
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="hidden md:block absolute -top-16 -left-16 w-72 h-72 bg-white/10 rounded-full blur-2xl opacity-30"></div>
+    <div class="hidden md:block absolute -bottom-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl opacity-20"></div>
+    <div class="absolute top-0 -left-8 w-64 h-64 bg-white/10 rounded-full mix-blend-overlay animate-blob"></div>
+    <div class="absolute right-16 -bottom-2 w-48 h-48 bg-white/10 rounded-full mix-blend-overlay animate-blob animation-delay-2000"></div>
+    <div class="absolute right-16 -bottom-16 w-80 h-80 bg-white/10 rounded-full mix-blend-overlay animate-blob animation-delay-4000"></div>
+  </div>
+
+  <div class="w-full max-w-[95%] mx-auto px-4 md:px-8 relative z-10">
+
+    {{-- Full Width Title Section --}}
+    <div class="w-full mb-10">
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-4 drop-shadow-md">
+        ⚠️ Le système actuel freine l'avenir des élèves
+      </h1>
+      <div class="w-40 h-1.5 bg-gradient-to-r from-blue-300 to-transparent rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] gap-2 md:gap-8 lg:gap-12 items-start">
+
+      {{-- Contenu Texte (Gauche) --}}
+      <div class="order-1 lg:order-1 animate-fade-in-left">
+        <div class="lg:mb-0">
+
+          <div class="text-base md:text-lg text-blue-50/90 mb-6">
+            Des milliers d'élèves marocains arrivent au lycée sans savoir quelle filière choisir en informatique.
+          </div>
+
+          {{-- 4 Cards Problèmes --}}
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 mt-6">
+
+            {{-- Card 1 : Orientation floue --}}
+            <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#4f6ba3] hover:bg-white/10 hover:border-white/30 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-inner group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-white mb-1">😕 Orientation floue</h3>
+                  <p class="text-sm text-blue-100/70 leading-snug">Les élèves ignorent les métiers de l'IT : Développeur, Data Scientist, Cybersécurité, IA…</p>
+                </div>
+              </div>
             </div>
 
-            <!-- Cards -->
-            <div class="grid gap-5 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-8 sm:mt-10 md:mt-12">
-             
-            <!-- Card 1 -->
-              <div class="group flex flex-col items-center text-center p-6 sm:p-7 md:p-8 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-[#4f6ba3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#4f6ba3] to-blue-400 flex items-center justify-center text-white shadow-xl mb-5 sm:mb-6 relative z-10">
-                 <svg class="w-7 h-7 sm:w-8 sm:h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-                </svg>
-
+            {{-- Card 2 : Manque de guidance --}}
+            <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#4f6ba3] hover:bg-white/10 hover:border-white/30 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-inner group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                  </svg>
                 </div>
-                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 relative z-10">{{ __('site.why.c1_title') }}</h3>
-                <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base relative z-10">{{ __('site.why.c1_desc') }}</p>
-              </div>
-
-              <!-- Card 2 -->
-              <div class="group flex flex-col items-center text-center p-6 sm:p-7 md:p-8 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-[#4f6ba3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#4f6ba3] to-blue-400 flex items-center justify-center text-white shadow-xl mb-5 sm:mb-6 relative z-10">
-                    <svg class="w-7 h-7 sm:w-8 sm:h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
-                    </svg>
+                <div>
+                  <h3 class="text-lg font-bold text-white mb-1">📉 Manque de guidance</h3>
+                  <p class="text-sm text-blue-100/70 leading-snug">Aucun outil dédié ne guide l'élève vers la filière qui correspond à son profil et ses capacités.</p>
                 </div>
-                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 relative z-10">{{ __('site.why.c2_title') }}</h3>
-                <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base relative z-10">{{ __('site.why.c2_desc') }}</p>
               </div>
+            </div>
 
-              <!-- Card 3 -->
-              <div class="group flex flex-col items-center text-center p-6 sm:p-7 md:p-8 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-[#4f6ba3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#4f6ba3] to-blue-400 flex items-center justify-center text-white shadow-xl mb-5 sm:mb-6 relative z-10">
-                    <svg  class="w-7 h-7 sm:w-8 sm:h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819" />
-                    </svg>
-
+            {{-- Card 3 : Suivi impossible --}}
+            <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#4f6ba3] hover:bg-white/10 hover:border-white/30 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-inner group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                  </svg>
                 </div>
-                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 relative z-10">{{ __('site.why.c3_title') }}</h3>
-                <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base relative z-10">{{ __('site.why.c3_desc') }}</p>
-              </div>
-
-              <!-- Card 4 -->
-              <div class="group flex flex-col items-center text-center p-6 sm:p-7 md:p-8 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-[#4f6ba3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#4f6ba3] to-blue-400 flex items-center justify-center text-white shadow-xl mb-5 sm:mb-6 relative z-10">
-                    <svg class="w-7 h-7 sm:w-8 sm:h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75" />
-                    </svg>
-
+                <div>
+                  <h3 class="text-lg font-bold text-white mb-1">📋 Suivi impossible</h3>
+                  <p class="text-sm text-blue-100/70 leading-snug">Les enseignants gèrent résultats et progrès sur papier — chronophage et inefficace.</p>
                 </div>
-                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 relative z-10">{{ __('site.why.c4_title') }}</h3>
-                <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base relative z-10">{{ __('site.why.c4_desc') }}</p>
               </div>
+            </div>
 
+            {{-- Card 4 : Outils dépassés --}}
+            <div class="group bg-white/5 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#4f6ba3] hover:bg-white/10 hover:border-white/30 transition-all duration-300 hover:-translate-y-1 shadow-lg">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center text-white shadow-inner group-hover:scale-110 transition-transform">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l5.653-4.655m5.8-5.8 3.056-3.056a2.533 2.533 0 0 1 3.586 3.586L20.22 9.37m-5.8-5.8-2.678 2.678m5.8 5.8-2.678-2.678m-5.8 5.8-3.056 3.056" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-white mb-1">🛠️ Outils dépassés</h3>
+                  <p class="text-sm text-blue-100/70 leading-snug">Pas de plateforme adaptée au contexte marocain, à la langue et aux programmes officiels.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>{{-- fin Benefits Grid --}}
+
+          {{-- CTA Button (Desktop) --}}
+          <div class="hidden lg:block">
+            <a href="/noservices" class="group inline-flex items-center gap-3 bg-[#4f6ba3] text-white px-8 py-4 rounded-full font-bold shadow-xl hover:shadow-2xl hover:bg-[#324d78] hover:scale-105 transition-all duration-300 transform hover:-translate-y-1">
+              {{ __('site.services.cta_discover') }}
+              <span class="w-8 h-8 rounded-full bg-white text-[#4f6ba3] flex items-center justify-center group-hover:bg-[#283043] transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      {{-- Video Container (Droite sur Desktop) --}}
+      <div class="order-2 lg:order-2 flex justify-center lg:justify-start lg:pl-12 items-start relative perspective-1000">
+        <div class="absolute inset-0 bg-blue-500/20 blur-[60px] rounded-full animate-pulse-slow pointer-events-none"></div>
+        <div class="relative w-full max-w-[240px] sm:max-w-[270px] md:max-w-[300px] lg:max-w-[340px] aspect-[9/16] rounded-[2rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] overflow-hidden border-4 border-white/10 backdrop-blur-sm transform transition-all duration-500 hover:scale-[1.02] bg-black/20">
+          <video id="servicesVideo"
+                 class="absolute inset-0 w-full h-full object-cover z-0"
+                 src="{{ $presentationVideoSrc }}"
+                 preload="metadata"
+                  loop playsinline>
+          </video>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none z-10 opacity-80"></div>
+          {{-- Custom Video Controls --}}
+          <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-3 shadow-lg z-20">
+            <button id="videoPlayPause" type="button" aria-label="{{ __('site.aria.play_pause') }}"
+                    class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors duration-200 shrink-0 text-white">
+              <svg id="iconPlay" class="w-5 h-5 ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
+              <svg id="iconPause" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+            </button>
+            <button id="videoMute" type="button" aria-label="{{ __('site.aria.mute_unmute') }}"
+                    class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors duration-200 shrink-0 text-white">
+              <svg id="iconVolume" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M5 9v6h4l5 4V5L9 9H5z"/>
+                <path d="M16.5 8.5a5 5 0 010 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <svg id="iconMuted" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M5 9v6h4l5 4V5L9 9H5z"/>
+                <path d="M19 9l-6 6M13 9l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+            <div class="flex items-center justify-center flex-1 min-w-0 px-2">
+              <input id="videoVolume" type="range" min="0" max="100" step="5" value="50"
+                     class="w-full h-1.5 accent-white bg-white/30 rounded-full appearance-none cursor-pointer"
+                     aria-label="{{ __('site.aria.volume') }}" />
             </div>
           </div>
-        </section>
+        </div>
+      </div>
 
+      {{-- CTA Button (Mobile) --}}
+      <div class="order-3 lg:hidden flex justify-center mt-8 w-full">
+        <a href="/noservices" class="group inline-flex items-center gap-3 bg-[#4f6ba3] text-white px-8 py-4 rounded-full font-bold shadow-xl hover:shadow-2xl hover:bg-[#324d78] hover:scale-105 transition-all duration-300 transform hover:-translate-y-1">
+          {{ __('site.services.cta_discover') }}
+          <span class="w-8 h-8 rounded-full bg-white text-[#4f6ba3] flex items-center justify-center group-hover:bg-[#283043] transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </span>
+        </a>
+      </div>
 
-        <style>
-          @keyframes blob {
-            0% {
-              transform: translate(0, 0) scale(1);
-            }
-            33% {
-              transform: translate(30px, -50px) scale(1.1);
-            }
-            66% {
-              transform: translate(-20px, 20px) scale(0.9);
-            }
-            100% {
-              transform: translate(0, 0) scale(1);
-            }
-          }
+    </div>
+  </div>
 
-          .animate-blob {
-            animation: blob 7s infinite cubic-bezier(0.6, 0.01, 0.3, 0.9);
-          }
+  {{-- Script de contrôle vidéo (inchangé) --}}
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById('servicesVideo');
+        const playBtn = document.getElementById('videoPlayPause');
+        const muteBtn = document.getElementById('videoMute');
+        const vol = document.getElementById('videoVolume');
+        const iconPlay = document.getElementById('iconPlay');
+        const iconPause = document.getElementById('iconPause');
+        const iconVolume = document.getElementById('iconVolume');
+        const iconMuted = document.getElementById('iconMuted');
+        if (!video) return;
 
-          .animation-delay-2000 {
-            animation-delay: 2s;
-          }
+        const updPlay = (playing) => {
+          iconPlay?.classList.toggle('hidden', playing);
+          iconPause?.classList.toggle('hidden', !playing);
+        };
+        const updMute = (muted) => {
+          iconVolume?.classList.toggle('hidden', muted);
+          iconMuted?.classList.toggle('hidden', !muted);
+        };
 
-          .animation-delay-4000 {
-            animation-delay: 4s;
-          }
-        </style>
+        // ✅ Initialisation sans autoplay
+        const initialVol = vol ? parseInt(vol.value, 10) / 100 : 0.5;
+        video.volume = Number.isFinite(initialVol) ? initialVol : 0.5;
+        video.muted = false;
+        updPlay(false);   // affiche l'icône ▶ Play
+        updMute(false);   // affiche l'icône volume
 
+        // ❌ SUPPRIMÉ : video.play() + playPromise
 
+        playBtn?.addEventListener('click', () => {
+          if (video.paused) { video.play().then(() => updPlay(true)).catch(() => updPlay(false)); }
+          else { video.pause(); updPlay(false); }
+        });
+        muteBtn?.addEventListener('click', () => {
+          video.muted = !video.muted;
+          updMute(video.muted);
+          if (!video.muted && video.volume === 0) { video.volume = 0.5; if(vol) vol.value = 50; }
+        });
+        vol?.addEventListener('input', (e) => {
+          const v = Math.max(0, Math.min(100, parseInt(e.target.value, 10) || 0)) / 100;
+          video.volume = v; video.muted = (v === 0); updMute(video.muted);
+        });
+      });
+    </script>
 
-            <!-- Team Section -->
-            <!-- <section id="team" class=" py-20 ">
-                <div class="max-w-7xl mx-auto px-4">
-                    <div class="text-center mb-16">
-                        <h2 class="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">Notre Équipe d’Experts</h2>
-                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Découvrez les professionnels passionnés qui font la force d’Offitrade. Notre équipe pluridisciplinaire met son expertise au service de votre réussite, avec un accompagnement personnalisé et une exigence d’excellence.</p>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-                        <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center group hover:shadow-2xl transition">
-                            <img src="/images/img1.jpg" alt="Dr. Hamza" loading="lazy" decoding="async" class="w-28 h-28 rounded-full object-cover border-4 border-blue-100 group-hover:scale-105 transition">
-                            <h3 class="mt-5 text-xl font-bold text-gray-900">Dr. Hamza</h3>
-                            <p class="text-blue-700 font-medium mb-2">Pharmacien Responsable</p>
-                            <p class="text-gray-600 text-sm mb-4">Expert en pharmacologie clinique, garant de la qualité et de la sécurité des traitements délivrés.</p>
+</section>
+{{-- ════════════════════════ SOLUTION ════════════════════════ --}}
+
+<section id="solution" class="bg-slate-50 px-4 py-20 dark:bg-slate-950 sm:px-6 lg:py-28">
+    <div class="mx-auto max-w-7xl">
+        <div class="grid items-center gap-14 lg:grid-cols-2">
+            <div>
+                <span class="inline-flex rounded-full bg-[#4f6ba3]/10 px-4 py-2 text-xs font-black uppercase tracking-[.2em] text-[#4f6ba3]">
+                    La solution
+                </span>
+                <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl">
+                    OrientationTech : orientation, tests et suivi dans une seule expérience.
+                </h2>
+                <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+                    Une plateforme pensée pour les élèves, enseignants et établissements : simple, rapide,
+                    intelligente et adaptée au terrain.
+                </p>
+
+                <div class="mt-8 space-y-4">
+                    @foreach([
+                        ['🧭', 'Orientation intelligente', 'Analyse du profil et recommandation d’une voie IT personnalisée.'],
+                        ['📝', 'Tests adaptatifs', 'QCM, vrai/faux et réponses courtes créés rapidement.'],
+                        ['📊', 'Suivi avancé', 'Statistiques temps réel pour chaque élève et chaque classe.'],
+                    ] as $feature)
+                        <div class="group flex gap-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl dark:border-white/10 dark:bg-white/5">
+                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#4f6ba3]/10 text-2xl">
+                                {{ $feature[0] }}
+                            </div>
+                            <div>
+                                <h3 class="font-black text-slate-950 dark:text-white">{{ $feature[1] }}</h3>
+                                <p class="mt-1 text-sm leading-6 text-slate-500 dark:text-slate-400">{{ $feature[2] }}</p>
+                            </div>
                         </div>
-                        <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center group hover:shadow-2xl transition">
-                            <img src="/images/img2.jpg" alt="Abir" loading="lazy" decoding="async" class="w-28 h-28 rounded-full object-cover border-4 border-blue-100 group-hover:scale-105 transition">
-                            <h3 class="mt-5 text-xl font-bold text-gray-900">Abir</h3>
-                            <p class="text-blue-700 font-medium mb-2">Préparatrice en Pharmacie</p>
-                            <p class="text-gray-600 text-sm mb-4">Assure la préparation, le contrôle et la délivrance des prescriptions avec précision.</p>
-                        </div>
-                        <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center group hover:shadow-2xl transition">
-                            <img src="/images/img3.jpg" alt="Charlotte" loading="lazy" decoding="async" class="w-28 h-28 rounded-full object-cover border-4 border-blue-100 group-hover:scale-105 transition">
-                            <h3 class="mt-5 text-xl font-bold text-gray-900">Charlotte</h3>
-                            <p class="text-blue-700 font-medium mb-2">Conseillère Santé</p>
-                            <p class="text-gray-600 text-sm mb-4">Accompagne les patients dans le choix de produits de santé et bien-être adaptés.</p>
-                        </div>
-                        <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center group hover:shadow-2xl transition">
-                            <img src="/images/img1.jpg" alt="Julia" loading="lazy" decoding="async" class="w-28 h-28 rounded-full object-cover border-4 border-blue-100 group-hover:scale-105 transition">
-                            <h3 class="mt-5 text-xl font-bold text-gray-900">Julia</h3>
-                            <p class="text-blue-700 font-medium mb-2">Gestionnaire de Stock</p>
-                            <p class="text-gray-600 text-sm mb-4">Supervise les approvisionnements et la traçabilité des produits pharmaceutiques.</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-            </section> -->
+            </div>
+
+            <div class="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-2xl dark:border-white/10 dark:bg-slate-900">
+                <div class="mb-6 flex items-center justify-between">
+                    <h3 class="text-xl font-black">🗺️ Roadmap personnalisée</h3>
+                    <span class="rounded-full bg-[#4f6ba3]/10 px-3 py-1 text-xs font-bold text-[#4f6ba3]">Exemple</span>
+                </div>
+
+                @foreach([
+                    ['1', 'Test d’orientation terminé', 'Profil analysé · Score : 84/100'],
+                    ['2', 'Profil détecté : Développeur Full Stack', 'Logique, créativité et résolution de problèmes'],
+                    ['3', 'Parcours recommandé', 'HTML → CSS → JavaScript → PHP → Laravel'],
+                ] as $step)
+                    <div class="relative flex gap-4 pb-7 last:pb-0">
+                        @if(!$loop->last)
+                            <span class="absolute left-5 top-10 h-full w-px bg-slate-200 dark:bg-white/10"></span>
+                        @endif
+                        <div class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#4f6ba3] to-[#283043] text-sm font-black text-white">
+                            {{ $step[0] }}
+                        </div>
+                        <div>
+                            <h4 class="font-black">{{ $step[1] }}</h4>
+                            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">{{ $step[2] }}</p>
+                        </div>
+                    </div>
+                @endforeach
+
+                <div class="mt-7 flex flex-wrap gap-2">
+                    @foreach(['💻 Dev Web', '🔐 Cybersécurité', '📊 Data Science', '🤖 IA', '🌐 Réseaux'] as $tag)
+                        <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700 dark:bg-white/10 dark:text-slate-200">
+                            {{ $tag }}
+                        </span>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{{-- ════════════════════════ HOW IT WORKS ════════════════════════ --}}
+<section id="how" class="py-20 px-6 bg-gradient-to-br from-[#4f6ba3] to-[#283043]">
+  <div class="max-w-5xl mx-auto text-center mb-12">
+    <div class="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+      🔄 Processus
+    </div>
+    <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-3">Comment ça marche ?</h2>
+    <p class="text-blue-200">En 4 étapes simples, OrientationTech oriente chaque élève vers son futur.</p>
+  </div>
+  <div class="max-w-5xl mx-auto grid md:grid-cols-4 gap-6">
+    @foreach([
+      ['📝','1','Passer le test','Test d\'orientation de 20 questions, adapté au niveau de l\'élève.'],
+      ['🔍','2','Analyse IA','Notre algorithme analyse les réponses et construit un profil précis.'],
+      ['🗺️','3','Résultat & Roadmap','L\'élève reçoit sa filière recommandée et son parcours d\'apprentissage.'],
+      ['📈','4','Suivi continu','L\'enseignant suit la progression et adapte son accompagnement.'],
+    ] as $step)
+    <div class="text-center">
+      <div class="relative inline-block mb-4">
+        <div class="w-16 h-16 bg-white/10 border border-white/20 rounded-full flex items-center justify-center text-2xl mx-auto">{{ $step[0] }}</div>
+        <span class="absolute -top-1 -right-1 w-5 h-5 bg-white text-[#4f6ba3] rounded-full text-xs font-extrabold flex items-center justify-center">{{ $step[1] }}</span>
+      </div>
+      <h4 class="font-bold text-white mb-1.5">{{ $step[2] }}</h4>
+      <p class="text-blue-200 text-sm">{{ $step[3] }}</p>
+    </div>
+    @endforeach
+  </div>
+</section>
+
+{{-- ════════════════════════ BENEFITS / POURQUOI ════════════════════════ --}}
+<section id="pourquoi" class="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-white dark:bg-gray-900 overflow-hidden isolate">
+
+  {{-- Background decorative blobs --}}
+  <div class="pointer-events-none absolute -top-40 -right-40 w-72 sm:w-80 md:w-96 h-72 sm:h-80 md:h-96 bg-blue-500/10 dark:bg-blue-400/5 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-10 animate-blob"></div>
+  <div class="pointer-events-none absolute -bottom-40 -left-40 w-64 sm:w-72 md:w-80 h-64 sm:h-72 md:h-80 bg-purple-500/10 dark:bg-purple-400/5 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-10 animate-blob animation-delay-2000"></div>
+  <div class="pointer-events-none absolute top-1/4 left-1/2 w-56 sm:w-64 md:w-72 h-56 sm:h-64 md:h-72 bg-emerald-500/10 dark:bg-emerald-400/5 rounded-full mix-blend-multiply filter blur-3xl opacity-30 dark:opacity-10 animate-blob animation-delay-4000"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+
+    {{-- Title --}}
+    <div class="text-center mb-10 sm:mb-12 md:mb-16 lg:mb-20">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight px-4">
+        🎯 Pourquoi choisir OrientationTech ?
+        <span class="block w-50 h-1.5 bg-gradient-to-r from-[#4f6ba3] to-transparent dark:bg-gradient-to-r dark:from-blue-400 dark:to-transparent mx-auto mt-3 rounded-full"></span>
+      </h1>
+      <p class="mt-4 sm:mt-5 md:mt-6 text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto px-4">
+        Une plateforme pensée pour le contexte marocain — simple, intelligente et efficace.
+      </p>
+    </div>
+
+    {{-- Cards --}}
+    <div class="grid gap-5 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-8 sm:mt-10 md:mt-12">
+
+      {{-- Card 1 : Gain de temps --}}
+      <div class="group flex flex-col items-center text-center p-6 sm:p-7 md:p-8 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#4f6ba3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#4f6ba3] to-blue-400 flex items-center justify-center text-white shadow-xl mb-5 sm:mb-6 relative z-10">
+          <svg class="w-7 h-7 sm:w-8 sm:h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+          </svg>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 relative z-10">
+          Gain de temps
+        </h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base relative z-10">
+          Automatisez la correction, le suivi et la création de contenu pédagogique.
+        </p>
+      </div>
+
+      {{-- Card 2 : Orientation précise --}}
+      <div class="group flex flex-col items-center text-center p-6 sm:p-7 md:p-8 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#4f6ba3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#4f6ba3] to-blue-400 flex items-center justify-center text-white shadow-xl mb-5 sm:mb-6 relative z-10">
+          <svg class="w-7 h-7 sm:w-8 sm:h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+          </svg>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 relative z-10">
+         Orientation précise
+        </h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base relative z-10">
+          Chaque élève trouve sa voie en IT grâce à une analyse de profil personnalisée.
+        </p>
+      </div>
+
+      {{-- Card 3 : Accessible partout --}}
+      <div class="group flex flex-col items-center text-center p-6 sm:p-7 md:p-8 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#4f6ba3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#4f6ba3] to-blue-400 flex items-center justify-center text-white shadow-xl mb-5 sm:mb-6 relative z-10">
+          <svg class="w-7 h-7 sm:w-8 sm:h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+          </svg>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 relative z-10">
+          Accessible partout
+        </h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base relative z-10">
+          Interface responsive, accessible depuis smartphone, tablette ou PC — à tout moment.
+        </p>
+      </div>
+
+      {{-- Card 4 : Sécurisé & local --}}
+      <div class="group flex flex-col items-center text-center p-6 sm:p-7 md:p-8 border border-gray-200 dark:border-gray-800 rounded-xl sm:rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-2xl dark:hover:shadow-blue-500/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#4f6ba3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-[#4f6ba3] to-blue-400 flex items-center justify-center text-white shadow-xl mb-5 sm:mb-6 relative z-10">
+          <svg class="w-7 h-7 sm:w-8 sm:h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+          </svg>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 relative z-10">
+          Sécurisé & local
+        </h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm sm:text-base relative z-10">
+          Données hébergées au Maroc, conformité totale avec les réglementations locales, accès protégé.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
 
 
 
@@ -737,7 +831,7 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                                   </span>
                                   <div>
                                       <h4 class="text-base sm:text-lg font-semibold dark:text-white">{{ __('site.contact.email') }}</h4>
-                                      <p class="text-sm sm:text-base dark:text-gray-300">{{ $siteSettings?->email ?? 'contact@offitrade.fr' }}</p>
+                                      <p class="text-sm sm:text-base dark:text-gray-300">{{ $siteSettings?->email ?? 'contact@Orientationtech.ma' }}</p>
                                   </div>
                               </div>
                           </div>
@@ -880,6 +974,11 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
               </div>
           </section>
 
+
+
+
+          
+
     <main>
     <!-- Fin Main Content -->
 
@@ -888,6 +987,8 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
+
+
   </body>
       <!-- Footer -->
     @include('layouts.footer') 

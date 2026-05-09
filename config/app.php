@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'offitrade'),
+    'name' => env('APP_NAME', 'OrientationTech'),
 
     /*
     |--------------------------------------------------------------------------

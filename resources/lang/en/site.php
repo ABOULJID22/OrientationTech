@@ -19,7 +19,7 @@ return [
         'account' => 'Account',
     ],
     'hero' => [
-        'title' => 'Offitrade frees up <span class="text-[#4f6ba3]">pharmacists</span> time and optimizes their purchasing management.',
+        'title' => 'OrientationTech frees up <span class="text-[#4f6ba3]">pharmacists</span> time and optimizes their purchasing management.',
         'cta_appointment' => 'Request a meeting',
         'cta_contact' => 'Get contacted',
         'video_not_supported' => 'Your browser does not support the video tag.',
@@ -27,15 +27,15 @@ return [
     'about' => [
         'title' => 'Who are we?',
         'subtitle_html' => 'A reliable <span class="text-[#1b2336] dark:text-gray-200 ">strategic partner</span> for your pharmacies',
-        'p1' => "At <span class=\"font-semibold\">Offitrade</span>, we specialize in optimizing and managing your commercial operations. From audit to payment, we help you <span class=\"font-semibold\">maximize your margins</span> and improve profitability.",
-        'quote' => '“By entrusting us with your Trade operations, you can focus on what matters. Offitrade becomes your strategic ally, simplifying processes and optimizing resources.”',
+        'p1' => "At <span class=\"font-semibold\">OrientationTech</span>, we specialize in optimizing and managing your commercial operations. From audit to payment, we help you <span class=\"font-semibold\">maximize your margins</span> and improve profitability.",
+        'quote' => '“By entrusting us with your Trade operations, you can focus on what matters. OrientationTech becomes your strategic ally, simplifying processes and optimizing resources.”',
         'stats_clients' => 'Happy clients',
         'stats_services' => 'Services offered',
     ],
     'services' => [
-        'title' => 'Offitrade: Optimize your pharmacy management',
+        'title' => 'OrientationTech: Optimize your pharmacy management',
         'subtitle' => 'We boost your performance, simplify processes, and enhance your visibility.',
-            'desc' => "In pharmacies, purchase management can quickly become time-consuming: restocks to plan, shortages to fill, terms to negotiate and renegotiate…<br>Result: less time for the core business and cash-flow sometimes under pressure.<br><br>👉 Offitrade takes over and secures your supplies.<br><br><span class=\"font-semibold\">Our services provide:</span>",
+            'desc' => "In pharmacies, purchase management can quickly become time-consuming: restocks to plan, shortages to fill, terms to negotiate and renegotiate…<br>Result: less time for the core business and cash-flow sometimes under pressure.<br><br>👉 OrientationTech takes over and secures your supplies.<br><br><span class=\"font-semibold\">Our services provide:</span>",
         'label_presentation' => 'Overview',
         'adv1_title' => 'Time Savings',
         'adv1_desc' => 'We manage your restocking and orders for you.',
@@ -48,7 +48,7 @@ return [
         'cta_discover' => 'Discover our services',
     ],
     'why' => [
-        'title' => 'Why choose <span class="text-[#4f6ba3] dark:text-blue-400 block sm:inline-block mt-2 sm:mt-0">Offitrade ?</span>',
+        'title' => 'Why choose <span class="text-[#4f6ba3] dark:text-blue-400 block sm:inline-block mt-2 sm:mt-0">OrientationTech ?</span>',
         'subtitle' => 'Because every pharmacy deserves a reliable partner to simplify their management and maximize their performance.',
         'c1_title' => 'A strategic partner',
         'c1_desc' => 'We support you in the management and strategic development of your pharmacy.',
@@ -146,7 +146,7 @@ return [
         'address' => 'Address',
         'desc' => 'Optimize your commercial operations with a smart and efficient solution.',
         'copyright' => 'All rights reserved.',
-        'made_with' => 'Made with 💙 by Offitrade Team',
+        'made_with' => 'Made with 💙 by OrientationTech Team',
     ],
     'aria' => [
         'open_menu' => 'Open menu',

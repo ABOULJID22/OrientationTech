@@ -25,7 +25,7 @@
         </nav>
 
         <button
-            x-data="offitradeThemeToggle()"
+            x-data="OrientationTechThemeToggle()"
             x-on:click="toggle()"
             type="button"
             class="fi-theme-toggle"
@@ -57,7 +57,7 @@
 @once
     @push('scripts')
         <script>
-            window.offitradeThemeToggle = function () {
+            window.OrientationTechThemeToggle = function () {
                 return {
                     isDark: document.documentElement.classList.contains('dark'),
                     init() {

@@ -8,7 +8,8 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('login_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->uuid('user_id')->nullable()->index();
+            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
             $table->string('ip_address', 45);
             $table->text('user_agent')->nullable();
             $table->string('device_name')->nullable();

@@ -8,9 +8,9 @@
             <div class="md:col-span-4 lg:col-span-5">
                 <div class="flex items-center gap-3">
                     <span class="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-white/10 ring-1 ring-white/15">
-                        <img src="{{ $siteSettings?->logo_path ? Storage::url($siteSettings->logo_path) : asset('images/logo.png') }}" alt="Offitrade Logo" class="h-8 w-auto">
+                        <img src="{{ $siteSettings?->logo_path ? Storage::url($siteSettings->logo_path) : asset('images/logo.png') }}" alt="OrientationTech Logo" class="h-8 w-auto">
                     </span>
-                    <p class="text-sm uppercase tracking-[0.3em] text-white/60">Offitrade</p>
+                    <p class="text-sm uppercase tracking-[0.3em] text-white/60">OrientationTech</p>
                 </div>
                 <p class="mt-6 text-sm leading-relaxed text-white/80">
                     {{ __('site.footer.desc') }}
@@ -69,21 +69,21 @@
                 <h4 class="text-sm font-semibold uppercase tracking-wider text-white/70">{{ __('site.footer.follow_us') }}</h4>
                 <p class="mt-6 text-sm text-white/70">{{ __('site.footer.follow_desc') }}</p>
                 <div class="mt-5 flex flex-wrap gap-3">
-                    <a href="{{ $siteSettings?->linkedin_url ?? 'https://www.linkedin.com/company/offitrade' }}" target="_blank" rel="noopener" aria-label="LinkedIn" class="group flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:-translate-y-1 hover:border-white/30 hover:bg-white/10">
+                    <a href="{{ $siteSettings?->linkedin_url ?? 'https://www.linkedin.com/company/OrientationTech' }}" target="_blank" rel="noopener" aria-label="LinkedIn" class="group flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:-translate-y-1 hover:border-white/30 hover:bg-white/10">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 text-white/80 transition group-hover:text-white"><path fill="currentColor" d="M20.451 20.452h-3.554v-5.569c0-1.328-.026-3.037-1.849-3.037c-1.852 0-2.135 1.445-2.135 2.939v5.667H9.359V9h3.414v1.561h.049c.476-.899 1.64-1.85 3.377-1.85c3.606 0 4.272 2.372 4.272 5.457v6.284ZM5.337 7.433a2.065 2.065 0 1 1 0-4.13a2.065 2.065 0 0 1 0 4.13ZM6.925 20.452H3.75V9h3.175v11.452ZM22.225 0H1.771C.792 0 0 .77 0 1.723v20.554C0 23.23.792 24 1.771 24h20.454C23.2 24 24 23.23 24 22.277V1.723C24 .77 23.2 0 22.225 0Z"/></svg>
                     </a>
-                    <a href="{{ $siteSettings?->instagram_url ?? 'https://www.instagram.com/offitrade.fr' }}" target="_blank" rel="noopener" aria-label="Instagram" class="group flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:-translate-y-1 hover:border-white/30 hover:bg-white/10">
+                    <a href="{{ $siteSettings?->instagram_url ?? 'https://www.instagram.com/Orientationtech.ma' }}" target="_blank" rel="noopener" aria-label="Instagram" class="group flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:-translate-y-1 hover:border-white/30 hover:bg-white/10">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 text-white/80 transition group-hover:text-white"><path fill="currentColor" d="M12 7.09a4.91 4.91 0 1 0 0 9.82a4.91 4.91 0 0 0 0-9.82Zm0 8.08a3.17 3.17 0 1 1 0-6.34a3.17 3.17 0 0 1 0 6.34Zm6.19-8.58a1.15 1.15 0 1 1-2.3 0a1.15 1.15 0 0 1 2.3 0Z"/><path fill="currentColor" d="M21.54 6.5a5.5 5.5 0 0 0-.36-1.85a3.77 3.77 0 0 0-2.16-2.16A5.5 5.5 0 0 0 17.17 2c-1.12-.05-1.47-.06-5.17-.06s-4.05 0-5.17.06A5.5 5.5 0 0 0 5 2.49a3.77 3.77 0 0 0-2.16 2.16A5.5 5.5 0 0 0 2.5 6.5C2.45 7.62 2.44 7.97 2.44 11.67s0 4.05.06 5.17A5.5 5.5 0 0 0 3 18.7a3.77 3.77 0 0 0 2.16 2.16a5.5 5.5 0 0 0 1.85.36c1.12.05 1.47.06 5.17.06s4.05 0 5.17-.06a5.5 5.5 0 0 0 1.85-.36a3.77 3.77 0 0 0 2.16-2.16a5.5 5.5 0 0 0 .36-1.85c.05-1.12.06-1.47.06-5.17s0-4.05-.06-5.17Zm-2.06 11a3.76 3.76 0 0 1-.21 1.25a1.94 1.94 0 0 1-1.11 1.11a3.76 3.76 0 0 1-1.25.21c-1.1.05-1.43.06-4.91.06s-3.81 0-4.91-.06a3.76 3.76 0 0 1-1.25-.21a1.94 1.94 0 0 1-1.11-1.11a3.76 3.76 0 0 1-.21-1.25c-.05-1.1-.06-1.43-.06-4.91s0-3.81.06-4.91a3.76 3.76 0 0 1 .21-1.25a1.94 1.94 0 0 1 1.11-1.11a3.76 3.76 0 0 1 1.25-.21c1.1-.05 1.43-.06 4.91-.06s3.81 0 4.91.06a3.76 3.76 0 0 1 1.25.21a1.94 1.94 0 0 1 1.11 1.11a3.76 3.76 0 0 1 .21 1.25c.05 1.1.06 1.43.06 4.91s0 3.81-.06 4.91Z"/></svg>
                     </a>
-                    <a href="{{ $siteSettings?->youtube_url ?? 'https://www.youtube.com/@offitrade' }}" target="_blank" rel="noopener" aria-label="YouTube" class="group flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:-translate-y-1 hover:border-white/30 hover:bg-white/10">
+                    <a href="{{ $siteSettings?->youtube_url ?? 'https://www.youtube.com/@OrientationTech' }}" target="_blank" rel="noopener" aria-label="YouTube" class="group flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:-translate-y-1 hover:border-white/30 hover:bg-white/10">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 text-white/80 transition group-hover:text-white"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.76C18.3 5 12 5 12 5s-6.3 0-7.84.44A2.5 2.5 0 0 0 2.4 7.2A26.2 26.2 0 0 0 2 12a26.2 26.2 0 0 0 .4 4.8a2.5 2.5 0 0 0 1.76 1.76C5.7 19 12 19 12 19s6.3 0 7.84-.44a2.5 2.5 0 0 0 1.76-1.76A26.2 26.2 0 0 0 22 12a26.2 26.2 0 0 0-.4-4.8ZM10 15V9l5 3Z"/></svg>
                     </a>
-                    <a href="{{ $siteSettings?->twitter_url ?? 'https://x.com/offitrade' }}" target="_blank" rel="noopener" aria-label="X" class="group flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:-translate-y-1 hover:border-white/30 hover:bg-white/10">
+                    <a href="{{ $siteSettings?->twitter_url ?? 'https://x.com/OrientationTech' }}" target="_blank" rel="noopener" aria-label="X" class="group flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:-translate-y-1 hover:border-white/30 hover:bg-white/10">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 text-white/80 transition group-hover:text-white"><path fill="currentColor" d="M18.244 2h3.308l-7.227 8.26l8.498 11.74H16.17l-5.214-6.818L4.947 22H1.637l7.73-8.843L1.254 2H7.98l4.713 6.231L18.243 2Zm-1.162 17.52h1.833L7.05 4.39H5.082l12 15.13Z"/></svg>
                     </a>
                 </div>
                 <div class="mt-6 space-y-2 text-sm text-white/70">
-                    <p><span class="font-semibold text-white">{{ __('site.footer.email') }}:</span> {{ $siteSettings?->email ?? 'contact@offitrade.fr' }}</p>
+                    <p><span class="font-semibold text-white">{{ __('site.footer.email') }}:</span> {{ $siteSettings?->email ?? 'contact@Orientationtech.ma' }}</p>
                     <p><span class="font-semibold text-white">{{ __('site.footer.phone') }}:</span> {{ $siteSettings?->phone ?? '+33 07 67 70 67 26' }}</p>
                     <p class="max-w-xs leading-relaxed"><span class="font-semibold text-white">{{ __('site.footer.address') }}:</span> {{ $siteSettings?->address ?? '14 rue Beffory, 92200 Neuilly-sur-Seine, France' }}</p>
                 </div>
@@ -98,7 +98,7 @@
                 @else
                     2025
                 @endif
-                Offitrade. {{ __('site.footer.copyright') }}
+                OrientationTech. {{ __('site.footer.copyright') }}
             </p>
             <div class="flex items-center gap-4">
                 <span>{!! __('site.footer.made_with') !!}</span>
