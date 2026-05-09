@@ -66,8 +66,8 @@
                             // keep fallback
                         }
                     @endphp
-                    <img src="{{ $logoUrl }}" alt="Offitrade Logo">
-                    <h1>Offitrade — Message de contact</h1>
+                    <img src="{{ $logoUrl }}" alt="OrientationTech Logo">
+                    <h1>OrientationTech — Message de contact</h1>
                 </div>
             </div>
 
@@ -112,8 +112,8 @@
 
             <div class="email-footer">
                 <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-                    <div>Envoyé automatiquement depuis le formulaire de contact du site Offitrade.</div>
-                    <div><a href="https://offitrade.fr" class="btn">Voir le site</a></div>
+                    <div>Envoyé automatiquement depuis le formulaire de contact du site OrientationTech.</div>
+                    <div><a href="https://Orientationtech.ma" class="btn">Voir le site</a></div>
                 </div>
             </div>
         </div>

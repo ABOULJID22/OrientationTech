@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,13 @@ use Filament\Models\Contracts\HasAvatar as FilamentHasAvatar;
 class User extends Authenticatable implements FilamentHasAvatar
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, HasUuids;
+
+    /** Disable numeric auto-incrementing for UUID primary keys */
+    public $incrementing = false;
+
+    /** Primary key type */
+    protected $keyType = 'string';
 
 
     // --- Définition des rôles constants ---

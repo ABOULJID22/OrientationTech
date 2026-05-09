@@ -23,7 +23,7 @@
             >
                 <img 
                     src="{{ asset('images/logo.png') }}" 
-                    alt="Offitrade Logo" 
+                    alt="OrientationTech Logo" 
                     class="h-8 sm:h-10 w-auto drop-shadow-md transition-transform hover:scale-105" 
                     width="auto"
                     height="40"

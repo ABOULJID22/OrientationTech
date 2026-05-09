@@ -46,7 +46,7 @@ return [
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=OffiTradebdtest2
+DB_DATABASE=OrientationTechbdtest2
 DB_USERNAME=root
 DB_PASSWORD= */
         'mysql' => [
@@ -54,7 +54,7 @@ DB_PASSWORD= */
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'OffiTradebdtest2'),
+            'database' => env('DB_DATABASE', 'OrientationTechbdtest2'),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),

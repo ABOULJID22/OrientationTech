@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Offitrade - {{ __('site.nav.blog') }}</title>
+  <title>OrientationTech - {{ __('site.nav.blog') }}</title>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
   <!-- Favicon -->
@@ -21,7 +21,7 @@
       $activeSort = request('sort', 'recent');
       $search = request('search', '');
       $blogTitle = __('site.blog.title') === 'site.blog.title' ? 'Nos publications' : __('site.blog.title');
-      $blogSubtitle = __('site.blog.subtitle') === 'site.blog.subtitle' ? 'Inspiration, conseils & actualités Offitrade.' : __('site.blog.subtitle');
+      $blogSubtitle = __('site.blog.subtitle') === 'site.blog.subtitle' ? 'Inspiration, conseils & actualités OrientationTech.' : __('site.blog.subtitle');
     @endphp
 
     <!-- Filtre & Titre -->

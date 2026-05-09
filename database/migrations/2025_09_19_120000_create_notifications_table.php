@@ -11,7 +11,8 @@ return new class extends Migration {
                 $table->id();
                 $table->string('title');
                 $table->text('message');
-                $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+                $table->uuid('user_id')->nullable()->index();
+                $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
                 $table->timestamp('read_at')->nullable();
                 $table->timestamps();
             });

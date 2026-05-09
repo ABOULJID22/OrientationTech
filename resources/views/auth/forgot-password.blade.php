@@ -4,7 +4,7 @@
             <div class="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl shadow-2xl overflow-hidden">
                 <div class="px-8 py-6 md:px-12 md:py-8">
                     <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{{ __('auth.forgot.title', ['app' => 'Offitrade']) }}</h3>
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{{ __('auth.forgot.title', ['app' => 'OrientationTech']) }}</h3>
                     </div>
 
                     <p class="text-sm text-gray-600 dark:text-gray-300 mb-6">{{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}</p>

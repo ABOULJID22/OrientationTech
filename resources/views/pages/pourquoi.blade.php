@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Politique de confidentialité — {{ config('app.name', 'Offitrade') }}</title>
+  <title>Politique de confidentialité — {{ config('app.name', 'OrientationTech') }}</title>
   @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
     @vite(['resources/css/app.css', 'resources/js/app.js'])
   @endif
@@ -16,14 +16,14 @@
 
 <section class="bg-white dark:bg-gray-900">
     <div class="max-w-5xl mx-auto px-6 py-16">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Pourquoi Offitrade ?</h1>
-        <p class="text-gray-600 dark:text-gray-300 mb-10">Découvrez en quoi Offitrade simplifie et optimise la gestion commerciale en officine.</p>
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Pourquoi OrientationTech ?</h1>
+        <p class="text-gray-600 dark:text-gray-300 mb-10">Découvrez en quoi OrientationTech simplifie et optimise la gestion commerciale en officine.</p>
 
         <div class="space-y-10">
             <div id="gestion-operations" class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6">
                 <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-3">1) Gestion des opérations Trade</h2>
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Offitrade permet aux pharmaciens de bénéficier d’un service 100 % bénéfique. Les pharmacies qui nous font confiance évitent de perdre l’avantage financier des opérations Trade tout en optimisant leur temps pour développer d’autres axes. En moyenne, la gestion des opérations prend aux pharmaciens 8 heures par mois.
+                    OrientationTech permet aux pharmaciens de bénéficier d’un service 100 % bénéfique. Les pharmacies qui nous font confiance évitent de perdre l’avantage financier des opérations Trade tout en optimisant leur temps pour développer d’autres axes. En moyenne, la gestion des opérations prend aux pharmaciens 8 heures par mois.
                 </p>
             </div>
 

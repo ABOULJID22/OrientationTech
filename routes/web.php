@@ -27,8 +27,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Pages légales
 Route::view('/mentions-legales', 'pages.legal')->name('legal');
 Route::view('/politique-de-confidentialite', 'pages.privacy')->name('privacy');
-// Page Pourquoi Offitrade
-Route::view('/pourquoi-offitrade', 'pages.pourquoi')->name('pourquoi');
+// Page Pourquoi OrientationTech
+Route::view('/pourquoi-OrientationTech', 'pages.pourquoi')->name('pourquoi');
 
 // Page Nos Services
 Route::view('/noservices', 'pages.noservices')->name('noservices');
