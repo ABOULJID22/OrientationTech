@@ -8,6 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ajouter note</title>
+    @include('layouts.favicon')
     @livewireStyles
     <style>
         .filament-app-layout, .filament-sidebar, .filament-topbar, .filament-footer, .filament-main-navigation, .filament-header, .filament-global-search, .filament-breadcrumbs { display: none !important; }

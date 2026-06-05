@@ -133,7 +133,7 @@
         font-size: 0.875rem; /* text-sm */
         font-weight: 600; /* font-semibold */
         color: #ffffff; /* text-white */
-        background-color: #10b981; /* primary-600 (example) */
+        background-color: #3b82f6; /* primary-600 (example) */
         outline: none;
         transition: background-color 0.075s ease-in-out;
     }
@@ -144,7 +144,7 @@
         background-color: #34d399; /* primary-400 */
     }
     .dark .overlay-button:hover, .dark .overlay-button:focus {
-        background-color: #10b981; /* primary-600 */
+        background-color: #3b82f6; /* primary-600 */
     }
 
 

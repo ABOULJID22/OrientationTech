@@ -23,7 +23,7 @@
 
                         <div class="flex items-center justify-between">
                             <a href="{{ route('login') }}" class="text-sm text-gray-600 dark:text-gray-300 hover:underline">{{ __('auth.forgot.back_to_login') }}</a>
-                            <x-primary-button class="bg-[#4f6ba3] hover:bg-[#3a5680]">
+                            <x-primary-button class="bg-[#2563eb] hover:bg-[#3a5680]">
                                 {{ __('auth.forgot.send_link') }}
                             </x-primary-button>
                         </div>

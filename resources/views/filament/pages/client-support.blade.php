@@ -2,12 +2,12 @@
     <style>
         /* 🌓 Variables pour Light Mode */
         :root {
-            --primary-color: #4f6ba3;
+            --primary-color: #2563eb;
             --primary-hover: #3f5888;
-            --primary-light: #8aaed0;
+            --primary-light: #93c5fd;
             --accent-soft: #6e94c3;
             --accent-muted: #5b7db5;
-            --success-color: #10b981;
+            --success-color: #3b82f6;
             --success-bg: #d1fae5;
             --error-color: #ef4444;
             --error-bg: #fee2e2;
@@ -25,12 +25,12 @@
 
         /* 🌙 Variables pour Dark Mode */
         .dark {
-            --primary-color: #8aaed0;
+            --primary-color: #93c5fd;
             --primary-hover: #6e94c3;
             --primary-light: rgba(91, 125, 181, 0.28);
             --accent-soft: rgba(110, 148, 195, 0.45);
             --accent-muted: rgba(79, 107, 163, 0.65);
-            --success-color: #10b981;
+            --success-color: #3b82f6;
             --success-bg: rgba(16, 185, 129, 0.15);
             --error-color: #f87171;
             --error-bg: rgba(248, 113, 113, 0.15);

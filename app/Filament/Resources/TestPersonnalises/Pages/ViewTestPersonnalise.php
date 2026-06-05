@@ -42,7 +42,7 @@ class ViewTestPersonnalise extends ViewRecord
     {
         return [
             'test_name' => $this->getRecord()->test_name ?: '—',
-            'version' => $this->getRecord()->version ?: '—',
+            'annee' => $this->getRecord()->version ?: '—',
             'target_level' => $this->getRecord()->target_level ?: '—',
             'status' => $this->getRecord()->status ?: '—',
             'primary_domain' => $this->getRecord()->primary_domain ?: '—',

@@ -4,9 +4,11 @@ namespace App\Filament\Pages;
 
 use App\Filament\Resources\AcademicDiagnostics\AcademicDiagnosticResource;
 use App\Filament\Resources\TestPersonnalises\TestPersonnaliseResource;
+use App\Filament\Pages\RapportOrientationComplet;
 use App\Models\AcademicDiagnostic;
 use App\Models\TestPersonnalise;
 use App\Services\Orientation\OrientationCompleteResultService;
+use App\Services\TestPersonnalises\TestPersonnaliseResultService;
 use BackedEnum;
 use Filament\Pages\Page;
 use Filament\Notifications\Notification;
@@ -16,11 +18,20 @@ class MesResultatsDePersonnalites extends Page
 {
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-chart-bar-square';
 
-    protected static ?string $navigationLabel = 'Mes résultats de personnalités';
+    protected static ?string $navigationLabel = 'Mes résultats';
 
-    protected static ?int $navigationSort = 7;
+    protected static ?int $navigationSort = 30;
 
     protected static UnitEnum|string|null $navigationGroup = null;
+
+    public static function getNavigationGroup(): UnitEnum|string|null
+    {
+        $user = auth()->user();
+
+        return $user && method_exists($user, 'isStudent') && $user->isStudent()
+            ? __('filament.nav.groups.my_orientation')
+            : __('filament.nav.groups.orientation');
+    }
 
     protected string $view = 'filament.pages.mes-resultats-de-personnalites';
 
@@ -30,7 +41,7 @@ class MesResultatsDePersonnalites extends Page
 
     public array $mergedResult = [];
 
-    public function mount(OrientationCompleteResultService $service): void
+    public function mount(OrientationCompleteResultService $service, TestPersonnaliseResultService $resultService): void
     {
         $userId = auth()->id();
 
@@ -44,12 +55,18 @@ class MesResultatsDePersonnalites extends Page
             ->latest('submitted_at')
             ->first();
 
+        $scoresWereRefreshed = $this->refreshPersonnaliseScores($resultService);
+
         if ($this->hasBothTestsCompleted()) {
+            if ($scoresWereRefreshed) {
+                $service->forgetCached($this->diagnostic, $this->personnalise);
+            }
+
             $this->mergedResult = $service->buildCached($this->diagnostic, $this->personnalise);
         }
     }
 
-    public function reconnectGemini(OrientationCompleteResultService $service): void
+    public function reconnectGemini(OrientationCompleteResultService $service, TestPersonnaliseResultService $resultService): void
     {
         if (! $this->hasBothTestsCompleted()) {
             Notification::make()
@@ -60,6 +77,7 @@ class MesResultatsDePersonnalites extends Page
             return;
         }
 
+        $this->refreshPersonnaliseScores($resultService);
         $service->forgetCached($this->diagnostic, $this->personnalise);
         $this->mergedResult = $service->buildCached($this->diagnostic, $this->personnalise);
 
@@ -73,10 +91,12 @@ class MesResultatsDePersonnalites extends Page
     {
         $user = auth()->user();
 
-        return $user && (
-            (method_exists($user, 'isStudent') && $user->isStudent()) ||
-            (method_exists($user, 'isSuperAdmin') && $user->isSuperAdmin())
-        );
+        return $user && method_exists($user, 'isStudent') && $user->isStudent();
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return static::canAccess();
     }
 
     public function hasBothTestsCompleted(): bool
@@ -106,14 +126,56 @@ class MesResultatsDePersonnalites extends Page
     public function personnaliseLink(): string
     {
         if ($this->personnalise) {
+            return TestPersonnaliseResource::getUrl('view', ['record' => $this->personnalise]);
+        }
+
+        return TestPersonnaliseResource::getUrl('create');
+    }
+
+    public function personnaliseEditLink(): string
+    {
+        if ($this->personnalise) {
             return TestPersonnaliseResource::getUrl('edit', ['record' => $this->personnalise]);
         }
 
         return TestPersonnaliseResource::getUrl('create');
     }
 
+    public function rapportLink(): string
+    {
+        return RapportOrientationComplet::getUrl();
+    }
+
     public function personnaliseLocked(): bool
     {
         return ! $this->diagnosticCompleted();
+    }
+
+    private function refreshPersonnaliseScores(TestPersonnaliseResultService $resultService): bool
+    {
+        if (! $this->personnalise || empty($this->personnalise->answers)) {
+            return false;
+        }
+
+        $results = $resultService->calculate($this->personnalise->answers ?? []);
+        $updates = [
+            'axis_scores' => $results['axis_scores'] ?? [],
+            'domain_scores' => $results['domain_scores'] ?? [],
+            'primary_domain' => $results['primary_domain'] ?? null,
+            'secondary_domain' => $results['secondary_domain'] ?? null,
+            'result_summary' => $results['result_summary'] ?? null,
+            'result_payload' => $results['result_payload'] ?? [],
+        ];
+
+        foreach ($updates as $key => $value) {
+            if ($this->personnalise->{$key} !== $value) {
+                $this->personnalise->forceFill($updates)->saveQuietly();
+                $this->personnalise->refresh();
+
+                return true;
+            }
+        }
+
+        return false;
     }
 }

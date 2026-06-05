@@ -24,10 +24,20 @@ class CategoryResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static UnitEnum|string|null $navigationGroup = 'Blog';
+    protected static UnitEnum|string|null $navigationGroup = null;
 
     protected static ?string $recordTitleAttribute = 'name';
-protected static ?int $navigationSort = 80;
+protected static ?int $navigationSort = 20;
+
+    public static function getNavigationLabel(): string
+    {
+        return __('filament.nav.resources.categories');
+    }
+
+    public static function getNavigationGroup(): UnitEnum|string|null
+    {
+        return __('filament.nav.groups.content');
+    }
 
     public static function form(Schema $schema): Schema
     {

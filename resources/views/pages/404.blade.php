@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ __('pages.404.title') }}</title>
+    @include('layouts.favicon')
     <!-- Intégration de Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -13,7 +14,7 @@
           extend: {
             colors: {
               // Vous pouvez maintenant utiliser `text-customBlue` ou `bg-customBlue`
-              customBlue: '#4f6ba3',
+              customBlue: '#2563eb',
             }
           }
         }

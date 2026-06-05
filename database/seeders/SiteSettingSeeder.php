@@ -12,8 +12,8 @@ class SiteSettingSeeder extends Seeder
         if (SiteSetting::count() === 0) {
             SiteSetting::create([
                 'email' => 'contact@Orientationtech.ma',
-                'phone' => '+33 07 67 70 67 26',
-                'address' => '14 rue Beffory, 92200 Neuilly-sur-Seine, Maroc',
+                'phone' => '+212 71549452',
+                'address' => 'Agadir, 85000 Tiznit, Maroc',
                 'facebook_url' => 'https://www.facebook.com/',
                 'linkedin_url' => 'https://www.linkedin.com/company/OrientationTech',
                 'twitter_url' => 'https://twitter.com/',

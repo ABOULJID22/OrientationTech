@@ -4,6 +4,10 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
@@ -41,6 +45,80 @@ class ProfileTest extends TestCase
         $this->assertSame('Test User', $user->name);
         $this->assertSame('test@example.com', $user->email);
         $this->assertNull($user->email_verified_at);
+    }
+
+    public function test_profile_avatar_can_be_uploaded_and_displayed(): void
+    {
+        $this->useTemporaryPublicDisk();
+
+        $user = User::factory()->create();
+        $avatar = UploadedFile::fake()->image('avatar.png', 160, 160);
+
+        $response = $this
+            ->actingAs($user)
+            ->patch('/profile', [
+                'name' => $user->name,
+                'email' => $user->email,
+                'avatar' => $avatar,
+            ]);
+
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/profile');
+
+        $user->refresh();
+
+        $this->assertNotNull($user->avatar_url);
+        $this->assertStringStartsWith('avatar/', $user->avatar_url);
+        Storage::disk('public')->assertExists($user->avatar_url);
+
+        $avatarUrlPath = parse_url($user->avatar, PHP_URL_PATH);
+
+        $this->get($avatarUrlPath)->assertOk();
+    }
+
+    public function test_old_profile_avatar_is_deleted_after_uploading_a_new_one(): void
+    {
+        $this->useTemporaryPublicDisk();
+        Storage::disk('public')->put('avatar/old-avatar.png', 'old avatar');
+
+        $user = User::factory()->create([
+            'avatar_url' => 'avatar/old-avatar.png',
+        ]);
+
+        $avatar = UploadedFile::fake()->image('new-avatar.jpg', 160, 160);
+
+        $this
+            ->actingAs($user)
+            ->patch('/profile', [
+                'name' => $user->name,
+                'email' => $user->email,
+                'avatar' => $avatar,
+            ])
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/profile');
+
+        $user->refresh();
+
+        Storage::disk('public')->assertMissing('avatar/old-avatar.png');
+        Storage::disk('public')->assertExists($user->avatar_url);
+    }
+
+    private function useTemporaryPublicDisk(): void
+    {
+        $root = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'orientationtech-public-test-' . Str::uuid();
+
+        config([
+            'filesystems.disks.public.root' => $root,
+            'filesystems.disks.public.url' => '/storage',
+        ]);
+
+        Storage::purge('public');
+        File::ensureDirectoryExists($root);
+
+        $this->beforeApplicationDestroyed(function () use ($root): void {
+            File::deleteDirectory($root);
+        });
     }
 
     public function test_email_verification_status_is_unchanged_when_the_email_address_is_unchanged(): void

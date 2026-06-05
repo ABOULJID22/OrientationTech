@@ -21,12 +21,12 @@ class SiteSettingResource extends Resource
 
 
     
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
 
     protected static UnitEnum|string|null $navigationGroup = null;
 
     protected static ?string $recordTitleAttribute = 'y';
-protected static ?int $navigationSort = 90;
+protected static ?int $navigationSort = 20;
     public static function form(Schema $schema): Schema
     {
         return SiteSettingForm::configure($schema);
@@ -55,6 +55,6 @@ protected static ?int $navigationSort = 90;
 
     public static function getNavigationGroup(): ?string
     {
-        return __('filament.nav.groups.settings');
+        return __('filament.nav.groups.administration');
     }
 }

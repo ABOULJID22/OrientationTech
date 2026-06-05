@@ -19,7 +19,14 @@ class ClientSupport extends Page
     protected static ?string $title = 'Support';
     protected string $view = 'filament.pages.client-support';
     // Place client support after the calendar in navigation
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 10;
+
+    protected static UnitEnum|string|null $navigationGroup = null;
+
+    public static function getNavigationGroup(): UnitEnum|string|null
+    {
+        return __('filament.nav.groups.support');
+    }
 
     public static function getNavigationLabel(): string
     {
@@ -29,11 +36,11 @@ class ClientSupport extends Page
     public static function canView(): bool
     {
         $user = auth()->user();
-        return $user && ($user->isClient());
+        return $user && $user->isStudent();
     }
     public static function canAccess(): bool
     {
         $user = auth()->user();
-        return $user && ($user->isClient());
+        return $user && $user->isStudent();
     }
 }

@@ -16,6 +16,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use UnitEnum;
 
 class TestPersonnaliseResource extends Resource
 {
@@ -23,7 +24,23 @@ class TestPersonnaliseResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPuzzlePiece;
 
+    protected static ?int $navigationSort = 20;
+
     protected static ?string $recordTitleAttribute = 'primary_domain';
+
+    public static function getNavigationLabel(): string
+    {
+        return __('filament.nav.resources.personality_tests');
+    }
+
+    public static function getNavigationGroup(): UnitEnum|string|null
+    {
+        $user = auth()->user();
+
+        return $user && method_exists($user, 'isStudent') && $user->isStudent()
+            ? __('filament.nav.groups.my_orientation')
+            : __('filament.nav.groups.orientation');
+    }
 
     public static function form(Schema $schema): Schema
     {

@@ -14,6 +14,7 @@ use Filament\Support\Colors\Color;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use App\Filament\Widgets\BlogStats;
+use App\Filament\Widgets\ContentGuidanceOverviewWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -21,7 +22,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Http\Middleware\CheckUserIsSuperAdmin;
-use Filament\Navigation\NavigationItem;
 use Filament\Actions\Action;
 use App\Http\Middleware\SetLocaleFromSession;
 use Filament\Support\Facades\FilamentView;
@@ -37,8 +37,9 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             /* ->login() */
              ->colors([
-                'primary' => Color::hex('#4f6ba3'),
+                'primary' => Color::hex('#2563eb'),
             ])
+            ->darkMode()
             ->brandLogo(fn() => view('filament.admin.logo'))
             ->favicon(asset('favicon.png'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
@@ -48,8 +49,16 @@ class AdminPanelProvider extends PanelProvider
             ])
             //->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
+                \App\Filament\Widgets\StudentDashboardStats::class,
+                \App\Filament\Widgets\StudentPersonalityRadarChart::class,
+                \App\Filament\Widgets\StudentDomainCompatibilityChart::class,
+                \App\Filament\Widgets\StudentOrientationSummaryWidget::class,
+                \App\Filament\Widgets\AdminDashboardStats::class,
+                \App\Filament\Widgets\AdminRegistrationsChart::class,
+                \App\Filament\Widgets\AdminDomainTrendsChart::class,
+                \App\Filament\Widgets\AdminPlatformOverviewWidget::class,
                 BlogStats::class,
-                \App\Filament\Widgets\ClientKpis::class,
+                ContentGuidanceOverviewWidget::class,
             ])
             ->renderHook(
                 PanelsRenderHook::GLOBAL_SEARCH_AFTER,
@@ -105,30 +114,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->sidebarCollapsibleOnDesktop()
             ->sidebarWidth('16rem')
-            ->databaseNotifications()
-            ->authMiddleware([
-                Authenticate::class,
-            ])
-            ->navigationItems([
-                NavigationItem::make()
-                    ->label(__('filament.nav.groups.trade'))
-                    ->icon('heroicon-m-shopping-cart')
-                    ->sort(1),
-
-                NavigationItem::make()
-                    ->label(__('filament.nav.groups.blog'))
-                    ->icon('heroicon-m-rectangle-stack')
-                    ->sort(2),
-
-                NavigationItem::make()
-                    ->label(__('filament.nav.groups.settings'))
-                    ->icon('heroicon-m-cog')
-                    ->sort(3),
-                 NavigationItem::make()
-                    ->label(__('filament.nav.groups.support'))
-                    ->icon('heroicon-m-cog')
-                    ->sort(3),
-            ]);
+            ->databaseNotifications();
 
            
             
@@ -145,8 +131,7 @@ class AdminPanelProvider extends PanelProvider
     {
         $user = auth()->user();
 
-                // Allow super_admin, client, and assistant to access the panel.
-                return $user && ($user->isSuperAdmin() || $user->isClient() || $user->isAssistant());
+                return $user && ($user->isSuperAdmin() || $user->isTeacher() || $user->isStudent());
     }
 
 }

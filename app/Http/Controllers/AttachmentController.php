@@ -8,20 +8,18 @@ use Illuminate\Support\Facades\Storage;
 
 class AttachmentController extends Controller
 {
-    // Simple redirect to the storage public URL for a stored path
     public function viewPublic(Request $request, $path)
     {
-        if (! $path) {
+        $decoded = ltrim(str_replace('\\', '/', urldecode((string) $path)), '/');
+
+        if ($decoded === '' || str_contains($decoded, '..')) {
             abort(404);
         }
 
-        $decoded = $path;
-
-        // If file exists on public disk, redirect to its URL; otherwise 404
-        if (Storage::disk('public')->exists($decoded)) {
-            return redirect(Storage::disk('public')->url($decoded));
+        if (! Storage::disk('public')->exists($decoded)) {
+            abort(404);
         }
 
-        abort(404);
+        return Storage::disk('public')->response($decoded);
     }
 }

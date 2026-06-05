@@ -84,8 +84,8 @@
                 </div>
                 <div class="mt-6 space-y-2 text-sm text-white/70">
                     <p><span class="font-semibold text-white">{{ __('site.footer.email') }}:</span> {{ $siteSettings?->email ?? 'contact@Orientationtech.ma' }}</p>
-                    <p><span class="font-semibold text-white">{{ __('site.footer.phone') }}:</span> {{ $siteSettings?->phone ?? '+33 07 67 70 67 26' }}</p>
-                    <p class="max-w-xs leading-relaxed"><span class="font-semibold text-white">{{ __('site.footer.address') }}:</span> {{ $siteSettings?->address ?? '14 rue Beffory, 92200 Neuilly-sur-Seine, Maroc' }}</p>
+                    <p><span class="font-semibold text-white">{{ __('site.footer.phone') }}:</span> {{ $siteSettings?->phone ?? '+212 71549452' }}</p>
+                    <p class="max-w-xs leading-relaxed"><span class="font-semibold text-white">{{ __('site.footer.address') }}:</span> {{ $siteSettings?->address ?? 'Agadir, 85000 Tiznit, Maroc' }}</p>
                 </div>
             </div>
         </div>
@@ -112,8 +112,8 @@
 </footer>
 
 <script>
-    console.log('%c👨‍💻 Développé par abouljid', 'color: #4f6ba3; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);');
-    console.log('%c💙 Merci de respecter ce travail', 'color: #5a7bbf; font-size: 12px;');
+    console.log('%c👨‍💻 Développé par abouljid', 'color: #2563eb; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);');
+    console.log('%c💙 Merci de respecter ce travail', 'color: #3b82f6; font-size: 12px;');
 </script>
 
 {{-- Exemple : montrer autre chose si connecté --}}
@@ -122,6 +122,6 @@
 
 <script>
     // Message caché dans la console
-    console.log('%c👨‍💻 Développé par mohamed abouljid', 'color: #4f6ba3; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);');
-    console.log('%c💙 Merci ', 'color: #5a7bbf; font-size: 12px;');
+    console.log('%c👨‍💻 Développé par mohamed abouljid', 'color: #2563eb; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);');
+    console.log('%c💙 Merci ', 'color: #3b82f6; font-size: 12px;');
 </script>

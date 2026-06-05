@@ -1,6 +1,6 @@
 {
   "test_name": "TestPersonnalise",
-  "version": "1.0",
+  "version": "3.0",
   "language": "fr",
   "target_levels": [
     "3AC",
@@ -28,883 +28,206 @@
       "score": 4
     },
     {
-      "label": "Tout à fait",
+      "label": "Tout a fait",
       "score": 5
     }
   ],
   "axes": [
     {
-      "key": "personality",
-      "label": "Questions de personnalité",
+      "key": "creativity",
+      "label": "Creativite",
       "time_minutes": 3,
       "questions": [
         {
-          "id": "P1",
-          "text": "J’aime résoudre des problèmes même s’ils sont un peu difficiles.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
+          "id": "CR1",
+          "text": "J'aime imaginer plusieurs solutions possibles a un meme probleme.",
+          "type": "likert"
         },
         {
-          "id": "P2",
-          "text": "Je préfère travailler seul plutôt qu’en groupe.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
+          "id": "CR2",
+          "text": "J'aime creer, dessiner, ecrire, inventer ou ameliorer des idees.",
+          "type": "likert"
         },
         {
-          "id": "P3",
-          "text": "J’aime organiser mes idées avant d’agir.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "P4",
-          "text": "Je suis patient quand je dois corriger mes erreurs.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "P5",
-          "text": "J’aime apprendre de nouvelles choses par moi-même.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "P6",
-          "text": "Je reste calme quand un exercice est compliqué.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
+          "id": "CR3",
+          "text": "Je suis a l'aise quand une activite demande de l'imagination.",
+          "type": "likert"
         }
       ]
     },
     {
-      "key": "aptitude",
-      "label": "Questions d’aptitudes",
-      "time_minutes": 4,
-      "questions": [
-        {
-          "id": "A1",
-          "text": "Je comprends facilement une suite d’étapes logiques.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "A2",
-          "text": "Je repère vite une erreur dans un exercice ou un programme.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "A3",
-          "text": "Je peux suivre une consigne précise jusqu’au bout.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "A4",
-          "text": "J’arrive à faire des calculs ou raisonnements simples sans difficulté.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "A5",
-          "text": "Je mémorise bien les informations importantes.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "A6",
-          "text": "Je peux comparer deux solutions et choisir la meilleure.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        }
-      ]
-    },
-    {
-      "key": "interest",
-      "label": "Questions d’intérêts",
+      "key": "analytical",
+      "label": "Esprit analytique",
       "time_minutes": 3,
       "questions": [
         {
-          "id": "I1",
-          "text": "J’aime créer des sites web ou des applications.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
+          "id": "AN1",
+          "text": "J'aime comprendre les causes d'un probleme avant de proposer une solution.",
+          "type": "likert"
         },
         {
-          "id": "I2",
-          "text": "J’aime comprendre comment fonctionne un ordinateur.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
+          "id": "AN2",
+          "text": "Je compare les informations avant de prendre une decision.",
+          "type": "likert"
         },
         {
-          "id": "I3",
-          "text": "J’aime travailler avec des données ou des tableaux.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "I4",
-          "text": "J’aime protéger les comptes et les informations.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "I5",
-          "text": "J’aime tester des logiciels ou repérer leurs défauts.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "I6",
-          "text": "J’aime dessiner des interfaces ou des maquettes.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
+          "id": "AN3",
+          "text": "Les exercices de logique, de chiffres ou d'analyse m'interessent.",
+          "type": "likert"
         }
       ]
     },
     {
-      "key": "compatibility",
-      "label": "Compatibilité professionnelle",
-      "time_minutes": 4,
-      "questions": [
-        {
-          "id": "C1",
-          "text": "Je peux apprendre de façon continue, même après les cours.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "C2",
-          "text": "Je supporte de passer du temps devant un écran.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "C3",
-          "text": "Je peux travailler sur un projet pendant plusieurs jours.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "C4",
-          "text": "J’accepte de corriger mon travail plusieurs fois.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "C5",
-          "text": "Je peux collaborer avec d’autres personnes sur un projet.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        },
-        {
-          "id": "C6",
-          "text": "Je peux respecter des délais.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
-        }
-      ]
-    },
-    {
-      "key": "language",
-      "label": "Compétences linguistiques",
+      "key": "leadership",
+      "label": "Leadership",
       "time_minutes": 3,
       "questions": [
         {
-          "id": "L1",
-          "text": "Je comprends facilement un texte technique simple en français.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
+          "id": "LD1",
+          "text": "Je peux encourager un groupe a avancer vers un objectif.",
+          "type": "likert"
         },
         {
-          "id": "L2",
-          "text": "Je peux lire une consigne en français et l’appliquer.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
+          "id": "LD2",
+          "text": "Je prends facilement l'initiative quand une situation manque d'organisation.",
+          "type": "likert"
         },
         {
-          "id": "L3",
-          "text": "Je comprends quelques mots techniques en anglais.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
+          "id": "LD3",
+          "text": "Les autres me demandent parfois conseil ou aide pour decider.",
+          "type": "likert"
+        }
+      ]
+    },
+    {
+      "key": "communication",
+      "label": "Communication",
+      "time_minutes": 3,
+      "questions": [
+        {
+          "id": "CM1",
+          "text": "J'arrive a expliquer mes idees clairement.",
+          "type": "likert"
         },
         {
-          "id": "L4",
-          "text": "Je peux apprendre le vocabulaire informatique en anglais.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
+          "id": "CM2",
+          "text": "Je sais ecouter les autres avant de repondre.",
+          "type": "likert"
         },
         {
-          "id": "L5",
-          "text": "Je peux regarder une vidéo explicative en français et comprendre l’essentiel.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
+          "id": "CM3",
+          "text": "Je peux presenter un travail devant une classe ou un groupe.",
+          "type": "likert"
+        }
+      ]
+    },
+    {
+      "key": "autonomy",
+      "label": "Autonomie",
+      "time_minutes": 3,
+      "questions": [
+        {
+          "id": "AU1",
+          "text": "Je peux avancer seul sur une tache sans attendre toujours l'aide des autres.",
+          "type": "likert"
         },
         {
-          "id": "L6",
-          "text": "Je peux chercher une information en français sur Internet.",
-          "type": "likert",
-          "options": [
-            {
-              "label": "Pas du tout",
-              "score": 1
-            },
-            {
-              "label": "Un peu",
-              "score": 2
-            },
-            {
-              "label": "Moyennement",
-              "score": 3
-            },
-            {
-              "label": "Beaucoup",
-              "score": 4
-            },
-            {
-              "label": "Tout à fait",
-              "score": 5
-            }
-          ],
-          "domains": []
+          "id": "AU2",
+          "text": "Je cherche des ressources quand je ne comprends pas quelque chose.",
+          "type": "likert"
+        },
+        {
+          "id": "AU3",
+          "text": "Je peux organiser mon temps pour terminer un travail.",
+          "type": "likert"
+        }
+      ]
+    },
+    {
+      "key": "teamwork",
+      "label": "Travail en equipe",
+      "time_minutes": 3,
+      "questions": [
+        {
+          "id": "TW1",
+          "text": "J'aime construire une solution avec d'autres personnes.",
+          "type": "likert"
+        },
+        {
+          "id": "TW2",
+          "text": "Je respecte les roles et les idees des membres d'un groupe.",
+          "type": "likert"
+        },
+        {
+          "id": "TW3",
+          "text": "Je peux aider un camarade sans faire tout le travail a sa place.",
+          "type": "likert"
+        }
+      ]
+    },
+    {
+      "key": "adaptability",
+      "label": "Adaptabilite",
+      "time_minutes": 3,
+      "questions": [
+        {
+          "id": "AD1",
+          "text": "Je peux changer de methode si la premiere ne fonctionne pas.",
+          "type": "likert"
+        },
+        {
+          "id": "AD2",
+          "text": "Je m'adapte assez vite a un nouvel outil, professeur ou environnement.",
+          "type": "likert"
+        },
+        {
+          "id": "AD3",
+          "text": "Je vois les erreurs comme une occasion d'apprendre.",
+          "type": "likert"
+        }
+      ]
+    },
+    {
+      "key": "stress_management",
+      "label": "Gestion du stress",
+      "time_minutes": 3,
+      "questions": [
+        {
+          "id": "ST1",
+          "text": "Je reste calme quand un exercice ou un projet devient difficile.",
+          "type": "likert"
+        },
+        {
+          "id": "ST2",
+          "text": "Je peux continuer a travailler meme quand je me sens sous pression.",
+          "type": "likert"
+        },
+        {
+          "id": "ST3",
+          "text": "Je sais demander de l'aide avant que le stress devienne trop fort.",
+          "type": "likert"
+        }
+      ]
+    },
+    {
+      "key": "curiosity",
+      "label": "Curiosite intellectuelle",
+      "time_minutes": 3,
+      "questions": [
+        {
+          "id": "CU1",
+          "text": "J'aime apprendre de nouvelles choses meme en dehors des cours.",
+          "type": "likert"
+        },
+        {
+          "id": "CU2",
+          "text": "Je pose des questions pour comprendre le fonctionnement des choses.",
+          "type": "likert"
+        },
+        {
+          "id": "CU3",
+          "text": "Les nouvelles technologies et les metiers du futur m'intriguent.",
+          "type": "likert"
         }
       ]
     }

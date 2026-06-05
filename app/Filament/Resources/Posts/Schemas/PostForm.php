@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Posts\Schemas;
 
+use App\Models\Post;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
@@ -173,13 +174,20 @@ class PostForm
 
                         Select::make('status')
                             ->label(__('postForm.status.label'))
-                            ->options([
-                                'draft' => __('posts.status.draft'),
-                                'scheduled' => __('posts.status.scheduled'),
-                                'published' => __('posts.status.published'),
-                                'archived' => __('posts.status.archived'),
-                            ])
-                            ->default('published')
+                            ->options(function (): array {
+                                $options = Post::statusOptions();
+                                $user = auth()->user();
+
+                                if ($user?->isTeacher() && ! $user?->isSuperAdmin()) {
+                                    return [
+                                        Post::STATUS_DRAFT => $options[Post::STATUS_DRAFT],
+                                        Post::STATUS_PENDING => $options[Post::STATUS_PENDING],
+                                    ];
+                                }
+
+                                return $options;
+                            })
+                            ->default(Post::STATUS_DRAFT)
                             ->required()
                             ->native(false)
                             ->columnSpan(['lg' => 1]),
@@ -189,8 +197,7 @@ class PostForm
                             ->seconds(false)
                             ->native(false)
                             ->placeholder('Définir une date de mise en ligne')
-                            ->helperText('Laisser vide pour publier immédiatement.')
-                            ->required()
+                            ->helperText('Laisser vide pour publier automatiquement au moment de la validation.')
                             ->columnSpan(['lg' => 1]),
 
                         TextInput::make('reading_time')
@@ -233,6 +240,21 @@ class PostForm
                             ->label('Vues')
                             ->disabled()
                             ->columnSpan(['lg' => 1]),
+
+                        TextInput::make('likes_count')
+                            ->label('Likes')
+                            ->disabled()
+                            ->columnSpan(['lg' => 1]),
+
+                        TextInput::make('comments_count')
+                            ->label('Commentaires')
+                            ->disabled()
+                            ->columnSpan(['lg' => 1]),
+
+                        TextInput::make('rejection_reason')
+                            ->label('Motif de refus')
+                            ->disabled()
+                            ->columnSpan(['lg' => 2]),
                     ]),
             ]);
     }

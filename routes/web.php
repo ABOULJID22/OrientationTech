@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DomainExplorerController;
+use App\Http\Controllers\PostInteractionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResourceContentController;
 use App\Http\Controllers\StudentProfileController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -34,11 +37,6 @@ Route::view('/pourquoi-OrientationTech', 'pages.pourquoi')->name('pourquoi');
 // Page Nos Services
 Route::view('/noservices', 'pages.noservices')->name('noservices');
 
-Route::fallback(function () {
-    return response()->view('pages.404', [], 404);
-});
-
-
 /* Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -55,7 +53,7 @@ Route::middleware('auth')->group(function () {
 
 // Changer la langue (FR/EN) et revenir sur la page précédente — public
 Route::get('/locale/{locale}', function (string $locale) {
-    if (! in_array($locale, ['fr', 'en'])) {
+    if (! array_key_exists($locale, config('orientationtech.supported_locales', []))) {
         $locale = config('app.fallback_locale');
     }
     session(['locale' => $locale]);
@@ -68,12 +66,39 @@ Route::get('/contact', [ContactController::class, 'create'])->name('contact.crea
 Route::post('/contact/submit', [ContactController::class, 'submit'])
     ->middleware('throttle:contact-submissions')
     ->name('contact.submit');
-Route::get('/contact', function () {
-    return view('pages.contact');
-});
 
 Route::get('/blog', [PostController::class, 'index'])->name('pages.blog.index');
 Route::get('/blog/{post:slug}', [PostController::class, 'show'])->name('pages.blog.show'); // liaison par slug
+
+Route::middleware('auth')->group(function () {
+    Route::post('/blog/{post:slug}/like', [PostInteractionController::class, 'toggleLike'])->name('pages.blog.like');
+    Route::post('/blog/{post:slug}/favorite', [PostInteractionController::class, 'toggleFavorite'])->name('pages.blog.favorite');
+    Route::post('/blog/{post:slug}/comments', [PostInteractionController::class, 'storeComment'])->name('pages.blog.comments.store');
+    Route::patch('/blog/comments/{comment}', [PostInteractionController::class, 'updateComment'])->name('pages.blog.comments.update');
+    Route::delete('/blog/comments/{comment}', [PostInteractionController::class, 'deleteComment'])->name('pages.blog.comments.delete');
+    Route::post('/blog/comments/{comment}/report', [PostInteractionController::class, 'reportComment'])->name('pages.blog.comments.report');
+});
+
+Route::get('/ressources/{resourceContent:slug}', [ResourceContentController::class, 'show'])->name('pages.resources.show');
+
+Route::middleware('auth')->group(function () {
+    Route::post('/ressources/{resourceContent:slug}/like', [ResourceContentController::class, 'like'])->name('pages.resources.like');
+    Route::post('/ressources/{resourceContent:slug}/favorite', [ResourceContentController::class, 'favorite'])->name('pages.resources.favorite');
+});
+
+Route::get('/domaines-numeriques', [DomainExplorerController::class, 'index'])->name('domains.index');
+Route::get('/domaines-numeriques/comparer', [DomainExplorerController::class, 'compare'])->name('domains.compare');
+Route::get('/domaines-numeriques/{domain:slug}', [DomainExplorerController::class, 'show'])->name('domains.show');
+
+Route::middleware('auth')->group(function () {
+    Route::post('/domaines-numeriques/{domain:slug}/like', [DomainExplorerController::class, 'like'])->name('domains.like');
+    Route::post('/domaines-numeriques/{domain:slug}/favorite', [DomainExplorerController::class, 'favorite'])->name('domains.favorite');
+    Route::post('/domaines-numeriques/{domain:slug}/rate', [DomainExplorerController::class, 'rate'])->name('domains.rate');
+    Route::post('/domaines-numeriques/{domain:slug}/comments', [DomainExplorerController::class, 'storeComment'])->name('domains.comments.store');
+    Route::patch('/domaines-comments/{comment}', [DomainExplorerController::class, 'updateComment'])->name('domains.comments.update');
+    Route::delete('/domaines-comments/{comment}', [DomainExplorerController::class, 'deleteComment'])->name('domains.comments.delete');
+    Route::post('/domaines-comments/{comment}/report', [DomainExplorerController::class, 'reportComment'])->name('domains.comments.report');
+});
 
 require __DIR__.'/auth.php';
 
@@ -101,6 +126,8 @@ Route::post('/client/support', function (\Illuminate\Http\Request $request) {
         'message' => $validated['message'],
     ]);
 
+    app(\App\Services\Notifications\PlatformNotificationService::class)->notifyContactMessage($contact);
+
     try {
         \Illuminate\Support\Facades\Mail::to(config('mail.from.address'))
             ->queue(new \App\Mail\ContactMessageMail($contact));
@@ -118,4 +145,6 @@ Route::get('/files/public/view/{path}', [AttachmentController::class, 'viewPubli
     ->where('path', '.*')
     ->name('attachments.public.view');
 
-
+Route::fallback(function () {
+    return response()->view('pages.404', [], 404);
+});

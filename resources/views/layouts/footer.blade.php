@@ -4,7 +4,7 @@
      
 
     <!-- Image de fond -->
-    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-gradient-to-br from-[#4f6ba3] to-[#283043] dark:from-gray-900 dark:to-gray-800" ></div>
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-gradient-to-br from-[#2563eb] to-[#172554] dark:from-gray-900 dark:to-gray-800" ></div>
     
     <!-- Overlay gradient pour la lisibilité style="background-image: url('{{ asset('images/bgSide.png') }}');"-->
     
@@ -37,7 +37,7 @@
                 <div class="flex items-center gap-3">
                     <span class="relative flex items-center justify-center overflow-hidden">
            <a href="{{ $homeUrl }}" class="inline-block p-1  hover:scale-105 transition-transform duration-300 group">
-                <img src="{{ asset('images/logo.png') }}" alt="OrientationTech Logo" class="h-15 w-auto  opacity-95 group-hover:opacity-100" />
+                <img src="{{ asset('images/logo.png') }}" alt="OrientationTech Logo" class="h-16 w-auto sm:h-14 w-auto opacity-95 group-hover:opacity-100" />
             </a>          
             </span>
                 </div>
@@ -103,8 +103,8 @@
                 </div>
                 <div class="mt-3 space-y-2 text-sm text-white/70">
                     <p><span class="font-semibold text-white">{{ __('site.footer.email') }}:</span> {{ $siteSettings?->email ?? 'contact@Orientationtech.ma' }}</p>
-                    <p><span class="font-semibold text-white">{{ __('site.footer.phone') }}:</span> {{ $siteSettings?->phone ?? '+33 07 67 70 67 26' }}</p>
-                    <p class="max-w-xs leading-relaxed"><span class="font-semibold text-white">{{ __('site.footer.address') }}:</span> {{ $siteSettings?->address ?? '14 rue Beffory, 92200 Neuilly-sur-Seine, Maroc' }}</p>
+                    <p><span class="font-semibold text-white">{{ __('site.footer.phone') }}:</span> {{ $siteSettings?->phone ?? '+212 71549452' }}</p>
+                    <p class="max-w-xs leading-relaxed"><span class="font-semibold text-white">{{ __('site.footer.address') }}:</span> {{ $siteSettings?->address ?? 'Agadir, 85000 Tiznit, Maroc' }}</p>
                 </div>
             </div>
         </div>
@@ -127,6 +127,6 @@
 
 <script>
     // Message caché dans la console
-    console.log('%c👨‍💻 Développé par mohamed abouljid', 'color: #4f6ba3; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);');
-    console.log('%c💙 Merci ', 'color: #5a7bbf; font-size: 12px;');
+    console.log('%c👨‍💻 Développé par mohamed abouljid', 'color: #2563eb; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);');
+    console.log('%c💙 Merci ', 'color: #3b82f6; font-size: 12px;');
 </script>

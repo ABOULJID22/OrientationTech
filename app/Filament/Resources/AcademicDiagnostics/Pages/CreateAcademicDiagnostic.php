@@ -5,6 +5,7 @@ namespace App\Filament\Resources\AcademicDiagnostics\Pages;
 use App\Filament\Resources\AcademicDiagnostics\AcademicDiagnosticResource;
 use App\Models\AcademicDiagnostic;
 use App\Services\Diagnostics\AcademicDiagnosticResultService;
+use App\Services\Notifications\PlatformNotificationService;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
 
@@ -50,5 +51,10 @@ class CreateAcademicDiagnostic extends CreateRecord
         $data['user_id'] = auth()->id();
 
         return parent::handleRecordCreation($data);
+    }
+
+    protected function afterCreate(): void
+    {
+        app(PlatformNotificationService::class)->notifyDiagnosticCompleted($this->record);
     }
 }

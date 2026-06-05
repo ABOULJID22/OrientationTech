@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class ContactResource extends Resource
 {
@@ -21,7 +22,17 @@ class ContactResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedEnvelope;
 
     protected static ?string $recordTitleAttribute = 'y';
-        protected static ?int $navigationSort = 5;
+        protected static ?int $navigationSort = 20;
+
+    public static function getNavigationLabel(): string
+    {
+        return __('filament.nav.resources.contacts');
+    }
+
+    public static function getNavigationGroup(): UnitEnum|string|null
+    {
+        return __('filament.nav.groups.support');
+    }
 
 
     public static function form(Schema $schema): Schema

@@ -1,10 +1,10 @@
-﻿@import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
 @source '../../../../app/Filament';
 @source '../../../../resources/views/filament';
 
 :root {
-    --primary-color: #4f6ba3;
-    --secondary-color: #5a7bbf;
+    --primary-color: #2563eb;
+    --secondary-color: #3b82f6;
 }
 
 /* ========================================

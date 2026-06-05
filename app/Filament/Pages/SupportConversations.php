@@ -49,7 +49,7 @@ public static function getNavigationGroup(): ?string
     public static function canAccess(): bool
     {
         $user = auth()->user();
-        return $user && ($user->isSuperAdmin() || $user->isAssistant() || $user->isClient());
+        return $user && ($user->isSuperAdmin() || $user->isTeacher() || $user->isStudent());
     }
 
     public static function shouldRegisterNavigation(): bool

@@ -9,7 +9,7 @@
             }
 
             if (strlen($hex) !== 6) {
-                return '#4f6ba3';
+                return '#2563eb';
             }
 
             $factor = max(0, min(1, $factor));
@@ -416,7 +416,7 @@
                                 {{ __('calendar.modal.create.actions.cancel') }}
                             </button>
                             <button type="submit"
-                                    class="px-5 py-2 text-sm font-medium text-[#4f6ba3] bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm">
+                                    class="px-5 py-2 text-sm font-medium text-[#2563eb] bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm">
                                 {{ __('calendar.modal.create.actions.save') }}
                             </button>
                         </div>
@@ -519,7 +519,7 @@
     @push('styles')
         <style>
             .calendar-pro {
-                --calendar-primary: #4f6ba3;
+                --calendar-primary: #2563eb;
                 --calendar-surface: #f3f8fb;
                 --calendar-panel: #ffffff;
                 --calendar-border: #e5ecf4;

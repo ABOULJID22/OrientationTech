@@ -9,14 +9,14 @@
         /* General resets */
         html,body { margin:0; padding:0; height:100%; background:#f4f6f8; }
         body { font-family: 'Helvetica Neue', Arial, sans-serif; color:#111827; -webkit-text-size-adjust:100%; }
-    a { color:#4f6ba3; text-decoration:none; }
+    a { color:#2563eb; text-decoration:none; }
 
         /* Container */
         .email-wrap { width:100%; background:#f4f6f8; padding:32px 16px; }
         .email-container { max-width:720px; margin:0 auto; background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 6px 20px rgba(16,24,40,0.08); }
 
         /* Header */
-    .email-header { background:linear-gradient(90deg,#4f6ba3,#3f5a8f); padding:20px 24px; display:flex; align-items:center; gap:16px; }
+    .email-header { background:linear-gradient(90deg,#2563eb,#3f5a8f); padding:20px 24px; display:flex; align-items:center; gap:16px; }
         .brand { display:flex; align-items:center; gap:12px; }
         .brand img { height:48px; width:auto; display:block; border-radius:6px; }
         .brand h1 { margin:0; font-size:18px; color:#ffffff; font-weight:600; }
@@ -33,8 +33,8 @@
     .message-block { background:#fbfdff; border:1px solid #e6eef6; padding:16px; border-radius:6px; color:#18314a; white-space:pre-wrap; }
 
         /* Footer */
-    .email-footer { background:#4f6ba3; padding:18px 24px; font-size:13px; color:#ffffff; }
-    .btn { display:inline-block; background:#4f6ba3; color:#ffffff; padding:10px 16px; border-radius:6px; font-weight:600; text-decoration:none; border:1px solid rgba(0,0,0,0.06); }
+    .email-footer { background:#2563eb; padding:18px 24px; font-size:13px; color:#ffffff; }
+    .btn { display:inline-block; background:#2563eb; color:#ffffff; padding:10px 16px; border-radius:6px; font-weight:600; text-decoration:none; border:1px solid rgba(0,0,0,0.06); }
 
         /* Responsive */
         @media (max-width:600px){

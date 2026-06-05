@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
-use App\Models\User;
-use Filament\Notifications\Notification as FilamentNotification;
-use Filament\Actions\Action;
+use App\Services\Notifications\PlatformNotificationService;
 
 
 class ContactController extends Controller
@@ -56,7 +54,7 @@ class ContactController extends Controller
             'name'       => ['required','string','max:100','regex:/^[\p{L}\s\'\-]+$/u'],
             'email'      => ['required','email'],
             'phone'      => ['required','string','max:20','regex:/^[\d\s+\-().]+$/'],
-            'user_type'  => ['required','string','in:Acheteur,Autres'],
+            'user_type'  => ['required','string','in:Élève / Parent,Autres'],
             'user_other' => ['nullable','string','max:100','regex:/^[\p{L}\s\'\-]+$/u'],
             'message'    => ['required','string','max:1500'],
         ], [
@@ -84,25 +82,7 @@ class ContactController extends Controller
             Log::warning('Initial support message not created: '.$e->getMessage());
         }
 
-        // Notifier tous les super admins dans Filament (base de données)
-        try {
-            $admins = User::role(User::ROLE_SUPER_ADMIN)->get();
-            if ($admins->isNotEmpty()) {
-                $notification = FilamentNotification::make()
-                    ->title('Nouveau message de contact')
-                    ->body(sprintf('%s (%s)', $contact->name, $contact->email))
-                    ->actions([
-                        Action::make('view')
-                            ->label('Voir les contacts')
-                            ->url(route('filament.admin.resources.contacts.index'), true),
-                    ]);
-
-                // true => dispatch DatabaseNotificationsSent event (rafraîchit la cloche)
-                $notification->sendToDatabase($admins, true);
-            }
-        } catch (\Throwable $e) {
-            Log::warning('Notification admin non envoyée: '.$e->getMessage());
-        }
+        app(PlatformNotificationService::class)->notifyContactMessage($contact);
 
         // Envoi d’email admin (CONTACT_TO) et email de remerciement à l'utilisateur (avec 1 retry après 3s)
         $to = env('CONTACT_TO', config('mail.from.address'));

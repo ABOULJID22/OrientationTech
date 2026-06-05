@@ -62,18 +62,18 @@ class ContactsTable
             ])
             ->filters([
                 SelectFilter::make('user_type')
-                    ->label('Profession')
+                    ->label('Profil')
                     ->options([
-                        'Acheteur' => 'Acheteur',
+                        'Élève / Parent' => 'Élève / Parent',
                         'Autres' => 'Autres',
                     ])
                     ->multiple(),
 
-                TernaryFilter::make('professionnel')
-                    ->label('Professionnel')
+                TernaryFilter::make('profil_eleve_parent')
+                    ->label('Élève / Parent')
                     ->queries(
-                            true: fn (Builder $query) => $query->where('user_type', 'Acheteur'),
-                            false: fn (Builder $query) => $query->where('user_type', '!=', 'Acheteur'),
+                            true: fn (Builder $query) => $query->where('user_type', 'Élève / Parent'),
+                            false: fn (Builder $query) => $query->where('user_type', '!=', 'Élève / Parent'),
                         blank: fn (Builder $query) => $query,
                     ),
 

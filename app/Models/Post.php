@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Model
 {
@@ -25,15 +26,44 @@ class Post extends Model
         'status',
         'is_featured',
         'views_count',
+        'likes_count',
+        'favorites_count',
+        'comments_count',
         'published_at',
+        'approved_by',
+        'approved_at',
+        'rejected_at',
+        'rejection_reason',
         'seo_title',
         'seo_description',
     ];
  
     protected $casts = [
         'published_at' => 'datetime',
+        'approved_at' => 'datetime',
+        'rejected_at' => 'datetime',
         'featured' => 'boolean',
+        'is_featured' => 'boolean',
     ];
+
+    public const STATUS_DRAFT = 'draft';
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_SCHEDULED = 'scheduled';
+    public const STATUS_PUBLISHED = 'published';
+    public const STATUS_REJECTED = 'rejected';
+    public const STATUS_ARCHIVED = 'archived';
+
+    public static function statusOptions(): array
+    {
+        return [
+            self::STATUS_DRAFT => 'Brouillon',
+            self::STATUS_PENDING => 'En attente',
+            self::STATUS_SCHEDULED => 'Programme',
+            self::STATUS_PUBLISHED => 'Publie',
+            self::STATUS_REJECTED => 'Refuse',
+            self::STATUS_ARCHIVED => 'Archive',
+        ];
+    }
 
     public function author(): BelongsTo {
         return $this->belongsTo(User::class, 'author_id');
@@ -41,6 +71,66 @@ class Post extends Model
 
     public function category(): BelongsTo {
         return $this->belongsTo(Category::class);
+    }
+
+    public function approver(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    public function views(): HasMany
+    {
+        return $this->hasMany(PostView::class);
+    }
+
+    public function likes(): HasMany
+    {
+        return $this->hasMany(PostLike::class);
+    }
+
+    public function favorites(): HasMany
+    {
+        return $this->hasMany(PostFavorite::class);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(PostComment::class);
+    }
+
+    public function visibleComments(): HasMany
+    {
+        return $this->comments()->visible();
+    }
+
+    public function scopePublished(Builder $query): Builder
+    {
+        return $query
+            ->where('status', self::STATUS_PUBLISHED)
+            ->whereNotNull('published_at')
+            ->where('published_at', '<=', now());
+    }
+
+    public function isLikedBy(?User $user): bool
+    {
+        if (! $user) {
+            return false;
+        }
+
+        return $this->likes()
+            ->where('user_id', $user->id)
+            ->exists();
+    }
+
+    public function isFavoritedBy(?User $user): bool
+    {
+        if (! $user) {
+            return false;
+        }
+
+        return $this->favorites()
+            ->where('user_id', $user->id)
+            ->exists();
     }
 
     public function translations(): HasMany
@@ -134,5 +224,20 @@ class Post extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    protected static function booted(): void
+    {
+        static::saving(function (self $post): void {
+            if ($post->status === self::STATUS_PUBLISHED) {
+                $post->published_at ??= now();
+                $post->approved_at ??= now();
+                $post->approved_by ??= auth()->id();
+            }
+
+            if ($post->status === self::STATUS_REJECTED) {
+                $post->rejected_at ??= now();
+            }
+        });
     }
 }

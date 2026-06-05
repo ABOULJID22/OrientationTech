@@ -15,11 +15,11 @@
             --conv-border: #e5e7eb;
             --conv-border-light: #f3f4f6;
             --conv-selected-bg: #eef2ff;
-            --conv-selected-border: #6366f1;
+            --conv-selected-border: #1d4ed8;
             --conv-admin-bubble: #dcfce7;
             --conv-client-bubble: #ffffff;
             --conv-shadow: rgba(0,0,0,0.04);
-            --conv-btn-primary: #6366f1;
+            --conv-btn-primary: #1d4ed8;
             --conv-btn-primary-hover: #4f46e5;
             --conv-btn-secondary: #f3f4f6;
             --conv-btn-secondary-text: #374151;

@@ -97,7 +97,7 @@
     ,
     "filament.tables.filters.select": "Tous",
     "auth.login.title_prefix": "Bienvenue sur",
-    "auth.login.subtitle": "Connectez-vous pour gérer les achats et les opérations Trade.",
+    "auth.login.subtitle": "Connectez-vous pour découvrez votre potentiel, choisissez votre voie, préparez votre avenir.",
     "auth.login.button": "Se connecter",
     "auth.login.or": "ou",
     "auth.login.no_account": "Vous n'avez pas de compte ?",
@@ -188,6 +188,7 @@
     "profile.avatar.preview_not_saved": "Aperçu non sauvegardé",
     "profile.avatar.error_invalid_type": "Type de fichier non autorisé. Seuls PNG, JPG et WEBP sont acceptés.",
     "profile.avatar.error_too_large": "Le fichier est trop volumineux (max 2 Mo).",
+    "profile.avatar.error_upload_failed": "L'image n'a pas pu etre enregistree. Veuillez reessayer.",
     "profile.avatar.help": "PNG, JPG, WEBP jusqu'à 2 Mo."
     ,"profile.header.title": "Informations du profil",
     "profile.header.subtitle": "Mettez à jour les informations de votre compte et votre adresse e-mail.",
@@ -199,7 +200,7 @@
     "pages.privacy.last_updated": "Dernière mise à jour : 18 septembre 2025",
 
     "pages.legal.title": "Mentions légales",
-    "pages.legal.content_html": "<p>Ce site est édité par <strong>OrientationTech</strong>, société responsable de la publication et du contenu.</p>\n\n<h2>Éditeur du site</h2>\n<ul>\n<li><strong>Dénomination :</strong> OrientationTech</li>\n<li><strong>Adresse :</strong> 14 rue Beffory, 92200 Neuilly-sur-Seine, Maroc</li>\n<li><strong>Email :</strong> <a href=\"mailto:contact@Orientationtech.ma\">contact@Orientationtech.ma</a></li>\n\n\n\n<h2>Propriété intellectuelle</h2>\n<p>Tous les contenus présents sur ce site, y compris textes, images, logos, vidéos et icônes, sont la propriété exclusive d’<strong>OrientationTech</strong> ou de ses partenaires. Toute reproduction, modification ou redistribution sans autorisation écrite est strictement interdite.</p>\n\n<h2>Collecte de données personnelles</h2>\n<p>Les informations recueillies via les formulaires de contact ou d’inscription sont utilisées uniquement pour le traitement des demandes. Conformément au RGPD, vous pouvez exercer vos droits d’accès, de rectification ou de suppression en contactant <a href=\"mailto:contact@Orientationtech.ma\">contact@Orientationtech.ma</a>.</p>\n\n\n\n<h2>Responsabilité</h2>\n<p>OrientationTech s’efforce de fournir des informations fiables et à jour. Toutefois, nous ne pouvons garantir l’exactitude complète des contenus et déclinons toute responsabilité pour toute erreur ou omission.</p>\n\n<h2>Contact</h2>\n<p>Pour toute question concernant les mentions légales, vous pouvez nous contacter à l’adresse suivante : <a href=\"mailto:contact@Orientationtech.ma\">contact@Orientationtech.ma</a></p>",
+    "pages.legal.content_html": "<p>Ce site est édité par <strong>OrientationTech</strong>, société responsable de la publication et du contenu.</p>\n\n<h2>Éditeur du site</h2>\n<ul>\n<li><strong>Dénomination :</strong> OrientationTech</li>\n<li><strong>Adresse :</strong> Agadir, 85000 Tiznit, Maroc</li>\n<li><strong>Email :</strong> <a href=\"mailto:contact@Orientationtech.ma\">contact@Orientationtech.ma</a></li>\n\n\n\n<h2>Propriété intellectuelle</h2>\n<p>Tous les contenus présents sur ce site, y compris textes, images, logos, vidéos et icônes, sont la propriété exclusive d’<strong>OrientationTech</strong> ou de ses partenaires. Toute reproduction, modification ou redistribution sans autorisation écrite est strictement interdite.</p>\n\n<h2>Collecte de données personnelles</h2>\n<p>Les informations recueillies via les formulaires de contact ou d’inscription sont utilisées uniquement pour le traitement des demandes. Conformément au RGPD, vous pouvez exercer vos droits d’accès, de rectification ou de suppression en contactant <a href=\"mailto:contact@Orientationtech.ma\">contact@Orientationtech.ma</a>.</p>\n\n\n\n<h2>Responsabilité</h2>\n<p>OrientationTech s’efforce de fournir des informations fiables et à jour. Toutefois, nous ne pouvons garantir l’exactitude complète des contenus et déclinons toute responsabilité pour toute erreur ou omission.</p>\n\n<h2>Contact</h2>\n<p>Pour toute question concernant les mentions légales, vous pouvez nous contacter à l’adresse suivante : <a href=\"mailto:contact@Orientationtech.ma\">contact@Orientationtech.ma</a></p>",
     "pages.legal.last_updated": "Dernière mise à jour : 18 septembre 2025"
     ,
     "pages.legal.publisher_details_heading": "Détails de l'éditeur",
@@ -474,4 +475,3 @@
     "services.cta.description": "Discutons de votre situation et identifions ensemble les leviers d’amélioration adaptés à votre officine.",
     "services.buttons.request_service": "Demander un service"
 }
-

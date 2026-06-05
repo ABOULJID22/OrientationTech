@@ -4,11 +4,14 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
 {
     public function run(): void
     {
+        Role::firstOrCreate(['name' => User::ROLE_SUPER_ADMIN, 'guard_name' => 'web']);
+
         // Super Admin
     $email = env('SEED_ADMIN_EMAIL') ?: 'contact@Orientationtech.ma';
     $plainPassword = env('SEED_ADMIN_PASSWORD')?: 'password123';
@@ -32,7 +35,7 @@ class UserSeeder extends Seeder
                 'password' => bcrypt($plainPassword),
             ]
         );
-        $superAdmin->assignRole('super_admin');
+        $superAdmin->assignRole(User::ROLE_SUPER_ADMIN);
 
         
     }

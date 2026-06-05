@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Services\Notifications\PlatformNotificationService;
 
 class RegisteredUserController extends Controller
 {
@@ -33,38 +34,43 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'user_type' => ['required', 'in:student,teacher'],
+            'user_type' => ['nullable', 'in:student,teacher'],
         ]);
+
+        $userType = $request->input('user_type', User::ROLE_STUDENT);
 
         $newUser = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'user_type' => $request->user_type,
+            'user_type' => $userType,
+            'is_active' => $userType !== User::ROLE_TEACHER,
             'configuration_compt_eleve' => false,
         ]);
 
         // Assign role based on user type
         try {
-            if ($request->user_type === 'student') {
+            if ($userType === User::ROLE_STUDENT) {
                 $newUser->assignRole(User::ROLE_STUDENT);
-            } elseif ($request->user_type === 'teacher') {
+            } elseif ($userType === User::ROLE_TEACHER) {
                 $newUser->assignRole(User::ROLE_TEACHER);
             }
         } catch (\Throwable $e) {}
 
         event(new Registered($newUser));
 
+        app(PlatformNotificationService::class)->notifyUserRegistered($newUser);
+
+        if ($userType === User::ROLE_TEACHER) {
+            return redirect()->route('login')
+                ->with('status', 'Votre compte enseignant est en attente de validation par un administrateur.');
+        }
+
         Auth::login($newUser);
 
         // update last login timestamp for the freshly registered user
         $newUser->update(['last_login_at' => now()]);
 
-        // Redirect based on user type
-        if ($request->user_type === 'student') {
-            return redirect()->route('student-profile.show');
-        }
-
-        return redirect()->route('filament.admin.pages.dashboard');
+        return redirect()->route('student-profile.show');
     }
 }

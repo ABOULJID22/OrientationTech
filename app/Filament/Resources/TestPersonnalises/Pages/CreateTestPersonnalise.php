@@ -5,6 +5,7 @@ namespace App\Filament\Resources\TestPersonnalises\Pages;
 use App\Filament\Pages\MesResultatsDePersonnalites;
 use App\Filament\Resources\TestPersonnalises\TestPersonnaliseResource;
 use App\Models\TestPersonnalise;
+use App\Services\Notifications\PlatformNotificationService;
 use App\Services\TestPersonnalises\TestPersonnaliseResultService;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\CreateRecord;
@@ -72,5 +73,10 @@ class CreateTestPersonnalise extends CreateRecord
         }
 
         return parent::getRedirectUrl();
+    }
+
+    protected function afterCreate(): void
+    {
+        app(PlatformNotificationService::class)->notifyPersonalityCompleted($this->record);
     }
 }

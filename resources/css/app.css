@@ -51,9 +51,9 @@
 ================================ */
 :root {
   /* Colors */
-  --color-primary: #4f6ba3;
+  --color-primary: #2563eb;
   --color-secondary: #5b7db5;
-  --color-dark: #283043;
+  --color-dark: #172554;
   --color-text: #ffffff;
   --color-text-muted: #6e94c3;
   --color-bg: #465a87;
@@ -313,7 +313,7 @@
 
   .fi-prose blockquote {
     @apply rounded-lg py-3.5 px-5 font-medium;
-    border-left: 3px solid #4f6ba3;
+    border-left: 3px solid #2563eb;
     background-color: rgba(110, 148, 195, 0.18);
   }
 
@@ -434,7 +434,7 @@
   .stat-pill {
     @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-semibold;
     background: rgba(79, 107, 163, 0.1);
-    color: #4f6ba3;
+    color: #2563eb;
   }
 
   .dark .stat-pill {
@@ -648,6 +648,114 @@
 .animate-blob-2 { animation: blob-2 15s infinite ease-in-out; }
 .animate-blob-3 { animation: blob-3 18s infinite ease-in-out; }
 
+@keyframes otHeroRingRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes otHeroRingReverse {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes otHeroDotBreathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.72;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes otHeroGlowBreathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.68;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.92;
+  }
+}
+
+.ot-hero-ring {
+  transform-origin: center;
+  will-change: transform;
+}
+
+.ot-hero-ring::before,
+.ot-hero-ring::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  background: #2563eb;
+  box-shadow: 0 0 18px rgba(37, 99, 235, 0.32);
+}
+
+.ot-hero-ring::before {
+  top: 13%;
+  left: 17%;
+  width: 0.55rem;
+  height: 0.55rem;
+}
+
+.ot-hero-ring::after {
+  right: 18%;
+  bottom: 11%;
+  width: 0.38rem;
+  height: 0.38rem;
+  opacity: 0.65;
+}
+
+.dark .ot-hero-ring::before,
+.dark .ot-hero-ring::after {
+  background: #93c5fd;
+  box-shadow: 0 0 22px rgba(147, 197, 253, 0.34);
+}
+
+.ot-hero-ring-slow {
+  animation: otHeroRingRotate 32s linear infinite;
+}
+
+.ot-hero-ring-reverse {
+  animation: otHeroRingReverse 24s linear infinite;
+}
+
+.ot-hero-dot {
+  transform-origin: center;
+  will-change: transform, opacity;
+  animation: otHeroDotBreathe 5.8s ease-in-out infinite;
+}
+
+.ot-hero-dot-strong {
+  animation-duration: 6.8s;
+  animation-delay: -1.4s;
+}
+
+.ot-hero-glow-pulse {
+  transform-origin: center;
+  will-change: transform, opacity;
+  animation: otHeroGlowBreathe 7.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ot-hero-ring,
+  .ot-hero-dot,
+  .ot-hero-glow-pulse {
+    animation: none !important;
+  }
+}
+
 
 /* ===============================
    📱 MEDIA QUERIES RESPONSIVE
@@ -788,4 +896,139 @@
    🎯 DARK MODE VARIANTS
    Utiliser @variant de Tailwind v4
 ================================ */
+/* ===============================
+   PLATFORM DARK MODE COMPATIBILITY
+   Keeps older public pages readable without rewriting every view.
+================================ */
+html.dark {
+  color-scheme: dark;
+  --color-text: #e5eefc;
+  --color-text-muted: #9db3d8;
+  --color-bg: #020617;
+  --color-bg-secondary: #0f172a;
+  --color-primary: #3b82f6;
+  --color-secondary: #93c5fd;
+}
+
+html.dark body {
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.15), transparent 32rem),
+    #020617 !important;
+  color: #e5eefc;
+}
+
+html.dark #hero,
+html.dark [class~="bg-gray-50"],
+html.dark [class~="bg-slate-50"],
+html.dark [class~="bg-blue-50"],
+html.dark [class~="bg-[#eff6ff]"] {
+  background-color: #020617 !important;
+}
+
+html.dark [class~="bg-white"],
+html.dark [class~="bg-gray-100"],
+html.dark [class~="bg-slate-100"] {
+  background-color: #0f172a !important;
+}
+
+html.dark [class~="bg-white/50"],
+html.dark [class~="bg-white/60"],
+html.dark [class~="bg-white/70"],
+html.dark [class~="bg-white/75"],
+html.dark [class~="bg-white/80"],
+html.dark [class~="bg-white/85"],
+html.dark [class~="bg-white/90"],
+html.dark [class~="bg-white/95"],
+html.dark [class~="bg-white/96"] {
+  background-color: rgb(15 23 42 / 0.78) !important;
+}
+
+html.dark [class~="text-gray-900"],
+html.dark [class~="text-gray-950"],
+html.dark [class~="text-slate-900"],
+html.dark [class~="text-slate-950"],
+html.dark [class~="text-[#06133f]"],
+html.dark [class~="text-[#172554]"],
+html.dark [class~="text-[#2a3d5d]"] {
+  color: #f8fafc !important;
+}
+
+html.dark [class~="text-gray-700"],
+html.dark [class~="text-slate-700"],
+html.dark [class~="text-[#4d6185]"],
+html.dark [class~="text-[#5c6f8a]"] {
+  color: #cbd5e1 !important;
+}
+
+html.dark [class~="text-gray-600"],
+html.dark [class~="text-slate-600"],
+html.dark [class~="text-gray-500"],
+html.dark [class~="text-slate-500"] {
+  color: #94a3b8 !important;
+}
+
+html.dark [class~="border-gray-100"],
+html.dark [class~="border-gray-200"],
+html.dark [class~="border-slate-100"],
+html.dark [class~="border-slate-200"],
+html.dark [class~="border-[#bfdbfe]"],
+html.dark [class~="border-[#dbeafe]"],
+html.dark [class~="border-[#93c5fd]"] {
+  border-color: rgb(148 163 184 / 0.22) !important;
+}
+
+html.dark [class~="ring-gray-100"],
+html.dark [class~="ring-gray-200"],
+html.dark [class~="ring-slate-100"],
+html.dark [class~="ring-slate-200"] {
+  --tw-ring-color: rgb(148 163 184 / 0.20) !important;
+}
+
+html.dark input:not([type="checkbox"]):not([type="radio"]),
+html.dark textarea,
+html.dark select {
+  background-color: rgb(15 23 42 / 0.86) !important;
+  border-color: rgb(148 163 184 / 0.25) !important;
+  color: #f8fafc !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+html.dark table,
+html.dark thead,
+html.dark tbody,
+html.dark tr,
+html.dark td,
+html.dark th {
+  border-color: rgb(148 163 184 / 0.18) !important;
+}
+
+html.dark .prose:not(.prose-invert) {
+  color: #cbd5e1;
+}
+
+html.dark .prose:not(.prose-invert) :where(h1, h2, h3, h4, strong) {
+  color: #f8fafc;
+}
+
+html.dark .prose:not(.prose-invert) :where(a) {
+  color: #93c5fd;
+}
+
+html.dark .shadow-sm,
+html.dark .shadow,
+html.dark .shadow-lg,
+html.dark .shadow-xl,
+html.dark .shadow-2xl {
+  --tw-shadow-color: rgb(0 0 0 / 0.45) !important;
+}
+
+html.dark ::selection {
+  background: rgb(96 165 250 / 0.35);
+  color: #eff6ff;
+}
+
 @variant dark (&:where(.dark, .dark *));

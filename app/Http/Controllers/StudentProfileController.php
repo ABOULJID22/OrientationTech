@@ -8,18 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentProfileController extends Controller
 {
-    /**
-     * Show the student profile configuration form
-     */
     public function show(Request $request)
     {
         $user = Auth::user();
 
-        if (!$user || $user->user_type !== 'student') {
-            return redirect('/dashboard');
+        if (! $user || ! $user->isStudent()) {
+            return redirect()->route('home');
         }
 
-        // Get or create student profile
         $profile = $user->studentProfile ?? new StudentProfile(['user_id' => $user->id]);
 
         return view('profile.student-config', [
@@ -28,15 +24,12 @@ class StudentProfileController extends Controller
         ]);
     }
 
-    /**
-     * Store/update the student profile
-     */
     public function store(Request $request)
     {
         $user = Auth::user();
 
-        if (!$user || $user->user_type !== 'student') {
-            return redirect('/dashboard');
+        if (! $user || ! $user->isStudent()) {
+            return redirect()->route('home');
         }
 
         $validated = $request->validate([
@@ -50,30 +43,35 @@ class StudentProfileController extends Controller
             'birth_date' => 'required|date',
             'gender' => 'required|in:masculine,feminine',
             'city' => 'required|string|max:255',
+            'phone' => 'nullable|string|max:50',
             'consent_contact' => 'required|boolean',
         ]);
 
-        // Create or update profile
+        $phone = $validated['phone'] ?? null;
+        unset($validated['phone']);
+
         $profile = $user->studentProfile ?? new StudentProfile(['user_id' => $user->id]);
         $profile->fill($validated);
         $profile->is_complete = true;
         $profile->save();
 
-        // Mark user configuration as complete
-        $user->update(['configuration_compt_eleve' => true]);
+        $user->update([
+            'configuration_compt_eleve' => true,
+            'phone' => $phone ?: $user->phone,
+            'city' => $validated['city'],
+        ]);
 
-        return redirect()->route('filament.admin.pages.dashboard')
-            ->with('success', 'Votre profil étudiant a été configuré avec succès !');
+        return redirect()
+            ->route('filament.admin.pages.dashboard')
+            ->with('success', 'Votre profil eleve a ete configure avec succes.');
     }
 
-    /**
-     * Redirect based on user type after registration
-     */
     public static function redirectAfterRegister($user)
     {
-        if ($user->user_type === 'student' && !$user->configuration_compt_eleve) {
-            return redirect()->route('student-profile.show')
-                ->with('alert', 'Veuillez compléter votre profil étudiant pour accéder à la plateforme.');
+        if ($user->isStudent() && ! $user->configuration_compt_eleve) {
+            return redirect()
+                ->route('student-profile.show')
+                ->with('alert', 'Veuillez completer votre profil eleve pour acceder a la plateforme.');
         }
 
         return redirect()->route('filament.admin.pages.dashboard');

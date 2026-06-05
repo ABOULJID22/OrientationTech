@@ -16,14 +16,31 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class AcademicDiagnosticResource extends Resource
 {
     protected static ?string $model = AcademicDiagnostic::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAcademicCap;
+
+    protected static ?int $navigationSort = 10;
 
     protected static ?string $recordTitleAttribute = 'result_label';
+
+    public static function getNavigationLabel(): string
+    {
+        return __('filament.nav.resources.academic_diagnostics');
+    }
+
+    public static function getNavigationGroup(): UnitEnum|string|null
+    {
+        $user = auth()->user();
+
+        return $user && method_exists($user, 'isStudent') && $user->isStudent()
+            ? __('filament.nav.groups.my_orientation')
+            : __('filament.nav.groups.orientation');
+    }
 
     public static function getEloquentQuery(): Builder
     {

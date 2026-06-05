@@ -16,6 +16,13 @@ class UserForm
                 return $schema
                         ->components([
                                 Select::make('roles')->relationship('roles', 'name')->multiple()->preload()->searchable()->reactive()->required(),
+                                Select::make('user_type')
+                                        ->label('Type utilisateur')
+                                        ->options([
+                                                'student' => 'Eleve',
+                                                'teacher' => 'Enseignant',
+                                        ])
+                                        ->native(false),
                                 TextInput::make('name')->required(),
                                 TextInput::make('email')->label(__('users.form.email'))->email()->required(),
                                 TextInput::make('first_name')->label(__('users.form.first_name')),

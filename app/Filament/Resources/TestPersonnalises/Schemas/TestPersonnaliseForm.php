@@ -9,7 +9,6 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Wizard;
 use Filament\Schemas\Components\Wizard\Step;
 use Filament\Schemas\Schema;
@@ -21,17 +20,18 @@ class TestPersonnaliseForm
         $responseScale = TestPersonnaliseQuestionnaire::responseScale();
 
         $steps = [
-            Step::make('À propos de ce test')
-                ->description('Comprenez l’objectif avant de commencer.')
+            Step::make('Objectif du test')
+                ->description('Comprendre comment repondre avant de commencer.')
                 ->schema([
-                    Section::make('À propos de ce test')
+                    Section::make('Test de personnalite et orientation')
+                        ->description('Ce test aide a identifier tes traits dominants et leur compatibilite avec les domaines numeriques.')
                         ->schema([
                             Placeholder::make('about_test_message')
-                                ->content('Ce test d\'orientation est basé sur des méthodes psychométriques reconnues. Il vous aidera à découvrir votre profil unique et à identifier les formations et métiers qui correspondent le mieux à vos intérêts, aptitudes et personnalité. Prenez votre temps pour répondre honnêtement à chaque question.'),
+                                ->content('Reponds selon ce qui te ressemble vraiment. Le resultat analyse la creativite, l esprit analytique, le leadership, la communication, l autonomie, le travail en equipe, l adaptabilite, la gestion du stress et la curiosite intellectuelle.'),
                         ]),
                 ]),
             Step::make('Contexte')
-                ->description('Choisissez le niveau cible du test.')
+                ->description('Preciser le niveau cible du test.')
                 ->schema([
                     Select::make('target_level')
                         ->label('Niveau cible')
@@ -39,11 +39,11 @@ class TestPersonnaliseForm
                         ->required(),
                     TextInput::make('test_name')
                         ->label('Nom du test')
-                        ->default('TestPersonnalise')
+                        ->default('Test personnalise OrientationTech')
                         ->required(),
                     TextInput::make('version')
-                        ->label('Version')
-                        ->default('1.0')
+                        ->label('Annee')
+                        ->default((string) now()->year)
                         ->required(),
                 ]),
         ];
@@ -60,22 +60,21 @@ class TestPersonnaliseForm
             }
 
             $steps[] = Step::make($axis['label'])
-                ->description('Temps estimé: ' . ($axis['time_minutes'] ?? 0) . ' min')
+                ->description('Temps estime : ' . ($axis['time_minutes'] ?? 0) . ' min')
                 ->schema([
                     Section::make($axis['label'])
+                        ->description('Aucun axe ne decide seul de ton orientation. La recommandation finale combine plusieurs signaux.')
                         ->schema([
-                            Placeholder::make('axis_note_' . $axis['key'])
-                                ->content('Répondez selon ce qui vous ressemble vraiment. Aucun axe ne décide seul de l’orientation finale.'),
                             Grid::make(1)->schema($questions),
                         ]),
                 ]);
         }
 
-        $steps[] = Step::make('Résumé')
-            ->description('Vérifiez les informations avant l’envoi.')
+        $steps[] = Step::make('Validation')
+            ->description('Verifier avant l envoi.')
             ->schema([
                 Placeholder::make('summary_hint')
-                    ->content('Le résultat produira des scores par axe et par domaine IT, puis sera fusionné plus tard avec le test diagnostique.'),
+                    ->content('Apres validation, OrientationTech calcule tes scores de personnalite, tes correspondances avec les domaines numeriques, puis fusionne ces resultats avec ton diagnostic academique et ton Ikigai.'),
             ]);
 
         return $schema

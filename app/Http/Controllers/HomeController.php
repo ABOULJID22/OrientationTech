@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\ResourceContent;
 use App\Models\SiteSetting;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -11,15 +13,43 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $posts = Post::query()
-            ->with('category')
-            ->where('status', 'published')
-            ->whereNotNull('published_at')
-            ->orderByDesc('published_at')
-            ->limit(3)
-            ->get(['id','slug','title','content','cover_image','category_id','published_at']);
+        $posts = Schema::hasTable('posts')
+            ? Post::query()
+                ->with('category')
+                ->where('status', 'published')
+                ->whereNotNull('published_at')
+                ->orderByDesc('published_at')
+                ->limit(3)
+                ->get(['id','slug','title','content','cover_image','category_id','published_at','likes_count','favorites_count'])
+            : collect();
 
-    $onlyVideo = SiteSetting::query()->latest('id')->first(['presentationvideo_url','bgvideo_url']);
+        $resourceContents = Schema::hasTable('resource_contents')
+            ? ResourceContent::query()
+                ->published()
+                ->latest('is_featured')
+                ->latest('published_at')
+                ->limit(6)
+                ->get([
+                    'id',
+                    'type',
+                    'title',
+                    'slug',
+                    'summary',
+                    'cover_image',
+                    'file_path',
+                    'video_url',
+                    'domain_key',
+                    'career_name',
+                    'views_count',
+                    'likes_count',
+                    'favorites_count',
+                    'published_at',
+                ])
+            : collect();
+
+    $onlyVideo = Schema::hasTable('site_settings')
+        ? SiteSetting::query()->latest('id')->first(['presentationvideo_url','bgvideo_url'])
+        : null;
 
     $fallback = asset('video/vide1.mp4');
     $raw = $onlyVideo?->presentationvideo_url;
@@ -61,6 +91,7 @@ class HomeController extends Controller
 
         return view('welcome', [
             'posts' => $posts,
+            'resourceContents' => $resourceContents,
             'presentationVideoSrc' => $resolved,
             'bgVideoSrc' => $bgResolved,
         ]);

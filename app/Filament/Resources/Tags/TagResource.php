@@ -12,6 +12,7 @@ use App\Filament\Resources\Tags\Tables\TagsTable;
 use App\Filament\Resources\Tags\Pages\ListTags;
 use App\Filament\Resources\Tags\Pages\CreateTag;
 use App\Filament\Resources\Tags\Pages\EditTag;
+use UnitEnum;
 
 class TagResource extends Resource
 {
@@ -19,6 +20,18 @@ class TagResource extends Resource
 
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-tag';
     protected static ?string $recordTitleAttribute = 'name';
+
+    protected static ?int $navigationSort = 30;
+
+    public static function getNavigationLabel(): string
+    {
+        return __('filament.nav.resources.tags');
+    }
+
+    public static function getNavigationGroup(): UnitEnum|string|null
+    {
+        return __('filament.nav.groups.content');
+    }
 
     public static function form(Schema $schema): Schema
     {

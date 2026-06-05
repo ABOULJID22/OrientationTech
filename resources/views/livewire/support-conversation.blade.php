@@ -126,7 +126,7 @@
                             <div class="conv-message-wrapper start">
                                 <div class="conv-message-avatar client">
                                     @if($requestAvatarUrl)
-                                        <img src="{{ $requestAvatarUrl }}" alt="{{ $requestDisplayName }}" loading="lazy" class="w-10 h-10 rounded-full border-2 border-transparent hover:border-[#4f6ba3] transition object-cover shadow-md">
+                                        <img src="{{ $requestAvatarUrl }}" alt="{{ $requestDisplayName }}" loading="lazy" class="w-10 h-10 rounded-full border-2 border-transparent hover:border-[#2563eb] transition object-cover shadow-md">
                                     @else
                                         <span class="conv-avatar-initials">{{ mb_substr($requestInitials, 0, 1) }}</span>
                                     @endif
@@ -249,11 +249,11 @@
             --conv-border: #d6deeb;
             --conv-border-light: #e5ecf7;
             --conv-selected-bg: rgba(79, 107, 163, 0.16);
-            --conv-selected-border: #4f6ba3;
+            --conv-selected-border: #2563eb;
             --conv-admin-bubble: rgba(110, 148, 195, 0.18);
             --conv-client-bubble: #ffffff;
             --conv-shadow: rgba(79, 107, 163, 0.08);
-            --conv-btn-primary: #4f6ba3;
+            --conv-btn-primary: #2563eb;
             --conv-btn-primary-hover: #5b7db5;
             --conv-btn-primary-active: #3f5b85;
             --conv-btn-secondary: #edf2fb;
@@ -279,7 +279,7 @@
             --conv-client-bubble: #111827;
             --conv-shadow: rgba(15, 23, 42, 0.5);
             --conv-btn-primary: #7795c4;
-            --conv-btn-primary-hover: #8aaed0;
+            --conv-btn-primary-hover: #93c5fd;
             --conv-btn-primary-active: #5a79ac;
             --conv-btn-secondary: #1f2a3d;
             --conv-btn-secondary-text: #d1def5;
@@ -444,7 +444,7 @@
             height: 44px;
             border-radius: 50%;
             object-fit: cover;
-            background: linear-gradient(135deg, #4f6ba3, #6e94c3);
+            background: linear-gradient(135deg, #2563eb, #6e94c3);
             border: 2px solid transparent;
             box-shadow: 0 10px 18px rgba(79, 107, 163, 0.18);
             flex-shrink: 0;
@@ -453,7 +453,7 @@
 
         .conv-contact-card:hover .conv-contact-avatar,
         .conv-contact-card.selected .conv-contact-avatar {
-            border-color: #4f6ba3;
+            border-color: #2563eb;
         }
 
         .conv-contact-info {
@@ -640,7 +640,7 @@
         }
 
         .conv-btn-primary:hover {
-            background: linear-gradient(135deg, var(--conv-btn-primary-hover), #8aaed0);
+            background: linear-gradient(135deg, var(--conv-btn-primary-hover), #93c5fd);
             transform: translateY(-1px);
         }
 
@@ -716,7 +716,7 @@
         }
 
         .conv-reply-btn:hover {
-            background: linear-gradient(135deg, var(--conv-btn-primary-hover), #8aaed0);
+            background: linear-gradient(135deg, var(--conv-btn-primary-hover), #93c5fd);
             transform: translateY(-1px);
         }
 
@@ -858,7 +858,7 @@
 
         .conv-channel-badge {
             background: rgba(79, 107, 163, 0.2);
-            color: #4f6ba3;
+            color: #2563eb;
             border-radius: 999px;
             padding: 0.25rem 0.75rem;
             font-size: 0.75rem;

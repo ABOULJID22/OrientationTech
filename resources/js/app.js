@@ -61,8 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Initialize theme from localStorage or system
-    const prefersDark = localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    // Initialize theme from localStorage or system. Filament may store "system".
+    let storedTheme = null;
+
+    try {
+        storedTheme = localStorage.getItem('theme');
+    } catch (error) {
+        storedTheme = null;
+    }
+
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const prefersDark = storedTheme === 'dark' || ((storedTheme === null || storedTheme === 'system') && systemPrefersDark);
 
 
     // Deterministic setter to avoid race conditions
@@ -70,11 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dark) {
             html.classList.add('dark');
             html.dataset.theme = 'dark';
-            localStorage.setItem('theme', 'dark');
+            try {
+                localStorage.setItem('theme', 'dark');
+            } catch (error) {}
+            html.style.colorScheme = 'dark';
         } else {
             html.classList.remove('dark');
             html.dataset.theme = 'light';
-            localStorage.setItem('theme', 'light');
+            try {
+                localStorage.setItem('theme', 'light');
+            } catch (error) {}
+            html.style.colorScheme = 'light';
         }
         refreshThemeIcons(dark);
     }

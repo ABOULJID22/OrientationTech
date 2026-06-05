@@ -18,6 +18,7 @@ class AcademicDiagnostic extends Model
         'specialty_label',
         'biof_language',
         'remark',
+        'diagnostic_answers',
         'status',
         'result_code',
         'result_label',
@@ -27,6 +28,7 @@ class AcademicDiagnostic extends Model
     ];
 
     protected $casts = [
+        'diagnostic_answers' => 'array',
         'result_payload' => 'array',
         'submitted_at' => 'datetime',
     ];

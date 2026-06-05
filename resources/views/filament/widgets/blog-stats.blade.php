@@ -7,7 +7,7 @@
                  class="w-full p-5 bg-white rounded-xl shadow-md border border-gray-100 transition-all duration-500 ease-out hover:shadow-lg hover:-translate-y-1">
                 <div class="flex items-center justify-between w-full">
                     <div class="flex items-center gap-3">
-                        <x-filament::icon icon="heroicon-m-users" class="h-8 w-8 text-indigo-600" />
+                        <x-filament::icon icon="heroicon-m-users" class="h-8 w-8 text-blue-600" />
                         <div class="text-sm font-medium text-gray-600 uppercase tracking-wide">{{ __('filament.widgets.blog_stats.users') }}</div>
                     </div>
                     <div class="text-3xl font-extrabold text-gray-900">{{ number_format($usersCount) }}</div>

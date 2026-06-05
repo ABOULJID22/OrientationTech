@@ -26,14 +26,17 @@ class SupportMessageResource extends Resource
 
     protected static ?string $modelLabel = 'Message de support';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 30;
 
     public static function getNavigationLabel(): string
     {
         return __('filament.nav.resources.support_clients');
     }
 
-
+    public static function getNavigationGroup(): UnitEnum|string|null
+    {
+        return __('filament.nav.groups.support');
+    }
 
     public static function table(Table $table): Table
     {
@@ -110,6 +113,9 @@ class SupportMessageResource extends Resource
                             'reply_message' => $data['body'],
                             'replied_by' => optional(auth()->user())->id,
                         ]);
+
+                        app(\App\Services\Notifications\PlatformNotificationService::class)
+                            ->notifySupportReply($record->fresh());
                     })
                     ->after(fn () => \Filament\Notifications\Notification::make()
                         ->title('Réponse envoyée')
@@ -131,12 +137,13 @@ class SupportMessageResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->where('user_type', 'client');
+        return parent::getEloquentQuery()
+            ->whereIn('user_type', ['client', 'Élève / Parent', 'Autres']);
     }
 
     public static function canAccess(): bool
     {
         $user = auth()->user();
-        return $user && ($user->hasRole('super_admin') || $user->hasRole('assistant'));
+        return $user && ($user->isSuperAdmin() || $user->isTeacher());
     }
 }

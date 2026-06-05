@@ -6,10 +6,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>OrientationTech - {{ __('site.nav.blog') }}</title>
+  @include('layouts.theme-init')
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="{{ $siteSettings?->favicon_path ? Storage::url($siteSettings->favicon_path) : asset('favicon.png') }}" />
+  @include('layouts.favicon')
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
 
@@ -30,7 +30,7 @@
         <div class="flex flex-col gap-6">
           <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <p class="text-xs uppercase tracking-widest text-[#4f6ba3] dark:text-blue-400 font-bold mb-2">{{ __('site.nav.blog') }}</p>
+              <p class="text-xs uppercase tracking-widest text-[#2563eb] dark:text-blue-400 font-bold mb-2">{{ __('site.nav.blog') }}</p>
               <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">{{ $blogTitle }}</h1>
               <p class="mt-2 text-sm text-gray-600 dark:text-gray-400 max-w-lg">{{ $blogSubtitle }}</p>
             </div>
@@ -47,7 +47,7 @@
                 class="search-input flex-grow rounded-2xl border border-gray-300 bg-gray-50 px-5 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-900 dark:text-gray-100 dark:placeholder-gray-500 dark:border-gray-700 transition duration-300 hover:bg-gray-100 dark:hover:bg-gray-700"
               />
 
-              <button type="submit" class="bg-gradient-to-r from-[#4f6ba3] to-[#5b7db5] rounded-2xl px-6 py-3 font-semibold text-white shadow-md hover:from-primary-700 hover:to-primary-600 active:scale-[0.98] transition-transform duration-150 whitespace-nowrap">
+              <button type="submit" class="bg-gradient-to-r from-[#2563eb] to-[#5b7db5] rounded-2xl px-6 py-3 font-semibold text-white shadow-md hover:from-primary-700 hover:to-primary-600 active:scale-[0.98] transition-transform duration-150 whitespace-nowrap">
                 {{ __('site.blog.apply') }}
               </button>
             </form>
@@ -58,11 +58,11 @@
           <!-- Catégories -->
           <div class="overflow-x-auto pb-2">
              <div class="flex items-center gap-3 min-w-max overflow-x-auto scrollbar-thin scrollbar-thumb-primary-300 scrollbar-thumb-rounded">
-              <a href="{{ route('pages.blog.index') }}" class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 {{ !$activeCat ? 'bg-[#4f6ba3] text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700' }}">
+              <a href="{{ route('pages.blog.index') }}" class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 {{ !$activeCat ? 'bg-[#2563eb] text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700' }}">
                 {{ __('site.blog.all') }}
               </a>
               @foreach ($categories as $cat)
-                <a href="{{ route('pages.blog.index', array_filter(['category' => $cat->slug, 'sort' => $activeSort, 'search' => $search])) }}" class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 {{ $activeCat === $cat->slug ? 'bg-[#4f6ba3] text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700' }}">
+                <a href="{{ route('pages.blog.index', array_filter(['category' => $cat->slug, 'sort' => $activeSort, 'search' => $search])) }}" class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 {{ $activeCat === $cat->slug ? 'bg-[#2563eb] text-white shadow-md' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700' }}">
                   {{ $cat->name }}
                 </a>
               @endforeach
@@ -78,8 +78,10 @@
          @forelse ($posts as $post)
           @php
             $img = $post->cover_image ? Storage::url($post->cover_image) : asset('images/img1.jpg');
+            $liked = $post->isLikedBy(auth()->user());
+            $favorited = $post->isFavoritedBy(auth()->user());
           @endphp
-          <article class="group flex flex-col h-full overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-xl  dark:border-gray-700 transition-all duration-300 hover:-translate-y-1 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#4f6ba3] transition-transform duration-300 hover:-translate-y-1 hover:shadow-strong">
+          <article class="group flex flex-col h-full overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-sm hover:shadow-xl  dark:border-gray-700 transition-all duration-300 hover:-translate-y-1 backdrop-blur-md rounded-2xl p-5 border-l-4 border-[#2563eb] transition-transform duration-300 hover:-translate-y-1 hover:shadow-strong">
             {{-- Image Container --}}
             <div class="relative overflow-hidden aspect-[16/9] w-full">
               <img src="{{ $img }}" 
@@ -96,13 +98,55 @@
                   {{ $post->category->name }}
                 </span>
               @endif
+
+              <div class="absolute right-4 top-4 z-10 flex items-center gap-2">
+                @auth
+                  <form method="POST" action="{{ route('pages.blog.like', $post) }}">
+                    @csrf
+                    <button
+                      type="submit"
+                      aria-label="{{ $liked ? 'Retirer le like' : 'Aimer cet article' }}"
+                      title="{{ $liked ? 'Retirer le like' : 'Aimer cet article' }}"
+                      class="flex h-10 w-10 items-center justify-center rounded-full border p-0 leading-none shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md {{ $liked ? 'border-red-500 bg-red-50 text-red-600' : 'border-white/70 bg-white/90 text-gray-700 hover:border-red-300 hover:text-red-500' }}"
+                    >
+                      <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 21s-7.2-4.55-9.45-9.15C.78 8.23 2.4 4.5 6.25 4.5c2.08 0 3.55 1.1 4.42 2.27.28.38.78.38 1.06 0C12.6 5.6 14.07 4.5 16.15 4.5c3.85 0 5.47 3.73 3.7 7.35C17.6 16.45 12 21 12 21Z" fill="{{ $liked ? 'currentColor' : 'none' }}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                  </form>
+                  <form method="POST" action="{{ route('pages.blog.favorite', $post) }}">
+                    @csrf
+                    <button
+                      type="submit"
+                      aria-label="{{ $favorited ? 'Retirer des favoris' : 'Sauvegarder cet article' }}"
+                      title="{{ $favorited ? 'Retirer des favoris' : 'Sauvegarder cet article' }}"
+                      class="flex h-10 w-10 items-center justify-center rounded-full border p-0 leading-none shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md {{ $favorited ? 'border-[#2563eb] bg-[#eff6ff] text-[#2563eb]' : 'border-white/70 bg-white/90 text-gray-700 hover:border-[#93c5fd] hover:text-[#2563eb]' }}"
+                    >
+                      <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6.5 4.75A2.25 2.25 0 0 1 8.75 2.5h6.5a2.25 2.25 0 0 1 2.25 2.25v16.1a.65.65 0 0 1-1.02.53L12 18.25l-4.48 3.13a.65.65 0 0 1-1.02-.53V4.75Z" fill="{{ $favorited ? 'currentColor' : 'none' }}" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                      </svg>
+                    </button>
+                  </form>
+                @else
+                  <a href="{{ route('login') }}" aria-label="Se connecter pour aimer" title="Se connecter pour aimer" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 p-0 leading-none text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-red-300 hover:text-red-500 hover:shadow-md">
+                    <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 21s-7.2-4.55-9.45-9.15C.78 8.23 2.4 4.5 6.25 4.5c2.08 0 3.55 1.1 4.42 2.27.28.38.78.38 1.06 0C12.6 5.6 14.07 4.5 16.15 4.5c3.85 0 5.47 3.73 3.7 7.35C17.6 16.45 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </a>
+                  <a href="{{ route('login') }}" aria-label="Se connecter pour sauvegarder" title="Se connecter pour sauvegarder" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 p-0 leading-none text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-[#93c5fd] hover:text-[#2563eb] hover:shadow-md">
+                    <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M6.5 4.75A2.25 2.25 0 0 1 8.75 2.5h6.5a2.25 2.25 0 0 1 2.25 2.25v16.1a.65.65 0 0 1-1.02.53L12 18.25l-4.48 3.13a.65.65 0 0 1-1.02-.53V4.75Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                    </svg>
+                  </a>
+                @endauth
+              </div>
             </div>
 
             {{-- Content --}}
             <div class="flex flex-1 flex-col p-5 gap-3">
               <div class="space-y-2 mb-1">
-                <h3 class="text-lg font-bold tracking-tight text-[#4f6ba3] dark:text-white transition-colors group-hover:text-primary-500 line-clamp-2 dark:group-hover:text-primary-300">
-                  <a class="hover:underline text-[#4f6ba3]" href="{{ route('pages.blog.show', $post) }}">{{ $post->translation()?->title ?? $post->title }}</a>
+                <h3 class="text-lg font-bold tracking-tight text-[#2563eb] dark:text-white transition-colors group-hover:text-primary-500 line-clamp-2 dark:group-hover:text-primary-300">
+                  <a class="hover:underline text-[#2563eb]" href="{{ route('pages.blog.show', $post) }}">{{ $post->translation()?->title ?? $post->title }}</a>
                 </h3>
                 @php
                   $contentPreviewSource = $post->translation()?->content ?? $post->content ?? $post->excerpt ?? '';
@@ -118,13 +162,17 @@
                 <div class="flex items-center gap-2">
                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                    <span>{{ optional($post->published_at)->format('d M, Y') }}</span>
+                   <span class="inline-flex items-center gap-1 text-gray-500">
+                     <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.2-4.55-9.45-9.15C.78 8.23 2.4 4.5 6.25 4.5c2.08 0 3.55 1.1 4.42 2.27.28.38.78.38 1.06 0C12.6 5.6 14.07 4.5 16.15 4.5c3.85 0 5.47 3.73 3.7 7.35C17.6 16.45 12 21 12 21Z" /></svg>
+                     {{ (int) $post->likes_count }}
+                   </span>
                 </div>
                 
-                <!-- <a href="{{ route('pages.blog.show', $post) }}" class="flex items-center gap-1 font-medium text-[#4f6ba3] hover:text-[#3d5280] transition-colors">
+                <!-- <a href="{{ route('pages.blog.show', $post) }}" class="flex items-center gap-1 font-medium text-[#2563eb] hover:text-[#3d5280] transition-colors">
                   {{ __('site.blog.read_more') }}
                   <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </a> -->
-                <a href="{{ route('pages.blog.show', $post) }}" class="inline-flex items-center gap-2 font-semibold text-[#4f6ba3] dark:text-primary-300">
+                <a href="{{ route('pages.blog.show', $post) }}" class="inline-flex items-center gap-2 font-semibold text-[#2563eb] dark:text-primary-300">
                   {{ __('site.blog.read_more') }}
                   <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M8 5h13" /><path d="M8 12h13" /><path d="M8 19h13" /><path d="M5 5l0 0" /><path d="M5 12l0 0" /><path d="M5 19l0 0" />

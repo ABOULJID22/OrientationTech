@@ -20,9 +20,9 @@
             </div>
 
             <!-- Nombre de Domaines -->
-            <div class="flex items-center justify-between p-3 bg-purple-50 rounded-lg border border-purple-200">
+            <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <span class="text-sm font-medium text-gray-700">Domaines Recommandés</span>
-                <span class="text-2xl font-bold text-purple-700">{{ $data['domain_count'] ?? 0 }}</span>
+                <span class="text-2xl font-bold text-blue-700">{{ $data['domain_count'] ?? 0 }}</span>
             </div>
 
             <!-- Liste des Domaines -->

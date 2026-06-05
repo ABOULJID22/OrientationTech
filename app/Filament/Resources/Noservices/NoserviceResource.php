@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class NoserviceResource extends Resource
 {
@@ -40,7 +41,12 @@ class NoserviceResource extends Resource
 
     // Use the French title attribute as the record title (falls back to English via accessors)
     protected static ?string $recordTitleAttribute = 'titre';
-    protected static ?int $navigationSort = 90;
+    protected static ?int $navigationSort = 40;
+
+    public static function getNavigationGroup(): UnitEnum|string|null
+    {
+        return __('filament.nav.groups.content');
+    }
     public static function form(Schema $schema): Schema
     {
         return NoserviceForm::configure($schema);

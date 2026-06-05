@@ -6,7 +6,7 @@ return [
         'slug' => 'shield/roles',
         'navigation_sort' => 90,
         'navigation_badge' => true,
-        'navigation_group' => 'Paramètres',
+        'navigation_group' => 'Administration',
         'nav.group' => 'Paramètres',
         'sub_navigation_position' => null,
         'is_globally_searchable' => false,

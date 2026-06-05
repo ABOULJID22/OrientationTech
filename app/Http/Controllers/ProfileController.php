@@ -28,31 +28,39 @@ class ProfileController extends Controller
     {
         $user = $request->user();
 
-    $data = $request->validated();
+        $data = $request->validated();
+        unset($data['avatar']);
 
-    // capture current avatar so we can delete it after storing new one
-    $oldAvatar = $user->avatar_url ?? null;
+        $oldAvatar = $user->avatar_url ?? null;
+        $newAvatarPath = null;
 
-        // Handle avatar upload if present
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
 
-            // Double-check mime type server-side
             $allowed = ['image/jpeg', 'image/png', 'image/webp'];
-            if (! in_array($file->getMimeType(), $allowed, true)) {
-                // invalid mime, ignore the upload and add an error
-                return Redirect::back()->withErrors(['avatar' => __('profile.avatar.error_invalid_type')]);
+            if (! $file->isValid() || ! in_array($file->getMimeType(), $allowed, true)) {
+                return Redirect::back()
+                    ->withInput($request->except('avatar'))
+                    ->withErrors(['avatar' => __('profile.avatar.error_invalid_type')]);
             }
 
             try {
-                // store the file on the public disk, in avatar/ directory; store() generates a safe unique name
-                $path = $file->store('avatar', 'public');
-                // set the new path so it will be saved on the user (public disk relative path)
-                $data['avatar_url'] = $path;
+                $newAvatarPath = $file->store('avatar', 'public');
             } catch (\Throwable $e) {
-                // If storage fails, log and continue without blocking the profile update
                 report($e);
+
+                return Redirect::back()
+                    ->withInput($request->except('avatar'))
+                    ->withErrors(['avatar' => __('profile.avatar.error_upload_failed')]);
             }
+
+            if (! $newAvatarPath) {
+                return Redirect::back()
+                    ->withInput($request->except('avatar'))
+                    ->withErrors(['avatar' => __('profile.avatar.error_upload_failed')]);
+            }
+
+            $data['avatar_url'] = $newAvatarPath;
         }
 
         $user->fill($data);
@@ -63,8 +71,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        // If we stored a new avatar successfully, delete the old file now (non-blocking)
-        if (isset($path) && !empty($path) && $oldAvatar) {
+        if ($newAvatarPath && $oldAvatar) {
             try {
                 $user->removeAvatarFile($oldAvatar);
             } catch (\Throwable $e) {

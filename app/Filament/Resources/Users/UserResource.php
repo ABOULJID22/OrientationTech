@@ -23,7 +23,7 @@ class UserResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUser;
 
     protected static UnitEnum|string|null $navigationGroup = null;
-    protected static ?int $navigationSort = 90;
+    protected static ?int $navigationSort = 10;
 
  public static function getNavigationLabel(): string
     {
@@ -57,7 +57,7 @@ class UserResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return __('filament.nav.groups.settings');
+        return __('filament.nav.groups.administration');
     }
 
     public static function getRelations(): array

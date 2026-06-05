@@ -7,11 +7,12 @@
 
         <title>{{ config('app.name', 'OrientationTech') }}</title>
 
-        <link rel="icon" type="image/png" href="{{ $siteSettings?->favicon_path ? Storage::url($siteSettings->favicon_path) : asset('favicon.png') }}" />
+        @include('layouts.favicon')
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        @include('layouts.theme-init')
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         @stack('styles')

@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\TestPersonnalises\Pages;
 
-use App\Filament\Pages\MesResultatsDePersonnalites;
 use App\Filament\Resources\TestPersonnalises\TestPersonnaliseResource;
 use App\Models\TestPersonnalise;
 use Filament\Actions\CreateAction;
@@ -21,7 +20,7 @@ class ListTestPersonnalises extends ListRecords
                 ->first();
 
             if ($existing) {
-                $this->redirect(MesResultatsDePersonnalites::getUrl(), navigate: true);
+                $this->redirect($this->getResourceUrl('view', ['record' => $existing]), navigate: true);
 
                 return;
             }

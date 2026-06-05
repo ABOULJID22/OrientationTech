@@ -63,10 +63,11 @@
     "filament.trade.filters.received": "Received",
     "filament.tables.filters.select": "All",
     "auth.login.title_prefix": "Welcome to",
-    "auth.login.subtitle": "Sign in to manage purchases and trade operations.",
+    "auth.login.subtitle": "Sign in to discover your potential, choose your path, prepare your future.",
         "profile.avatar.preview_not_saved": "Preview not saved",
         "profile.avatar.error_invalid_type": "Invalid file type. Only PNG, JPG and WEBP are allowed.",
         "profile.avatar.error_too_large": "File is too large (max 2 MB).",
+        "profile.avatar.error_upload_failed": "The image could not be saved. Please try again.",
         "profile.avatar.help": "PNG, JPG, WEBP up to 2 MB.",
         "profile.header.title": "Profile Information",
         "profile.header.subtitle": "Update your account's profile information and email address.",
@@ -179,7 +180,7 @@
     "pages.privacy.last_updated": "Last updated: September 18, 2025",
 
     "pages.legal.title": "Legal Notice",
-    "pages.legal.content_html": "<p>This site is published by <strong>OrientationTech</strong>, the company responsible for publication and content.</p>\n\n<h2>Site publisher</h2>\n<ul>\n<li><strong>Name:</strong> OrientationTech</li>\n<li><strong>Address:</strong> 14 rue Beffory, 92200 Neuilly-sur-Seine, Maroc</li>\n<li><strong>Email:</strong> <a href=\"mailto:contact@Orientationtech.ma\">contact@Orientationtech.ma</a></li>\n\n<h2>Intellectual property</h2>\n<p>All content on this site, including texts, images, logos, videos and icons, is the exclusive property of <strong>OrientationTech</strong> or its partners. Reproduction, modification or redistribution without written permission is prohibited.</p>\n\n<h2>Collection of personal data</h2>\n<p>Information collected via contact or registration forms is used only to process requests. Under GDPR you can exercise your rights by contacting <a href=\"mailto:contact@Orientationtech.ma\">contact@Orientationtech.ma</a>.</p>\n\n\n\n<h2>Liability</h2>\n<p>OrientationTech strives to provide reliable and up-to-date information. However, we cannot guarantee complete accuracy and disclaim liability for any errors or omissions.</p>\n\n<h2>Contact</h2>\n<p>For questions regarding the legal notice you can contact us at: <a href=\"mailto:contact@Orientationtech.ma\">contact@Orientationtech.ma</a></p>",
+    "pages.legal.content_html": "<p>This site is published by <strong>OrientationTech</strong>, the company responsible for publication and content.</p>\n\n<h2>Site publisher</h2>\n<ul>\n<li><strong>Name:</strong> OrientationTech</li>\n<li><strong>Address:</strong> Agadir, 85000 Tiznit, Maroc</li>\n<li><strong>Email:</strong> <a href=\"mailto:contact@Orientationtech.ma\">contact@Orientationtech.ma</a></li>\n\n<h2>Intellectual property</h2>\n<p>All content on this site, including texts, images, logos, videos and icons, is the exclusive property of <strong>OrientationTech</strong> or its partners. Reproduction, modification or redistribution without written permission is prohibited.</p>\n\n<h2>Collection of personal data</h2>\n<p>Information collected via contact or registration forms is used only to process requests. Under GDPR you can exercise your rights by contacting <a href=\"mailto:contact@Orientationtech.ma\">contact@Orientationtech.ma</a>.</p>\n\n\n\n<h2>Liability</h2>\n<p>OrientationTech strives to provide reliable and up-to-date information. However, we cannot guarantee complete accuracy and disclaim liability for any errors or omissions.</p>\n\n<h2>Contact</h2>\n<p>For questions regarding the legal notice you can contact us at: <a href=\"mailto:contact@Orientationtech.ma\">contact@Orientationtech.ma</a></p>",
     "pages.legal.last_updated": "Last updated: September 18, 2025"
     ,
     "pages.legal.publisher_details_heading": "Publisher details",

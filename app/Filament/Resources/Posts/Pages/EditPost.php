@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\Posts\Pages;
 
 use App\Filament\Resources\Posts\PostResource;
+use App\Models\Post;
+use App\Services\Notifications\PlatformNotificationService;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
@@ -21,9 +23,19 @@ class EditPost extends EditRecord
         ];
     }
 
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        if (auth()->user()?->isTeacher() && ! auth()->user()?->isSuperAdmin() && ($data['status'] ?? null) === Post::STATUS_PUBLISHED) {
+            $data['status'] = Post::STATUS_PENDING;
+        }
+
+        return $data;
+    }
+
     protected function afterSave(): void
     {
         $record = $this->record;
+        $oldStatus = $record->wasChanged('status') ? $record->getOriginal('status') : null;
 
        
         $primaryLocale = config('app.fallback_locale') ?: 'fr';
@@ -40,6 +52,10 @@ class EditPost extends EditRecord
                     'content' => $t->content,
                 ])->saveQuietly();
             }
+        }
+
+        if ($oldStatus !== null) {
+            app(PlatformNotificationService::class)->notifyPostStatusChanged($record->fresh(['author']), $oldStatus);
         }
     }
 }

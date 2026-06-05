@@ -21,12 +21,22 @@ class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
-    protected static UnitEnum|string|null $navigationGroup = 'Blog';
-    protected static ?int $navigationSort = 80;
+    protected static UnitEnum|string|null $navigationGroup = null;
+    protected static ?int $navigationSort = 10;
     protected static ?string $recordTitleAttribute = 'title';
     
     // AJOUT: Utiliser l'ID pour les routes Filament
     protected static ?string $recordRouteKeyName = 'id';
+
+    public static function getNavigationLabel(): string
+    {
+        return __('filament.nav.resources.posts');
+    }
+
+    public static function getNavigationGroup(): UnitEnum|string|null
+    {
+        return __('filament.nav.groups.content');
+    }
 
     public static function form(Schema $schema): Schema
     {
@@ -61,5 +71,28 @@ class PostResource extends Resource
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+        $user = auth()->user();
+
+        if ($user?->isSuperAdmin()) {
+            return $query;
+        }
+
+        if ($user?->isTeacher()) {
+            return $query->where('author_id', $user->id);
+        }
+
+        return $query->whereRaw('1 = 0');
+    }
+
+    public static function canAccess(): bool
+    {
+        $user = auth()->user();
+
+        return $user && ($user->isSuperAdmin() || $user->isTeacher());
     }
 }

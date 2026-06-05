@@ -31,9 +31,13 @@ class DatabaseSeeder extends Seeder
 
             // Users before posts to ensure authors exist
             UserSeeder::class,
+            DashboardStatisticsSeeder::class,
 
             // Content
             PostSeeder::class,
+            EducationalBlogSeeder::class,
+            PedagogicalResourceSeeder::class,
+            DomainExplorerSeeder::class,
             BackfillTranslationsSeeder::class,
         ]);
     }

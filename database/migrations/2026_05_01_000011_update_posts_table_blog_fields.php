@@ -30,8 +30,11 @@ return new class extends Migration
             }
         });
 
-        // Update enum to include 'archived'
-        DB::statement("ALTER TABLE `posts` MODIFY `status` ENUM('draft','scheduled','published','archived') NOT NULL DEFAULT 'draft'");
+        // Update enum to include 'archived' on MySQL/MariaDB. SQLite stores the
+        // column as text in tests and does not support MODIFY.
+        if (DB::getDriverName() !== 'sqlite') {
+            DB::statement("ALTER TABLE `posts` MODIFY `status` ENUM('draft','scheduled','published','archived') NOT NULL DEFAULT 'draft'");
+        }
 
         Schema::table('posts', function (Blueprint $table) {
             $table->index('is_featured');
@@ -63,6 +66,8 @@ return new class extends Migration
         });
 
         // Revert enum (best-effort)
-        DB::statement("ALTER TABLE `posts` MODIFY `status` ENUM('draft','scheduled','published') NOT NULL DEFAULT 'draft'");
+        if (DB::getDriverName() !== 'sqlite') {
+            DB::statement("ALTER TABLE `posts` MODIFY `status` ENUM('draft','scheduled','published') NOT NULL DEFAULT 'draft'");
+        }
     }
 };

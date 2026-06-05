@@ -4,17 +4,17 @@ import typography from '@tailwindcss/typography';
 import colors from 'tailwindcss/colors';
 
 const brandPalette = {
-    50: '#f5f7fc',
-    100: '#e9eff8',
-    200: '#cedaed',
-    300: '#b2c4e1',
-    400: '#6e94c3',
-    500: '#4f6ba3',
-    600: '#465a87',
-    700: '#3b4f74',
-    800: '#2f3f5a',
-    900: '#243145',
-    950: '#151d2b',
+    50: '#eff6ff',
+    100: '#dbeafe',
+    200: '#bfdbfe',
+    300: '#93c5fd',
+    400: '#60a5fa',
+    500: '#3b82f6',
+    600: '#2563eb',
+    700: '#1d4ed8',
+    800: '#1e40af',
+    900: '#1e3a8a',
+    950: '#172554',
 };
 
 /** @type {import('tailwindcss').Config} */
@@ -158,10 +158,10 @@ export default {
                             blockquote: {
                                 color: theme('colors.gray.100'),
                                 borderLeftColor: theme('colors.primary.400'),
-                                backgroundColor: 'rgb(110 148 195 / 0.15)',
+                                backgroundColor: 'rgb(96 165 250 / 0.15)',
                             },
                             code: {
-                                backgroundColor: 'rgb(110 148 195 / 0.15)',
+                                backgroundColor: 'rgb(96 165 250 / 0.15)',
                                 color: theme('colors.primary.200'),
                             },
                             pre: {
@@ -169,7 +169,7 @@ export default {
                                 borderColor: 'rgb(30 41 59 / 0.8)',
                             },
                             mark: {
-                                backgroundColor: 'rgb(110 148 195 / 0.25)',
+                                backgroundColor: 'rgb(96 165 250 / 0.25)',
                                 color: theme('colors.primary.100'),
                             },
                             'ol > li::marker': {

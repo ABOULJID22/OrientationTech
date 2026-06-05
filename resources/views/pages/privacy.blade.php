@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Politique de confidentialité — {{ config('app.name', 'OrientationTech') }}</title>
+  @include('layouts.theme-init')
   @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
     @vite(['resources/css/app.css', 'resources/js/app.js'])
   @endif
 
-              <!-- Favicon -->
-  <link rel="icon" type="image/png" href="{{ $siteSettings?->favicon_path ? Storage::url($siteSettings->favicon_path) : asset('favicon.png') }}" />
+  @include('layouts.favicon')
 
 </head>
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">

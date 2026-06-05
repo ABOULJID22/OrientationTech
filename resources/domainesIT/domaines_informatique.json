@@ -1,11 +1,12 @@
 {
-  "titre": "210 Domaines Informatiques en 21 Catégories",
+  "titre": "210 domaines informatiques et numériques pour OrientationTech",
+  "source": "domaines_informatique_200plus.xlsx",
   "total_domaines": 210,
   "total_categories": 21,
   "categories": [
     {
       "id": 1,
-      "nom": "Développement Logiciel & Web",
+      "nom": "Développement & Web",
       "total": 15,
       "domaines": [
         {
@@ -40,13 +41,13 @@
         },
         {
           "id": 6,
-          "nom": "Développement Cross-Platform (Flutter/RN)",
+          "nom": "Développement Cross-Platform (Flutter/React Native)",
           "demande_monde": "Très haute",
           "demande_maroc": "Très haute"
         },
         {
           "id": 7,
-          "nom": "Développement de Jeux Vidéo",
+          "nom": "Développement de Jeux Vidéo (Game Dev)",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
@@ -58,7 +59,7 @@
         },
         {
           "id": 9,
-          "nom": "Progressive Web Apps (PWA)",
+          "nom": "Développement de Progressive Web Apps (PWA)",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
@@ -76,7 +77,7 @@
         },
         {
           "id": 12,
-          "nom": "Low-Code / No-Code",
+          "nom": "Développement Low-Code / No-Code",
           "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
@@ -88,13 +89,13 @@
         },
         {
           "id": 14,
-          "nom": "Blockchain & Smart Contracts",
+          "nom": "Développement Blockchain & Smart Contracts",
           "demande_monde": "Moyenne",
           "demande_maroc": "Moyenne"
         },
         {
           "id": 15,
-          "nom": "WebAssembly",
+          "nom": "Développement WebAssembly",
           "demande_monde": "Moyenne",
           "demande_maroc": "Faible"
         }
@@ -143,7 +144,7 @@
         },
         {
           "id": 22,
-          "nom": "MLOps",
+          "nom": "MLOps (opérations Machine Learning)",
           "demande_monde": "Très haute",
           "demande_maroc": "Moyenne"
         },
@@ -173,7 +174,7 @@
         },
         {
           "id": 27,
-          "nom": "Systèmes Multi-Agents",
+          "nom": "Systèmes Multi-Agents (SMA)",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
@@ -185,13 +186,13 @@
         },
         {
           "id": 29,
-          "nom": "IA pour l'Éducation",
+          "nom": "IA pour l'Éducation (EdTech AI)",
           "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
         {
           "id": 30,
-          "nom": "Traitement du Langage Arabe (TAL)",
+          "nom": "Traitement Automatique du Langage Arabe (TAL)",
           "demande_monde": "Moyenne",
           "demande_maroc": "Très haute"
         }
@@ -234,13 +235,13 @@
         },
         {
           "id": 36,
-          "nom": "Data Visualization (Power BI, Tableau)",
+          "nom": "Data Visualization (Tableau, Power BI)",
           "demande_monde": "Très haute",
           "demande_maroc": "Très haute"
         },
         {
           "id": 37,
-          "nom": "Data Governance",
+          "nom": "Data Governance (Gouvernance des données)",
           "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
@@ -252,7 +253,7 @@
         },
         {
           "id": 39,
-          "nom": "Real-Time Streaming (Kafka)",
+          "nom": "Real-Time Data Streaming (Kafka)",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
@@ -270,7 +271,7 @@
         },
         {
           "id": 42,
-          "nom": "Data Monetization",
+          "nom": "Data Monetization (Valorisation des données)",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
@@ -288,7 +289,7 @@
         },
         {
           "id": 45,
-          "nom": "Données Non-Structurées",
+          "nom": "Gestion de Données Non-Structurées",
           "demande_monde": "Moyenne",
           "demande_maroc": "Moyenne"
         }
@@ -313,7 +314,7 @@
         },
         {
           "id": 48,
-          "nom": "SOC Operations",
+          "nom": "SOC Operations (Security Operations Center)",
           "demande_monde": "Très haute",
           "demande_maroc": "Très haute"
         },
@@ -331,7 +332,7 @@
         },
         {
           "id": 51,
-          "nom": "Forensique Numérique",
+          "nom": "Forensique Numérique (Digital Forensics)",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
@@ -349,13 +350,13 @@
         },
         {
           "id": 54,
-          "nom": "Sécurité Cloud",
+          "nom": "Sécurité Cloud (Cloud Security)",
           "demande_monde": "Très haute",
           "demande_maroc": "Haute"
         },
         {
           "id": 55,
-          "nom": "Cyber Risk & Compliance",
+          "nom": "Cyber Risk & Conformité (Compliance)",
           "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
@@ -385,7 +386,7 @@
         },
         {
           "id": 60,
-          "nom": "Sécurité Systèmes Industriels (SCADA)",
+          "nom": "Sécurité des Systèmes Industriels (ICS/SCADA)",
           "demande_monde": "Moyenne",
           "demande_maroc": "Moyenne"
         }
@@ -410,7 +411,7 @@
         },
         {
           "id": 63,
-          "nom": "Infrastructure as Code (Terraform)",
+          "nom": "Infrastructure as Code (IaC) — Terraform",
           "demande_monde": "Très haute",
           "demande_maroc": "Haute"
         },
@@ -440,13 +441,13 @@
         },
         {
           "id": 68,
-          "nom": "CI/CD",
+          "nom": "CI/CD (Intégration / Déploiement Continu)",
           "demande_monde": "Très haute",
           "demande_maroc": "Haute"
         },
         {
           "id": 69,
-          "nom": "FinOps (Coûts Cloud)",
+          "nom": "FinOps (Gestion des coûts Cloud)",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
@@ -464,7 +465,7 @@
         },
         {
           "id": 72,
-          "nom": "Virtualisation (VMware)",
+          "nom": "Virtualisation (VMware, Hyper-V)",
           "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
@@ -478,7 +479,7 @@
     },
     {
       "id": 6,
-      "nom": "Réseaux & Télécommunications",
+      "nom": "Réseaux & Télécoms",
       "total": 10,
       "domaines": [
         {
@@ -495,19 +496,19 @@
         },
         {
           "id": 76,
-          "nom": "SDN (Réseaux Définis Logiciel)",
+          "nom": "Réseaux Définis par Logiciel (SDN)",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
         {
           "id": 77,
-          "nom": "VoIP & Unified Communications",
+          "nom": "Téléphonie VoIP & Unified Communications",
           "demande_monde": "Moyenne",
           "demande_maroc": "Moyenne"
         },
         {
           "id": 78,
-          "nom": "Wi-Fi 6 & 5G",
+          "nom": "Réseaux sans fil (Wi-Fi 6, 5G)",
           "demande_monde": "Très haute",
           "demande_maroc": "Haute"
         },
@@ -525,7 +526,7 @@
         },
         {
           "id": 81,
-          "nom": "VPN",
+          "nom": "Réseaux Privés Virtuels (VPN)",
           "demande_monde": "Moyenne",
           "demande_maroc": "Moyenne"
         },
@@ -550,7 +551,7 @@
       "domaines": [
         {
           "id": 84,
-          "nom": "Administration Linux/Unix",
+          "nom": "Administration Systèmes Linux/Unix",
           "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
@@ -574,19 +575,19 @@
         },
         {
           "id": 88,
-          "nom": "Sauvegardes & PCA/PRA",
+          "nom": "Gestion des Sauvegardes & PCA/PRA",
           "demande_monde": "Moyenne",
           "demande_maroc": "Moyenne"
         },
         {
           "id": 89,
-          "nom": "Monitoring (Grafana/Prometheus)",
+          "nom": "Monitoring & Observabilité (Grafana/Prometheus)",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
         {
           "id": 90,
-          "nom": "ITIL & ITSM",
+          "nom": "ITIL & ITSM (Gestion des Services IT)",
           "demande_monde": "Moyenne",
           "demande_maroc": "Moyenne"
         }
@@ -599,7 +600,7 @@
       "domaines": [
         {
           "id": 91,
-          "nom": "Bases de Données Relationnelles",
+          "nom": "Conception de Bases de Données Relationnelles",
           "demande_monde": "Très haute",
           "demande_maroc": "Très haute"
         },
@@ -611,7 +612,7 @@
         },
         {
           "id": 93,
-          "nom": "NoSQL (MongoDB, Cassandra)",
+          "nom": "Bases de Données NoSQL (MongoDB, Cassandra)",
           "demande_monde": "Très haute",
           "demande_maroc": "Haute"
         },
@@ -623,25 +624,25 @@
         },
         {
           "id": 95,
-          "nom": "Redis (Temps Réel)",
+          "nom": "Bases de Données Temps Réel (Redis)",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
         {
           "id": 96,
-          "nom": "Bases Vectorielles (IA)",
+          "nom": "Bases de Données Vectorielles (IA)",
           "demande_monde": "Très haute",
           "demande_maroc": "Moyenne"
         },
         {
           "id": 97,
-          "nom": "Data Lake & Lakehouse",
+          "nom": "Data Lake & Data Lakehouse",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
         {
           "id": 98,
-          "nom": "DBA (Database Administration)",
+          "nom": "Database Administration (DBA)",
           "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
@@ -655,123 +656,123 @@
     },
     {
       "id": 9,
-      "nom": "UX/UI & Design Numérique",
+      "nom": "UX/UI & Design",
       "total": 9,
       "domaines": [
         {
           "id": 100,
-          "nom": "UX Design",
+          "nom": "UX Design (User Experience)",
           "demande_monde": "Très haute",
           "demande_maroc": "Haute"
         },
         {
           "id": 101,
-          "nom": "UI Design",
+          "nom": "UI Design (User Interface)",
           "demande_monde": "Très haute",
           "demande_maroc": "Haute"
         },
         {
           "id": 102,
-          "nom": "Design Thinking",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
-        },
-        {
-          "id": 103,
-          "nom": "Prototypage (Figma, Adobe XD)",
+          "nom": "Design de Produit Numérique",
           "demande_monde": "Très haute",
           "demande_maroc": "Haute"
         },
         {
+          "id": 103,
+          "nom": "Design System & Composants",
+          "demande_monde": "Haute",
+          "demande_maroc": "Moyenne"
+        },
+        {
           "id": 104,
-          "nom": "Accessibilité Numérique",
+          "nom": "Prototypage (Figma, Adobe XD)",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
         {
           "id": 105,
-          "nom": "Motion Design",
+          "nom": "User Research & Tests d'Utilisabilité",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
         {
           "id": 106,
-          "nom": "Design Graphique Numérique",
+          "nom": "Motion Design & Animation UI",
           "demande_monde": "Haute",
-          "demande_maroc": "Haute"
+          "demande_maroc": "Moyenne"
         },
         {
           "id": 107,
-          "nom": "Product Design",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Haute"
+          "nom": "Accessibilité Numérique (WCAG)",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Faible"
         },
         {
           "id": 108,
-          "nom": "Design de Contenu (Content Design)",
-          "demande_monde": "Haute",
+          "nom": "Design de Jeux (Game Design)",
+          "demande_monde": "Moyenne",
           "demande_maroc": "Moyenne"
         }
       ]
     },
     {
       "id": 10,
-      "nom": "ERP & Systèmes d'Information",
+      "nom": "ERP & SI",
       "total": 9,
       "domaines": [
         {
           "id": 109,
           "nom": "SAP (ERP)",
           "demande_monde": "Très haute",
-          "demande_maroc": "Haute"
+          "demande_maroc": "Très haute"
         },
         {
           "id": 110,
-          "nom": "Odoo ERP",
+          "nom": "Odoo (ERP Open Source)",
           "demande_monde": "Haute",
           "demande_maroc": "Très haute"
         },
         {
           "id": 111,
-          "nom": "Salesforce CRM",
-          "demande_monde": "Très haute",
+          "nom": "Oracle ERP",
+          "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
         {
           "id": 112,
           "nom": "Microsoft Dynamics 365",
           "demande_monde": "Haute",
-          "demande_maroc": "Haute"
+          "demande_maroc": "Moyenne"
         },
         {
           "id": 113,
-          "nom": "Intégration Systèmes (ESB/API)",
-          "demande_monde": "Haute",
+          "nom": "CRM (Salesforce, HubSpot)",
+          "demande_monde": "Très haute",
           "demande_maroc": "Haute"
         },
         {
           "id": 114,
-          "nom": "Systèmes de Gestion Documentaire (GED)",
-          "demande_monde": "Moyenne",
+          "nom": "Gestion de Projet (JIRA, Asana)",
+          "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
         {
           "id": 115,
-          "nom": "Gestion de Projet SI",
+          "nom": "Intégration de Systèmes (ESB, API Gateway)",
           "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
         {
           "id": 116,
-          "nom": "Architecture d'Entreprise (TOGAF)",
-          "demande_monde": "Haute",
+          "nom": "Urbanisme des Systèmes d'Information",
+          "demande_monde": "Moyenne",
           "demande_maroc": "Moyenne"
         },
         {
           "id": 117,
-          "nom": "Business Process Management (BPM)",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
+          "nom": "SIRH (Systèmes d'Information RH)",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
         }
       ]
     },
@@ -782,45 +783,45 @@
       "domaines": [
         {
           "id": 118,
-          "nom": "Scrum & Agile",
+          "nom": "Gestion de Projet IT (PMP, PRINCE2)",
+          "demande_monde": "Haute",
+          "demande_maroc": "Haute"
+        },
+        {
+          "id": 119,
+          "nom": "Agilité & Scrum",
           "demande_monde": "Très haute",
           "demande_maroc": "Très haute"
         },
         {
-          "id": 119,
-          "nom": "Product Management",
+          "id": 120,
+          "nom": "Product Management (Chef de Produit)",
           "demande_monde": "Très haute",
           "demande_maroc": "Haute"
         },
         {
-          "id": 120,
-          "nom": "Transformation Digitale",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Très haute"
-        },
-        {
           "id": 121,
-          "nom": "IT Governance",
-          "demande_monde": "Haute",
+          "nom": "IT Consulting & Conseil en Transformation",
+          "demande_monde": "Très haute",
           "demande_maroc": "Haute"
         },
         {
           "id": 122,
-          "nom": "Lean IT",
+          "nom": "Gestion des Risques IT",
           "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
+          "demande_maroc": "Haute"
         },
         {
           "id": 123,
-          "nom": "CTO / DSI (Leadership Tech)",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
+          "nom": "Architecture d'Entreprise (TOGAF)",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
         },
         {
           "id": 124,
-          "nom": "Change Management Digital",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
+          "nom": "Digital Transformation Management",
+          "demande_monde": "Très haute",
+          "demande_maroc": "Très haute"
         }
       ]
     },
@@ -831,9 +832,9 @@
       "domaines": [
         {
           "id": 125,
-          "nom": "Réalité Virtuelle (VR)",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
+          "nom": "Métavers & XR (VR/AR/MR)",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Faible"
         },
         {
           "id": 126,
@@ -843,114 +844,114 @@
         },
         {
           "id": 127,
-          "nom": "Métavers",
+          "nom": "Réalité Virtuelle (VR)",
           "demande_monde": "Moyenne",
-          "demande_maroc": "Faible"
+          "demande_maroc": "Moyenne"
         },
         {
           "id": 128,
-          "nom": "Informatique Quantique",
-          "demande_monde": "Haute",
-          "demande_maroc": "Faible"
+          "nom": "Impression 3D & Fabrication Numérique",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
         },
         {
           "id": 129,
-          "nom": "Digital Twin",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
-        },
-        {
-          "id": 130,
-          "nom": "Impression 3D & Fabrication Numérique",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
-        },
-        {
-          "id": 131,
-          "nom": "Wearable Tech",
-          "demande_monde": "Haute",
-          "demande_maroc": "Faible"
-        },
-        {
-          "id": 132,
-          "nom": "Nanotechnologies Numériques",
+          "nom": "Informatique Quantique",
           "demande_monde": "Moyenne",
           "demande_maroc": "Faible"
         },
         {
+          "id": 130,
+          "nom": "NFT & Technologies Web3",
+          "demande_monde": "Faible",
+          "demande_maroc": "Faible"
+        },
+        {
+          "id": 131,
+          "nom": "Digital Twin (Jumeau Numérique)",
+          "demande_monde": "Haute",
+          "demande_maroc": "Moyenne"
+        },
+        {
+          "id": 132,
+          "nom": "Technologies Spatiales & SIG (GIS)",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
+        },
+        {
           "id": 133,
-          "nom": "NeuroTech & Brain-Computer Interface",
+          "nom": "Wearable Technology",
           "demande_monde": "Moyenne",
           "demande_maroc": "Faible"
         },
         {
           "id": 134,
-          "nom": "Spatial Computing (Apple Vision Pro)",
-          "demande_monde": "Haute",
+          "nom": "Nanotechnologie & Informatique",
+          "demande_monde": "Faible",
           "demande_maroc": "Faible"
         }
       ]
     },
     {
       "id": 13,
-      "nom": "FinTech & Finance Numérique",
-      "total": 8,
+      "nom": "FinTech & Numérique",
+      "total": 7,
       "domaines": [
         {
           "id": 135,
-          "nom": "Paiement en Ligne & Mobile",
+          "nom": "Fintech (Finance & Technologie)",
+          "demande_monde": "Très haute",
+          "demande_maroc": "Haute"
+        },
+        {
+          "id": 136,
+          "nom": "Paiement Digital & Mobile Payment",
           "demande_monde": "Très haute",
           "demande_maroc": "Très haute"
         },
         {
-          "id": 136,
-          "nom": "Crypto-monnaies & DeFi",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
-        },
-        {
           "id": 137,
-          "nom": "Open Banking",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Haute"
+          "nom": "Cryptomonnaies & DeFi",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
         },
         {
           "id": 138,
-          "nom": "RegTech (Conformité Réglementaire)",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
-        },
-        {
-          "id": 139,
-          "nom": "InsurTech",
+          "nom": "Blockchain Financière",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
         {
+          "id": 139,
+          "nom": "Open Banking & APIs Bancaires",
+          "demande_monde": "Haute",
+          "demande_maroc": "Haute"
+        },
+        {
           "id": 140,
-          "nom": "Trading Algorithmique",
+          "nom": "RegTech (Technologie Réglementaire)",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
         },
         {
           "id": 141,
-          "nom": "Scoring & Risk Analytics",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Haute"
-        },
-        {
-          "id": 142,
-          "nom": "Banque Digitale",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Très haute"
+          "nom": "InsurTech (Assurance Digitale)",
+          "demande_monde": "Haute",
+          "demande_maroc": "Moyenne"
         }
       ]
     },
     {
       "id": 14,
       "nom": "E-Commerce & Marketing Digital",
-      "total": 10,
+      "total": 9,
       "domaines": [
+        {
+          "id": 142,
+          "nom": "E-Commerce & Boutiques en Ligne",
+          "demande_monde": "Très haute",
+          "demande_maroc": "Très haute"
+        },
         {
           "id": 143,
           "nom": "SEO (Référencement Naturel)",
@@ -959,7 +960,7 @@
         },
         {
           "id": 144,
-          "nom": "SEA / Google Ads",
+          "nom": "SEA / Publicité Digitale (Google Ads)",
           "demande_monde": "Très haute",
           "demande_maroc": "Haute"
         },
@@ -971,45 +972,33 @@
         },
         {
           "id": 146,
-          "nom": "Email Marketing & Automation",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
-        },
-        {
-          "id": 147,
-          "nom": "Création de Contenu Digital",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Très haute"
-        },
-        {
-          "id": 148,
           "nom": "Growth Hacking",
           "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
         {
+          "id": 147,
+          "nom": "Email Marketing & CRM Digital",
+          "demande_monde": "Haute",
+          "demande_maroc": "Haute"
+        },
+        {
+          "id": 148,
+          "nom": "Analyse Web (Google Analytics, Mixpanel)",
+          "demande_monde": "Haute",
+          "demande_maroc": "Haute"
+        },
+        {
           "id": 149,
-          "nom": "E-Commerce (Shopify, WooCommerce)",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Très haute"
+          "nom": "Content Marketing & Blogging Technique",
+          "demande_monde": "Haute",
+          "demande_maroc": "Haute"
         },
         {
           "id": 150,
-          "nom": "Affiliation Marketing",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
-        },
-        {
-          "id": 151,
-          "nom": "Analytics Web (GA4)",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Haute"
-        },
-        {
-          "id": 152,
-          "nom": "Marketplace Management",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
+          "nom": "Affiliation & Monétisation Web",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
         }
       ]
     },
@@ -1019,394 +1008,406 @@
       "total": 8,
       "domaines": [
         {
-          "id": 153,
+          "id": 151,
           "nom": "Robotique Industrielle",
           "demande_monde": "Haute",
+          "demande_maroc": "Moyenne"
+        },
+        {
+          "id": 152,
+          "nom": "Automatisme & API (Automates Programmables)",
+          "demande_monde": "Haute",
           "demande_maroc": "Haute"
+        },
+        {
+          "id": 153,
+          "nom": "Maintenance Préventive par IA",
+          "demande_monde": "Haute",
+          "demande_maroc": "Moyenne"
         },
         {
           "id": 154,
-          "nom": "Automatisation & RPA (UiPath)",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Haute"
+          "nom": "Systèmes Cyber-Physiques (CPS)",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
         },
         {
           "id": 155,
-          "nom": "Systèmes Embarqués (Arduino, Raspberry Pi)",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
+          "nom": "SCADA & Supervision Industrielle",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
         },
         {
           "id": 156,
-          "nom": "Maintenance Prédictive",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
+          "nom": "Impression Circuit Imprimé & Électronique",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
         },
         {
           "id": 157,
-          "nom": "Vision par Ordinateur Industrielle",
-          "demande_monde": "Haute",
+          "nom": "Drone & Systèmes Autonomes",
+          "demande_monde": "Moyenne",
           "demande_maroc": "Moyenne"
         },
         {
           "id": 158,
-          "nom": "Cobotique (Robots Collaboratifs)",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
-        },
-        {
-          "id": 159,
-          "nom": "Fabrication Additive Numérique",
-          "demande_monde": "Haute",
-          "demande_maroc": "Faible"
-        },
-        {
-          "id": 160,
-          "nom": "Drones & Systèmes Autonomes",
-          "demande_monde": "Haute",
+          "nom": "Arduino & Raspberry Pi (Prototypage)",
+          "demande_monde": "Moyenne",
           "demande_maroc": "Moyenne"
         }
       ]
     },
     {
       "id": 16,
-      "nom": "EdTech & Formation Numérique",
+      "nom": "Informatique Scientifique",
       "total": 7,
       "domaines": [
         {
+          "id": 159,
+          "nom": "Informatique Graphique & Rendu 3D",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Faible"
+        },
+        {
+          "id": 160,
+          "nom": "Simulation Numérique (CFD, FEM)",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Faible"
+        },
+        {
           "id": 161,
-          "nom": "Conception de cours en ligne (LMS)",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Haute"
+          "nom": "Bio-informatique",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Faible"
         },
         {
           "id": 162,
-          "nom": "Gamification Éducative",
+          "nom": "Informatique Médicale & HealthTech",
           "demande_monde": "Haute",
-          "demande_maroc": "Haute"
+          "demande_maroc": "Moyenne"
         },
         {
           "id": 163,
-          "nom": "Microlearning & Mobile Learning",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
+          "nom": "Calcul Haute Performance (HPC)",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Faible"
         },
         {
           "id": 164,
-          "nom": "Tuteurs IA & Chatbots Pédagogiques",
+          "nom": "Vision par Ordinateur (Applications Médicales)",
           "demande_monde": "Haute",
-          "demande_maroc": "Haute"
+          "demande_maroc": "Moyenne"
         },
         {
           "id": 165,
-          "nom": "Adaptive Learning",
-          "demande_monde": "Haute",
+          "nom": "Géo-informatique & Cartographie Numérique",
+          "demande_monde": "Moyenne",
           "demande_maroc": "Moyenne"
-        },
-        {
-          "id": 166,
-          "nom": "Learning Analytics",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
-        },
-        {
-          "id": 167,
-          "nom": "VR/AR pour la Formation",
-          "demande_monde": "Haute",
-          "demande_maroc": "Faible"
         }
       ]
     },
     {
       "id": 17,
-      "nom": "Transformation Digitale & Smart City",
-      "total": 9,
+      "nom": "EdTech",
+      "total": 6,
       "domaines": [
         {
-          "id": 168,
-          "nom": "Smart City",
+          "id": 166,
+          "nom": "Conception de Plateformes LMS",
           "demande_monde": "Haute",
+          "demande_maroc": "Très haute"
+        },
+        {
+          "id": 167,
+          "nom": "E-Learning & MOOC",
+          "demande_monde": "Très haute",
+          "demande_maroc": "Très haute"
+        },
+        {
+          "id": 168,
+          "nom": "Gamification Éducative",
+          "demande_monde": "Moyenne",
           "demande_maroc": "Haute"
         },
         {
           "id": 169,
-          "nom": "e-Gouvernement",
+          "nom": "Tutorat Intelligent & IA pour l'Éducation",
           "demande_monde": "Haute",
-          "demande_maroc": "Très haute"
+          "demande_maroc": "Haute"
         },
         {
           "id": 170,
-          "nom": "Smart Grid & Énergie Numérique",
+          "nom": "Création de Contenu Numérique Éducatif",
           "demande_monde": "Haute",
-          "demande_maroc": "Haute"
+          "demande_maroc": "Très haute"
         },
         {
           "id": 171,
-          "nom": "AgriTech & Agriculture Intelligente",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
-        },
-        {
-          "id": 172,
-          "nom": "HealthTech & e-Santé",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Haute"
-        },
-        {
-          "id": 173,
-          "nom": "LegalTech",
-          "demande_monde": "Haute",
+          "nom": "Réalité Virtuelle pour la Formation",
+          "demande_monde": "Moyenne",
           "demande_maroc": "Moyenne"
-        },
-        {
-          "id": 174,
-          "nom": "GreenTech & IT Durable",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
-        },
-        {
-          "id": 175,
-          "nom": "Transport Intelligent (MaaS)",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
-        },
-        {
-          "id": 176,
-          "nom": "Tourisme Digital",
-          "demande_monde": "Haute",
-          "demande_maroc": "Très haute"
         }
       ]
     },
     {
       "id": 18,
-      "nom": "QA & Testing",
-      "total": 7,
+      "nom": "Transformation Digitale",
+      "total": 10,
       "domaines": [
         {
-          "id": 177,
-          "nom": "Test Manuel & Fonctionnel",
+          "id": 172,
+          "nom": "Transformation Digitale des Entreprises",
+          "demande_monde": "Très haute",
+          "demande_maroc": "Très haute"
+        },
+        {
+          "id": 173,
+          "nom": "Smart City & Ville Intelligente",
           "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
         {
-          "id": 178,
-          "nom": "Test Automatisé (Selenium, Cypress)",
+          "id": 174,
+          "nom": "E-Gouvernement & Administration Numérique",
+          "demande_monde": "Haute",
+          "demande_maroc": "Très haute"
+        },
+        {
+          "id": 175,
+          "nom": "Santé Numérique (e-Santé)",
           "demande_monde": "Très haute",
           "demande_maroc": "Haute"
         },
         {
+          "id": 176,
+          "nom": "AgriTech (Agriculture Numérique)",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Haute"
+        },
+        {
+          "id": 177,
+          "nom": "LegalTech (Droit & Technologie)",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
+        },
+        {
+          "id": 178,
+          "nom": "GreenTech & Numérique Responsable",
+          "demande_monde": "Haute",
+          "demande_maroc": "Moyenne"
+        },
+        {
           "id": 179,
-          "nom": "Test de Performance (JMeter)",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
-        },
-        {
-          "id": 180,
-          "nom": "Test de Sécurité (DAST/SAST)",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
-        },
-        {
-          "id": 181,
-          "nom": "Test Mobile",
+          "nom": "LogisticTech & Supply Chain Digitale",
           "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
         {
-          "id": 182,
-          "nom": "TDD & BDD",
-          "demande_monde": "Haute",
+          "id": 180,
+          "nom": "PropTech (Immobilier Numérique)",
+          "demande_monde": "Moyenne",
           "demande_maroc": "Moyenne"
         },
         {
-          "id": 183,
-          "nom": "QA Management",
-          "demande_monde": "Haute",
+          "id": 181,
+          "nom": "TravelTech (Tourisme Numérique)",
+          "demande_monde": "Moyenne",
           "demande_maroc": "Haute"
         }
       ]
     },
     {
       "id": 19,
-      "nom": "Langages & Paradigmes de Programmation",
-      "total": 10,
+      "nom": "QA & Testing",
+      "total": 5,
       "domaines": [
         {
+          "id": 182,
+          "nom": "QA Testing & Assurance Qualité",
+          "demande_monde": "Haute",
+          "demande_maroc": "Haute"
+        },
+        {
+          "id": 183,
+          "nom": "Test Automatisé (Selenium, Cypress)",
+          "demande_monde": "Haute",
+          "demande_maroc": "Haute"
+        },
+        {
           "id": 184,
-          "nom": "Python",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Très haute"
+          "nom": "Test de Performance (JMeter)",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
         },
         {
           "id": 185,
-          "nom": "JavaScript / TypeScript",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Très haute"
+          "nom": "Bug Tracking & Gestion des Incidents",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
         },
         {
           "id": 186,
-          "nom": "PHP (Laravel)",
-          "demande_monde": "Haute",
-          "demande_maroc": "Très haute"
-        },
-        {
-          "id": 187,
-          "nom": "Java / Kotlin",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
-        },
-        {
-          "id": 188,
-          "nom": "C / C++",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
-        },
-        {
-          "id": 189,
-          "nom": "Rust",
-          "demande_monde": "Haute",
-          "demande_maroc": "Faible"
-        },
-        {
-          "id": 190,
-          "nom": "Go (Golang)",
-          "demande_monde": "Haute",
-          "demande_maroc": "Faible"
-        },
-        {
-          "id": 191,
-          "nom": "Scala",
+          "nom": "Support Technique Niveau 1/2/3",
           "demande_monde": "Moyenne",
-          "demande_maroc": "Faible"
-        },
-        {
-          "id": 192,
-          "nom": "R (Statistiques)",
-          "demande_monde": "Haute",
           "demande_maroc": "Haute"
-        },
-        {
-          "id": 193,
-          "nom": "Swift (iOS)",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
         }
       ]
     },
     {
       "id": 20,
-      "nom": "Domaines Spéciaux & Interdisciplinaires",
+      "nom": "Langages & Paradigmes",
       "total": 10,
       "domaines": [
         {
-          "id": 194,
-          "nom": "Chatbots & Assistants Virtuels",
+          "id": 187,
+          "nom": "Python (Multi-domaines)",
+          "demande_monde": "Très haute",
+          "demande_maroc": "Très haute"
+        },
+        {
+          "id": 188,
+          "nom": "JavaScript / TypeScript",
+          "demande_monde": "Très haute",
+          "demande_maroc": "Très haute"
+        },
+        {
+          "id": 189,
+          "nom": "Java (Enterprise & Android)",
           "demande_monde": "Très haute",
           "demande_maroc": "Haute"
         },
         {
-          "id": 195,
-          "nom": "Droit du Numérique & RGPD",
+          "id": 190,
+          "nom": "C / C++ (Embarqué & Système)",
           "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
         {
-          "id": 196,
-          "nom": "IA Créative (Musique, Art, Vidéo)",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
-        },
-        {
-          "id": 197,
-          "nom": "Bioinformatique",
-          "demande_monde": "Haute",
-          "demande_maroc": "Faible"
-        },
-        {
-          "id": 198,
-          "nom": "Géoinformatique (SIG/GIS)",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
-        },
-        {
-          "id": 199,
-          "nom": "Simulation & Modélisation",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
-        },
-        {
-          "id": 200,
-          "nom": "Traitement d'Images Médicales",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
-        },
-        {
-          "id": 201,
-          "nom": "Open Source & Contribution Communautaire",
-          "demande_monde": "Haute",
-          "demande_maroc": "Moyenne"
-        },
-        {
-          "id": 202,
-          "nom": "Freelancing & Micro-SaaS",
+          "id": 191,
+          "nom": "PHP (Web Backend)",
           "demande_monde": "Haute",
           "demande_maroc": "Très haute"
         },
         {
-          "id": 203,
-          "nom": "DevRel & Technical Writing",
+          "id": 192,
+          "nom": "Rust (Sécurité & Performance)",
           "demande_monde": "Haute",
           "demande_maroc": "Moyenne"
+        },
+        {
+          "id": 193,
+          "nom": "Go (Golang) (Cloud & Microservices)",
+          "demande_monde": "Haute",
+          "demande_maroc": "Moyenne"
+        },
+        {
+          "id": 194,
+          "nom": "R (Statistiques & Data Science)",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
+        },
+        {
+          "id": 195,
+          "nom": "Kotlin / Swift (Mobile)",
+          "demande_monde": "Haute",
+          "demande_maroc": "Moyenne"
+        },
+        {
+          "id": 196,
+          "nom": "Dart / Flutter (Cross-Platform)",
+          "demande_monde": "Haute",
+          "demande_maroc": "Haute"
         }
       ]
     },
     {
       "id": 21,
-      "nom": "Compétences Transversales IT",
-      "total": 7,
+      "nom": "Domaines Spéciaux",
+      "total": 14,
       "domaines": [
         {
-          "id": 204,
-          "nom": "Communication Technique",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Très haute"
-        },
-        {
-          "id": 205,
-          "nom": "Résolution de Problèmes Complexes",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Très haute"
-        },
-        {
-          "id": 206,
-          "nom": "Pensée Critique & Analytique",
-          "demande_monde": "Très haute",
-          "demande_maroc": "Très haute"
-        },
-        {
-          "id": 207,
-          "nom": "Gestion de Projet & PMO",
-          "demande_monde": "Très haute",
+          "id": 197,
+          "nom": "Identité Numérique & e-KYC",
+          "demande_monde": "Haute",
           "demande_maroc": "Haute"
         },
         {
+          "id": 198,
+          "nom": "Accessibilité Web & Inclusion Numérique",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
+        },
+        {
+          "id": 199,
+          "nom": "Open Source & Contribution Communautaire",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
+        },
+        {
+          "id": 200,
+          "nom": "Informatique Durable (Green Computing)",
+          "demande_monde": "Haute",
+          "demande_maroc": "Moyenne"
+        },
+        {
+          "id": 201,
+          "nom": "Documentation Technique & Technical Writing",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
+        },
+        {
+          "id": 202,
+          "nom": "API Management & Gouvernance des APIs",
+          "demande_monde": "Haute",
+          "demande_maroc": "Haute"
+        },
+        {
+          "id": 203,
+          "nom": "Observability & Chaos Engineering",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Faible"
+        },
+        {
+          "id": 204,
+          "nom": "No-Code / Low-Code Platforms (Bubble, Webflow)",
+          "demande_monde": "Haute",
+          "demande_maroc": "Haute"
+        },
+        {
+          "id": 205,
+          "nom": "Réalité Mixte & Holographie",
+          "demande_monde": "Faible",
+          "demande_maroc": "Faible"
+        },
+        {
+          "id": 206,
+          "nom": "Numérique & Droit Informatique (RGPD, DORA)",
+          "demande_monde": "Haute",
+          "demande_maroc": "Moyenne"
+        },
+        {
+          "id": 207,
+          "nom": "IA & Créativité (Musique, Art, Vidéo générative)",
+          "demande_monde": "Haute",
+          "demande_maroc": "Moyenne"
+        },
+        {
           "id": 208,
-          "nom": "Leadership Technique",
-          "demande_monde": "Très haute",
+          "nom": "Traduction Automatique & Localisation",
+          "demande_monde": "Moyenne",
           "demande_maroc": "Haute"
         },
         {
           "id": 209,
-          "nom": "Créativité & Innovation Numérique",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
+          "nom": "Chatbots & Agents Conversationnels",
+          "demande_monde": "Très haute",
+          "demande_maroc": "Très haute"
         },
         {
           "id": 210,
-          "nom": "Veille Technologique",
-          "demande_monde": "Haute",
-          "demande_maroc": "Haute"
+          "nom": "Cybersécurité des Systèmes de Vote Électronique",
+          "demande_monde": "Moyenne",
+          "demande_maroc": "Moyenne"
         }
       ]
     }

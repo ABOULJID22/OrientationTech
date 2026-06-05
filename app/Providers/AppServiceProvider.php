@@ -5,11 +5,24 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use App\Models\SiteSetting;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Livewire\Livewire;
+use App\Models\Post;
+use App\Models\PostComment;
+use App\Models\Domain;
+use App\Models\DomainComment;
+use App\Models\TestPersonnalise;
+use App\Policies\PostPolicy;
+use App\Policies\PostCommentPolicy;
+use App\Policies\DomainPolicy;
+use App\Policies\DomainCommentPolicy;
+use App\Policies\TestPersonnalisePolicy;
+use Spatie\Translatable\Facades\Translatable;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +39,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Translatable::fallback(
+            fallbackLocale: 'fr',
+            fallbackAny: true,
+        );
+
+        Gate::policy(Post::class, PostPolicy::class);
+        Gate::policy(PostComment::class, PostCommentPolicy::class);
+        Gate::policy(Domain::class, DomainPolicy::class);
+        Gate::policy(DomainComment::class, DomainCommentPolicy::class);
+        Gate::policy(TestPersonnalise::class, TestPersonnalisePolicy::class);
+
         RateLimiter::for('contact-submissions', function (Request $request) {
             return \Illuminate\Cache\RateLimiting\Limit::perMinute(5)->by(
                 $request->user()?->id ?: $request->ip()
@@ -36,12 +60,15 @@ class AppServiceProvider extends ServiceProvider
     View::composer('*', function ($view) {
             static $cached; // éviter multiples requêtes Eloquent
             if ($cached === null) {
-                $cached = SiteSetting::query()->latest('id')->first();
+                $cached = Schema::hasTable('site_settings')
+                    ? SiteSetting::query()->latest('id')->first()
+                    : false;
             }
-            $view->with('siteSettings', $cached);
+            $siteSettings = $cached ?: null;
+            $view->with('siteSettings', $siteSettings);
 
             $fallback = asset('video/vide1.mp4');
-            $raw = $cached?->presentationvideo_url;
+            $raw = $siteSettings?->presentationvideo_url;
             $resolved = $fallback;
 
             if (filled($raw)) {
@@ -65,7 +92,7 @@ class AppServiceProvider extends ServiceProvider
 
             // Background video
             $bgFallback = asset('video/vide2.mp4');
-            $bgRaw = $cached?->bgvideo_url;
+            $bgRaw = $siteSettings?->bgvideo_url;
             $bgResolved = $bgFallback;
             if (filled($bgRaw)) {
                 if (Str::startsWith($bgRaw, ['http://', 'https://', '//'])) {

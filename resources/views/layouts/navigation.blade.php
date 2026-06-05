@@ -12,13 +12,13 @@
             <!-- Logo - Optimized -->
             <a 
                 href="{{ url('/') }}" 
-                class="flex items-center gap-2 sm:gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4f6ba3] focus-visible:ring-offset-2 rounded-lg transition-transform hover:scale-105"
+                class="flex items-center gap-2 sm:gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2 rounded-lg transition-transform hover:scale-105"
                 aria-label="{{ __('site.aria.home') }}"
             >
                 <img 
                     src="{{ asset('images/logo.png') }}" 
                     alt="OrientationTech Logo" 
-                    class="h-8 sm:h-10 w-auto drop-shadow-md" 
+                    class="h-16 w-auto sm:h-14 w-auto drop-shadow-md" 
                     width="auto"
                     height="40"
                 />
@@ -34,16 +34,17 @@
                     '' => __('site.nav.home'),
                     '#about' => __('site.nav.about'),
                     '#services' => __('site.nav.services'),
+                    '/domaines-numeriques' => __('site.nav.domains'),
                     '#blog' => __('site.nav.blog'),
                     '#faq' => __('site.nav.faq'),
                     '#contact' => __('site.nav.contact'),
                 ] as $anchor => $label)
                     <a 
                         href="{{ url('/') }}{{ $anchor }}" 
-                        class="group relative text-base font-medium text-white/90 transition hover:text-[#4f6ba3] focus:outline-none focus-visible:text-[#4f6ba3] dark:text-gray-100"
+                        class="group relative text-base font-medium text-white/90 transition hover:text-[#2563eb] focus:outline-none focus-visible:text-[#2563eb] dark:text-gray-100"
                     >
                         {{ $label }}
-                        <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-[#4f6ba3] to-[#6e94c3] transition-all duration-300 group-hover:w-full group-focus-visible:w-full"></span>
+                        <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-[#2563eb] to-[#6e94c3] transition-all duration-300 group-hover:w-full group-focus-visible:w-full"></span>
                     </a>
                 @endforeach
             </nav>
@@ -54,7 +55,7 @@
                 <!-- Theme Toggle -->
                 <button 
                     type="button"
-                    class="theme-toggle flex h-9 w-9 items-center justify-center rounded-lg  text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4f6ba3]"
+                    class="theme-toggle flex h-9 w-9 items-center justify-center rounded-lg  text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb]"
                     aria-label="{{ __('site.aria.toggle_theme') }}"
                 >
                     <svg class="theme-icon-light h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -75,8 +76,8 @@
                             <a
                                 href="{{ url('/locale/'.$locale) }}"
                                 @class([
-                                    'inline-flex items-center rounded-full px-3 py-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-[#4f6ba3] focus-visible:ring-offset-transparent',
-                                    'bg-[#4f6ba3] text-white shadow-md dark:bg-[#4f6ba3]' => $current === $locale,
+                                    'inline-flex items-center rounded-full px-3 py-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-[#2563eb] focus-visible:ring-offset-transparent',
+                                    'bg-[#2563eb] text-white shadow-md dark:bg-[#2563eb]' => $current === $locale,
                                     'hover:bg-white/30 hover:text-white dark:hover:bg-gray-700/80' => $current !== $locale,
                                 ])
                             >
@@ -92,8 +93,8 @@
                             <a
                                 href="{{ url('/locale/'.$locale) }}"
                                 @class([
-                                    'inline-flex items-center rounded-full px-3 py-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-[#4f6ba3] focus-visible:ring-offset-transparent',
-                                    'bg-[#4f6ba3] text-white shadow-md dark:bg-blue-600' => $current === $locale,
+                                    'inline-flex items-center rounded-full px-3 py-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-[#2563eb] focus-visible:ring-offset-transparent',
+                                    'bg-[#2563eb] text-white shadow-md dark:bg-blue-600' => $current === $locale,
                                     'hover:bg-white/20 hover:text-white dark:hover:bg-gray-700/80' => $current !== $locale,
                                 ])
                             >
@@ -110,7 +111,7 @@
                             <button 
                                 @click="userMenuOpen = !userMenuOpen"
                                 type="button"
-                                class="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4f6ba3] rounded-full"
+                                class="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] rounded-full"
                                 aria-haspopup="true"
                                 :aria-expanded="userMenuOpen"
                                 aria-label="{{ __('site.aria.user_menu') }}"
@@ -118,7 +119,7 @@
                                 <img 
                                     src="{{ $user->avatar }}" 
                                     alt="{{ $user->name }}" 
-                                    class="h-9 w-9 rounded-full border-2 border-transparent object-cover shadow-md transition hover:border-[#4f6ba3]"
+                                    class="h-9 w-9 rounded-full border-2 border-transparent object-cover shadow-md transition hover:border-[#2563eb]"
                                 >
                             </button>
                             
@@ -136,7 +137,7 @@
                                 x-cloak
                             >
                                 <!-- User Info -->
-                                <div class="flex items-center gap-3 bg-[#4f6ba3]/10 px-4 py-3 dark:bg-blue-600/10">
+                                <div class="flex items-center gap-3 bg-[#2563eb]/10 px-4 py-3 dark:bg-blue-600/10">
                                     <img src="{{ $user->avatar }}" alt="" class="h-9 w-9 rounded-full object-cover">
                                     <div class="min-w-0 flex-1">
                                         <p class="truncate text-sm font-semibold text-gray-900 dark:text-white">{{ $user->name }}</p>
@@ -148,27 +149,27 @@
                                 <div class="p-2">
                                     @if ($user?->hasAnyRole(['super_admin', 'admin']))
                                         <a href="{{ route('filament.admin.pages.dashboard') }}" target="_blank" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" role="menuitem">
-                                            <svg class="h-4 w-4 text-[#4f6ba3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 19h18M7 16V8m5 8V4m5 12v-6"/></svg>
+                                            <svg class="h-4 w-4 text-[#2563eb]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 19h18M7 16V8m5 8V4m5 12v-6"/></svg>
                                             {{ __('site.auth.admin_panel') }}
                                         </a>
                                     @endif
 
-                                    @if ($user?->hasAnyRole('client'))
-                                            <a href="{{ route('filament.admin.pages.dashboard') }}" target="_blank" class="flex text-[#4f6ba3] text-sm items-center gap-2 rounded-lg px-3 py-2 transition hover:bg-gray-100 dark:hover:bg-gray-700">
-                                                <svg class="h-4 w-4 text-[#4f6ba3]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path d="M9 6V5a3 3 0 0 1 3-3 3 3 0 0 1 3 3v1" />
-                                                    <path d="M4 9h16" />
-                                                    <path d="M4 9v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9" />
-                                                    <path d="M10 13h4" />
-                                                </svg>
-                                                {{ __('site.auth.my_space') }}
-                                            </a>
-                                        @endif
+                                    @if ($user?->hasAnyRole(['student', 'teacher']))
+                                        <a href="{{ route('filament.admin.pages.dashboard') }}" target="_blank" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" role="menuitem">
+                                            <svg class="h-4 w-4 text-[#2563eb]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M9 6V5a3 3 0 0 1 3-3 3 3 0 0 1 3 3v1" />
+                                                <path d="M4 9h16" />
+                                                <path d="M4 9v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9" />
+                                                <path d="M10 13h4" />
+                                            </svg>
+                                            {{ __('site.auth.my_space') }}
+                                        </a>
+                                    @endif
 
                                     {{-- Pharmacist request link removed --}}
 
                                     <a href="{{ route('profile.edit') }}" class="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-gray-700 transition hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" role="menuitem">
-                                        <svg class="h-4 w-4 text-[#4f6ba3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="9"/></svg>
+                                        <svg class="h-4 w-4 text-[#2563eb]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="9"/></svg>
                                         {{ __('site.auth.profile') }}
                                     </a>
                                 </div>
@@ -186,11 +187,11 @@
                             </div>
                         </div>
                     @else
-                        <a href="{{ route('login') }}" class="rounded-lg border border-[#4f6ba3] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#4f6ba3]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4f6ba3] dark:border-gray-200">
+                        <a href="{{ route('login') }}" class="rounded-lg border border-[#2563eb] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#2563eb]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] dark:border-gray-200">
                             {{ __('site.auth.login') }}
                         </a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="rounded-lg bg-[#4f6ba3] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#465a87] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4f6ba3] focus-visible:ring-offset-2">
+                            <a href="{{ route('register') }}" class="rounded-lg bg-[#2563eb] px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#465a87] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2">
                                 {{ __('site.auth.register') }}
                             </a>
                         @endif
@@ -202,7 +203,7 @@
             <button 
                 @click="mobileMenuOpen = !mobileMenuOpen"
                 type="button"
-                class="flex h-10 w-10 items-center justify-center rounded-lg  text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4f6ba3] lg:hidden"
+                class="flex h-10 w-10 items-center justify-center rounded-lg  text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] lg:hidden"
                 :aria-expanded="mobileMenuOpen"
                 aria-label="{{ __('site.aria.menu') }}"
             >
@@ -252,13 +253,14 @@
                     '#accueil' => __('site.nav.home'),
                     '#about' => __('site.nav.about'),
                     '#services' => __('site.nav.services'),
+                    '/domaines-numeriques' => __('site.nav.domains'),
                     '#blog' => __('site.nav.blog'),
                     '#faq' => __('site.nav.faq'),
                     '#contact' => __('site.nav.contact'),
                 ] as $anchor => $label)
                     <a 
                         href="{{ url('/') }}{{ $anchor }}" 
-                        class="block rounded-lg px-4 py-2.5 text-base font-medium text-gray-700 transition hover:bg-[#4f6ba3]/10 hover:text-[#4f6ba3] dark:text-gray-200"
+                        class="block rounded-lg px-4 py-2.5 text-base font-medium text-gray-700 transition hover:bg-[#2563eb]/10 hover:text-[#2563eb] dark:text-gray-200"
                         @click="mobileMenuOpen = false"
                     >
                         {{ $label }}
@@ -291,9 +293,9 @@
                                 <a
                                     href="{{ url('/locale/'.$locale) }}"
                                     @class([
-                                        'inline-flex items-center text-gray-900 dark:text-white rounded-full px-3 py-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4f6ba3] focus-visible:ring-offset-0',
-                                        'bg-[#4f6ba3] text-white shadow dark:bg-blue-600' => $current === $locale,
-                                        'hover:bg-gray-100 hover:text-[#4f6ba3] dark:hover:bg-gray-600 dark:hover:text-primary-200' => $current !== $locale,
+                                        'inline-flex items-center text-gray-900 dark:text-white rounded-full px-3 py-1 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-0',
+                                        'bg-[#2563eb] text-white shadow dark:bg-blue-600' => $current === $locale,
+                                        'hover:bg-gray-100 hover:text-[#2563eb] dark:hover:bg-gray-600 dark:hover:text-primary-200' => $current !== $locale,
                                     ])
                                 >
                                     {{ $label }}
@@ -306,13 +308,13 @@
                     @if (Route::has('login'))
                         @auth
                             @if (Auth::user()?->hasAnyRole(['super_admin','admin']))
-                                <a href="{{ route('filament.admin.pages.dashboard') }}" class="block w-full rounded-lg bg-[#4f6ba3] px-4 py-2.5 text-center text-sm font-semibold text-white shadow transition hover:bg-[#465a87]">
+                                <a href="{{ route('filament.admin.pages.dashboard') }}" class="block w-full rounded-lg bg-[#2563eb] px-4 py-2.5 text-center text-sm font-semibold text-white shadow transition hover:bg-[#465a87]">
                                     {{ __('site.auth.admin_panel') }}
                                 </a>
                             @endif
 
-                            @if (Auth::user()?->hasAnyRole('client'))
-                                <a href="{{ route('filament.admin.pages.dashboard') }}" class="block w-full rounded-lg bg-[#4f6ba3] px-4 py-2.5 text-center text-sm font-semibold text-[#4f6ba3] shadow transition hover:bg-[#465a87]">
+                            @if (Auth::user()?->hasAnyRole(['student', 'teacher']))
+                                <a href="{{ route('filament.admin.pages.dashboard') }}" class="block w-full rounded-lg bg-[#2563eb] px-4 py-2.5 text-center text-sm font-semibold text-white shadow transition hover:bg-[#465a87]">
                                     {{ __('site.auth.my_space') }}
                                 </a>
                             @endif
@@ -332,7 +334,7 @@
                                 {{ __('site.auth.login') }}
                             </a>
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="block w-full rounded-lg bg-gray-800 px-4 py-2.5 text-center text-sm font-semibold text-white shadow transition hover:bg-[#465a87] dark:bg-[#4f6ba3]">
+                                <a href="{{ route('register') }}" class="block w-full rounded-lg bg-gray-800 px-4 py-2.5 text-center text-sm font-semibold text-white shadow transition hover:bg-[#465a87] dark:bg-[#2563eb]">
                                     {{ __('site.auth.register') }}
                                 </a>
                             @endif

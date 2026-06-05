@@ -1,130 +1,231 @@
 <x-app-layout>
-    @php($user = Auth::user())
+    @php
+        $user = Auth::user();
 
-    <x-slot name="header">
-        <div class="flex items-center justify-between flex-wrap gap-4">
-     
-        </div>
-    </x-slot>
+        $roleKey = 'student';
+        $roleLabel = 'Eleve';
+        $roleDescription = 'Ton espace personnel centralise ton profil, tes informations scolaires et ton parcours OrientationTech.';
+        $roleBadgeClasses = 'bg-blue-50 text-[#2563eb] ring-blue-100';
+        $primaryActionLabel = 'Continuer mon orientation';
+        $primaryActionUrl = route('filament.admin.pages.dashboard');
 
-    <div class="relative isolate overflow-hidden bg-[#b0cae0]/20 dark:bg-slate-900">
-        <div aria-hidden="true" class="pointer-events-none absolute -top-40 right-0 h-72 w-72 rounded-full bg-gradient-to-br from-[#4f6ba3]/20 via-[#5b7db5]/15 to-[#8aaed0]/20 blur-3xl"></div>
-        <div aria-hidden="true" class="pointer-events-none absolute -bottom-32 left-4 h-64 w-64 rounded-full bg-gradient-to-tr from-[#5b7db5]/20 via-[#8aaed0]/15 to-[#b0cae0]/25 blur-3xl"></div>
+        if ($user?->hasRole(\App\Models\User::ROLE_SUPER_ADMIN)) {
+            $roleKey = 'super_admin';
+            $roleLabel = 'Administration';
+            $roleDescription = 'Profil administrateur pour superviser les utilisateurs, les contenus, les rapports et la qualite de la plateforme.';
+            $roleBadgeClasses = 'bg-slate-900 text-white ring-slate-700';
+            $primaryActionLabel = 'Ouvrir le panel admin';
+        } elseif ($user?->hasRole(\App\Models\User::ROLE_TEACHER)) {
+            $roleKey = 'teacher';
+            $roleLabel = 'Enseignant';
+            $roleDescription = 'Profil enseignant pour publier des ressources, accompagner les eleves et suivre les interactions pedagogiques.';
+            $roleBadgeClasses = 'bg-indigo-50 text-indigo-700 ring-indigo-100';
+            $primaryActionLabel = 'Gerer mes contenus';
+        }
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 relative">
+        $studentProfile = $user?->studentProfile;
+        $diagnosticCompleted = $user
+            ? \App\Models\AcademicDiagnostic::query()->where('user_id', $user->id)->where('status', 'completed')->exists()
+            : false;
+        $personalityCompleted = $user
+            ? \App\Models\TestPersonnalise::query()->where('user_id', $user->id)->where('status', 'completed')->exists()
+            : false;
 
-                <section class="rounded-3xl bg-gradient-to-br from-[#4f6ba3] via-[#5b7db5] to-[#8aaed0] px-6 sm:px-10 py-8 shadow-2xl shadow-blue-900/40 text-white ring-1 ring-white/10">
-                    <div class="flex flex-col lg:flex-row lg:items-center gap-8">
-                        <div class="relative">
-                            <div class="absolute -inset-1 rounded-full bg-white/15 blur-lg"></div>
-                            <img src="{{ $user->avatar }}" alt="Avatar" class="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-3xl object-cover border-4 border-white/70 shadow-xl">
-                        </div>
-                        <div class="flex-1 space-y-3">
-                            <div class="flex flex-wrap items-center gap-3">
-                                <h3 class="text-2xl sm:text-3xl font-semibold drop-shadow-lg">{{ $user->name }}</h3>
-                                <span class="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide">
-                                    {{ $user->isClient() ? __('profile.status.client') : __('profile.status.user') }}
-                                </span>
+        $baseFields = collect([
+            $user?->name,
+            $user?->email,
+            $user?->phone,
+            $user?->city,
+            $user?->country,
+        ])->filter()->count();
+
+        $profileScore = min(100, (int) round(($baseFields / 5) * 100));
+
+        if ($roleKey === 'student') {
+            $profileScore = min(100, $profileScore + ($studentProfile?->is_complete ? 25 : 0));
+        }
+
+        $statusItems = match ($roleKey) {
+            'super_admin' => [
+                ['label' => 'Role', 'value' => 'Super admin', 'state' => 'Actif'],
+                ['label' => 'Acces', 'value' => 'Administration complete', 'state' => 'Autorise'],
+                ['label' => 'Suivi', 'value' => 'Utilisateurs et rapports', 'state' => 'Centralise'],
+            ],
+            'teacher' => [
+                ['label' => 'Role', 'value' => 'Enseignant', 'state' => $user?->is_active ? 'Actif' : 'En attente'],
+                ['label' => 'Mission', 'value' => 'Contenus pedagogiques', 'state' => 'Publier'],
+                ['label' => 'Interaction', 'value' => 'Commentaires eleves', 'state' => 'Suivre'],
+            ],
+            default => [
+                ['label' => 'Profil eleve', 'value' => $studentProfile?->is_complete ? 'Complete' : 'A completer', 'state' => $studentProfile?->is_complete ? 'Pret' : 'Important'],
+                ['label' => 'Diagnostic', 'value' => $diagnosticCompleted ? 'Termine' : 'Non termine', 'state' => $diagnosticCompleted ? 'OK' : 'A faire'],
+                ['label' => 'Test personnalise', 'value' => $personalityCompleted ? 'Termine' : 'Non termine', 'state' => $personalityCompleted ? 'OK' : 'A faire'],
+            ],
+        };
+    @endphp
+
+    <div class="min-h-screen bg-[#eff6ff] pt-24 sm:pt-28">
+        <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+            <section class="overflow-hidden rounded-[2rem] border border-blue-100 bg-white shadow-xl shadow-blue-950/5">
+                <div class="grid gap-0 lg:grid-cols-[1.15fr,0.85fr]">
+                    <div class="relative p-6 sm:p-8 lg:p-10">
+                        <div class="absolute inset-x-0 top-0 h-1 bg-[#2563eb]"></div>
+
+                        <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+                            <div class="relative shrink-0">
+                                <div class="absolute -inset-2 rounded-[1.75rem] bg-blue-100"></div>
+                                <img src="{{ $user->avatar }}" alt="Avatar" class="relative h-28 w-28 rounded-[1.5rem] border-4 border-white object-cover shadow-lg">
                             </div>
-                            <p class="text-sm sm:text-base text-white/80">
-                                {{ $user->email }}
-                            </p>
-                            <dl class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-white/85">
-                                <div class="rounded-2xl bg-white/20 border border-white/30 px-4 py-3 backdrop-blur">
-                                    <dt class="text-white/70 uppercase tracking-wide text-xs">{{ __('profile.summary.last_updated') }}</dt>
-                                    <dd class="mt-1 font-semibold">
-                                        {{ $user->updated_at ? $user->updated_at->locale(app()->getLocale())->isoFormat('D MMM YYYY HH:mm') : __('profile.summary.missing') }}
-                                    </dd>
+
+                            <div class="min-w-0 flex-1">
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide ring-1 {{ $roleBadgeClasses }}">
+                                        {{ $roleLabel }}
+                                    </span>
+                                    @if ($user?->is_active)
+                                        <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-100">
+                                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                                            Compte actif
+                                        </span>
+                                    @else
+                                        <span class="inline-flex items-center gap-1 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700 ring-1 ring-amber-100">
+                                            <span class="h-1.5 w-1.5 rounded-full bg-amber-500"></span>
+                                            Activation en attente
+                                        </span>
+                                    @endif
                                 </div>
-                                <div class="rounded-2xl bg-[#5b7db5]/30 border border-white/20 px-4 py-3 backdrop-blur">
-                                    <dt class="text-white/70 uppercase tracking-wide text-xs">{{ __('profile.summary.phone') }}</dt>
-                                    <dd class="mt-1 font-semibold">
-                                        {{ $user->phone ?: __('profile.summary.missing') }}
-                                    </dd>
+
+                                <h1 class="mt-4 text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
+                                    {{ $user->name }}
+                                </h1>
+                                <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
+                                    {{ $roleDescription }}
+                                </p>
+
+                                <div class="mt-6 flex flex-wrap gap-3">
+                                    <a href="{{ $primaryActionUrl }}" class="inline-flex items-center justify-center rounded-xl bg-[#2563eb] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition hover:bg-[#1d4ed8]">
+                                        {{ $primaryActionLabel }}
+                                    </a>
+
+                                    @if ($roleKey === 'student')
+                                        <a href="{{ route('student-profile.show') }}" class="inline-flex items-center justify-center rounded-xl border border-blue-200 bg-white px-5 py-3 text-sm font-bold text-[#2563eb] transition hover:bg-blue-50">
+                                            Profil scolaire
+                                        </a>
+                                    @endif
                                 </div>
-                                <div class="rounded-2xl bg-[#8aaed0]/40 border border-white/20 px-4 py-3 backdrop-blur">
-                                    <dt class="text-white/70 uppercase tracking-wide text-xs">{{ __('profile.summary.created_at') }}</dt>
-                                    <dd class="mt-1 font-semibold">
-                                        {{ $user->created_at->format('d M Y') }}
-                                    </dd>
-                                </div>
-                            </dl>
+                            </div>
                         </div>
                     </div>
-                </section>
 
-                <div class="grid grid-cols-1 xl:grid-cols-[2fr,1fr] gap-8">
-                    <div class="space-y-8">
-                        <div class="rounded-3xl bg-white/90 dark:bg-slate-900/70 shadow-xl shadow-slate-900/10 ring-1 ring-[#b0cae0]/60 dark:ring-slate-700/60 backdrop-blur">
-                            <div class="p-6 sm:p-8">
-                                @include('profile.partials.update-profile-information-form')
+                    <div class="border-t border-blue-100 bg-slate-950 p-6 text-white sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
+                        <p class="text-xs font-bold uppercase tracking-[0.24em] text-blue-200">Synthese du profil</p>
+
+                        <div class="mt-6">
+                            <div class="flex items-end justify-between gap-4">
+                                <div>
+                                    <p class="text-sm text-slate-300">Completion generale</p>
+                                    <p class="mt-1 text-4xl font-black">{{ $profileScore }}%</p>
+                                </div>
+                                <div class="text-right text-xs text-slate-400">
+                                    Mis a jour<br>{{ optional($user->updated_at)->format('d/m/Y H:i') }}
+                                </div>
+                            </div>
+                            <div class="mt-4 h-2 overflow-hidden rounded-full bg-white/10">
+                                <div class="h-full rounded-full bg-[#60a5fa]" style="width: {{ $profileScore }}%"></div>
                             </div>
                         </div>
 
-                        <div class="rounded-3xl bg-white/90 dark:bg-slate-900/70 shadow-xl shadow-slate-900/10 ring-1 ring-[#b0cae0]/60 dark:ring-slate-700/60 backdrop-blur">
-                            <div class="p-6 sm:p-8">
-                                @include('profile.partials.update-password-form')
-                            </div>
+                        <div class="mt-8 grid gap-3">
+                            @foreach ($statusItems as $item)
+                                <div class="rounded-2xl border border-white/10 bg-white/[0.06] p-4">
+                                    <div class="flex items-start justify-between gap-4">
+                                        <div>
+                                            <p class="text-xs font-semibold uppercase tracking-wide text-blue-200">{{ $item['label'] }}</p>
+                                            <p class="mt-1 text-sm font-bold text-white">{{ $item['value'] }}</p>
+                                        </div>
+                                        <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-blue-100">{{ $item['state'] }}</span>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-
-                    <aside class="space-y-6">
-                        <div class="rounded-3xl bg-white/90 dark:bg-slate-900/70 shadow-xl shadow-slate-900/10 ring-1 ring-[#b0cae0]/60 dark:ring-slate-700/60 backdrop-blur p-6 sm:p-8">
-                            <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2">
-                                <span class="h-9 w-9 rounded-2xl bg-[#4f6ba3]/10 text-[#4f6ba3] dark:text-[#8aaed0] flex items-center justify-center">
-                                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z" />
-                                    </svg>
-                                </span>
-                                {{ __('profile.sidebar.primary_contacts') }}
-                            </h3>
-                            <dl class="mt-6 space-y-4 text-sm text-slate-600 dark:text-slate-300">
-                                <div class="flex items-start justify-between">
-                                    <dt class="font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide text-xs">{{ __('profile.summary.address') }}</dt>
-                                    <dd class="max-w-[65%] text-right">{{ $user->address ?: __('profile.summary.missing') }}</dd>
-                                </div>
-                                <div class="flex items-start justify-between">
-                                    <dt class="font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide text-xs">{{ __('profile.summary.city') }}</dt>
-                                    <dd class="max-w-[65%] text-right">{{ $user->city ?: __('profile.summary.missing') }}</dd>
-                                </div>
-                                <div class="flex items-start justify-between">
-                                    <dt class="font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide text-xs">{{ __('profile.summary.country') }}</dt>
-                                    <dd class="max-w-[65%] text-right">{{ $user->country ?: __('profile.summary.missing') }}</dd>
-                                </div>
-                                <div class="flex items-start justify-between">
-                                    <dt class="font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide text-xs">{{ __('profile.summary.phone_secondary') }}</dt>
-                                    <dd class="max-w-[65%] text-right">{{ $user->phone_2 ?: __('profile.summary.missing') }}</dd>
-                                </div>
-                            </dl>
-                        </div>
-
-
-                    </aside>
                 </div>
+            </section>
+
+            <div class="mt-8 grid gap-8 xl:grid-cols-[minmax(0,1fr),24rem]">
+                <div class="space-y-8">
+                    <div class="rounded-[1.5rem] border border-blue-100 bg-white p-5 shadow-lg shadow-blue-950/5 sm:p-8">
+                        @include('profile.partials.update-profile-information-form', ['roleKey' => $roleKey, 'roleLabel' => $roleLabel])
+                    </div>
+                </div>
+
+                <aside class="space-y-6">
+                    <div class="rounded-[1.5rem] border border-blue-100 bg-white p-6 shadow-lg shadow-blue-950/5">
+                        <h2 class="text-lg font-black text-slate-950">Informations utiles</h2>
+                        <dl class="mt-5 space-y-4 text-sm">
+                            <div class="flex items-start justify-between gap-4">
+                                <dt class="font-semibold text-slate-500">Email</dt>
+                                <dd class="text-right font-bold text-slate-900">{{ $user->email }}</dd>
+                            </div>
+                            <div class="flex items-start justify-between gap-4">
+                                <dt class="font-semibold text-slate-500">Telephone</dt>
+                                <dd class="text-right font-bold text-slate-900">{{ $user->phone ?: 'Non renseigne' }}</dd>
+                            </div>
+                            <div class="flex items-start justify-between gap-4">
+                                <dt class="font-semibold text-slate-500">Ville</dt>
+                                <dd class="text-right font-bold text-slate-900">{{ $user->city ?: 'Non renseignee' }}</dd>
+                            </div>
+                            <div class="flex items-start justify-between gap-4">
+                                <dt class="font-semibold text-slate-500">Pays</dt>
+                                <dd class="text-right font-bold text-slate-900">{{ $user->country ?: 'Non renseigne' }}</dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    @if ($roleKey === 'student')
+                        <div class="rounded-[1.5rem] border border-blue-100 bg-white p-6 shadow-lg shadow-blue-950/5">
+                            <h2 class="text-lg font-black text-slate-950">Parcours eleve</h2>
+                            <div class="mt-5 space-y-3 text-sm">
+                                <div class="rounded-2xl bg-blue-50 p-4">
+                                    <p class="font-bold text-slate-950">Niveau scolaire</p>
+                                    <p class="mt-1 text-slate-600">{{ $studentProfile?->education_level ?: 'A completer' }}</p>
+                                </div>
+                                <div class="rounded-2xl bg-blue-50 p-4">
+                                    <p class="font-bold text-slate-950">Etablissement</p>
+                                    <p class="mt-1 text-slate-600">{{ $studentProfile?->school_name ?: 'A completer' }}</p>
+                                </div>
+                                <a href="{{ route('student-profile.show') }}" class="inline-flex w-full items-center justify-center rounded-xl bg-[#eff6ff] px-4 py-3 text-sm font-bold text-[#2563eb] transition hover:bg-[#dbeafe]">
+                                    Modifier mon profil scolaire
+                                </a>
+                            </div>
+                        </div>
+                    @elseif ($roleKey === 'teacher')
+                        <div class="rounded-[1.5rem] border border-blue-100 bg-white p-6 shadow-lg shadow-blue-950/5">
+                            <h2 class="text-lg font-black text-slate-950">Espace enseignant</h2>
+                            <p class="mt-2 text-sm leading-6 text-slate-600">
+                                Complete ton titre professionnel et tes contacts pour renforcer la confiance dans les ressources publiees.
+                            </p>
+                            <a href="{{ route('filament.admin.resources.posts.index') }}" class="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-[#eff6ff] px-4 py-3 text-sm font-bold text-[#2563eb] transition hover:bg-[#dbeafe]">
+                                Mes articles
+                            </a>
+                        </div>
+                    @else
+                        <div class="rounded-[1.5rem] border border-blue-100 bg-white p-6 shadow-lg shadow-blue-950/5">
+                            <h2 class="text-lg font-black text-slate-950">Administration</h2>
+                            <p class="mt-2 text-sm leading-6 text-slate-600">
+                                Ce profil doit rester clair et securise, car il donne acces aux donnees sensibles de la plateforme.
+                            </p>
+                            <a href="{{ route('filament.admin.resources.users.index') }}" class="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-[#eff6ff] px-4 py-3 text-sm font-bold text-[#2563eb] transition hover:bg-[#dbeafe]">
+                                Gerer les utilisateurs
+                            </a>
+                        </div>
+                    @endif
+
+                    <div class="rounded-[1.5rem] border border-blue-100 bg-white p-6 shadow-lg shadow-blue-950/5">
+                        @include('profile.partials.update-password-form', ['compact' => true])
+                    </div>
+                </aside>
             </div>
         </div>
     </div>
-
-    @push('styles')
-        <style>
-            .dark .shadow-blue-900\/40 {
-                box-shadow: 0 25px 60px rgba(15, 23, 42, 0.65);
-            }
-            /* Force file input placeholder text color to black in light mode
-               and white in dark mode for better contrast */
-            input[type=file]::file-selector-button {
-                /* keep default button styles */
-            }
-
-            /* browsers display "No file chosen" outside the button; style it */
-            input[type=file] {
-                color: #000; /* default text color (light mode) */
-            }
-
-            .dark input[type=file] {
-                color: #fff; /* dark mode: white text */
-            }
-        </style>
-    @endpush
 </x-app-layout>

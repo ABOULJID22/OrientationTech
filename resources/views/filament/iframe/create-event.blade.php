@@ -9,6 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Créer événement</title>
+    @include('layouts.favicon')
     @livewireStyles
     <style>
         /* Hide Filament admin chrome so only the page content (form) is visible inside the iframe */

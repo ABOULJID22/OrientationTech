@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\PostView;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -18,9 +19,7 @@ class PostController extends Controller
         $fallback = config('app.fallback_locale');
 
         $query = Post::query()
-            ->where('status', 'published')
-            ->whereNotNull('published_at')
-            ->where('published_at', '<=', now())
+            ->published()
             ->with([
                 'author', 
                 'category', 
@@ -84,7 +83,7 @@ class PostController extends Controller
     /**
      * Afficher un seul article
      */
-    public function show(Post $post): View
+    public function show(Request $request, Post $post): View
     {
         $locale = app()->getLocale();
         $fallback = config('app.fallback_locale');
@@ -94,10 +93,16 @@ class PostController extends Controller
             abort(404);
         }
 
+        $this->recordView($request, $post);
+
         // Charger les relations nécessaires
         $post->load([
-            'author', 
+            'author',
             'category', 
+            'likes',
+            'visibleComments.user',
+            'visibleComments.replies.user',
+            'visibleComments.replies.reports',
             'translations' => function ($q) use ($locale, $fallback) {
                 $q->whereIn('locale', [$locale, $fallback]);
             }, 
@@ -108,9 +113,7 @@ class PostController extends Controller
 
         // Articles précédent et suivant
         $prev = Post::query()
-            ->where('status', 'published')
-            ->whereNotNull('published_at')
-            ->where('published_at', '<=', now())
+            ->published()
             ->where('published_at', '<', $post->published_at)
             ->with(['translations' => function ($q) use ($locale, $fallback) {
                 $q->whereIn('locale', [$locale, $fallback]);
@@ -119,9 +122,7 @@ class PostController extends Controller
             ->first();
 
         $next = Post::query()
-            ->where('status', 'published')
-            ->whereNotNull('published_at')
-            ->where('published_at', '<=', now())
+            ->published()
             ->where('published_at', '>', $post->published_at)
             ->with(['translations' => function ($q) use ($locale, $fallback) {
                 $q->whereIn('locale', [$locale, $fallback]);
@@ -131,9 +132,7 @@ class PostController extends Controller
 
         // Articles récents
         $recent = Post::query()
-            ->where('status', 'published')
-            ->whereNotNull('published_at')
-            ->where('published_at', '<=', now())
+            ->published()
             ->whereKeyNot($post->getKey())
             ->with(['translations' => function ($q) use ($locale, $fallback) {
                 $q->whereIn('locale', [$locale, $fallback]);
@@ -142,6 +141,50 @@ class PostController extends Controller
             ->limit(4)
             ->get(['id','slug','title','cover_image','published_at','category_id']);
 
-        return view('pages.blog.show', compact('post', 'prev', 'next', 'recent'));
+        $comments = $post->visibleComments
+            ->whereNull('parent_id')
+            ->sortBy('created_at')
+            ->values();
+        $likedByCurrentUser = $post->isLikedBy(auth()->user());
+        $favoritedByCurrentUser = $post->isFavoritedBy(auth()->user());
+
+        return view('pages.blog.show', compact('post', 'prev', 'next', 'recent', 'comments', 'likedByCurrentUser', 'favoritedByCurrentUser'));
+    }
+
+    private function recordView(Request $request, Post $post): void
+    {
+        $windowStart = now()->subMinutes(30);
+        $user = $request->user();
+        $sessionId = $request->session()->getId();
+        $ipHash = hash('sha256', (string) $request->ip());
+        $agentHash = hash('sha256', (string) $request->userAgent());
+
+        $recentViewExists = PostView::query()
+            ->where('post_id', $post->id)
+            ->where('viewed_at', '>=', $windowStart)
+            ->where(function ($query) use ($user, $sessionId, $ipHash): void {
+                if ($user) {
+                    $query->where('user_id', $user->id);
+                    return;
+                }
+
+                $query->where('session_id', $sessionId)
+                    ->orWhere('ip_hash', $ipHash);
+            })
+            ->exists();
+
+        if ($recentViewExists) {
+            return;
+        }
+
+        $post->views()->create([
+            'user_id' => $user?->id,
+            'session_id' => $sessionId,
+            'ip_hash' => $ipHash,
+            'user_agent_hash' => $agentHash,
+            'viewed_at' => now(),
+        ]);
+
+        $post->increment('views_count');
     }
 }

@@ -10,8 +10,10 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Filament\Models\Contracts\HasAvatar as FilamentHasAvatar;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable implements FilamentHasAvatar
 {
@@ -124,9 +126,49 @@ class User extends Authenticatable implements FilamentHasAvatar
         return $this->hasMany(Post::class, 'author_id');
     }
 
+    public function resourceContents()
+    {
+        return $this->hasMany(ResourceContent::class, 'teacher_id');
+    }
+
+    public function postLikes()
+    {
+        return $this->hasMany(PostLike::class, 'user_id');
+    }
+
+    public function postFavorites()
+    {
+        return $this->hasMany(PostFavorite::class, 'user_id');
+    }
+
+    public function resourceContentLikes()
+    {
+        return $this->hasMany(ResourceContentLike::class, 'user_id');
+    }
+
+    public function resourceContentFavorites()
+    {
+        return $this->hasMany(ResourceContentFavorite::class, 'user_id');
+    }
+
+    public function postComments()
+    {
+        return $this->hasMany(PostComment::class, 'user_id');
+    }
+
     public function studentProfile()
     {
         return $this->hasOne(StudentProfile::class, 'user_id', 'id');
+    }
+
+    public function academicDiagnostics(): HasMany
+    {
+        return $this->hasMany(AcademicDiagnostic::class, 'user_id', 'id');
+    }
+
+    public function testPersonnalises(): HasMany
+    {
+        return $this->hasMany(TestPersonnalise::class, 'user_id', 'id');
     }
 
     public function commercials()
@@ -143,14 +185,24 @@ class User extends Authenticatable implements FilamentHasAvatar
             return asset('images/avater.png');
         }
 
+        $publicUrl = rtrim(Storage::disk('public')->url(''), '/') . '/';
+        if (Str::startsWith($state, $publicUrl)) {
+            $relative = ltrim(Str::after($state, $publicUrl), '/');
+
+            return Storage::disk('public')->exists($relative)
+                ? $this->publicDiskFileUrl($relative)
+                : asset('images/avater.png');
+        }
+
         if (Str::startsWith($state, ['http://', 'https://'])) {
             return $state;
         }
  
         if (Str::startsWith($state, '/storage/')) {
             $relative = ltrim(Str::after($state, '/storage/'), '/');
+
             return Storage::disk('public')->exists($relative)
-                ? $state
+                ? $this->publicDiskFileUrl($relative)
                 : asset('images/avater.png');
         }
 
@@ -159,13 +211,29 @@ class User extends Authenticatable implements FilamentHasAvatar
         }
 
         return Storage::disk('public')->exists($state)
-            ? Storage::disk('public')->url($state)
+            ? $this->publicDiskFileUrl($state)
             : asset('images/avater.png');
+    }
+
+    protected function publicDiskFileUrl(string $path): string
+    {
+        $path = ltrim(str_replace('\\', '/', $path), '/');
+
+        if (Route::has('attachments.public.view')) {
+            return route('attachments.public.view', ['path' => $path]);
+        }
+
+        return Storage::disk('public')->url($path);
     }
 
     public function getFilamentAvatarUrl(): ?string
     {
         return $this->avatar ?: null;
+    }
+
+    public function newUniqueId(): string
+    {
+        return (string) Str::uuid();
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Filament\Resources\Posts\Pages;
 
 use App\Filament\Resources\Posts\PostResource;
+use App\Models\Post;
+use App\Services\Notifications\PlatformNotificationService;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -60,6 +62,10 @@ class CreatePost extends CreateRecord
 
         $data['author_id'] = auth()->id();
 
+        if (auth()->user()?->isTeacher() && ! auth()->user()?->isSuperAdmin() && ($data['status'] ?? null) === Post::STATUS_PUBLISHED) {
+            $data['status'] = Post::STATUS_PENDING;
+        }
+
         return $data;
     }
 
@@ -79,5 +85,7 @@ class CreatePost extends CreateRecord
                 'content' => $t->content,
             ])->saveQuietly();
         }
+
+        app(PlatformNotificationService::class)->notifyPostCreated($record->fresh(['author']));
     }
 }
