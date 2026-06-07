@@ -16,6 +16,8 @@ class AdminDomainTrendsChart extends ChartWidget
 
     protected int | string | array $columnSpan = ['lg' => 1];
 
+    protected ?string $maxHeight = '280px';
+
     protected function getType(): string
     {
         return 'bar';
@@ -41,6 +43,7 @@ class AdminDomainTrendsChart extends ChartWidget
                 'label' => 'Recommandations',
                 'data' => array_values($counts),
                 'backgroundColor' => '#2563eb',
+                'hoverBackgroundColor' => '#2563eb',
                 'borderRadius' => 8,
             ]],
             'labels' => collect(array_keys($counts))
@@ -53,10 +56,33 @@ class AdminDomainTrendsChart extends ChartWidget
     protected function getOptions(): array
     {
         return [
+            'responsive' => true,
+            'maintainAspectRatio' => false,
+            'resizeDelay' => 0,
+            'events' => [],
+            'animation' => false,
+            'animations' => false,
+            'hover' => [
+                'mode' => null,
+                'animationDuration' => 0,
+            ],
             'indexAxis' => 'y',
+            'transitions' => [
+                'active' => [
+                    'animation' => [
+                        'duration' => 0,
+                    ],
+                ],
+                'resize' => [
+                    'animation' => [
+                        'duration' => 0,
+                    ],
+                ],
+            ],
             'scales' => [
                 'x' => [
                     'beginAtZero' => true,
+                    'grace' => '10%',
                     'ticks' => [
                         'precision' => 0,
                     ],

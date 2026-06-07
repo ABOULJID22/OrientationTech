@@ -46,21 +46,19 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
             <div class="grid items-center gap-10 lg:grid-cols-[.88fr_1.12fr]">
                 <div class="max-w-2xl">
                     <h1 class="text-[2.5rem] font-black leading-[1.08] tracking-tight text-[#06133f] dark:text-white sm:text-5xl lg:text-[4rem]">
-                        Construis ton avenir<br>
-                        oriente-toi vers les<br>
-                        <span class="text-[#2563eb] dark:text-blue-300">métiers du futur</span>
+                        {!! __('site.hero.headline_html') !!}
                     </h1>
 
                     <p class="mt-7 max-w-lg text-base leading-8 text-slate-700 dark:text-slate-300">
-                        OrientationTech t'aide à mieux te connaître, à découvrir ton Ikigaï et à trouver les domaines et métiers qui te correspondent grâce à l'intelligence artificielle.
+                        {{ __('site.hero.subtitle') }}
                     </p>
 
                     <div class="mt-8 flex flex-wrap gap-4">
                         <a href="#how" class="inline-flex items-center justify-center rounded-lg bg-gradient-to-br from-[#2563eb] to-[#1e40af] px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-[#1d4ed8] hover:shadow-xl">
-                            Commencer mon orientation
+                            {{ __('site.hero.cta_primary') }}
                         </a>
                         <a href="/domaines-numeriques" class="inline-flex items-center justify-center rounded-lg border border-[#93c5fd] bg-white/80 px-6 py-3 text-sm font-extrabold text-[#1d4ed8] shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-[#2563eb] hover:bg-white dark:border-blue-400/30 dark:bg-white/10 dark:text-blue-100 dark:hover:bg-white/15">
-                            Explorer les domaines d'avenir
+                            {{ __('site.hero.cta_secondary') }}
                         </a>
                     </div>
                 </div>
@@ -76,40 +74,40 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                         <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#93c5fd] bg-white/85 text-[#2563eb] shadow-sm backdrop-blur dark:border-blue-300/30 dark:bg-slate-900/80 dark:text-blue-200">
                             <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3a3 3 0 0 0-3 3v1a3 3 0 0 0-2 2.8A3.2 3.2 0 0 0 6 13v1a3 3 0 0 0 3 3m6-14a3 3 0 0 1 3 3v1a3 3 0 0 1 2 2.8A3.2 3.2 0 0 1 18 13v1a3 3 0 0 1-3 3M9 3v14m6-14v14"/></svg>
                         </div>
-                        <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">Intelligence<br>Artificielle</p>
+                        <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">{!! __('site.hero.domains.ai') !!}</p>
                     </div>
 
                     <div class="absolute right-[8%] top-[19%] z-20 hidden rounded-2xl text-center sm:block">
                         <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#93c5fd] bg-white/85 text-[#2563eb] shadow-sm backdrop-blur dark:border-blue-300/30 dark:bg-slate-900/80 dark:text-blue-200">
                             <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 19 6v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z"/><path d="m9.5 12 1.7 1.7L15 10"/></svg>
                         </div>
-                        <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">Cybersécurité</p>
+                        <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">{{ __('site.hero.domains.cybersecurity') }}</p>
                     </div>
 
                     <div class="absolute left-[2%] bottom-[28%] z-20 hidden rounded-2xl text-center sm:block">
                         <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#93c5fd] bg-white/85 text-[#2563eb] shadow-sm backdrop-blur dark:border-blue-300/30 dark:bg-slate-900/80 dark:text-blue-200">
                             <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m8 9-4 3 4 3"/><path d="m16 9 4 3-4 3"/><path d="m14 5-4 14"/></svg>
                         </div>
-                        <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">Développement<br>Web</p>
+                        <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">{!! __('site.hero.domains.web_dev') !!}</p>
                     </div>
 
                     <div class="absolute right-[2%] bottom-[32%] z-20 hidden rounded-2xl text-center sm:block">
                         <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-[#93c5fd] bg-white/85 text-[#2563eb] shadow-sm backdrop-blur dark:border-blue-300/30 dark:bg-slate-900/80 dark:text-blue-200">
                             <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19h16"/><path d="M7 16v-4"/><path d="M12 16V8"/><path d="M17 16V5"/><path d="m14 8 3-3 3 3"/></svg>
                         </div>
-                        <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">Data Science</p>
+                        <p class="mt-2 text-sm font-extrabold leading-tight text-[#06133f] dark:text-slate-100">{{ __('site.hero.domains.data_science') }}</p>
                     </div>
 
-                    <img src="{{ asset('images/hero-student.png') }}" alt="Élève marocain accompagné par OrientationTech" class="absolute bottom-0 left-1/2 z-10 h-[390px] max-w-none -translate-x-1/2 object-contain drop-shadow-2xl sm:h-[440px] lg:h-[520px]">
+                    <img src="{{ asset('images/hero-student.png') }}" alt="{{ __('site.hero.image_alt') }}" class="absolute bottom-0 left-1/2 z-10 h-[390px] max-w-none -translate-x-1/2 object-contain drop-shadow-2xl sm:h-[440px] lg:h-[520px]">
                 </div>
             </div>
 
             <div class="relative z-30 -mt-2 grid gap-4 rounded-2xl border border-white/70 bg-white/85 p-5 shadow-xl shadow-slate-900/10 backdrop-blur dark:border-white/10 dark:bg-slate-900/80 dark:shadow-black/30 md:grid-cols-4 lg:-mt-8">
                 @foreach([
-                    ['Tests intelligents', 'Des tests scientifiques et personnalisés'],
-                    ['Analyse IA', 'Une analyse avancée pour des résultats précis'],
-                    ['Recommandations', 'Des domaines et métiers adaptés à ton profil'],
-                    ['Rapport complet', 'Un rapport professionnel exportable en PDF'],
+                    ['title' => __('site.hero.features.tests.title'), 'description' => __('site.hero.features.tests.description')],
+                    ['title' => __('site.hero.features.ai_analysis.title'), 'description' => __('site.hero.features.ai_analysis.description')],
+                    ['title' => __('site.hero.features.recommendations.title'), 'description' => __('site.hero.features.recommendations.description')],
+                    ['title' => __('site.hero.features.report.title'), 'description' => __('site.hero.features.report.description')],
                 ] as $item)
                     <div class="flex gap-4 rounded-xl p-2 transition hover:bg-[#eff6ff] dark:hover:bg-white/5">
                         <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#eff6ff] text-[#2563eb] ring-1 ring-[#bfdbfe] dark:bg-blue-500/10 dark:text-blue-200 dark:ring-blue-300/20">
@@ -128,8 +126,8 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                             @endswitch
                         </div>
                         <div>
-                            <h3 class="text-sm font-black text-[#06133f] dark:text-white">{{ $item[0] }}</h3>
-                            <p class="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">{{ $item[1] }}</p>
+                            <h3 class="text-sm font-black text-[#06133f] dark:text-white">{{ $item['title'] }}</h3>
+                            <p class="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">{{ $item['description'] }}</p>
                         </div>
                     </div>
                 @endforeach
@@ -343,7 +341,7 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
     {{-- Full Width Title Section --}}
     <div class="w-full mb-10">
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-4 drop-shadow-md">
-        L'orientation classique ne suffit plus pour les métiers du futur
+        {{ __('site.services.problem_title') }}
       </h1>
       <div class="w-40 h-1.5 bg-gradient-to-r from-blue-300 to-transparent rounded-full"></div>
     </div>
@@ -355,7 +353,7 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
         <div class="lg:mb-0">
 
           <div class="text-base md:text-lg text-blue-50/90 mb-6">
-            Les élèves marocains ont besoin d'une orientation personnalisée qui relie leur niveau scolaire, leurs centres d'intérêt, leurs motivations et les opportunités du numérique.
+            {{ __('site.services.problem_intro') }}
           </div>
 
           {{-- 4 Cards Problèmes --}}
@@ -370,8 +368,8 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                   </svg>
                 </div>
                 <div>
-                  <h3 class="text-lg font-bold text-white mb-1">Profil incomplet</h3>
-                  <p class="text-sm text-blue-100/70 leading-snug">Les notes seules ne montrent pas les passions, les valeurs, les talents et le projet de vie de l'élève.</p>
+                  <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.problem_cards.profile.title') }}</h3>
+                  <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.problem_cards.profile.description') }}</p>
                 </div>
               </div>
             </div>
@@ -385,8 +383,8 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                   </svg>
                 </div>
                 <div>
-                  <h3 class="text-lg font-bold text-white mb-1">Métiers mal connus</h3>
-                  <p class="text-sm text-blue-100/70 leading-snug">Développement, IA, data, cybersécurité, cloud ou design restent difficiles à comparer sans explication pédagogique.</p>
+                  <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.problem_cards.careers.title') }}</h3>
+                  <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.problem_cards.careers.description') }}</p>
                 </div>
               </div>
             </div>
@@ -400,8 +398,8 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                   </svg>
                 </div>
                 <div>
-                  <h3 class="text-lg font-bold text-white mb-1">Décision difficile</h3>
-                  <p class="text-sm text-blue-100/70 leading-snug">L'élève et sa famille ont besoin de recommandations justifiées, compréhensibles et adaptées au contexte marocain.</p>
+                  <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.problem_cards.decision.title') }}</h3>
+                  <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.problem_cards.decision.description') }}</p>
                 </div>
               </div>
             </div>
@@ -415,8 +413,8 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                   </svg>
                 </div>
                 <div>
-                  <h3 class="text-lg font-bold text-white mb-1">Parcours peu visible</h3>
-                  <p class="text-sm text-blue-100/70 leading-snug">Les formations au Maroc et à l'international doivent être reliées aux domaines, aux métiers et aux compétences à développer.</p>
+                  <h3 class="text-lg font-bold text-white mb-1">{{ __('site.services.problem_cards.paths.title') }}</h3>
+                  <p class="text-sm text-blue-100/70 leading-snug">{{ __('site.services.problem_cards.paths.description') }}</p>
                 </div>
               </div>
             </div>
@@ -542,21 +540,20 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
         <div class="grid items-center gap-14 lg:grid-cols-2">
             <div>
                 <span class="inline-flex rounded-full bg-[#2563eb]/10 px-4 py-2 text-xs font-black uppercase tracking-[.2em] text-[#2563eb]">
-                    La solution
+                    {{ __('site.solution.badge') }}
                 </span>
                 <h2 class="mt-5 text-3xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl">
-                    OrientationTech : diagnostic, Ikigaï, personnalité et rapport IA dans une seule expérience.
+                    {{ __('site.solution.title') }}
                 </h2>
                 <p class="mt-5 max-w-xl text-lg leading-8 text-slate-600 dark:text-slate-300">
-                    Une plateforme pensée pour aider chaque élève à répondre aux bonnes questions :
-                    qui suis-je, quelles sont mes forces et quel métier numérique correspond à mon profil ?
+                    {{ __('site.solution.description') }}
                 </p>
 
                 <div class="mt-8 space-y-4">
                     @foreach([
-                        ['🧭', 'Profil global', 'Analyse du niveau scolaire, des matières préférées, des intérêts et des ambitions.'],
-                        ['📝', 'Ikigaï & personnalité', 'Identification des passions, forces, motivations, valeurs et traits dominants.'],
-                        ['📊', 'Rapport professionnel', 'Recommandations de domaines, métiers, formations et plan d\'action exportable en PDF.'],
+                        ['title' => __('site.solution.features.profile.title'), 'description' => __('site.solution.features.profile.description')],
+                        ['title' => __('site.solution.features.personality.title'), 'description' => __('site.solution.features.personality.description')],
+                        ['title' => __('site.solution.features.report.title'), 'description' => __('site.solution.features.report.description')],
                     ] as $feature)
                         <div class="group flex gap-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl dark:border-white/10 dark:bg-white/5">
                             <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#eff6ff] text-[#2563eb] ring-1 ring-[#bfdbfe] dark:bg-blue-500/10 dark:ring-blue-400/20">
@@ -572,8 +569,8 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                                 @endswitch
                             </div>
                             <div>
-                                <h3 class="font-black text-slate-950 dark:text-white">{{ $feature[1] }}</h3>
-                                <p class="mt-1 text-sm leading-6 text-slate-500 dark:text-slate-400">{{ $feature[2] }}</p>
+                                <h3 class="font-black text-slate-950 dark:text-white">{{ $feature['title'] }}</h3>
+                                <p class="mt-1 text-sm leading-6 text-slate-500 dark:text-slate-400">{{ $feature['description'] }}</p>
                             </div>
                         </div>
                     @endforeach
@@ -589,33 +586,40 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                         <span class="flex h-9 w-9 items-center justify-center rounded-full bg-[#eff6ff] text-[#2563eb] ring-1 ring-[#bfdbfe] dark:bg-blue-500/10 dark:ring-blue-400/20">
                             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.75 6.75 9 4.75l6 2 4.25-2v12.5L15 19.25l-6-2-4.25 2V6.75Z"/><path d="M9 4.75v12.5"/><path d="M15 6.75v12.5"/></svg>
                         </span>
-                        Parcours d'orientation
+                        {{ __('site.solution.path.title') }}
                     </h3>
-                    <h3 class="text-xl font-black">🗺️ Parcours d'orientation</h3>
-                    <span class="rounded-full bg-[#2563eb]/10 px-3 py-1 text-xs font-bold text-[#2563eb]">Exemple</span>
+                    <h3 class="text-xl font-black">{{ __('site.solution.path.title') }}</h3>
+                    <span class="rounded-full bg-[#2563eb]/10 px-3 py-1 text-xs font-bold text-[#2563eb]">{{ __('site.solution.path.example') }}</span>
                 </div>
 
                 @foreach([
-                    ['1', 'Profil élève complété', 'Niveau scolaire, ville, filière, matières et objectifs'],
-                    ['2', 'Résultats fusionnés', 'Diagnostic, Ikigaï, personnalité, compétences et motivations'],
-                    ['3', 'Rapport recommandé', 'Domaines, métiers, formations au Maroc et plan d\'action'],
+                    ['number' => '1', 'title' => __('site.solution.steps.profile.title'), 'description' => __('site.solution.steps.profile.description')],
+                    ['number' => '2', 'title' => __('site.solution.steps.results.title'), 'description' => __('site.solution.steps.results.description')],
+                    ['number' => '3', 'title' => __('site.solution.steps.report.title'), 'description' => __('site.solution.steps.report.description')],
                 ] as $step)
                     <div class="relative flex gap-4 pb-7 last:pb-0">
                         @if(!$loop->last)
                             <span class="absolute left-5 top-10 h-full w-px bg-slate-200 dark:bg-white/10"></span>
                         @endif
                         <div class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#2563eb] to-[#172554] text-sm font-black text-white">
-                            {{ $step[0] }}
+                            {{ $step['number'] }}
                         </div>
                         <div>
-                            <h4 class="font-black">{{ $step[1] }}</h4>
-                            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">{{ $step[2] }}</p>
+                            <h4 class="font-black">{{ $step['title'] }}</h4>
+                            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">{{ $step['description'] }}</p>
                         </div>
                     </div>
                 @endforeach
 
                 <div class="mt-7 flex flex-wrap gap-2">
-                    @foreach(['Dev Web', 'Cybersécurité', 'Data Science', 'IA', 'Cloud', 'UX/UI'] as $tag)
+                    @foreach([
+                        __('site.solution.tags.dev_web'),
+                        __('site.solution.tags.cybersecurity'),
+                        __('site.solution.tags.data_science'),
+                        __('site.solution.tags.ai'),
+                        __('site.solution.tags.cloud'),
+                        __('site.solution.tags.ux_ui'),
+                    ] as $tag)
                         <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700 dark:bg-white/10 dark:text-slate-200">
                             {{ $tag }}
                         </span>
@@ -632,17 +636,17 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
 <section id="how" class="py-20 px-6 bg-gradient-to-br from-[#2563eb] to-[#172554] dark:from-gray-900 dark:to-gray-800 ">
   <div class="max-w-5xl mx-auto text-center mb-12">
     <div class="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-      Processus
+      {{ __('site.how.badge') }}
     </div>
-    <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-3">Le processus d'orientation</h2>
-    <p class="text-blue-200">Un parcours progressif pour transformer les réponses de l'élève en recommandations claires.</p>
+    <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-3">{{ __('site.how.title') }}</h2>
+    <p class="text-blue-200">{{ __('site.how.subtitle') }}</p>
   </div>
   <div class="max-w-5xl mx-auto grid md:grid-cols-4 gap-6">
     @foreach([
-      ['1','1','Profil élève','Niveau scolaire, établissement, ville, filière et informations générales.'],
-      ['2','2','Diagnostic & Ikigaï','Matières préférées, centres d\'intérêt, passions, forces et ambitions.'],
-      ['3','3','Personnalité & IA','Créativité, analyse, leadership, autonomie, stress, communication et compatibilités.'],
-      ['4','4','Rapport complet','Domaines, métiers, formations, conseils et plan d\'action à 1, 3 et 5 ans.'],
+      ['icon' => '1', 'number' => '1', 'title' => __('site.how.steps.profile.title'), 'description' => __('site.how.steps.profile.description')],
+      ['icon' => '2', 'number' => '2', 'title' => __('site.how.steps.diagnostic.title'), 'description' => __('site.how.steps.diagnostic.description')],
+      ['icon' => '3', 'number' => '3', 'title' => __('site.how.steps.personality.title'), 'description' => __('site.how.steps.personality.description')],
+      ['icon' => '4', 'number' => '4', 'title' => __('site.how.steps.report.title'), 'description' => __('site.how.steps.report.description')],
     ] as $step)
     <div class="text-center">
       <div class="relative inline-block mb-4">
@@ -661,10 +665,10 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
               <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.75h7.5L19.25 8.5V20A1.25 1.25 0 0 1 18 21.25H7A2.25 2.25 0 0 1 4.75 19V6A2.25 2.25 0 0 1 7 3.75Z"/><path d="M14.5 3.75V8.5h4.75"/><path d="M8 14h8"/><path d="M8 17h5"/></svg>
           @endswitch
         </div>
-        <span class="absolute -top-1 -right-1 w-5 h-5 bg-white text-[#2563eb] rounded-full text-xs font-extrabold flex items-center justify-center">{{ $step[1] }}</span>
+        <span class="absolute -top-1 -right-1 w-5 h-5 bg-white text-[#2563eb] rounded-full text-xs font-extrabold flex items-center justify-center">{{ $step['number'] }}</span>
       </div>
-      <h4 class="font-bold text-white mb-1.5">{{ $step[2] }}</h4>
-      <p class="text-blue-200 text-sm">{{ $step[3] }}</p>
+      <h4 class="font-bold text-white mb-1.5">{{ $step['title'] }}</h4>
+      <p class="text-blue-200 text-sm">{{ $step['description'] }}</p>
     </div>
     @endforeach
   </div>
@@ -683,11 +687,11 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
     {{-- Title --}}
     <div class="text-center mb-10 sm:mb-12 md:mb-16 lg:mb-20">
       <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight px-4">
-        Pourquoi choisir OrientationTech ?
+        {{ __('site.why.heading') }}
         <span class="block w-50 h-1.5 bg-gradient-to-r from-[#2563eb] to-transparent dark:bg-gradient-to-r dark:from-blue-400 dark:to-transparent mx-auto mt-3 rounded-full"></span>
       </h1>
       <p class="mt-4 sm:mt-5 md:mt-6 text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto px-4">
-        Une plateforme conçue pour le contexte marocain, fondée sur l'IA, la psychologie de l'orientation et les sciences de l'éducation.
+        {{ __('site.why.subtitle') }}
       </p>
     </div>
 
@@ -703,10 +707,10 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
           </svg>
         </div>
         <h3 class="text-xl sm:text-2xl font-bold text-gray-900 transition group-hover:text-white dark:text-white mb-2 sm:mb-3 relative z-10">
-          Profil global
+          {{ __('site.why.cards.profile.title') }}
         </h3>
         <p class="text-gray-600 transition group-hover:text-white/90 dark:text-gray-400 text-sm sm:text-base relative z-10">
-          L'analyse dépasse les notes scolaires et prend en compte intérêts, motivations, valeurs, personnalité et Ikigaï.
+          {{ __('site.why.cards.profile.description') }}
         </p>
       </div>
 
@@ -719,10 +723,10 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
           </svg>
         </div>
         <h3 class="text-xl sm:text-2xl font-bold text-gray-900 transition group-hover:text-white dark:text-white mb-2 sm:mb-3 relative z-10">
-         Recommandations justifiées
+          {{ __('site.why.cards.recommendations.title') }}
         </h3>
         <p class="text-gray-600 transition group-hover:text-white/90 dark:text-gray-400 text-sm sm:text-base relative z-10">
-          Chaque domaine numérique reçoit un score de compatibilité expliqué avec des arguments simples et transparents.
+          {{ __('site.why.cards.recommendations.description') }}
         </p>
       </div>
 
@@ -735,10 +739,10 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
           </svg>
         </div>
         <h3 class="text-xl sm:text-2xl font-bold text-gray-900 transition group-hover:text-white dark:text-white mb-2 sm:mb-3 relative z-10">
-          Parcours de formation
+          {{ __('site.why.cards.training.title') }}
         </h3>
         <p class="text-gray-600 transition group-hover:text-white/90 dark:text-gray-400 text-sm sm:text-base relative z-10">
-          Le rapport propose des pistes au Maroc : lycée, BTS, DUT, FST, universités, écoles d'ingénieurs et certifications.
+          {{ __('site.why.cards.training.description') }}
         </p>
       </div>
 
@@ -751,10 +755,10 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
           </svg>
         </div>
         <h3 class="text-xl sm:text-2xl font-bold text-gray-900 transition group-hover:text-white dark:text-white mb-2 sm:mb-3 relative z-10">
-          Vision métiers du futur
+          {{ __('site.why.cards.future.title') }}
         </h3>
         <p class="text-gray-600 transition group-hover:text-white/90 dark:text-gray-400 text-sm sm:text-base relative z-10">
-          L'élève découvre les missions, compétences, perspectives d'emploi et l'impact de l'IA dans chaque métier recommandé.
+          {{ __('site.why.cards.future.description') }}
         </p>
       </div>
 
@@ -775,12 +779,12 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
               <div class="mx-auto max-w-7xl px-4 sm:px-6">
                 <div class="mb-10 flex flex-col gap-4 text-center lg:flex-row lg:items-end lg:justify-between lg:text-left">
                   <div>
-                    <p class="mb-2 text-sm font-bold uppercase tracking-wide text-[#2563eb]">Ressources pedagogiques</p>
+                    <p class="mb-2 text-sm font-bold uppercase tracking-wide text-[#2563eb]">{{ __('site.resources.badge') }}</p>
                     <h2 class="text-3xl font-extrabold sm:text-4xl md:text-5xl">
-                      Explore les contenus utiles pour ton orientation
+                      {{ __('site.resources.title') }}
                     </h2>
                     <p class="mt-3 max-w-2xl text-base text-gray-600 dark:text-gray-300 sm:text-lg">
-                      Guides, PDF, videos, domaines, metiers et actualites publies par les enseignants pour aider les eleves a comprendre les opportunites du numerique.
+                      {{ __('site.resources.subtitle') }}
                     </p>
                   </div>
                 </div>
@@ -800,7 +804,7 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                         @auth
                           <form method="POST" action="{{ route('pages.resources.like', $resource) }}">
                             @csrf
-                            <button type="submit" aria-label="{{ $resourceLiked ? 'Retirer le like' : 'Aimer cette ressource' }}" title="{{ $resourceLiked ? 'Retirer le like' : 'Aimer cette ressource' }}" class="flex h-10 w-10 items-center justify-center rounded-full border p-0 leading-none shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md {{ $resourceLiked ? 'border-red-500 bg-red-50 text-red-600 dark:bg-red-500/15 dark:text-red-300' : 'border-white/70 bg-white/90 text-gray-700 hover:border-red-300 hover:text-red-500 dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-red-400/50 dark:hover:text-red-300' }}">
+                            <button type="submit" aria-label="{{ $resourceLiked ? __('site.resources.actions.unlike') : __('site.resources.actions.like') }}" title="{{ $resourceLiked ? __('site.resources.actions.unlike') : __('site.resources.actions.like') }}" class="flex h-10 w-10 items-center justify-center rounded-full border p-0 leading-none shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md {{ $resourceLiked ? 'border-red-500 bg-red-50 text-red-600 dark:bg-red-500/15 dark:text-red-300' : 'border-white/70 bg-white/90 text-gray-700 hover:border-red-300 hover:text-red-500 dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-red-400/50 dark:hover:text-red-300' }}">
                               <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M12 21s-7.2-4.55-9.45-9.15C.78 8.23 2.4 4.5 6.25 4.5c2.08 0 3.55 1.1 4.42 2.27.28.38.78.38 1.06 0C12.6 5.6 14.07 4.5 16.15 4.5c3.85 0 5.47 3.73 3.7 7.35C17.6 16.45 12 21 12 21Z" fill="{{ $resourceLiked ? 'currentColor' : 'none' }}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
                               </svg>
@@ -808,17 +812,17 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                           </form>
                           <form method="POST" action="{{ route('pages.resources.favorite', $resource) }}">
                             @csrf
-                            <button type="submit" aria-label="{{ $resourceFavorited ? 'Retirer des favoris' : 'Sauvegarder cette ressource' }}" title="{{ $resourceFavorited ? 'Retirer des favoris' : 'Sauvegarder cette ressource' }}" class="flex h-10 w-10 items-center justify-center rounded-full border p-0 leading-none shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md {{ $resourceFavorited ? 'border-[#2563eb] bg-[#eff6ff] text-[#2563eb] dark:bg-blue-500/15 dark:text-blue-200' : 'border-white/70 bg-white/90 text-gray-700 hover:border-[#93c5fd] hover:text-[#2563eb] dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-blue-300/50 dark:hover:text-blue-200' }}">
+                            <button type="submit" aria-label="{{ $resourceFavorited ? __('site.resources.actions.unfavorite') : __('site.resources.actions.favorite') }}" title="{{ $resourceFavorited ? __('site.resources.actions.unfavorite') : __('site.resources.actions.favorite') }}" class="flex h-10 w-10 items-center justify-center rounded-full border p-0 leading-none shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md {{ $resourceFavorited ? 'border-[#2563eb] bg-[#eff6ff] text-[#2563eb] dark:bg-blue-500/15 dark:text-blue-200' : 'border-white/70 bg-white/90 text-gray-700 hover:border-[#93c5fd] hover:text-[#2563eb] dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-blue-300/50 dark:hover:text-blue-200' }}">
                               <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M6.5 4.75A2.25 2.25 0 0 1 8.75 2.5h6.5a2.25 2.25 0 0 1 2.25 2.25v16.1a.65.65 0 0 1-1.02.53L12 18.25l-4.48 3.13a.65.65 0 0 1-1.02-.53V4.75Z" fill="{{ $resourceFavorited ? 'currentColor' : 'none' }}" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
                               </svg>
                             </button>
                           </form>
                         @else
-                          <a href="{{ route('login') }}" aria-label="Se connecter pour aimer" title="Se connecter pour aimer" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 p-0 leading-none text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-red-300 hover:text-red-500 hover:shadow-md dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-red-400/50 dark:hover:text-red-300">
+                          <a href="{{ route('login') }}" aria-label="{{ __('site.actions.login_to_like') }}" title="{{ __('site.actions.login_to_like') }}" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 p-0 leading-none text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-red-300 hover:text-red-500 hover:shadow-md dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-red-400/50 dark:hover:text-red-300">
                             <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.2-4.55-9.45-9.15C.78 8.23 2.4 4.5 6.25 4.5c2.08 0 3.55 1.1 4.42 2.27.28.38.78.38 1.06 0C12.6 5.6 14.07 4.5 16.15 4.5c3.85 0 5.47 3.73 3.7 7.35C17.6 16.45 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
                           </a>
-                          <a href="{{ route('login') }}" aria-label="Se connecter pour sauvegarder" title="Se connecter pour sauvegarder" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 p-0 leading-none text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-[#93c5fd] hover:text-[#2563eb] hover:shadow-md dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-blue-300/50 dark:hover:text-blue-200">
+                          <a href="{{ route('login') }}" aria-label="{{ __('site.actions.login_to_save') }}" title="{{ __('site.actions.login_to_save') }}" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 p-0 leading-none text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-[#93c5fd] hover:text-[#2563eb] hover:shadow-md dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-blue-300/50 dark:hover:text-blue-200">
                             <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4.75A2.25 2.25 0 0 1 8.75 2.5h6.5a2.25 2.25 0 0 1 2.25 2.25v16.1a.65.65 0 0 1-1.02.53L12 18.25l-4.48 3.13a.65.65 0 0 1-1.02-.53V4.75Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>
                           </a>
                         @endauth
@@ -847,11 +851,11 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                           </h3>
 
                           <p class="mt-3 line-clamp-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
-                            {{ $resource->summary ?: 'Contenu pedagogique pour mieux comprendre les parcours, competences et metiers du numerique.' }}
+                            {{ $resource->summary ?: __('site.resources.summary_fallback') }}
                           </p>
 
                           <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#2563eb]">
-                            Ouvrir la ressource
+                            {{ __('site.resources.open') }}
                             <svg class="h-4 w-4 transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
@@ -860,13 +864,13 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                       </a>
                       @if($resource->file_url)
                         <a href="{{ $resource->file_url }}" download class="absolute bottom-5 right-5 z-20 inline-flex items-center rounded-full bg-[#2563eb] px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#1d4ed8]">
-                          Telecharger
+                          {{ __('site.resources.download') }}
                         </a>
                       @endif
                     </article>
                   @empty
                     <div class="col-span-full rounded-2xl border border-dashed border-[#93c5fd] bg-[#eff6ff] p-8 text-center text-[#1e40af] dark:border-blue-400/30 dark:bg-blue-500/10 dark:text-blue-200">
-                      Les ressources pedagogiques seront affichees ici apres publication par les enseignants.
+                      {{ __('site.resources.empty') }}
                     </div>
                   @endforelse
                 </div>
@@ -904,21 +908,21 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                         @auth
                           <form method="POST" action="{{ route('pages.blog.like', $post) }}">
                             @csrf
-                            <button type="submit" aria-label="{{ $postLiked ? 'Retirer le like' : 'Aimer cet article' }}" title="{{ $postLiked ? 'Retirer le like' : 'Aimer cet article' }}" class="flex h-10 w-10 items-center justify-center rounded-full border p-0 leading-none shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md {{ $postLiked ? 'border-red-500 bg-red-50 text-red-600 dark:bg-red-500/15 dark:text-red-300' : 'border-white/70 bg-white/90 text-gray-700 hover:border-red-300 hover:text-red-500 dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-red-400/50 dark:hover:text-red-300' }}">
+                            <button type="submit" aria-label="{{ $postLiked ? __('site.blog.actions.unlike') : __('site.blog.actions.like') }}" title="{{ $postLiked ? __('site.blog.actions.unlike') : __('site.blog.actions.like') }}" class="flex h-10 w-10 items-center justify-center rounded-full border p-0 leading-none shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md {{ $postLiked ? 'border-red-500 bg-red-50 text-red-600 dark:bg-red-500/15 dark:text-red-300' : 'border-white/70 bg-white/90 text-gray-700 hover:border-red-300 hover:text-red-500 dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-red-400/50 dark:hover:text-red-300' }}">
                               <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.2-4.55-9.45-9.15C.78 8.23 2.4 4.5 6.25 4.5c2.08 0 3.55 1.1 4.42 2.27.28.38.78.38 1.06 0C12.6 5.6 14.07 4.5 16.15 4.5c3.85 0 5.47 3.73 3.7 7.35C17.6 16.45 12 21 12 21Z" fill="{{ $postLiked ? 'currentColor' : 'none' }}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
                             </button>
                           </form>
                           <form method="POST" action="{{ route('pages.blog.favorite', $post) }}">
                             @csrf
-                            <button type="submit" aria-label="{{ $postFavorited ? 'Retirer des favoris' : 'Sauvegarder cet article' }}" title="{{ $postFavorited ? 'Retirer des favoris' : 'Sauvegarder cet article' }}" class="flex h-10 w-10 items-center justify-center rounded-full border p-0 leading-none shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md {{ $postFavorited ? 'border-[#2563eb] bg-[#eff6ff] text-[#2563eb] dark:bg-blue-500/15 dark:text-blue-200' : 'border-white/70 bg-white/90 text-gray-700 hover:border-[#93c5fd] hover:text-[#2563eb] dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-blue-300/50 dark:hover:text-blue-200' }}">
+                            <button type="submit" aria-label="{{ $postFavorited ? __('site.blog.actions.unfavorite') : __('site.blog.actions.favorite') }}" title="{{ $postFavorited ? __('site.blog.actions.unfavorite') : __('site.blog.actions.favorite') }}" class="flex h-10 w-10 items-center justify-center rounded-full border p-0 leading-none shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:shadow-md {{ $postFavorited ? 'border-[#2563eb] bg-[#eff6ff] text-[#2563eb] dark:bg-blue-500/15 dark:text-blue-200' : 'border-white/70 bg-white/90 text-gray-700 hover:border-[#93c5fd] hover:text-[#2563eb] dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-blue-300/50 dark:hover:text-blue-200' }}">
                               <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4.75A2.25 2.25 0 0 1 8.75 2.5h6.5a2.25 2.25 0 0 1 2.25 2.25v16.1a.65.65 0 0 1-1.02.53L12 18.25l-4.48 3.13a.65.65 0 0 1-1.02-.53V4.75Z" fill="{{ $postFavorited ? 'currentColor' : 'none' }}" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>
                             </button>
                           </form>
                         @else
-                          <a href="{{ route('login') }}" aria-label="Se connecter pour aimer" title="Se connecter pour aimer" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 p-0 leading-none text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-red-300 hover:text-red-500 hover:shadow-md dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-red-400/50 dark:hover:text-red-300">
+                          <a href="{{ route('login') }}" aria-label="{{ __('site.actions.login_to_like') }}" title="{{ __('site.actions.login_to_like') }}" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 p-0 leading-none text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-red-300 hover:text-red-500 hover:shadow-md dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-red-400/50 dark:hover:text-red-300">
                             <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.2-4.55-9.45-9.15C.78 8.23 2.4 4.5 6.25 4.5c2.08 0 3.55 1.1 4.42 2.27.28.38.78.38 1.06 0C12.6 5.6 14.07 4.5 16.15 4.5c3.85 0 5.47 3.73 3.7 7.35C17.6 16.45 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
                           </a>
-                          <a href="{{ route('login') }}" aria-label="Se connecter pour sauvegarder" title="Se connecter pour sauvegarder" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 p-0 leading-none text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-[#93c5fd] hover:text-[#2563eb] hover:shadow-md dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-blue-300/50 dark:hover:text-blue-200">
+                          <a href="{{ route('login') }}" aria-label="{{ __('site.actions.login_to_save') }}" title="{{ __('site.actions.login_to_save') }}" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/70 bg-white/90 p-0 leading-none text-gray-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-[#93c5fd] hover:text-[#2563eb] hover:shadow-md dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-200 dark:hover:border-blue-300/50 dark:hover:text-blue-200">
                             <svg class="block h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4.75A2.25 2.25 0 0 1 8.75 2.5h6.5a2.25 2.25 0 0 1 2.25 2.25v16.1a.65.65 0 0 1-1.02.53L12 18.25l-4.48 3.13a.65.65 0 0 1-1.02-.53V4.75Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>
                           </a>
                         @endauth
@@ -1205,7 +1209,7 @@ ml-8{margin-left:calc(var(--spacing)*-8)}.flex{display:flex}.hidden{display:none
                                           submitBtn.disabled = true;
                                           submitBtn.classList.add('opacity-80','cursor-not-allowed');
                                           if (spinner) spinner.classList.remove('hidden');
-                                          if (label) label.textContent = 'Envoi...';
+                                          if (label) label.textContent = @json(__('site.contact.form.sending'));
                                       } catch (e) { console && console.warn && console.warn(e); }
                                   });
                                   form.addEventListener('turbo:submit-end', function(){

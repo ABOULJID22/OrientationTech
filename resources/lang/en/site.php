@@ -143,6 +143,11 @@ return [
 
     'footer' => [
         'navigation' => 'Navigation',
+        'quick_actions' => 'Quick actions',
+        'resources' => 'Resources',
+        'start_orientation' => 'Start my orientation',
+        'explore_domains' => 'Explore domains',
+        'contact_us' => 'Contact us',
         'account' => 'Account',
         'my_account' => 'My account',
         'login' => 'Log in',

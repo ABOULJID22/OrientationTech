@@ -6,8 +6,7 @@
   <title>{{ $post->title }} · OrientationTech</title>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-              <!-- Favicon -->
-  <link rel="icon" type="image/png" href="{{ $siteSettings?->favicon_path ? Storage::url($siteSettings->favicon_path) : asset('favicon.png') }}" />
+  @include('layouts.favicon')
 
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">

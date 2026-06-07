@@ -1,132 +1,178 @@
+<footer class="relative overflow-hidden bg-gradient-to-br from-[#2563eb] to-[#172554] pt-14 text-white dark:from-gray-950 dark:to-gray-900 sm:pt-16">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div class="hidden md:block absolute -top-28 -right-20 h-96 w-96 rounded-full bg-white/10 blur-3xl opacity-25"></div>
+        <div class="hidden md:block absolute -bottom-28 -left-20 h-80 w-80 rounded-full bg-white/10 blur-2xl opacity-20"></div>
+        <div class="absolute -top-6 -right-8 h-64 w-64 rounded-full bg-white/10 mix-blend-overlay animate-blob"></div>
+        <div class="absolute -bottom-10 -left-8 h-72 w-72 rounded-full bg-white/10 mix-blend-overlay animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-6 right-1/3 h-40 w-40 rounded-full bg-white/10 mix-blend-overlay animate-blob animation-delay-4000"></div>
+    </div>
 
-<!-- Footer amélioré -->
-<footer class="relative pt-16 pb-8 text-white overflow-hidden">
-     
+    @php
+        $homeUrl = route('home');
+        $onHome = url()->current() === $homeUrl;
+        $base = $onHome ? '' : $homeUrl;
 
-    <!-- Image de fond -->
-    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-gradient-to-br from-[#2563eb] to-[#172554] dark:from-gray-900 dark:to-gray-800" ></div>
-    
-    <!-- Overlay gradient pour la lisibilité style="background-image: url('{{ asset('images/bgSide.png') }}');"-->
-    
-    
-    <!-- Abstract Animated Background -->
-                  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-                      <!-- Decorative blobs (desktop only): top-right & bottom-left -->
-                      <div class="hidden md:block absolute -top-28 -right-20 w-96 h-96 bg-white/8 rounded-full blur-3xl opacity-25"></div>
-                      <div class="hidden md:block absolute -bottom-28 -left-20 w-80 h-80 bg-white/8 rounded-full blur-2xl opacity-20"></div>
+        $navigationLinks = [
+            ['label' => __('site.nav.home'), 'href' => $homeUrl],
+            ['label' => __('site.nav.about'), 'href' => $base . '#about'],
+            ['label' => __('site.nav.services'), 'href' => $base . '#services'],
+            ['label' => __('site.nav.domains'), 'href' => route('domains.index')],
+            ['label' => __('site.nav.blog'), 'href' => route('pages.blog.index')],
+        ];
 
-                      <!-- Main animated blobs: one top-right, one bottom-left -->
-                      <div class="absolute -top-6 -right-8 w-64 h-64 bg-white/10 rounded-full mix-blend-overlay animate-blob"></div>
-                      <div class="absolute -bottom-10 -left-8 w-72 h-72 bg-white/12 rounded-full mix-blend-overlay animate-blob animation-delay-2000"></div>
+        $resourceLinks = [
+            ['label' => __('site.footer.resources'), 'href' => $base . '#ressources'],
+            ['label' => __('site.nav.faq'), 'href' => $base . '#faq'],
+            ['label' => __('site.nav.contact'), 'href' => $base . '#contact'],
+            ['label' => __('site.footer.legal'), 'href' => route('legal')],
+            ['label' => __('site.footer.privacy'), 'href' => route('privacy')],
+        ];
 
-                      <!-- Subtle accent (small) for balance -->
-                      <div class="absolute right-1/3 bottom-6 w-40 h-40 bg-white/6 rounded-full mix-blend-overlay animate-blob animation-delay-4000"></div>
-                  </div>
-                
-    <!-- Contenu du footer -->
-    <div class="relative z-10 max-w-7xl mx-auto px-6">
-        <!-- Grid principale -->
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-10 border-b-2 border-white/15 dark:border-gray-400/20 pb-10">
-            <!-- Logo & description -->
-            @php
-                $homeUrl = url('/');
-                $onHome = url()->current() === $homeUrl;
-                $base = $onHome ? '' : $homeUrl;
-            @endphp
-            <div class="md:col-span-1 lg:col-span-1">
-                <div class="flex items-center gap-3">
-                    <span class="relative flex items-center justify-center overflow-hidden">
-           <a href="{{ $homeUrl }}" class="inline-block p-1  hover:scale-105 transition-transform duration-300 group">
-                <img src="{{ asset('images/logo.png') }}" alt="OrientationTech Logo" class="h-16 w-auto sm:h-14 w-auto opacity-95 group-hover:opacity-100" />
-            </a>          
-            </span>
-                </div>
-                <p class="mt-6 text-sm leading-relaxed text-white/80">
+        $quickActions = [
+            ['label' => __('site.footer.start_orientation'), 'href' => $base . '#how', 'primary' => true],
+            ['label' => __('site.footer.explore_domains'), 'href' => route('domains.index'), 'primary' => false],
+            ['label' => __('site.footer.contact_us'), 'href' => $base . '#contact', 'primary' => false],
+        ];
+
+        $socialLinks = [
+            ['label' => 'LinkedIn', 'icon' => 'linkedin', 'href' => $siteSettings?->linkedin_url ?? 'https://www.linkedin.com/company/OrientationTech'],
+            ['label' => 'Instagram', 'icon' => 'instagram', 'href' => $siteSettings?->instagram_url ?? 'https://www.instagram.com/Orientationtech.ma'],
+            ['label' => 'YouTube', 'icon' => 'youtube', 'href' => $siteSettings?->youtube_url ?? 'https://youtube.com/@OrientationTech'],
+            ['label' => 'Facebook', 'icon' => 'facebook', 'href' => $siteSettings?->facebook_url ?? 'https://www.facebook.com/'],
+        ];
+
+        $footerLinkClass = 'group inline-flex items-center gap-2 text-sm text-white/70 transition hover:translate-x-1 hover:text-white';
+    @endphp
+
+    <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-10 border-b border-white/20 pb-10 sm:gap-8 lg:grid-cols-[1.35fr_.85fr_.95fr_.95fr_1.15fr] lg:pb-12">
+            <div class="space-y-5">
+                <a href="{{ $homeUrl }}" class="inline-flex items-center focus:outline-none focus:ring-2 focus:ring-white/60 focus:ring-offset-2 focus:ring-offset-[#172554]" aria-label="{{ __('site.aria.home') }}">
+                    <img src="{{ asset('images/logo.png') }}" alt="OrientationTech Logo" class="h-14 w-auto opacity-95 transition hover:scale-105 hover:opacity-100 sm:h-16">
+                </a>
+
+                <p class="max-w-sm text-sm leading-7 text-white/80">
                     {{ __('site.footer.desc') }}
                 </p>
 
-            </div>
-
-            <!-- Navigation -->
-            <div class="">
-                <h4 class="text-sm font-semibold uppercase tracking-wider text-white">{{ __('site.footer.navigation') }}</h4>
-                <ul class="mt-6 space-y-3 text-sm text-white/70">
-                    <li><a href="/" class="transition hover:text-white">{{ __('site.nav.home') }}</a></li>
-                    <li><a href="#about" class="transition hover:text-white">{{ __('site.nav.about') }}</a></li>
-                    <li><a href="{{ route('pourquoi') }}" class="transition hover:text-white">{{ __('site.nav.blog') }}</a></li>
-                    <li><a href="#contact" class="transition hover:text-white">{{ __('site.nav.contact') }}</a></li>
-                </ul>
-            </div>
-
-            <!-- Support & FAQ -->
-            <div class="">
-                <h4 class="text-sm font-semibold uppercase tracking-wider text-white">{{ __('site.footer.support') }}</h4>
-                <ul class="mt-6 space-y-3 text-sm text-white/70">
-                    <li><a href="#faq" class="transition hover:text-white">{{ __('site.nav.faq') }}</a></li>
-                    <li><a href="{{ route('legal') }}" class="transition hover:text-white">{{ __('site.footer.legal') }}</a></li>
-                    <li><a href="{{ route('privacy') }}" class="transition hover:text-white">{{ __('site.footer.privacy') }}</a></li>
-                </ul>
-            </div>
-            <!-- Compte -->
-            <div class="">
-                <h4 class="text-sm font-semibold uppercase tracking-wider text-white">{{ __('site.footer.account') }}</h4>
-                <ul class="mt-6 space-y-3 text-sm text-white/70">
-                    @guest
-                        <li><a href="{{ route('login') }}" class="transition hover:text-white">{{ __('site.footer.login') }}</a></li>
-                        <li><a href="{{ route('register') }}" class="transition hover:text-white">{{ __('site.footer.register') }}</a></li>
-                    @endguest
-                    @auth
-                        <li><a href="{{ route('profile.edit') }}" class="transition hover:text-white">{{ __('site.footer.profile') }}</a></li>
-                        <li>
-                            <form method="POST" action="{{ route('logout') }}" class="inline">
-                                @csrf
-                                <button type="submit" class="transition hover:text-white">{{ __('site.footer.logout') }}</button>
-                            </form>
-                        </li>
-                    @endauth
-                </ul>
-            </div>
-
-
-
-
-            <!-- Réseaux sociaux -->
-            <div class="">
-                <h4 class="text-sm font-semibold uppercase tracking-wider text-white">{{ __('site.footer.follow_us') }}</h4>
-                <div class="mt-2 flex flex-wrap gap-3">
-                    <a href="{{ $siteSettings?->linkedin_url ?? 'https://www.linkedin.com/company/OrientationTech' }}" target="_blank" rel="noopener" aria-label="LinkedIn" class="group flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:-translate-y-1 hover:border-white/30 hover:bg-white/10">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 text-white/80 transition group-hover:text-white"><path fill="currentColor" d="M20.451 20.452h-3.554v-5.569c0-1.328-.026-3.037-1.849-3.037c-1.852 0-2.135 1.445-2.135 2.939v5.667H9.359V9h3.414v1.561h.049c.476-.899 1.64-1.85 3.377-1.85c3.606 0 4.272 2.372 4.272 5.457v6.284ZM5.337 7.433a2.065 2.065 0 1 1 0-4.13a2.065 2.065 0 0 1 0 4.13ZM6.925 20.452H3.75V9h3.175v11.452ZM22.225 0H1.771C.792 0 0 .77 0 1.723v20.554C0 23.23.792 24 1.771 24h20.454C23.2 24 24 23.23 24 22.277V1.723C24 .77 23.2 0 22.225 0Z"/></svg>
-                    </a>
-                    <a href="{{ $siteSettings?->instagram_url ?? 'https://www.instagram.com/Orientationtech.ma' }}" target="_blank" rel="noopener" aria-label="Instagram" class="group flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:-translate-y-1 hover:border-white/30 hover:bg-white/10">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 text-white/80 transition group-hover:text-white"><path fill="currentColor" d="M12 7.09a4.91 4.91 0 1 0 0 9.82a4.91 4.91 0 0 0 0-9.82Zm0 8.08a3.17 3.17 0 1 1 0-6.34a3.17 3.17 0 0 1 0 6.34Zm6.19-8.58a1.15 1.15 0 1 1-2.3 0a1.15 1.15 0 0 1 2.3 0Z"/><path fill="currentColor" d="M21.54 6.5a5.5 5.5 0 0 0-.36-1.85a3.77 3.77 0 0 0-2.16-2.16A5.5 5.5 0 0 0 17.17 2c-1.12-.05-1.47-.06-5.17-.06s-4.05 0-5.17.06A5.5 5.5 0 0 0 5 2.49a3.77 3.77 0 0 0-2.16 2.16A5.5 5.5 0 0 0 2.5 6.5C2.45 7.62 2.44 7.97 2.44 11.67s0 4.05.06 5.17A5.5 5.5 0 0 0 3 18.7a3.77 3.77 0 0 0 2.16 2.16a5.5 5.5 0 0 0 1.85.36c1.12.05 1.47.06 5.17.06s4.05 0 5.17-.06a5.5 5.5 0 0 0 1.85-.36a3.77 3.77 0 0 0 2.16-2.16a5.5 5.5 0 0 0 .36-1.85c.05-1.12.06-1.47.06-5.17s0-4.05-.06-5.17Zm-2.06 11a3.76 3.76 0 0 1-.21 1.25a1.94 1.94 0 0 1-1.11 1.11a3.76 3.76 0 0 1-1.25.21c-1.1.05-1.43.06-4.91.06s-3.81 0-4.91-.06a3.76 3.76 0 0 1-1.25-.21a1.94 1.94 0 0 1-1.11-1.11a3.76 3.76 0 0 1-.21-1.25c-.05-1.1-.06-1.43-.06-4.91s0-3.81.06-4.91a3.76 3.76 0 0 1 .21-1.25a1.94 1.94 0 0 1 1.11-1.11a3.76 3.76 0 0 1 1.25-.21c1.1-.05 1.43-.06 4.91-.06s3.81 0 4.91.06a3.76 3.76 0 0 1 1.25.21a1.94 1.94 0 0 1 1.11 1.11a3.76 3.76 0 0 1 .21 1.25c.05 1.1.06 1.43.06 4.91s0 3.81-.06 4.91Z"/></svg>
-                    </a>
+                <div class="flex flex-wrap gap-2">
+                    <span class="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">{{ __('site.footer.open_source') }}</span>
+                    <span class="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">{{ __('site.footer.community') }}</span>
                 </div>
-                <div class="mt-3 space-y-2 text-sm text-white/70">
+            </div>
+
+            <nav aria-label="{{ __('site.footer.navigation') }}">
+                <h4 class="text-sm font-bold uppercase tracking-[.18em] text-white">{{ __('site.footer.navigation') }}</h4>
+                <ul class="mt-5 space-y-3">
+                    @foreach ($navigationLinks as $link)
+                        <li>
+                            <a href="{{ $link['href'] }}" class="{{ $footerLinkClass }}">
+                                <span class="h-1.5 w-1.5 rounded-full bg-white/40 transition group-hover:bg-white"></span>
+                                {{ $link['label'] }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </nav>
+
+            <nav aria-label="{{ __('site.footer.support') }}">
+                <h4 class="text-sm font-bold uppercase tracking-[.18em] text-white">{{ __('site.footer.support') }}</h4>
+                <ul class="mt-5 space-y-3">
+                    @foreach ($resourceLinks as $link)
+                        <li>
+                            <a href="{{ $link['href'] }}" class="{{ $footerLinkClass }}">
+                                <span class="h-1.5 w-1.5 rounded-full bg-white/40 transition group-hover:bg-white"></span>
+                                {{ $link['label'] }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </nav>
+
+            <div>
+                <h4 class="text-sm font-bold uppercase tracking-[.18em] text-white">{{ __('site.footer.quick_actions') }}</h4>
+                <div class="mt-5 grid gap-3">
+                    @foreach ($quickActions as $action)
+                        <a href="{{ $action['href'] }}"
+                           class="inline-flex items-center justify-center rounded-lg border px-4 py-2.5 text-sm font-bold transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-white/60 {{ $action['primary'] ? 'border-white bg-white text-[#1d4ed8] shadow-lg shadow-blue-950/20 hover:bg-blue-50' : 'border-white/20 bg-white/10 text-white hover:border-white/40 hover:bg-white/20' }}">
+                            {{ $action['label'] }}
+                        </a>
+                    @endforeach
+                </div>
+
+                <div class="mt-6">
+                    <h4 class="text-sm font-bold uppercase tracking-[.18em] text-white">{{ __('site.footer.account') }}</h4>
+                    <ul class="mt-4 space-y-3">
+                        @guest
+                            <li><a href="{{ route('login') }}" class="{{ $footerLinkClass }}">{{ __('site.footer.login') }}</a></li>
+                            <li><a href="{{ route('register') }}" class="{{ $footerLinkClass }}">{{ __('site.footer.register') }}</a></li>
+                        @endguest
+                        @auth
+                            <li><a href="{{ route('profile.edit') }}" class="{{ $footerLinkClass }}">{{ __('site.footer.profile') }}</a></li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="{{ $footerLinkClass }}">{{ __('site.footer.logout') }}</button>
+                                </form>
+                            </li>
+                        @endauth
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-sm font-bold uppercase tracking-[.18em] text-white">{{ __('site.footer.follow_us') }}</h4>
+                <p class="mt-4 text-sm leading-6 text-white/70">{{ __('site.footer.follow_desc') }}</p>
+
+                <div class="mt-5 flex flex-wrap gap-3">
+                    @foreach ($socialLinks as $social)
+                        <a href="{{ $social['href'] }}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="{{ $social['label'] }}"
+                           title="{{ $social['label'] }}"
+                           class="group flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/80 shadow-sm transition hover:-translate-y-1 hover:border-white hover:bg-white hover:text-[#2563eb] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-white/70">
+                            @switch($social['icon'])
+                                @case('linkedin')
+                                    <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM6.93 20.45H3.75V9h3.18v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.23 0Z"/></svg>
+                                    @break
+                                @case('instagram')
+                                    <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
+                                    @break
+                                @case('youtube')
+                                    <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.13-2.14C19.49 3.56 12 3.56 12 3.56s-7.49 0-9.37.5A3.02 3.02 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.13 2.14c1.88.5 9.37.5 9.37.5s7.49 0 9.37-.5a3.02 3.02 0 0 0 2.13-2.14A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8ZM9.6 15.57V8.43L15.85 12 9.6 15.57Z"/></svg>
+                                    @break
+                                @default
+                                    <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.96h-1.51c-1.49 0-1.96.93-1.96 1.89v2.27h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07Z"/></svg>
+                            @endswitch
+                        </a>
+                    @endforeach
+                </div>
+
+                <div class="mt-6 space-y-3 rounded-xl border border-white/20 bg-white/10 p-4 text-sm text-white/75">
                     <p><span class="font-semibold text-white">{{ __('site.footer.email') }}:</span> {{ $siteSettings?->email ?? 'contact@Orientationtech.ma' }}</p>
                     <p><span class="font-semibold text-white">{{ __('site.footer.phone') }}:</span> {{ $siteSettings?->phone ?? '+212 71549452' }}</p>
-                    <p class="max-w-xs leading-relaxed"><span class="font-semibold text-white">{{ __('site.footer.address') }}:</span> {{ $siteSettings?->address ?? 'Agadir, 85000 Tiznit, Maroc' }}</p>
+                    <p class="leading-relaxed"><span class="font-semibold text-white">{{ __('site.footer.address') }}:</span> {{ $siteSettings?->address ?? 'Agadir, 85000 Tiznit, Maroc' }}</p>
                 </div>
             </div>
         </div>
 
-            <!-- Copyright -->
-        <div class="mt-4 text-center text-xs text-white/70 dark:text-gray-400">
-            &copy; 
-            @if (now()->year > 2025)
-                2025-{{ now()->year }}
-            @else
-                2025
-            @endif
-            OrientationTech. {{ __('site.footer.copyright') }} | 
-            {!! __('site.footer.made_with') !!}
+        <div class="flex flex-col gap-3 py-6 text-center text-xs text-white/70 sm:flex-row sm:items-center sm:justify-between sm:text-left">
+            <p>
+                &copy;
+                @if (now()->year > 2025)
+                    2025-{{ now()->year }}
+                @else
+                    2025
+                @endif
+                OrientationTech. {{ __('site.footer.copyright') }}
+            </p>
+            <p>{!! __('site.footer.made_with') !!}</p>
         </div>
-
     </div>
-    <!-- Fin contenu footer z-10 -->
 </footer>
 
 <script>
-    // Message caché dans la console
-    console.log('%c👨‍💻 Développé par mohamed abouljid', 'color: #2563eb; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);');
-    console.log('%c💙 Merci ', 'color: #3b82f6; font-size: 12px;');
+    console.log('%cDeveloped by mohamed abouljid', 'color: #2563eb; font-size: 16px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);');
+    console.log('%cMerci', 'color: #3b82f6; font-size: 12px;');
 </script>

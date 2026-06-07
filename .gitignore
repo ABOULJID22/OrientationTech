@@ -11,6 +11,7 @@
 /storage/framework/testing/*
 /storage/framework/views/*
 /storage/logs/*
+/public/storage
 
 # Node / Frontend
 /node_modules/

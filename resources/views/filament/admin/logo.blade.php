@@ -38,10 +38,28 @@
 </style>
 
 @php
-    // Fallback logic: if the admin settings provide a dedicated dark logo, use it.
-    // Otherwise we fallback to the regular logo so nothing breaks.
-    $logo = $siteSettings?->logo_path ? Storage::url($siteSettings->logo_path) : asset('images/logo.png');
-    $logoDark = $siteSettings?->dark_logo_path ? Storage::url($siteSettings->dark_logo_path) : $logo;
+    $resolveLogoUrl = function (?string $path, string $fallback): string {
+        if (blank($path)) {
+            return $fallback;
+        }
+
+        $path = trim($path);
+
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, '//')) {
+            return $path;
+        }
+
+        $path = ltrim($path, '/');
+
+        if (str_starts_with($path, 'storage/') || str_starts_with($path, 'images/')) {
+            return asset($path);
+        }
+
+        return Storage::disk('public')->url($path);
+    };
+
+    $logo = $resolveLogoUrl(data_get($siteSettings, 'logo_path'), asset('images/logo.png'));
+    $logoDark = $resolveLogoUrl(data_get($siteSettings, 'dark_logo_path'), $logo);
 @endphp
 
 <div class="logo-box">

@@ -10,7 +10,7 @@
   @endif
   @include('layouts.favicon')
 
-</head>
+</head> 
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
 
   @include('layouts.navbar')

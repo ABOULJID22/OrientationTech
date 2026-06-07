@@ -15,6 +15,8 @@ class AdminRegistrationsChart extends ChartWidget
 
     protected int | string | array $columnSpan = ['lg' => 1];
 
+    protected ?string $maxHeight = '280px';
+
     protected function getType(): string
     {
         return 'line';
@@ -35,8 +37,55 @@ class AdminRegistrationsChart extends ChartWidget
                 'backgroundColor' => 'rgba(79, 107, 163, 0.18)',
                 'fill' => true,
                 'tension' => 0.35,
+                'pointRadius' => 3,
+                'pointHoverRadius' => 3,
+                'pointHitRadius' => 0,
             ]],
             'labels' => $months->map(fn ($month): string => $month->translatedFormat('M Y'))->values()->all(),
+        ];
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            'responsive' => true,
+            'maintainAspectRatio' => false,
+            'resizeDelay' => 0,
+            'events' => [],
+            'animation' => false,
+            'animations' => false,
+            'hover' => [
+                'mode' => null,
+                'animationDuration' => 0,
+            ],
+            'transitions' => [
+                'active' => [
+                    'animation' => [
+                        'duration' => 0,
+                    ],
+                ],
+                'resize' => [
+                    'animation' => [
+                        'duration' => 0,
+                    ],
+                ],
+            ],
+            'elements' => [
+                'point' => [
+                    'radius' => 3,
+                    'hoverRadius' => 3,
+                    'hitRadius' => 0,
+                ],
+            ],
+            'scales' => [
+                'y' => [
+                    'beginAtZero' => true,
+                    'grace' => '10%',
+                    'ticks' => [
+                        'precision' => 0,
+                    ],
+                ],
+            ],
         ];
     }
 

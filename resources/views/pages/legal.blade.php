@@ -9,11 +9,11 @@
     @include('layouts.theme-init')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
   @endif
-
+ 
   @include('layouts.favicon')
 
 </head>
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+<body class=" text-gray-900 dark:bg-gray-900 dark:text-gray-100">
 
   @include('layouts.navbar')
 
